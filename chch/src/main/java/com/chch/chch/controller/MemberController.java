@@ -34,7 +34,7 @@ public class MemberController {
 	public String main(Model model, HttpSession session) {
 		String id = (String) session.getAttribute("id");
 		model.addAttribute("id", id);
-		return "/main";
+		return "/main/main";
 	}
 	
 	
