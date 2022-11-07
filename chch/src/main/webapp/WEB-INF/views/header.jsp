@@ -24,7 +24,7 @@ th {
 
 <!-- <style type="text/css">@import url("header.css");</style> -->
 <style type="text/css">
-@import url("/chackcheck/css/font.css");
+@import url("/chch/css/font.css");
 </style>
 <style type="text/css">
 /* 네비바의 불필요한 부분 제거 */

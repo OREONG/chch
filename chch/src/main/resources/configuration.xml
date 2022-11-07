@@ -3,17 +3,15 @@
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias alias="member" type="com.chch.chch.model.Member"/>
-		<typeAlias alias="chat" type="com.chch.chch.model.Chat" />
 		<typeAlias alias="book" type="com.chch.chch.model.Book" />
-		<typeAlias alias="community" type="com.chch.chch.model.Community" />
-		<typeAlias alias="inquiry" type="com.chch.chch.model.Inquiry" />
+		<typeAlias alias="member" type="com.chch.chch.model.Member" />
+		<typeAlias alias="used" type="com.chch.chch.model.Used" />
+		<typeAlias alias="review" type="com.chch.chch.model.Review" />
 	</typeAliases>
 	<mappers>
-		<mapper resource="xml/member.xml"/>
-		<mapper resource="xml/chat.xml" />
 		<mapper resource="xml/book.xml" />
-		<mapper resource="xml/community.xml" />
-		<mapper resource="xml/inquiry.xml" />
+		<mapper resource="xml/member.xml" />
+		<mapper resource="xml/used.xml" />
+		<mapper resource="xml/review.xml" />
 	</mappers>
 </configuration>
