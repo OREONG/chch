@@ -3,38 +3,16 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bookns">
 
-	<!-- SB 전체책 목록 (페이징 포함) -->
-	<select id="bookListAll" parameterType="map" resultType="book">
-		select * from (select rowNum rn, a.* from (select * from book order by book_no desc)a) where rn between #{startRow} and #{endRow}
+	<select id="select" parameterType="list" resultType="book">
+		select * from book where book_del='n'
 	</select>
 	
-	<!-- SB 총 책의 권수 조회 -->
-	<select id="getTotal" resultType="int">
-		select count(*) from book
+	<select id="getTotal" parameterType="book" resultType="integer">
+		select count(*) from book where book_del='n'
 	</select>
 	
-	<!-- SB 책의 노출여부 확인 -->
-	<select id="delList" parameterType="string" resultType="string">
-		select book_del from book where book_no=#{book_no}
-	</select>
-	
-	<!-- SB 노출상태 변경 n->y, y->n -->
-	<update id="deleteBook" parameterType="map">
-		update book set book_del=#{delList} where book_no=#{selectDelete}
-	</update>
-	
-	<!-- SB 지정한 책 한권의 정보 가져오기 -->
-	<select id="select" parameterType="int" resultType="book">
+	<select id="selectbook" parameterType="integer" resultType="book">
 		select * from book where book_no=#{book_no}
 	</select>
-	
-	<!-- SB 신규 책 등록 -->
-	<insert id="insert" parameterType="book">
-		insert into book values((SELECT NVL(MAX(book_no), 0) + 1 FROM book), #{book_title}, #{book_image}, #{book_imagedetail}, #{book_author}, #{book_publisher}, #{book_count}, #{book_price}, #{book_publish_date}, sysdate, to_clob(#{book_content}), #{book_kind}, 'n')
-	</insert>
-	<!-- SB 책 정보 수정 -->
-	<update id="update" parameterType="book">
-		update book set book_image=#{book_image}, book_imagedetail=#{book_imagedetail}, book_kind=#{book_kind}, book_title=#{book_title}, book_author=#{book_author}, book_publisher=#{book_publisher}, book_price=#{book_price}, book_count=#{book_count}, book_content=#{book_content}, book_publish_date=#{book_publish_date} where book_no=#{book_no}
-	</update>
-	
+
 </mapper>

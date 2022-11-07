@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias alias="book" type="com.chch.chch.model.Book" />
+		<typeAlias alias="like" type="com.chch.chch.model.Like_list" />
+		<typeAlias alias="deal" type="com.chch.chch.model.Deal" />
+		<typeAlias alias="cart" type="com.chch.chch.model.Cart" />
+		<typeAlias alias="member" type="com.chch.chch.model.Member" />
+		<typeAlias alias="used" type="com.chch.chch.model.Used"/>
+		<typeAlias alias="review" type="com.chch.chch.model.Review"/>
+	</typeAliases>
+	<mappers>
+		<mapper resource="xml/book.xml"/>
+		<mapper resource="xml/like.xml" />
+		<mapper resource="xml/deal.xml" />
+		<mapper resource="xml/cart.xml" />
+		<mapper resource="xml/member.xml" />
+		<mapper resource="xml/used.xml"/>
+		<mapper resource="xml/review.xml"/>
+	</mappers>
+</configuration>

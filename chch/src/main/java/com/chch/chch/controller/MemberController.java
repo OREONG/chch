@@ -3,39 +3,116 @@ package com.chch.chch.controller;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.chch.chch.model.Member;
+import com.chch.chch.service.MailSendService;
 import com.chch.chch.service.MemberService;
+
 
 @Controller
 public class MemberController {
-	
-	@SuppressWarnings("unused")
+	@Autowired
+	private JavaMailSender jms;
 	@Autowired
 	private MemberService ms;
+	@Autowired
+	private BCryptPasswordEncoder bpe; //ºñ¹Ğ¹øÈ£ ¾ÏÈ£È­
+	private String emailChk;
 	
-//	SB ê°„ì´ ë¡œê·¸ì¸ í™”ë©´
-	@RequestMapping("loginForm")
-	public String loginForm() {
-		return "/loginForm";
-	}
-	
-//	SB ê°„ì´ ë¡œê·¸ì¸ ì‹¤í–‰
-	@RequestMapping("login")
-	public String login(Model model, HttpSession session, String id) {
-		session.setAttribute("id", id);
-		return "/login";
-	}
-	
-//	SB ê°„ì´ ë©”ì¸ í™”ë©´
 	@RequestMapping("main")
-	public String main(Model model, HttpSession session) {
-		String id = (String) session.getAttribute("id");
-		model.addAttribute("id", id);
-		return "/main";
+	public String main(HttpSession session) {
+		String id = (String)session.getAttribute("id");
+		return "main";
 	}
 	
+	//ÃÊ±â È¸¿ø°¡ÀÔ È­¸é
+	@RequestMapping("/member/joinForm")
+	public String joinForm() {
+		return "/member/joinForm";
+	}
 	
+	//¾ÆÀÌµğ Áßº¹°Ë»ç
+	@RequestMapping(value = "idDepChk", produces = "text/html;charset=utf-8")
+	@ResponseBody //jsp·Î °¡Áö¸»°í ¹Ù·Î º»¹®À» Àü´Ş
+	public String idDepChk(String id, Model model) {
+		String msg = "";
+		Member member = ms.select(id);
+		if(member == null) msg = "»ç¿ë °¡´ÉÇÑ ¾ÆÀÌµğ ÀÔ´Ï´Ù";
+		else msg = "ÀÌ¹Ì »ç¿ëÁßÀÌ´Ï ´Ù¸¥ ¾ÆÀÌµğ¸¦ »ç¿ëÇÏ¼¼¿ä";
+		return msg;
+	}
+	
+	//È¸¿ø°¡ÀÔ Æû¿¡ ÀûÀº ÀÌ¸ŞÀÏÀ» °¡Á®¿Í ÀÌ¸ŞÀÏ Àü¼Û
+	@RequestMapping(value="emailChk", produces="text/html;charset=utf-8")
+	@ResponseBody
+	public String emailChk(String email, Model model) {
+		String msg = "";
+		Member member = ms.selectEmail(email);
+		if(member == null) {
+			MailSendService mailsend = new MailSendService();
+			emailChk = mailsend.joinEmail(email, jms);
+			System.out.println("Controller¿¡ ³Ñ¾î¿Â ÀÎÁõÄÚµå : " + emailChk);			
+		}else {
+			msg = "Áßº¹µÈ ÀÌ¸ŞÀÏ ÀÔ´Ï´Ù";
+		}
+		return msg;
+	}
+	
+	//È¸¿ø°¡ÀÔ Æû¿¡ ÀûÀº ÀÎÁõ¹øÈ£¿Í ¸ŞÀÏ·Î Àü¼ÛÇÑ ÀÎÁõ¹øÈ£°¡ ÀÏÄ¡ÇÏ´ÂÁö È®ÀÎ
+	@RequestMapping(value="emailConfirm", produces="text/html;charset=utf-8")
+	@ResponseBody
+	public String emailConfirm(String emailConfirm, Model model) {
+		System.out.println("ÀûÀº ÀÎÁõ¹øÈ£ : " + emailConfirm);
+		System.out.println("¸ŞÀÏ·Î º¸³½ ÀÎÁõ¹øÈ£ : " + emailChk);
+		String msg = "";
+		if(emailChk.equals(emailConfirm)) {
+			msg = "y";
+		}else  {
+			msg = "n";
+		}
+		return msg;
+	}
+	
+	//È¸¿ø°¡ÀÔ
+	@RequestMapping("/member/join")
+	public String join(Member member, Model model, HttpSession session){
+		int result = 0;
+		//member´Â È­¸é ÀÔ·ÂÇÑ µ¥ÀÌÅÍ, member2´Â db¿¡ ÀÖ´Â µ¥ÀÌÅÍ
+		Member member2 = ms.select(member.getId());
+		if(member2 == null) {
+			String encPass = bpe.encode(member.getPassword()); //ºñ¹Ğ¹øÈ£ ¾ÏÈ£È­
+			member.setPassword(encPass);
+			result = ms.insert(member);
+		}else result = -1;//ÀÌ¹Ì ÀÖÀ¸´Ï ÀÔ·ÂÇÏÁö¸¶
+		model.addAttribute("result", result);
+		return "/member/join";
+	}
+	
+	//·Î±×ÀÎ È­¸é
+	@RequestMapping("/member/loginForm")
+	public String loginForm() {
+		return "/member/loginForm";
+	}
+	
+	//·Î±×ÀÎ
+	@RequestMapping("/member/login")
+	public String login(Member member, Model model, HttpSession session) {
+		int result = 0;
+		Member member2 = ms.select(member.getId());
+		if (member2 == null || member2.getDel().equals("y")) result = -1; //¾ø´Â ¾ÆÀÌµğ
+		//bpe.matches dbÀÇ ºñ¹Ğ¹øÈ£¿Í ¹Ş¾Æ¿Â ºñ¹Ğ¹øÈ£¸¦ ¸ğµÎ ¾ÏÈ£È­ ÇÑ »óÅÂ·Î °°ÀºÁö ºñ±³
+		else if (bpe.matches(member.getPassword(), member2.getPassword())) {
+			result = 1; //¼º°ø -> ¾ÆÀÌµğ¿Í ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÑ´Ù
+			session.setAttribute("id", member.getId());
+		}
+		model.addAttribute("result", result);
+		return "/member/login";
+	}
+
 }

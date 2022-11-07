@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cartns">
+
+	<select id="list" resultType="cart" parameterType="string">
+	<!-- 장바구니 목록 불러오기 -->
+		select cart_no, c.book_no,b.book_title,b.book_price,book_count,
+			b.book_publisher,b.book_author,c.cart_count, b.book_image
+				from  book b,cart c where c.book_no = b.book_no and c.id=#{id}
+	<!-- order by b.book_no -->
+	 </select>
+	 <!-- 장바구니 수량 수정 -->
+	 <update id="update" parameterType="integer">
+	 	update cart set cart_count=#{cart_count} where cart_no = #{cart_no}
+	 </update>
+	 <delete id="delete">
+	 	delete from cart where cart_no = #{cart_no} and id= #{id}
+	 </delete>
+	 <!-- 장바구니 상품 추가 -->
+	<insert id="insert" parameterType="map">
+		insert into cart values((SELECT NVL(MAX(cart_no), 0) + 1 FROM cart), #{book_no},#{id},#{cart_count})
+		
+	</insert>
+</mapper>

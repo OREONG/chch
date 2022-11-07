@@ -1,15 +1,16 @@
 package com.chch.chch.dao;
 
-import java.util.List;
-
 import com.chch.chch.model.Member;
 
 public interface MemberDao {
 
-	int getTotal();
+	//아이디 중복검사
+	Member select(String id);
+	//이메일 중복검사
+	Member selectEmail(String email);
 
-	List<Member> memberList(int startRow, int endRow);
+	//초기 회원가입
+	int insert(Member member);
 
-	int adminDelete(String id, String del);
 
 }

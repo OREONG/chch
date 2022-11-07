@@ -2,19 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="memberns">
-
-	<!-- SB 전체 회원 수 구하기 -->
-	<select id="getTotal" resultType="int">
-		select count(*) from member
+	<!-- id 중복검사 -->
+	<select id="select" parameterType="string" resultType="member">
+		select * from member where id=#{id}
 	</select>
-	
-	<!-- SB 회원 페이징 -->
-	<select id="memberList" parameterType="map" resultType="member">
-		select * from (select rowNum rn, a.* from (select * from member order by email)a) where rn between #{startRow} and #{endRow}
+	<!-- email 중복검사 -->
+	<select id="selectEmail" parameterType="string" resultType="member">
+		select * from member where email=#{email}
 	</select>
-	
-	<update id="adminDelete" parameterType="map">
-		update member set del=#{del} where email=#{email}
-	</update>
-	
+	<!-- 초기 회원가입 -->
+	<insert id="insert" parameterType="member">
+		insert into member(id, password, email, reg_date) values(#{id}, #{password}, #{email}, sysdate)
+	</insert>
 </mapper>
