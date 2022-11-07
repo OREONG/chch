@@ -1,0 +1,436 @@
+
+
+/* 메인 wrap */
+.report-main-wrap{
+	margin-top: 80px;
+}
+/* 메인 글씨 */
+.report-text-wrap{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+#report-main-text{
+    font-size: 25px;
+    color: #210e00;
+    font-family: Jalnan;
+}
+
+#report-sub-text{
+	font-size: 15px;
+    color: #919191;
+    font-family: AppleSDGothicNeo;
+	margin-top: 10px;
+}
+
+/* 클릭하면 기록하는 창 나오는 기록하기 버튼 */
+#report-btn{
+	width : 25%;
+    background: #5055b1;;
+    border: 1px solid #5055b1;;
+    border-radius: 6px;
+    height: 49px;
+	margin-top:30px;
+	transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+	
+	color: #fff;
+	font-size: 15px;
+    font-weight: 600;
+}
+#report-btn:hover{
+	cursor:pointer;
+	background: #30347f;
+}
+
+/* 독서록 글 쓰는 페이지; 숨김가능 */
+
+
+.report-write-wrap{
+	display: none;
+}
+
+.report-update-wrap{
+	margin-top:100px;
+}
+
+#report-write-box{
+    border: 1px solid #a3a3a3;
+    display: flex;
+    flex-direction: column;
+    margin: 40px auto 0 auto;
+    align-items: center;
+    width: 50%;
+}
+
+hr{
+	width: 93%;
+	color:black;
+}
+
+#book-input{
+margin-top: 25px;
+    align-self: start;
+    margin-left: 5%;
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #1c1c1c;
+    font-family: 'Jalnan';
+}    
+.report-sub-box{
+    /* border-radius: 3px; */
+    border: 1px dotted #bcb6b2;
+    height: 20px;
+    margin-bottom: 10px;
+    font-family: AppleSDGothicNeo;
+    display: flex;
+    align-self: self-start;
+}
+.report-sub-box2{
+    border: 1px dotted #bcb6b2;
+    height: 44.5px;
+    margin: 0 0 10px 0;
+    font-family: AppleSDGothicNeo;
+    display: flex;
+    align-self: self-start;
+	width: 100%;
+}
+
+.real-upload {
+	display: none;
+}
+
+#report-Infoimage-box {
+	cursor: pointer;
+ 	display: flex;
+	justify-content: center;
+	align-items: center;
+	color:gray;
+	font-size: 14px; 
+}
+#report-imgInput{
+	height:30px;
+	width:30px;
+}
+
+#report-class-box {
+	width: 39%;
+}
+
+
+input{
+	padding-left: 8px;
+}
+textarea{
+	padding-left: 8px;
+	padding-top : 9px;
+}
+/* 책 정보 wrap */
+#report-Img-report-wrap{
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+	width: 90%;
+
+    margin-bottom: 4px;
+    margin-top: 20px;
+    justify-content: space-between;
+}
+
+/* 검색, 감상문 제목, 감상문 내용 */
+#searchArea{
+	display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: 14px 0 14px 0;
+}
+
+/* 검색 input, 검색 button wrap */
+#inputArea{
+	display: flex;
+    justify-content: space-between;
+}
+
+/* 검색 input */
+#searchTextInput{
+	border: 1px dotted #bcb6b2;
+    height: 37px;
+    width: 80%;
+}
+
+/* 검색 button */
+#search-btn{
+	width: 18%;
+	height: 37px;
+	border: 1px solid #c2c2c2;
+	border-radius : 4px;
+    font-size: 11px;
+    transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+}
+
+#search-btn:hover{
+	cursor: pointer;
+	border: 1px solid #a0a0a0;
+    background: #a0a0a0;
+}
+
+#report-report-box{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	width: 90%;
+	margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+#report-title{
+    border: 1px dotted #bcb6b2;
+    height: 44.5px;
+    margin-bottom: 10px;
+    font-family: AppleSDGothicNeo;
+    display: flex;
+    align-self: self-start;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+#report-content{
+    border: 1px dotted #bcb6b2;
+    height: 260px;
+    margin-bottom: 10px;
+    font-family: AppleSDGothicNeo;
+    display: flex;
+    align-self: self-start;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    resize: none;
+}
+
+#row-div{
+	display: flex;
+	flex-direction: row;
+	font-size: 13px;
+	margin-top: 10px;
+}
+
+#expose-warn{
+	color: red;
+	font-size: 11px;
+	margin-top: 3px;
+}
+
+#input-btn{
+	width : 30%;
+    background: #5055b1;;
+    border: 1px solid #5055b1;;
+    border-radius: 6px;
+    height: 49px;
+	margin:30px 0 33px 0;
+	transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+	
+	color: #fff;
+	font-size: 15px;
+    font-weight: 600;
+}    
+
+#input-btn:hover{
+	cursor:pointer;
+	background: #30347f;
+}
+/* 글 목록 */
+#delete-span{
+	display: flex;
+    justify-content: center;
+    margin-top: 150px;
+    color: lightgrey;
+}
+
+ #card-box{
+    justify-content: center;
+    margin: auto;
+ }
+
+
+.report-list-wrap{
+    width: 80%;
+    margin: 50px auto 0 auto;
+}
+
+.card-colums{
+	display: flex;
+	width: 65%;
+	
+}
+
+#nonData-text{
+	margin: 60px 0 50px 0;
+}    
+
+.card{
+	width: 200px;
+    height: 350px;
+    border: 1px solid lightgrey;
+    margin: 10px;
+    cursor: pointer;
+    position: relative; 
+}
+
+.card-body{
+	margin-top: 8px;
+}
+
+.card-img-top{
+    width: 200px;
+	height: 250px;
+}
+
+.name {
+	border: none;
+    width: 80%;
+    height: 14px;
+    margin: 4px auto 0px 5px;
+    font-size: 13.5px;
+    font-weight: bold;
+}
+.name:focus{
+	outline: none;
+}
+
+
+.author {
+	border: none;
+    width: 80%;
+    height: 14px;
+    margin: 6px auto 3px 5px;
+    font-size: 12px;
+
+}
+.author:focus{
+	outline: none;
+}
+
+.title {
+    border: none;
+    width: 80%;
+    height: 13px;
+    margin: 7px auto 3px 4px;
+    font-size: 13px;
+}
+.title:focus{
+	outline: none;
+}
+
+.date {
+    height: 12px;
+    border: none;
+    margin: 4px auto 3px 5px;
+    font-size: 9px;
+}
+.date:focus{
+	outline: none;
+}
+
+
+#detail_btn{
+    border-style: none;
+    position: relative;
+    cursor: pointer;
+    width: 200px;
+    height: 350px;
+    top: -347px;
+    border: none;
+    background: none;
+}
+    
+
+
+
+/* 페이징작업 */
+
+#nonData-btn-wrap{
+	display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.paging{
+	z-index: 1;
+    position: relative;
+	margin-top: 30px;
+
+}
+#pageClick-btn{
+    background: #2bc5c1;
+    border-radius: 20px;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+#pageNonClick-btn{
+    background: none;
+    border-radius: 20px;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+#preBtn{
+	background: none;
+    border: none;	
+    cursor: pointer;
+}	
+#nextBtn{
+	background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.pagination{
+	display: flex;
+    justify-content: center;
+	
+}
+
+
+a{
+	margin: 5px;
+}
+
+/* 공통속성 */
+ul{
+	display: flex;
+	list-style:none;
+	text-decoration-line: none;
+}
+
+a { 
+	text-decoration: none;
+	color: gray;
+	}
+a:visited { 
+    text-decoration: none; 
+    }
+a:hover { 
+    text-decoration: none; 
+    }
+a:focus { 
+	text-decoration: none; 
+	}
+a:hover, a:active { 
+	text-decoration: none; 
+	}
+
+
+/* 반응형 */
+@media screen and (max-width:860px) {
+	#report-write-box{
+		width:415px;
+	}
+}
+@media screen and (max-width:530px) {
+	.report-text-wrap{
+	width:490px;}
+}

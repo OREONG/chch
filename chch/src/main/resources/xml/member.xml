@@ -2,19 +2,45 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="memberns">
-
-	<!-- SB 전체 회원 수 구하기 -->
-	<select id="getTotal" resultType="int">
-		select count(*) from member
+	<!-- id 중복검사 -->
+	<select id="select" parameterType="string" resultType="member">
+		select * from member where id=#{id}
 	</select>
-	
-	<!-- SB 회원 페이징 -->
-	<select id="memberList" parameterType="map" resultType="member">
-		select * from (select rowNum rn, a.* from (select * from member order by email)a) where rn between #{startRow} and #{endRow}
+	<!-- email 중복검사 -->
+	<select id="selectEmail" parameterType="string" resultType="member">
+		select * from member where email=#{email}
 	</select>
-	
-	<update id="adminDelete" parameterType="map">
-		update member set del=#{del} where email=#{email}
+	<!-- 초기 회원가입 -->
+	<insert id="insert" parameterType="member">
+		insert into member(id, password, email, reg_date) values(#{id}, #{password}, #{email}, sysdate)
+	</insert>
+	<!-- 회원정보 수정 -->
+	<update id="update" parameterType="member">
+		update member set email=#{email}
+		<!-- 파일이 있으면 변경하고, 없으면 기존 파일명 그대로 사용  -->
+		<if test="fileName != null">
+		,fileName=#{fileName}
+		</if>
+		<if test="name != null">
+		,name=#{name}
+		</if>
+		<if test="birth != null">
+		,birth=#{birth}
+		</if>
+		<if test="gender != null">
+		,gender=#{gender}
+		</if>
+		<if test="phone != null">
+		,phone=#{phone}
+		</if>
+		where id=#{id}
 	</update>
-	
+	<!-- 회원 탈퇴 -->
+	<update id="delete" parameterType="string">
+		update member set del='y' where id=#{id}
+	</update>
+	<!-- 비밀번호 찾기 비밀번호 재 설정 -->
+	<update id="updatePassword" parameterType="member">
+		update member set password=#{password} where id=#{id}
+	</update>
 </mapper>

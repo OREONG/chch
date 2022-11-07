@@ -1,0 +1,192 @@
+.main-container{
+	display: flex;
+	justify-content: center;
+	margin-top:120px;
+}
+
+.update-container{
+	width: 340px;
+}
+
+
+/* 프로필 사진 */
+#img-wrap{
+	display: flex;
+    justify-content: center;
+    margin-bottom: 22px;	
+}
+
+.proImg{
+    height: 88px;
+    width: 88px;
+    border-radius: 30px;
+    overflow:hidden;
+    margin:0 auto;
+	cursor: pointer;
+	
+	position: relative;
+	z-index: 1;
+    margin-left: 124px;
+}
+
+#img{
+    width:100%;
+    height:100%;
+	object-fit:cover;
+}
+
+/* 카메라 이미지 */
+#cameraImgDiv{
+    width: 24px;
+    height: 24px;
+	border-radius: 30px;
+    overflow:hidden;
+    margin:0 auto;
+    cursor: pointer;
+    
+    position: relative;
+    z-index: 2;
+	left: -83px;
+    top: 58px;
+}
+#cameraImg{
+	width:100%;
+    height:100%;
+	object-fit:cover;
+}
+
+
+
+/* 가로 정렬 div */
+.row-div{
+	display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+/* 아이디 가로 정렬 */
+.row-div2{
+	display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 15px;
+    margin-bottom: 31px;
+}
+
+/* 이름, 휴대폰 번호, 생년월일, 성별 div */
+.div2{
+	 width: 250px;
+}
+
+/* 아이디, 이메일, 이름 ... 글씨 */
+.item-text{
+	font-size: 13px;
+}
+
+/* 이메일, 이메일 인증 input */
+.input1, .input3{
+	display: inline-block;
+    width: 154px;
+    height: 44px;
+    padding: 0 14px 2px;
+    color: #000;
+    font-size: 14px;
+    line-height: 42px;
+    letter-spacing: -0.01em;
+    font-family: "Noto Sans KR", sans-serif;
+    background-color: #fff;
+    border: 1px solid #d5d5d5;
+    border-radius: 6px;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease-out;
+    outline: none;
+}
+.input1:hover, .input2:hover{
+	border: 1px solid #091b50;
+}
+
+/* 이름, 휴대폰 번호, 생년월일, 성별 */
+.input2{
+	display: inline-block;
+    width: 100%;
+    height: 44px;
+    padding: 0 14px 2px;
+    color: #000;
+    font-size: 14px;
+    line-height: 42px;
+    letter-spacing: -0.01em;
+    font-family: "Noto Sans KR", sans-serif;
+    background-color: #fff;
+    border: 1px solid #d5d5d5;
+    border-radius: 6px;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease-out;
+    outline: none;
+}
+
+/* 이메일 중복확인, 인증 버튼 */
+.btn{
+    width: 88px;
+	height: 44px;
+	border: 1px solid #c2c2c2;
+	border-radius : 6px;
+    font-size: 9px;
+    transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+}
+.btn:hover{
+	cursor: pointer;
+	border: 1px solid #a0a0a0;
+    background: #a0a0a0;
+}
+
+/* 회원 탈퇴 링크 글씨 */
+#deleteLink{
+	font-size:12px;
+}
+
+/* 수정버튼 */
+.updateBtn{
+	width : 100%;
+    background: #5055b1;;
+    border: 1px solid #5055b1;;
+    border-radius: 6px;
+    height: 49px;
+	margin-top:30px;
+	transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+	
+	color: #fff;
+	font-size: 15px;
+    font-weight: 600;	
+}
+
+.updateBtn:hover{
+	cursor:pointer;
+	background: #30347f;
+}
+
+/* 돌아가기 버튼 */
+.backBtn{
+	width : 100%;
+    border: 1px solid #5055b1;
+    border-radius: 6px;
+    height: 49px;
+	margin-top: 12px;
+	transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+	
+	color: #5055b1;
+	font-size: 15px;
+    font-weight: 600;
+}
+
+.backBtn:hover{
+	cursor:pointer;
+	background: #30347f;
+	color: #fff;
+}
+
+.backBtn-div{
+	width : 340px;
+}
