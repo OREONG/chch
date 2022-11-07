@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="usedns">
+
+	<select id="usedList" parameterType="used" resultType="used">
+		select * from (select a.*, rowNum rn from (select * from used order by used_reg_date desc)a)
+		where rn between #{startRow} and #{endRow} and used_del='n'
+	</select>
+	
+	<select id="getTotal" parameterType="used" resultType="integer">
+		select count(*) from used where used_del='n'
+	</select>
+	
+	<select id="selectUsed" parameterType="integer" resultType="used">
+		select * from used where used_no=#{used_no}
+	</select>
+	
+	<insert id="insertUsed" parameterType="used">
+		<selectKey keyProperty="used_no" order="BEFORE" resultType="integer">
+			select nvl(max(used_no), 0) + 1 used_no from used
+		</selectKey>
+		insert into used values(#{used_no},#{book_no},#{used_subject},#{used_content},#{used_image},#{used_price},'n','n',sysdate,#{id})
+	</insert>
+	
+</mapper>

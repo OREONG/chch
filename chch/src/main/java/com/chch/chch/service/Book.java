@@ -1,4 +1,4 @@
-package com.chch.chch.model;
+package com.chch.chch.service;
 
 import java.sql.Date;
 

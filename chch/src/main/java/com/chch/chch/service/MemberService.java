@@ -1,15 +1,16 @@
 package com.chch.chch.service;
 
-import java.util.List;
-
 import com.chch.chch.model.Member;
 
 public interface MemberService {
+	
+	//아이디 중복검사
+	Member select(String id);
+	//이메일 중복검사
+	Member selectEmail(String email);
 
-	int getTotal();
-
-	List<Member> memberList(int startRow, int endRow);
-
-	int adminDelete(String id, String del);
+	//초기 회원가입
+	int insert(Member member);
+	
 
 }
