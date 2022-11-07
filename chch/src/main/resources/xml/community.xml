@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="communityns">
+
+	<!-- SB 커뮤니티 글 등록 -->
+	<insert id="insert" parameterType="community">
+		insert into community values((SELECT NVL(MAX(community_no), 0) + 1 FROM community), #{room_no}, #{host_id}, #{community_category}, #{community_subject}, #{community_content}, #{max_member}, #{community_gender}, #{min_age}, #{max_age}, #{community_location}, 'n')
+	</insert>
+	
+	<select id="select" parameterType="int" resultType="community">
+		SELECT * FROM community WHERE community_no=#{community_no}
+	</select>
+	
+	<select id="selectByRoomNo" parameterType="int" resultType="int">
+		SELECT community_no FROM community WHERE room_no=#{room_no}
+	</select>
+	
+	<select id="communityMyList" parameterType="String" resultType="community">
+		SELECT * FROM community c, room r WHERE c.room_no=r.room_no AND id=#{id} ORDER BY community_no DESC
+	</select>
+	
+	<select id="currentMember" parameterType="int" resultType="int">
+		SELECT COUNT(*) FROM room WHERE room_no=#{room_no}
+	</select>
+	
+	<select id="communityAllList" resultType="community">
+		SELECT * FROM community c, room r WHERE c.room_no=r.room_no AND c.host_id=r.id ORDER BY community_no DESC
+	</select>
+	
+	<select id="participation" parameterType="map" resultType="int">
+		SELECT count(*) FROM room WHERE room_no=#{room_no} and id=#{id}
+	</select>
+	
+	<select id="selectRoomName" parameterType="int" resultType="String">
+		SELECT r.room_name FROM room r, community c WHERE r.room_no = c.room_no AND c.host_id=r.id AND r.room_no=#{room_no}
+	</select>
+	
+	<insert id="joinRoom" parameterType="map">
+		INSERT INTO room VALUES (#{room_no}, #{id}, #{room_name}, sysdate, 'n')
+	</insert>
+	
+</mapper>

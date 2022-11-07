@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="inquiryns">
+
+	<!-- SB 전체책 목록 (페이징 포함) -->
+	<select id="replyList" parameterType="map" resultType="inquiry">
+		SELECT * FROM (SELECT rowNum rn, a.* FROM (SELECT * FROM inquiry WHERE reply=#{reply} ORDER BY inquiry_no DESC)a) WHERE rn BETWEEN #{startRow} AND #{endRow}
+	</select>
+	
+	<select id="getTotal" resultType="int">
+		SELECT COUNT(*) FROM inquiry WHERE reply='n'
+	</select>
+	
+	<update id="replySubmit" parameterType="inquiry">
+		UPDATE inquiry SET reply='y', reply_content=#{reply_content}, reply_time=sysdate WHERE inquiry_no=#{inquiry_no}
+	</update>
+	
+	<insert id="inquirySubmit" parameterType="inquiry">
+		INSERT INTO inquiry VALUES ((SELECT NVL(MAX(inquiry_no), 0) + 1 FROM inquiry), #{id}, #{category_no}, #{inquiry_subject}, #{inquiry_content}, sysdate, 'n','', '' )
+	</insert>
+	
+	<select id="inquiryList" parameterType="map" resultType="inquiry">
+		SELECT * FROM (SELECT rowNum rn, a.* FROM (SELECT * FROM inquiry WHERE id=#{id} ORDER BY inquiry_no DESC)a) WHERE rn BETWEEN #{startRow} AND #{endRow}
+	</select>
+	
+</mapper>

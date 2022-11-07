@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias alias="member" type="com.chch.chch.model.Member"/>
+		<typeAlias alias="chat" type="com.chch.chch.model.Chat" />
+		<typeAlias alias="book" type="com.chch.chch.model.Book" />
+		<typeAlias alias="community" type="com.chch.chch.model.Community" />
+		<typeAlias alias="inquiry" type="com.chch.chch.model.Inquiry" />
+	</typeAliases>
+	<mappers>
+		<mapper resource="xml/member.xml"/>
+		<mapper resource="xml/chat.xml" />
+		<mapper resource="xml/book.xml" />
+		<mapper resource="xml/community.xml" />
+		<mapper resource="xml/inquiry.xml" />
+	</mappers>
+</configuration>
