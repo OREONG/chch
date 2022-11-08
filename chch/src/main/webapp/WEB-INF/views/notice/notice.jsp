@@ -10,18 +10,18 @@
 	var socket  = null;
 	$(document).ready(function(){
 	    // 웹소켓 연결
-	    sock = new SockJS("<c:url value="/echo.do"/>");
+	   /*  sock = new SockJS("<c:url value="/echo.do"/>");
 	    socket = sock;
 	    
 	    sock.onopen = function() {
 		    console.log('open ws')
-	    };
+	    }; */
 	
 	    // 데이터를 전달 받았을때 
-	    sock.onmessage = onMessage; // toast 생성
+	    // sock.onmessage = onMessage; // toast 생성
 	    
-	    $('#close').click(function() { disconnect(); });
-	    $('#loadStatus').click(function() { loadStatus(); });
+	    // $('#close').click(function() { disconnect(); });
+	    /* $('#loadStatus').click(function() { loadStatus(); });
 	    $('#sendBtn').click(function() { send(); });
 		
 	    $('#notice').keypress(function() { // enter키를 누르면 메세지 전송
@@ -30,17 +30,19 @@
 			if (keycode == 13) { // 13이 enter(assii값)
 				send();
 			}
-		});
+		}); */
 	    
 		// toast생성 및 추가
-		function onMessage(evt){
-		    if (evt.data.substr(0,6)=="notice") {
+	//	function onMessage(evt){
+		    /* if (evt.data.substr(0,6)=="notice") {
 			    view = evt.data.substr(7);
 		    	$("#noticePopUp").children().remove();
 			    $("#noticePopUp").val(view);
 		    	
-		    } else {
-		    	
+		    } */
+		    		
+		    
+	    	/* if (evt.data.substr(0,6)=='{') {	
 			    var list = evt.data;
 			    
 			    var list1 = list.substr(1);
@@ -56,12 +58,12 @@
 			    	view = view+"<div>"+splitList2[1]+"</div>";
 			    }
 			    
-			    $("#popUp").children().remove();
-			    $("#popUp").append(view);
+			    $("#noticePopUp").children().remove();
+			    $("#noticePopUp").val(view);
 		    }
-		};
+		}; */
 		
-		function loadStatus() {
+		/* function loadStatus() {
 			var status = "status,${id}";
 			sock.send(status);
 		}
@@ -74,18 +76,18 @@
 			sock.send(notice);
 			$('#notice').val("");
 		}
-	});
+	}); */
 
-	function disconnect() {
+	/* function disconnect() {
 		console.log("ws 종료");
 		sock.close();
-	}
+	} */
 
 
 </script>
 </head>
 <body>
-<div>
+<!-- <div>
 	<div id="popUp"></div>
 	
 	<div>
@@ -94,22 +96,22 @@
 	
 	<div>
 		<button type="button" id="loadStatus" class="col-sm-4 btn btn-info">접속자 확인</button>
-	</div>
+	</div> -->
 	
-	<div>
+	<!-- <div>
 		<br>
 		<input type="text" name="userId" id="userId" class="form-control col-sm-8" style="resize: none;">
 		<input type="text" name="notice" id="notice" class="form-control col-sm-8" style="resize: none;">
 		<button type="button" id="sendBtn" class="col-sm-4 btn btn-info">메세지 보내기</button>
 		<br><hr>
-	</div>
+	</div> -->
 	
 	
-	<div>
+	<!-- <div>
 		<br>
 		<input type="text" name="noticePopUp" id="noticePopUp" class="form-control col-sm-8" style="resize: none; border: none;">
-	</div>
-</div>
+	</div> -->
+<!-- </div> -->
 	
 
 </body>

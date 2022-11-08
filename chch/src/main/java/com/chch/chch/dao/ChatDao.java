@@ -22,4 +22,6 @@ public interface ChatDao {
 
 	void insertRoom(Chat chat);
 
+	List<Chat> selectRoomMember(int room_no);
+
 }

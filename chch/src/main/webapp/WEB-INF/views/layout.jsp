@@ -14,14 +14,34 @@
 		flex-direction: row;
 		justify-content: space-around;
 		width: 100%;
-		height: 82px;
-		margin: 0;
+		height: 110px;
+		/* margin: 0;
 		padding: 0;
 		background-color: white;
 		position: fixed;
 		top: 0;
 		z-index: 1;
-		border-bottom: 1px solid #cbcbcb;
+		border-bottom: 1px solid #cbcbcb; */
+	}
+	
+	.menu {
+		display: flex;
+		flex-direction: row;
+		/* justify-content: space-around; */
+		width: 100%;
+		height: 50px;
+	}
+	
+	.menu2 {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		height: 150px;
+	}
+
+	.column {
+		display: flex;
+		flex-direction: column;
 	}
 	
 	.footer {
@@ -33,7 +53,7 @@
 	}
 
 	.body {
-		margin-top: 100px;
+		margin-top: 20px;
 		width: 100%;
 		height: 770px;
 	}

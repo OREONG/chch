@@ -47,4 +47,9 @@ public class ChatServiceImpl implements ChatService {
 	public void insertRoom(Chat chat) {
 		cd.insertRoom(chat);
 	}
+
+	@Override
+	public List<Chat> selectRoomMember(int room_no) {
+		return cd.selectRoomMember(room_no);
+	}
 }

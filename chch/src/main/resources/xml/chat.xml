@@ -56,5 +56,11 @@
 	 		VALUES(#{room_no}, #{id}, #{room_name}, sysdate, 'n')
 	 </insert>
 	 
+	 <select id="selectRoomMember" parameterType="int" resultType="chat">
+	 	SELECT * FROM room WHERE room_no=#{room_no}
+	 </select>
+	 
+	 
+	 
 	 
 </mapper>
