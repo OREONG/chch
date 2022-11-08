@@ -1,0 +1,32 @@
+
+.main-container{
+	margin: 8px 0 8px 0 ;
+}
+
+.listRowBook{
+	margin-bottom: 9px;
+}
+
+#searchBook_title{
+	cursor: pointer;
+    font-size: 13px;
+}
+
+.sub-wrap{
+	display: flex;
+	font-size: 11px;
+    color: gray;
+}
+
+#searchResult2{
+	border: 1px dotted #bcb6b2;
+    height: 35.5px;
+    margin-bottom: 10px;
+    font-family: AppleSDGothicNeo;
+    display: flex;
+    align-self: self-start;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size:13px
+}

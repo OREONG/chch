@@ -1,0 +1,178 @@
+
+/* 나도 작가되기 전체 컨테이너 */
+.main-container{
+	margin-top : 120px;
+	display: flex;
+    justify-content: center;
+}
+
+.content{
+	position: relative;
+    overflow: visible;
+    width: 1020px;
+    margin: 0 auto;
+    padding: 0 52px 1px;
+    z-index: 30;
+}
+
+/* 나도 글쓰기 버튼 */
+#writingBtn{
+	color: #fff;
+    background: #5055b1;
+    border: 1px solid #5055b1;
+    border-radius:6px;
+    transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+
+	width : 30%;
+    height: 49px;
+
+	font-size: 15px;
+    font-weight: 600;
+}
+
+
+.row-div{
+	display: flex;
+	flex-direction: row;
+}
+
+
+.list-div{
+	margin : 15px;
+}
+
+
+
+#a_subject{
+	color:#000;
+}
+
+
+.a_sub{
+	font-size:13px;
+}
+
+
+/* 작품 등록 페이지 */
+
+.container{
+	width:700px;
+	
+}
+
+#back_click {
+	width: 100%;
+    cursor: pointer;
+    margin: 0 0 18px 19px;
+}
+
+#back{
+	font-size: 14px;
+    font-family: 'AppleSDGothicNeo';
+    color: #5055b1;
+    font-weight: 900;
+}
+
+#author-input{
+	margin-top: 25px;
+    align-self: start;
+    margin-left: 2%;
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #1c1c1c;
+    font-family: 'Jalnan';
+}
+
+#authorTitle-input{
+	border: 1px dotted #bcb6b2;
+    height: 44.5px;
+    margin-bottom: 10px;
+    display: flex;
+    align-self: self-start;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+#authorClass-select{
+	border: 1px dotted #bcb6b2;
+    height: 44.5px;
+    margin-bottom: 10px;
+    display: flex;
+    align-self: self-start;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;	
+}
+#author_introTextArea{
+	border: 1px dotted #bcb6b2;
+    height: 260px;
+    margin-bottom: 10px;
+    display: flex;
+    align-self: self-start;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    resize: none;
+}
+
+#input-btn{
+	width : 30%;
+    background: #5055b1;;
+    border: 1px solid #5055b1;;
+    border-radius: 6px;
+    height: 49px;
+	margin:30px 0 33px 0;
+	transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+	
+	color: #fff;
+	font-size: 15px;
+    font-weight: 600;
+}
+
+#input-btn:hover{
+	cursor:pointer;
+	background: #30347f;
+}
+
+
+/* 공통속성 */
+ul{
+	display: flex;
+	list-style:none;
+	text-decoration-line: none;
+}
+
+a { 
+	text-decoration: none;
+	color: gray;
+	}
+a:visited { 
+    text-decoration: none; 
+    }
+a:hover { 
+    text-decoration: none; 
+    }
+a:focus { 
+	text-decoration: none; 
+	}
+a:hover, a:active { 
+	text-decoration: none; 
+	}
+	
+hr{
+	width: 100%;
+	color:black;
+}
+
+input{
+	padding-left: 8px;
+}
+textarea{
+	padding-left: 8px;
+	padding-top : 9px;
+}
+select{
+	padding-left: 8px;
+	color : #655c5c;
+}
+
