@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">@import url("/chackcheckPrac/resources/css/member_update.css");</style>
+<style type="text/css">@import url("/chch/resources/css/member_update.css");</style>
 <script type="text/javascript">
 	function backBtn() {
 		location.href="${path}/main.do";
@@ -145,19 +145,19 @@
 						<div class="proImg" id="profileImg">
 							<!-- 프로필 사진이 없을 경우 기본 프로필 사진 띄움 -->
 							<c:if test="${member.fileName == null }">
-								<img id="img" src="/chackcheckPrac/resources/images/memberImg/profileImg.png">
+								<img id="img" src="/chch/resources/images/memberImg/profileImg.png">
 							</c:if>
 							<!-- 프로필 사진이 있을 경우 db에서 불러옴 -->
 							<c:if test="${member.fileName != null }">
-								<img id="img" src="/chackcheckPrac/resources/images/memberImg/${member.fileName }">
+								<img id="img" src="/chch/resources/images/memberImg/${member.fileName }">
 							</c:if>
 						</div>
 						<!-- 카메라 이미지 div -->
 						<div id="cameraImgDiv">
-							<img id="cameraImg" alt="" src="/chackcheckPrac/resources/images/memberImg/camera1.png">
+							<img id="cameraImg" alt="" src="/chch/resources/images/memberImg/camera1.png">
 						</div>
 					</div>
-					<script type="text/javascript" src="/chackcheckPrac/resources/js/image.js"></script>
+					<script type="text/javascript" src="/chch/resources/js/image.js"></script>
 				
 					<!-- 아이디 -->
 					<div class="row-div2">

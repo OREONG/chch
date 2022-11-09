@@ -160,4 +160,10 @@ SELECT rownum, chat_no, room_no, room_name, sender, chat_content, send_time, rea
 FROM (SELECT c.*, id, room_name, join_date, leave FROM chat c, room r WHERE c.send_time > (SELECT join_date from room where id=#{id} AND room_no=#{room_no}) AND c.room_no=r.room_no AND sender=id  AND c.room_no=#{room_no} ORDER BY c.chat_no DESC) a
 WHERE rownum <= 20 ORDER BY chat_no ASC;
 
+SELECT * FROM member;
 
+SELECT * FROM (SELECT rowNum rn, a.* FROM (SELECT * FROM inquiry WHERE reply='n' ORDER BY inquiry_no DESC)a) WHERE rn BETWEEN 1 AND 10;
+
+SELECT * from inquiry;
+
+SELECT * FROM community;

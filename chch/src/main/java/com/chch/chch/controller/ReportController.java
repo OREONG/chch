@@ -20,7 +20,7 @@ public class ReportController {
 	private ReportService rs;
 	
 	//독후감 list
-	@RequestMapping("/myPage/reportList")
+	@RequestMapping("reportList")
 	public String reportForm(Report report, HttpSession session, Model model, String pageNum) {
 		String id = (String)session.getAttribute("id");
 		//List<Report> reportList = rs.selectList();
@@ -57,7 +57,7 @@ public class ReportController {
 	}
 	
 	//독후감 등록 여부
-	@RequestMapping("/myPage/reportConfirm")
+	@RequestMapping("reportConfirm")
 	public String reportConfirm(Report report, Model model) {
 		int result = 0;
 		result = rs.insert(report);
@@ -66,7 +66,7 @@ public class ReportController {
 	}
 	
 	//독후감 상세 페이지
-	@RequestMapping("/myPage/reportDetail")
+	@RequestMapping("reportDetail")
 	public String reportDetail(int report_no, Model model) {
 		Report report = rs.select(report_no);
 		model.addAttribute("report", report);
@@ -74,7 +74,7 @@ public class ReportController {
 	}
 	
 	//독후감 삭제 (del = 'y')
-	@RequestMapping("/myPage/reportDelete")
+	@RequestMapping("reportDelete")
 	public String reportDelete(int report_no, Model model) {
 		int result = 0;
 		result = rs.delete(report_no);
@@ -83,14 +83,14 @@ public class ReportController {
 	}
 	
 	//독후감 수정 폼
-	@RequestMapping("/myPage/reportUpdate")
+	@RequestMapping("reportUpdate")
 	public String reportUpdate(int report_no, Model model) {
 		Report report = rs.select(report_no);
 		model.addAttribute("report", report);
 		return "/myPage/reportUpdate";
 	}
 	
-	@RequestMapping("/myPage/reportUpdateConfirm")
+	@RequestMapping("reportUpdateConfirm")
 	public String reportUpdateConfirm(Report report, Model model) {
 		int result = 0;
 		System.out.println(report.getReport_no());

@@ -1,5 +1,7 @@
 package com.chch.chch.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,5 +39,22 @@ public class MemberServiceImpl implements MemberService{
 	public int updatePassword(Member member) {
 		return md.updatePassword(member);
 	}
-
+	
+	
+	// KSB
+	// 전체 회원 수 조회
+	public int getTotal() {
+		return md.getTotal();
+	}
+	
+	// 전체 멤버 리스트 (페이징)
+	public List<Member> memberList(int startRow, int endRow) {
+		return md.memberList(startRow, endRow);
+	}
+	
+	// 멤버 삭제 y/n 수정
+	public int adminDelete(String id, String del) {
+		return md.adminDelete(id, del);
+	}
+	
 }

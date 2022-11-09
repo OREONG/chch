@@ -67,7 +67,11 @@ public class CommunityController {
 		int participation = coms.participation(community.getRoom_no(), id);
 		community.setParticipation(participation);
 		
+		String room_name = coms.selectRoomName(community.getRoom_no());
+		
+		model.addAttribute("id", id);
 		model.addAttribute("community", community);
+		model.addAttribute("room_name", room_name);
 		return "/community/communityDetail";
 	}
 	

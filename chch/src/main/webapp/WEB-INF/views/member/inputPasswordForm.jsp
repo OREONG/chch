@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">@import url("/chackcheckPrac/resources/css/member.css");</style>
+<style type="text/css">@import url("/chch/resources/css/member.css");</style>
 
 <script type="text/javascript">
 	function chk() {

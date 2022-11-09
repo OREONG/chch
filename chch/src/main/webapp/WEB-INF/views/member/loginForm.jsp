@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">@import url("/chackcheckPrac/resources/css/member.css");</style>
+<style type="text/css">@import url("/chch/resources/css/member.css");</style>
 </head>
 <body>
 <main>
@@ -15,7 +15,7 @@
 			<form action="login.do">
 					<!-- 로고 이미지 -->
 					<div class="img-div">
-						<img alt="" src="/chackcheckPrac/resources/images/chackcheckCheckLogo2-1.png">
+						<img alt="" src="/chch/resources/images/chackcheckCheckLogo2-1.png">
 					</div>
 					<!-- 아이디 -->
 					<div class="login-wrap" >

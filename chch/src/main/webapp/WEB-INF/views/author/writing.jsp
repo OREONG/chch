@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">@import url("/chackcheckPrac/resources/css/author.css");</style>
+<style type="text/css">@import url("/chch/resources/css/author.css");</style>
 <script type="text/javascript">
 	function authorEachFun(author_no) {
 		location.href="authorEach.do?author_no="+author_no;

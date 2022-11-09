@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">@import url("/chackcheckPrac/resources/css/member.css");</style>
+<style type="text/css">@import url("/chch/resources/css/member.css");</style>
 
 <script type="text/javascript">
 	//이메일 '전송'버튼을 눌렀을 때 실행하는 메서드

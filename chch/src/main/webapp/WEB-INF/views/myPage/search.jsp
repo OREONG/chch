@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">@import url("/chackcheckPrac/resources/css/search.css");</style>
+<style type="text/css">@import url("/chch/resources/css/search.css");</style>
 
 <script type="text/javascript">
 

@@ -31,7 +31,7 @@ public class AuthorController {
 	private ReviewService rs;
 	
 	//나도 작가되기 메인 화면(작품 등록 버튼, 작품 리스트)
-	@RequestMapping("/author/writing")
+	@RequestMapping("writing")
 	public String writing(Model model) {
 		//작품 모두 가져오기 (관심 수 정렬)
 		List<Author> authorAll_list = as.allList();

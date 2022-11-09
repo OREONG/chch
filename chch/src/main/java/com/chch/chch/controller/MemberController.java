@@ -36,11 +36,11 @@ public class MemberController {
 	public String main(HttpSession session, Model model) {
 		String id = (String)session.getAttribute("id");
 		model.addAttribute("id", id);
-		return "main";
+		return "/main/main";
 	}
 	
 	//초기 회원가입 화면
-	@RequestMapping("/member/joinForm")
+	@RequestMapping("joinForm")
 	public String joinForm() {
 		return "/member/joinForm";
 	}
@@ -88,7 +88,7 @@ public class MemberController {
 	}
 	
 	//회원가입
-	@RequestMapping("/member/join")
+	@RequestMapping("join")
 	public String join(Member member, Model model, HttpSession session){
 		int result = 0;
 		//member는 화면 입력한 데이터, member2는 db에 있는 데이터
@@ -103,13 +103,13 @@ public class MemberController {
 	}
 	
 	//로그인 화면
-	@RequestMapping("/member/loginForm")
+	@RequestMapping("loginForm")
 	public String loginForm() {
 		return "/member/loginForm";
 	}
 	
 	//로그인
-	@RequestMapping("/member/login")
+	@RequestMapping("login")
 	public String login(Member member, Model model, HttpSession session) {
 		int result = 0;
 		Member member2 = ms.select(member.getId());
@@ -124,14 +124,14 @@ public class MemberController {
 	}
 
 	//로그아웃
-	@RequestMapping("/member/logout")
+	@RequestMapping("logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "/member/logout";
 	}
 	
 	//회원 정보 수정 폼
-	@RequestMapping("/member/updateForm")
+	@RequestMapping("updateForm")
 	public String updateForm(Model model,HttpSession session) {
 		String id= (String)session.getAttribute("id");
 		Member member = ms.select(id);
@@ -140,7 +140,7 @@ public class MemberController {
 	}
 	
 	//회원 정보 수정
-	@RequestMapping("/member/update")
+	@RequestMapping("update")
 	public String update(Member member, Model model, HttpSession session) throws IOException {
 		int result = 0;
 		
@@ -160,7 +160,7 @@ public class MemberController {
 	}
 	
 	//회원정보 삭제 폼
-	@RequestMapping("/member/deleteForm")
+	@RequestMapping("deleteForm")
 	public String deleteForm(Model model, HttpSession session) {
 		String id = (String)session.getAttribute("id");
 		model.addAttribute("id", id);
@@ -168,7 +168,7 @@ public class MemberController {
 	}
 	
 	//회원정보 삭제
-	@RequestMapping("/member/delete")
+	@RequestMapping("delete")
 	public String delete(Member member, Model model, HttpSession session) {
 		int result = 0;
 		String id = (String)session.getAttribute("id");
@@ -186,7 +186,7 @@ public class MemberController {
 	}
 
 	//아이디 찾기
-	@RequestMapping("/member/findIdForm")
+	@RequestMapping("findIdForm")
 	public String findIdForm() {
 		return "/member/findIdForm";
 	}
@@ -208,7 +208,7 @@ public class MemberController {
 	}
 	
 	//아이디 찾기 아이디 보여주는 화면
-	@RequestMapping("/member/findId")
+	@RequestMapping("findId")
 	public String findId(Model model, String email) {
 		Member member = ms.selectEmail(email);
 		model.addAttribute("member", member);
@@ -216,13 +216,13 @@ public class MemberController {
 	}
 	
 	//비밀번호 찾기 아이디 입력 단계
-	@RequestMapping("/member/findPasswordForm")
+	@RequestMapping("findPasswordForm")
 	public String findPasswordForm() {
 		return "/member/findPasswordForm";
 	}
 	
 	//비밀번호 찾기 아이디 일치 여부
-	@RequestMapping("/member/findPassword")
+	@RequestMapping("findPassword")
 	public String findPasswordForm(Member member, Model model) {
 		int result = 0;
 		Member member2 = ms.select(member.getId());
@@ -234,7 +234,7 @@ public class MemberController {
 	}
 	
 	//비밀번호 찾기 이메일 인증 단계 폼
-	@RequestMapping("/member/findPasswordForm2")
+	@RequestMapping("findPasswordForm2")
 	public String findPasswordForm2(Member member, Model model) {
 		model.addAttribute(member.getId());
 		return "/member/findPasswordForm2";
@@ -263,13 +263,13 @@ public class MemberController {
 	
 	
 	//비밀번호 재설정 폼
-	@RequestMapping("/member/inputPasswordForm")
+	@RequestMapping("inputPasswordForm")
 	public String inputPasswordForm(Member member, Model model) {
 		model.addAttribute(member);
 		return "/member/inputPasswordForm";
 	}
 	
-	@RequestMapping("/member/inputPassword")
+	@RequestMapping("inputPassword")
 	public String inputPassword(Member member, Model model) {
 		int result = 0;
 		String encPass = bpe.encode(member.getPassword()); //비밀번호 암호화

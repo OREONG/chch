@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 
 <style type="text/css">
-@import url("/chackcheckPrac/resources/css/report_detail.css");
+@import url("/chch/resources/css/report_detail.css");
 </style>
 </head>
 <body>
@@ -27,7 +27,7 @@
                <div class="report-Infoimage-box">
                <div id="report-Img-box">
                   <img id="myReport_img" alt="이미지가 없습니다"
-                     src="/chackcheckPrac/resources/images/bookImg/${report.book_image }">
+                     src="/chch/resources/images/bookImg/${report.book_image }">
                </div>
                <!-- <script type="text/javascript" src="/chackcheck/js/report.js"></script> -->
 

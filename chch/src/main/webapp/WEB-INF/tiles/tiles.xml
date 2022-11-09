@@ -4,14 +4,14 @@
 <tiles-definitions>
 	<!-- 레이아웃 적용 -->
 	<definition name="tilesbase" template="/WEB-INF/views/layout.jsp">
-		<put-attribute name="header1" value="/WEB-INF/views/header1.jsp" />
+		<put-attribute name="header" value="/WEB-INF/views/header.jsp" />
 		<put-attribute name="body" value="" />
 		<put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
 	</definition>
 	
 	<!-- 레이아웃 미적용 -->
 	<definition name="nolay" template="/WEB-INF/views/nolayout.jsp">
-		<put-attribute name="header1" value="" />
+		<put-attribute name="header" value="" />
 		<put-attribute name="menu"	value="" />
 		<put-attribute name="footer" value="" />
 	</definition>

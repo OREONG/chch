@@ -9,7 +9,7 @@
 </head>
 <body>
 <script type="text/javascript">
-	location.href="${ip}/loginForm.do"
+	location.href="${ip}/main.do"
 </script>
 </body>
 </html>

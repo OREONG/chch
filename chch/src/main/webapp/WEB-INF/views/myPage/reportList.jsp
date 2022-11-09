@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>첵책!나의 독서</title>
-<style type="text/css">@import url("/chackcheckPrac/resources/css/report.css");</style>
+<style type="text/css">@import url("/chch/resources/css/report.css");</style>
 <!-- <script type="text/javascript" src="/chackcheck/js/jquery.js"></script> -->
 <script type="text/javascript">
 	function openClose(){
@@ -114,7 +114,7 @@
 								<input type="hidden" name="report_no" value="${report.report_no }">
 									<div class="card">
 										<img class="card-img-top"
-											src="/chackcheckPrac/resources/images/bookImg/${report.book_image }"
+											src="/chch/resources/images/bookImg/${report.book_image }"
 											alt="이미지가 없습니다">
 										<div class="card-body">
 											<input class="name" type="text" value="${report.report_title }"> 

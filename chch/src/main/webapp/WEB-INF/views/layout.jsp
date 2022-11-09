@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
-<%@ include file="/WEB-INF/views/header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,7 +52,7 @@
 	}
 
 	.body {
-		margin-top: 20px;
+		margin-top: 150px;
 		width: 100%;
 		height: 770px;
 	}
@@ -64,7 +63,7 @@
 <body style="overflow-y: scroll; overflow-x: hidden; align-content: center;">
 	<div>
 		<div class=header>
-			<tiles:insertAttribute name="header1"></tiles:insertAttribute>
+			<tiles:insertAttribute name="header"></tiles:insertAttribute>
 		</div>
 		<div class=body>
 			<tiles:insertAttribute name="body"></tiles:insertAttribute>

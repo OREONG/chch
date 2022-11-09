@@ -1,5 +1,7 @@
 package com.chch.chch.service;
 
+import java.util.List;
+
 import com.chch.chch.model.Member;
 
 public interface MemberService {
@@ -19,5 +21,15 @@ public interface MemberService {
 	//비밀번호 찾기 비밀번호 재설정
 	int updatePassword(Member member);
 	
+	
+	// KSB
+	// 전체 회원 수 조회
+	int getTotal();
+	
+	// 전체 멤버 리스트 (페이징)
+	List<Member> memberList(int startRow, int endRow);
 
+	// 멤버 삭제 y/n 수정
+	int adminDelete(String id, String del);
+	
 }
