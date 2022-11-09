@@ -302,13 +302,14 @@
 									<img id="bell" src="/chch/resources/images/bell.png">
 								</a>
 							</li>
-							<li>
+<!-- 							<li>
 								<a href="">
 									<img id="cart" src="/chch/resources/images/cart.png">
 								</a>
-								<div class = "menu2">
-									<input type="text" name="noticePopUp" id="noticePopUp" class="form-control col-sm-8" style="resize: none; border: none;">
-								</div>
+
+							</li> -->
+							<li>
+								<input type="text" name="noticePopUp" id="noticePopUp" class="form-control col-sm-8" style="resize: none; border: none;">
 							</li>
 						</ul>
 					
