@@ -49,12 +49,12 @@
 		justify-content: space-around;
 		width: 100%;
 		margin-top:70px;
+		position: relative;
+		transform : translateY(-100%);
 	}
 
 	.body {
-		margin-top: 150px;
-		width: 100%;
-		height: 770px;
+		min-height: 700px;		
 	}
 
 </style>

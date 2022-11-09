@@ -25,10 +25,10 @@
 				<div id="like-div">
 				<div>
 					<c:if test="${like_table == null }">
-					<a href="likeInsert_author.do?author_no=${author.author_no }" ><img class="heart-img" src="/chackcheckPrac/resources/images/authorImg/heart-n.png"></a>
+					<a href="likeInsert_author.do?author_no=${author.author_no }" ><img class="heart-img" src="/chch/resources/images/authorImg/heart-n.png"></a>
 					</c:if>
 					<c:if test="${like_table != null }">
-					<a href="likeDelete_author.do?author_no=${author.author_no }" ><img class="heart-img" src="/chackcheckPrac/resources/images/authorImg/heart-y.png"></a>
+					<a href="likeDelete_author.do?author_no=${author.author_no }" ><img class="heart-img" src="/chch/resources/images/authorImg/heart-y.png"></a>
 					</c:if>
 				</div>
 				<div id="like-count">${author.like_count }</div> 

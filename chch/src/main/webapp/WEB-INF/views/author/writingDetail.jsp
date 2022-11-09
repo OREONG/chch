@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="/chackcheckPrac/resources/css/star.css" rel="stylesheet"/>
+<link href="/chch/resources/css/star.css" rel="stylesheet"/>
 <style type="text/css">@import url("/chch/resources/css/author_work.css");</style>
 <script type="text/javascript">
 function del(author_work_no) {

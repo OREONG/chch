@@ -1,3 +1,5 @@
+SELECT * FROM author;
+
 --나도 작가되기 데이터
 insert into author values((SELECT NVL(MAX(author_no), 0) + 1 FROM author), 
 '짱 쎈 드래곤'

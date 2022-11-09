@@ -12,11 +12,11 @@
 <style type="text/css">@import url("/chch/resources/css/header.css");</style>
 
 <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
-<c:set var="ipAdd" value="//172.30.1.77:8080"></c:set>
+<c:set var="ipAdd" value="//172.30.1.10:8080"></c:set>
 <c:set var="ip" value="http:${ipAdd}/chch"></c:set>
 <link rel="stylesheet" type="text/css"href="${path }/resources/bootstrap/css/bootstrap.min.css">
 <script type="text/javascript" src="${path}/resources/bootstrap/js/jquery.js"></script>
-<script type="text/javascript" src="${path}/resources/bootstrap/js/jquery1.js"></script>
+<%-- <script type="text/javascript" src="${path}/resources/bootstrap/js/jquery1.js"></script> --%>
 <script type="text/javascript" src="${path}/resources/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${path}/resources/bootstrap/js/sockjs.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
@@ -132,7 +132,7 @@
 				var msg = split1[3]
 				// var send_time = split1[4];
 				
-				var view =sender+"님으로부터의 메세지 : "+msg;
+				var view =sender+"님의 메세지 : "+msg;
 			    				
 				$("#noticePopUp").children().remove();
 			    $("#noticePopUp").val(view);
