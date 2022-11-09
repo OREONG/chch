@@ -23,7 +23,7 @@
 					frm.email.focus(); 
 					return false;
 				}else {
-					$.post('${path }/emailChkFindPass.do', "email="+frm.email.value+"&id="+frm.id.value, function(data) {
+					$.post('emailChkFindPass.do', "email="+frm.email.value+"&id="+frm.id.value, function(data) {
 							if(data == "y"){
 				 			alert("인증번호가 전송되었습니다");
 				 			//$("#emailChk-container").show();			
@@ -39,7 +39,7 @@
 	
 	//이메일 인증번호 '확인'버튼을 눌렀을 때 실행하는 메서드
 	function emailConfirmFun(){
-			$.post('${path }/emailConfirm.do', "emailConfirm="+frm.emailConfirm.value, function(data) {
+			$.post('emailConfirm.do', "emailConfirm="+frm.emailConfirm.value, function(data) {
 				if(data == 'y'){
 					alert("인증번호가 일치합니다");
 					//일치 할 경우 비밀번호 재설정 폼으로 이동

@@ -20,7 +20,7 @@
 			frm.id.focus(); 
 			return false;
 		}
-		$.post('${path }/idDepChk.do', "id="+frm.id.value, function(data) {
+		$.post('idDepChk.do', "id="+frm.id.value, function(data) {
 			$('#idChk-msg').html(data);
 		});
 	}
@@ -41,7 +41,7 @@
  				frm.email.focus(); 
  				return false;
  			}else {
- 				$.post('${path }/emailChk.do', "email="+frm.email.value, function(data) {
+ 				$.post('emailChk.do', "email="+frm.email.value, function(data) {
  					var msg = data;
    					if(msg == ""){
    						$("#emailConfirmHidden").show();
@@ -58,7 +58,7 @@
 	
 	//이메일 인증번호 '확인'버튼을 눌렀을 때 실행하는 메서드
 	function emailConfirmFun(){
-			$.post('${path }/emailConfirm.do', "emailConfirm="+frm.emailConfirm.value, function(data) {
+			$.post('emailConfirm.do', "emailConfirm="+frm.emailConfirm.value, function(data) {
 				if(data == 'y'){
 					//이메일 입력 input
 					$('#email').attr('readonly',true);

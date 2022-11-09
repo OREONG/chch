@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
-<%@ include file="../header.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,7 +27,7 @@
                <div class="report-Infoimage-box">
                <div id="report-Img-box">
                   <img id="myReport_img" alt="이미지가 없습니다"
-                     src="/chch/resources/images/bookImg/${report.book_image }">
+                     src="/chackcheckPrac/resources/images/bookImg/${report.book_image }">
                </div>
                <!-- <script type="text/javascript" src="/chackcheck/js/report.js"></script> -->
 
@@ -41,7 +41,7 @@
                </div>
                <div class="report-Infotext-box2">
                     <input type="text" name="report_title" class="input1-1" value="${report.report_title }" autofocus="autofocus" >
-                    <textarea name="report_content" class="input2">${report.report_content }</textarea>
+                    <textarea style="white-space:pre;" name="report_content" class="input2">${report.report_content }</textarea>
 					<div id="row-div">
 						<span>독서록 공개여부 | </span>
 						<c:if test="${report.expose == 'y' }">

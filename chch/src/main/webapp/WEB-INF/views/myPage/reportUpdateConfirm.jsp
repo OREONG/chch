@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../header.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +11,7 @@
 	<c:if test="${result > 0 }">
 		<script type="text/javascript">
 			alert("수정 성공");
-			location.href="reportDetail.do?report_no="+${report.report_no};
+			location.href="reportDetail.do?report_no=${report.report_no}";
 		</script>
 	</c:if>
 	<c:if test="${result == 0 }">

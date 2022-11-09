@@ -29,6 +29,15 @@ public interface AuthorService {
 	//전체 관심 수
 	void updateLikeCount(int author_no);
 	
+	//작품 정보 수정
+	int authorUpdate(Author author);
+	//작품 정보 삭제
+	int authorDelete(int author_no);
+	//글(회차)수정
+	int author_workUpdate(Author_work author_work);
+	//글(회사)삭제
+	int author_workDelete(int author_work_no);
+	
 
 
 }

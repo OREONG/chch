@@ -10,7 +10,7 @@
 	<c:if test="${result > 0 }">
 		<script type="text/javascript">
 			alert("수정 성공");
-			location.href="${path }/main.do";
+			location.href="main.do";
 		</script>
 	</c:if>
 	<c:if test="${result == 0 }">

@@ -58,6 +58,22 @@ public class AuthorDaoImpl implements AuthorDao {
 		sst.update("authorns.updateLikeCount", author_no);
 		
 	}
+	//작품 정보 수정
+	public int authorUpdate(Author author) {
+		return sst.update("authorns.authorUpdate", author);
+	}
+	//작품 정보 삭제
+	public int authorDelete(int author_no) {
+		return sst.update("authorns.authorDelete", author_no);
+	}
+	//글(회차)수정
+	public int author_workUpdate(Author_work author_work) {
+		return sst.update("authorns.author_workUpdate", author_work);
+	}
+	//글(회차)삭제
+	public int author_workDelete(int author_work_no) {
+		return sst.delete("authorns.author_workDelete", author_work_no);
+	}
 
 
 

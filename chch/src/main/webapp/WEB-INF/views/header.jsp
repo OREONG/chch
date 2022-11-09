@@ -12,7 +12,7 @@
 <style type="text/css">@import url("/chch/resources/css/header.css");</style>
 
 <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
-<c:set var="ipAdd" value="//172.30.1.10:8080"></c:set>
+<c:set var="ipAdd" value="//172.30.1.77:8080"></c:set>
 <c:set var="ip" value="http:${ipAdd}/chch"></c:set>
 <link rel="stylesheet" type="text/css"href="${path }/resources/bootstrap/css/bootstrap.min.css">
 <script type="text/javascript" src="${path}/resources/bootstrap/js/jquery.js"></script>
@@ -333,6 +333,9 @@
 						<a class="cate-c" href="chatMemberList.do">채팅방</a>
 						<a class="cate-c" href="adminMain.do">관리자</a>
 						<a class="cate-c" href="notice.do">알림</a>
+						
+						<a class="cate-c" href="updateForm.do">회원수정</a>
+						<a class="cate-c" href="reportList.do">독후감</a>
 						
 						
 						</div>

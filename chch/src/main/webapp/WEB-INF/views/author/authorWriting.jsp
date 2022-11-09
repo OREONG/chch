@@ -1,36 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">@import url("/chch/resources/css/author.css");</style>
+
 </head>
 <body>
 <main>
-글쓰기 폼
-
 <div class="main-container">
-	<form action="authorWritingConfirm.do">
-		<input type="hidden" name="author_no" value="${author_no }">
-		<div>
-			제목
-			<input type="text" name="author_work_subject" required="required">
-		</div>
-		<div>
-			내용<p>
-			<textarea rows="15" cols="" name="author_work_content" required="required"></textarea>
-		</div>
-		<div>
-			작가의 말<p>
-			<textarea rows="10" cols="" name="author_work_comment"></textarea>
-		</div>
-		<input type="submit" value="등록하기">
-	</form>
+	<div class="container">
+		<form action="authorWritingConfirm.do">
+		<div id="back_click" onclick="location.href='authorMain.do'"><span id="back">&lt; 돌아가기</span></div>
+			<input type="hidden" name="author_no" value="${author_no }">
+			<span id="author-input">회차 쓰기</span>
+			<hr>
+			<div>
+				<input type="text" id="authorTitle-input" name="author_work_subject" required="required" placeholder="제목을 입력하세요">
+			</div>
+			<div>
+				<textarea id="author_work_contentText" rows="15" cols="" name="author_work_content" required="required" placeholder="내용을 입력하세요"></textarea>
+			</div>
+			<div>
+				<textarea id="author_work_commentText" rows="10" cols="" name="author_work_comment" placeholder="작가의 말을 입력하세요 *생략가능"></textarea>
+			</div>
+			<input type="submit" id="input-btn" value="등록하기">
+		</form>
+	</div>
+
 </div>
-
-
 </main>
 </body>
 </html>

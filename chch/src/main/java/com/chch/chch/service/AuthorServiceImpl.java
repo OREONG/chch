@@ -59,6 +59,22 @@ public class AuthorServiceImpl implements AuthorService{
 		ad.updateLikeCount(author_no);
 		
 	}
+	//작품 정보 수정
+	public int authorUpdate(Author author) {
+		return ad.authorUpdate(author);
+	}
+	//작품 정보 삭제
+	public int authorDelete(int author_no) {
+		return ad.authorDelete(author_no);
+	}
+	//글(회차)수정
+	public int author_workUpdate(Author_work author_work) {
+		return ad.author_workUpdate(author_work);
+	}
+	//글(회차)삭제
+	public int author_workDelete(int author_work_no) {
+		return ad.author_workDelete(author_work_no);
+	}
 
 
 }

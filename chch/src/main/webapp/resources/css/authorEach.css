@@ -1,0 +1,247 @@
+/* 나도 작가되기 전체 컨테이너 */
+.main-container{
+    margin-top: 200px;
+	display: flex;
+    justify-content: center;
+}
+
+.content{
+	position: relative;
+    overflow: visible;
+    margin: 0 auto;
+    padding: 0 52px 1px;
+    z-index: 30;
+	width: 1003px;
+}
+
+/* 공통속성 */
+ul{
+	display: flex;
+	list-style:none;
+	text-decoration-line: none;
+}
+
+a { 
+	text-decoration: none;
+	color: gray;
+	}
+a:visited { 
+    text-decoration: none; 
+    }
+a:hover { 
+    text-decoration: none; 
+    }
+a:focus { 
+	text-decoration: none; 
+	}
+a:hover, a:active { 
+	text-decoration: none; 
+	}
+	
+hr{
+	width: 100%;
+	color:black;
+}
+
+input{
+	padding-left: 8px;
+}
+textarea{
+	padding-left: 8px;
+	padding-top : 9px;
+}
+select{
+	padding-left: 8px;
+	color : #655c5c;
+}
+
+
+
+
+
+
+/* 작품 상세페이지 */
+
+#back_click {
+	width: 100%;
+    cursor: pointer;
+    margin: 0 0 18px 5px;
+}
+
+#back{
+	font-size: 14px;
+    font-family: 'AppleSDGothicNeo';
+    color: #5055b1;
+    font-weight: 900;
+}
+
+#subjectDiv{
+	display: flex;
+	justify-content: space-between;
+}
+
+#subjectText{
+	max-width: 482px;
+    font-size: 28px;
+    line-height: 34px;
+    font-weight: normal;
+    word-wrap: break-word;
+    word-break: break-word;
+}
+
+#subText{
+	display: inline;
+    margin-right: -4px;
+    color: #a4a4a4;
+    font-size: 14px;
+}
+
+#like-div{
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50px;
+    margin-right: 35px;
+}
+
+#like-count{
+	font-size: 11px;
+    margin-top: -2px;
+}
+
+.heart-img{
+    width: 40px;
+}
+
+#subDiv{
+	margin: -15px 0 20px 2px;
+}
+
+#subDiv2{
+	margin-top: 35px;
+}
+
+
+#introText{
+    font-size: 13px;
+    color: #999;
+}
+
+/* 버튼 */
+#a-wrap{
+	display: flex;
+    height: 49px;
+    margin: 13px 0 0 0;
+
+}
+
+#writeBtn{
+	width : 150px;
+    background: #5055b1;;
+    border: 1px solid #5055b1;;
+    border-radius: 6px;
+    height: 49px;
+	margin:30px 0 33px 35%;
+	transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+	
+	color: #fff;
+	font-size: 15px;
+    font-weight: 600;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto 0 0 0;
+}
+
+#writeBtn:hover{
+	cursor:pointer;
+	background: #30347f;
+}
+
+#updateBtn{
+	width : 150px;
+    border: 1px solid #5055b1;
+    border-radius: 6px;
+    height: 49px;
+	margin-top: 12px;
+	transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+	
+	color: #5055b1;
+	font-size: 15px;
+    font-weight: 600;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto 0 0 10px;
+}
+
+#updateBtn:hover{
+	cursor:pointer;
+	background: #30347f;
+	color: #fff;
+}
+
+#firstWorkBtn{
+	width : 150px;
+    background: #5055b1;;
+    border: 1px solid #5055b1;;
+    border-radius: 6px;
+    height: 49px;
+	margin:30px 0 33px 35%;
+	transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+	
+	color: #fff;
+	font-size: 15px;
+    font-weight: 600;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 13px 0 0 0;
+}
+
+#firstWorkBtn:hover{
+	cursor:pointer;
+	background: #30347f;
+}
+
+
+#workSubject-text{
+	font-size: 14px;
+    line-height: 20px;
+    color: #000;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+#workDate-text{
+	font-size: 13px;
+    line-height: 17px;
+    color: #999;
+}
+
+#work{
+    margin: 36px 0 13px 0;
+}
+hr{
+	margin-bottom:30px;
+}
+#workText{
+	font-size: 19px;
+    font-weight: 600;
+    color: #4a4a4a;
+}
+
+#work-div{
+	 margin: 0 0 33px 5px;
+	 cursor: pointer;
+}
+
+/* 반응형 */
+@media screen and (max-width:950px) {
+	#subjectText{
+		width:160px;
+	}
+
+}

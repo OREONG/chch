@@ -28,7 +28,7 @@
 	 				frm.email.focus(); 
 	 				return false;
 				}else {
-					$.post('${path }/emailChkFindId.do', "email="+frm.email.value, function(data) {
+					$.post('emailChkFindId.do', "email="+frm.email.value, function(data) {
 						var msg = data;
 						if(msg == ""){
 	 					$("#emailConfirmHidden").show();
@@ -44,7 +44,7 @@
 
 	//이메일 인증번호 '확인'버튼을 눌렀을 때 실행하는 메서드
 	function emailConfirmFun(){
-			$.post('${path }/emailConfirm.do', "emailConfirm="+frm.emailConfirm.value, function(data) {
+			$.post('emailConfirm.do', "emailConfirm="+frm.emailConfirm.value, function(data) {
 				if(data == 'y'){
 					alert("인증번호가 일치합니다");
 					location.href="findId.do?email="+frm.email.value;

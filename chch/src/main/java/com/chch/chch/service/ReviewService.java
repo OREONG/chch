@@ -11,6 +11,7 @@ public interface ReviewService {
 
 	//댓글 전체 가져오기
 	List<Review> selectAllReview(int author_work_no);
-
+	
+	
 
 }

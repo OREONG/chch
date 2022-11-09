@@ -85,9 +85,9 @@ public class EchoHandler extends TextWebSocketHandler {
 					String sender = strs[1];
 					System.out.println("접속자 확인 메세지 받음");
 					
-					var key = userSessionsMap.keySet().toString().substring(1);
+					String key = userSessionsMap.keySet().toString().substring(1);
 					
-					var key1 = "status,"+key.substring(0,key.length()-1);
+					String key1 = "status,"+key.substring(0,key.length()-1);
 					System.out.println(key1);
 					
 					WebSocketSession senderWriterSession = userSessionsMap.get(sender);

@@ -55,7 +55,7 @@ public class AuthorController {
 	}
 	
 	//등록한 작품들 리스트 페이지(없을경우 작품 등록페이지 authorIntro.do로 이동)
-	@RequestMapping("/author/authorMain")
+	@RequestMapping("authorMain")
 	public String authorMain(HttpSession session, Model model) {
 		String id = (String)session.getAttribute("id");
 		List<Author> author_list = as.list(id);
@@ -65,13 +65,13 @@ public class AuthorController {
 	}
 	
 	//작품 등록 페이지
-	@RequestMapping("/author/authorIntro")
+	@RequestMapping("authorIntro")
 	public String authorIntro() {
 		return "/author/authorIntro";
 	}
 	
 	//작품 등록 성공 여부
-	@RequestMapping("/author/authorIntroConfirm")
+	@RequestMapping("authorIntroConfirm")
 	public String authorIntroConfirm(HttpSession session, Author author, Model model) throws IOException {
 		int result = 0;
 		String id = (String)session.getAttribute("id");
@@ -83,7 +83,7 @@ public class AuthorController {
 	}
 	
 	//작품 각각의 상세 페이지
-	@RequestMapping("/author/authorEach")
+	@RequestMapping("authorEach")
 	public String authorEach(Model model, HttpSession session, int author_no) {
 		String id = (String)session.getAttribute("id");
 		//전체 관심 수
@@ -104,14 +104,14 @@ public class AuthorController {
 	}
 	
 	//작품 속에 글 쓰기
-	@RequestMapping("/author/authorWriting")
+	@RequestMapping("authorWriting")
 	public String authorWriting(int author_no, Model model) {
 		model.addAttribute("author_no", author_no);
 		return "/author/authorWriting";
 	}
 	
 	//작품 속에 글 쓰기 성공 여부
-	@RequestMapping("/author/authorWritingConfirm")
+	@RequestMapping("authorWritingConfirm")
 	public String authorWritingConfirm(Author_work author_work, Model model, HttpSession session) {
 		int result = 0;
 		String id = (String)session.getAttribute("id");
@@ -123,7 +123,7 @@ public class AuthorController {
 	}
 	
 	//글 상세 페이지(글 읽는 부분)
-	@RequestMapping("/author/writingDetail")
+	@RequestMapping("writingDetail")
 	public String writingDetail(int author_work_no, Model model, HttpSession session) {
 		String id = (String)session.getAttribute("id");
 		//조회수
@@ -144,6 +144,7 @@ public class AuthorController {
 				review.setLike_review_no(1);
 		}
 		System.out.println(review_list);
+		System.out.println(author_work.getAuthor_no());
 		model.addAttribute("author_work", author_work);
 		model.addAttribute("review_list", review_list);
 		model.addAttribute("id", id);
@@ -152,7 +153,7 @@ public class AuthorController {
 	}
 	
 	//작품 관심
-	@RequestMapping("/myPage/likeInsert_author")
+	@RequestMapping("likeInsert_author")
 	public String likeInsert_author(HttpSession session, int author_no, Model model) {
 		int result = 0;
 		String id = (String)session.getAttribute("id");
@@ -167,7 +168,7 @@ public class AuthorController {
 	}
 	
 	//작품 관심 취소
-	@RequestMapping("/myPage/likeDelete_author")
+	@RequestMapping("likeDelete_author")
 	public String likeDelete_author(int author_no, Model model, HttpSession session) {
 		int result = 0;
 		String id = (String)session.getAttribute("id");
@@ -181,7 +182,7 @@ public class AuthorController {
 	}
 	
 	//작품 댓글 입력
-	@RequestMapping("/myPage/reviewWrite")
+	@RequestMapping("reviewWrite")
 	public String reviewWrite(HttpSession session, Review review2, Model model, int author_work_no) {
 		int result = 0;
 		System.out.println(review2);
@@ -201,7 +202,7 @@ public class AuthorController {
 
 
 	//댓글 좋아요
-	@RequestMapping("/myPage/likeInsert_review") 
+	@RequestMapping("likeInsert_review") 
 	public String likeInsert_review(HttpSession session, int review_no, Model model, int author_work_no) { 
 		int result = 0; 
 		
@@ -228,7 +229,7 @@ public class AuthorController {
 	}
 
 	//댓글 좋아요 취소
-	@RequestMapping("/myPage/likeDelete_review") 
+	@RequestMapping("likeDelete_review") 
 	public String likeDelete_review(int review_no, Model model, HttpSession session, int author_work_no) { 
 		int result = 0; 
 		String id = (String)session.getAttribute("id"); 
@@ -250,5 +251,59 @@ public class AuthorController {
 
 		return "/myPage/likeDelete_review"; 
 		}
-
+	
+	
+	
+	
+	//작품 수정
+	@RequestMapping("authorUpdate")
+	public String authorUpdate(int author_no, Model model) {
+		Author author = as.select(author_no);
+		model.addAttribute("author", author);
+		return "/author/authorUpdate";
+	}
+	@RequestMapping("authorUpdateConfirm")
+	public String authorUpdateConfirm(Author author, int author_no, Model model) {
+		int result = 0;
+		author.setAuthor_no(author_no);
+		result = as.authorUpdate(author);
+		model.addAttribute("result", result);
+		model.addAttribute("author", author);
+		return "/author/authorUpdateConfirm";
+	}
+	
+	//작품 삭제 del='y'
+	@RequestMapping("authorDeleteConfirm")
+	public String authorDeleteConfirm(int author_no, Model model) {
+		int result = 0;
+		result = as.authorDelete(author_no);
+		model.addAttribute("result", result);
+		return "/author/authorDeleteConfirm";
+	}
+	
+	//글 수정
+	@RequestMapping("author_workUpdate")
+	public String author_workUpdate(int author_work_no, Model model) {
+		Author_work author_work = as.selectWork(author_work_no);
+		model.addAttribute("author_work", author_work);
+		return "/author/author_workUpdate";
+	}
+	@RequestMapping("author_workUpdateConfirm")
+	public String author_workUpdateConfirm(Author_work author_work, Model model) {
+		int result = 0;
+		result = as.author_workUpdate(author_work);
+		model.addAttribute("result", result);
+		model.addAttribute("author_work", author_work);
+		return "/author/author_workUpdateConfirm";
+	}
+	//글 삭제
+	@RequestMapping("author_workDeleteConfirm")
+	public String author_workDeleteConfirm(int author_work_no, Model model) {
+		int result = 0;
+		Author_work author_work = as.selectWork(author_work_no);
+		result = as.author_workDelete(author_work_no);
+		model.addAttribute("result", result);
+		model.addAttribute("author_work", author_work);
+		return "/author/author_workDeleteConfirm";
+	}
 }

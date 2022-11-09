@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +9,7 @@
 <style type="text/css">@import url("/chch/resources/css/member_update.css");</style>
 <script type="text/javascript">
 	function backBtn() {
-		location.href="${path}/main.do";
+		location.href="main.do";
 	}
 </script>
 <style type="text/css">
@@ -60,7 +61,7 @@
  				frm.email.focus(); 
  				return false;
  			}else {
- 				$.post('${path }/emailChk.do', "email="+frm.email.value, function(data) {
+ 				$.post('emailChk.do', "email="+frm.email.value, function(data) {
  					var msg = data;
    					if(msg == ""){
 		 				$('#email').css("border-color","#d5d5d5");
@@ -84,7 +85,7 @@
 	};	
 	//이메일 인증번호 '확인'버튼을 눌렀을 때 실행하는 메서드
 	function emailConfirmFun(){
-			$.post('${path }/emailConfirm.do', "emailConfirm="+frm.emailConfirm.value, function(data) {
+			$.post('emailConfirm.do', "emailConfirm="+frm.emailConfirm.value, function(data) {
 				if(data == 'y'){
 					//이메일 입력 input
 					$('#email').attr('readonly',true);
