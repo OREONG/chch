@@ -33,28 +33,53 @@
 <!-- 		select * from (select a.*, rowNum rn from (select * from book where book_kind=#{book_kind} order by book_reg_date desc)a) -->
 <!-- 		where rn between #{startRow} and #{endRow} and book_del='n' -->
 		
-		select * from (select a.*, rowNum rn from (select * from book where book_kind like #{book_kind} || '%'
-			<if test="order == 'recent' or order == null">
-				order by book_reg_date desc 
+		select * from (select a.*, rowNum rn from (select * from book
+		<if test='book_kind.equalsIgnoreCase("all")'>
+			
+		</if>
+		<if test='book_kind.equalsIgnoreCase("IT") or book_kind.equals("문학") or book_kind.equals("역사") 
+					or book_kind.equals("과학") or book_kind.equals("경제")'>
+			<if test="book_kind == 'IT'">
+				where book_kind like 'IT' || '%'
 			</if>
-			<if test="order == 'publish'">
-				order by book_publish_date desc
+			<if test="book_kind == '문학'">
+				where book_kind like '문학' || '%'
 			</if>
-			<if test="order == 'best'">
-				<!-- 추가예정 -->
+			<if test="book_kind == '역사'">
+				where book_kind like '역사' || '%'
 			</if>
-			<if test="order == 'review'">
-				
+			<if test="book_kind == '과학'">
+				where book_kind like '과학' || '%'
 			</if>
-			<if test="order == 'lowPrice'">
-				order by book_price
+			<if test="book_kind == '경제'">
+				where book_kind like '경제' || '%'
 			</if>
-			<if test="order == 'highPrice'">
-				order by book_price desc
-			</if>
-			<if test="order == 'title'">
-				order by book_title
-			</if>
+		</if>
+<!-- 		<if test="book_kind like '%'||'-'||'%'"> -->
+<!-- 			where book_kind = #{book_kind} -->
+<!-- 		</if> -->
+		
+				<if test="order == 'recent' or order == null">
+					order by book_reg_date desc 
+				</if>
+				<if test="order == 'publish'">
+					order by book_publish_date desc
+				</if>
+				<if test="order == 'best'">
+					<!-- 추가예정 -->
+				</if>
+				<if test="order == 'review'">
+					
+				</if>
+				<if test="order == 'lowPrice'">
+					order by book_price
+				</if>
+				<if test="order == 'highPrice'">
+					order by book_price desc
+				</if>
+				<if test="order == 'title'">
+					order by book_title
+				</if>
 		)a) where rn between #{startRow} and #{endRow} and book_del='n'
 	</select>
 	
