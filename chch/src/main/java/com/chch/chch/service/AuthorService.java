@@ -5,6 +5,7 @@ import java.util.List;
 import com.chch.chch.model.Author;
 import com.chch.chch.model.Author_work;
 import com.chch.chch.model.Like_table;
+import com.chch.chch.model.Review;
 
 public interface AuthorService {
 
@@ -20,6 +21,11 @@ public interface AuthorService {
 	int insertWork(Author_work author_work);
 	//작품 한개 불러오기
 	Author select(int author_no);
+	//작품 댓글 입력
+	int insertReview(Review review);
+
+	//댓글 전체 가져오기
+	List<Review> selectAllReview(int author_work_no);
 	//회차 리스트 불러오기
 	List<Author_work> authorWork_list(int author_no);
 	//글 상세 페이지(글 읽는 부분) 불러오기
@@ -37,6 +43,10 @@ public interface AuthorService {
 	int author_workUpdate(Author_work author_work);
 	//글(회사)삭제
 	int author_workDelete(int author_work_no);
+	//리뷰 수정
+	int reviewUpdate(Review review);
+	//리뷰 삭제
+	int reviewDelete(int review_no);
 	
 
 

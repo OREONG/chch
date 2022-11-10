@@ -41,12 +41,6 @@ a:active{
     justify-content: center;
 }
 
-/* 맨위에 파란색 박스 */
-.header-btn-wrap{
-	width:100%;
-	height: 38px;
-	background: #6c71ce;
-}
 
 /* 로그인, 회원가입 또는 로그아웃, 장바구니 */
 .login-join-cart-wrap{
@@ -54,18 +48,27 @@ a:active{
 	text-decoration-line: none;
 }
 
-.top-li{
-	    margin-top: 10px;
+#bell{
+	width: 47px;
+}
+#noticePopUp{
+	height: 47px;
+}
+
+.cate-c-sub{
+	width: 200px;
+    margin-left: 124px;	
 }
 
 .top-t{
-    color: #fdfdfd;
-    font-weight: 700;
-	margin-right: 22px;
-	margin-top: 9px;
+	margin: 0 -16px 0 22px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #343434
 }
 .top-t:hover{
-	color:white;
+	text-decoration: none;
+	cursor: pointer;
 }
 
 /* 로고, 검색바, 로그인 등 */
@@ -80,6 +83,7 @@ a:active{
 	display: flex;
 	align-items: center;
 	position: relative;
+    width: 100%;
 }
 
 /* 로고 이미지 */
@@ -89,10 +93,15 @@ a:active{
 
 /* 검색 바 */
 #searchInput{
-    width: 560px;
-    height: 48px;
-    border-radius: 2px;
-    border: 3.5px solid #5055b1;
+    left: 196px;
+    top: 35px;
+    width: 510px;
+    height: 50px;
+    padding: 2px 55px 0 27px;
+    border-radius: 25px;
+    border: 1px solid #ddd;
+    background: #fafafa;
+}
 }
 
 /* 알림 아이콘 */
@@ -114,14 +123,38 @@ a:active{
 
 .cate{
 	z-index:1;
-	margin: -11px 0 0 22%;
+    height: 70px;
+    border-top: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f0f0f0;
+    background: #fff;
 }
 
+.cate-sub{
+	width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
 
-
+.bookMenuBtn{
+    border: 1px solid #e2e2e2;
+    border-radius: 50px;
+    padding: 9px;
+    margin-left: 23px;
+    margin-right: -22px;
+    position: static;
+    background: #fff;
+    box-shadow: 0px 3px 6px 0px rgb(0 0 0 / 9%), 0px 0px 1px 0px rgb(0 0 0 / 15%);
+}
+.bookMenuBtn:hover{
+	cursor: pointer;
+}
+#hamburger{
+	width: 25px;
+}
 .cate-c{
     margin: 0 -16px 0 38px;
-    font-size: 14px;
+    font-size: 17px;
     font-weight: 900;
     color: #343434;
 
@@ -132,13 +165,18 @@ a:active{
 }
 
 .bookMenu{
-	display: flex;
-	margin-left: 22%;
+    display: flex;
     background: white;
     float: inherit;
-    margin-top: -18px;
-    padding-top: 4px;
+    padding: 19px 0px 10px 1px;
+    width: 789px;
+    position: relative;
+	left: 24px;
+    top: 12px;
+    border: 1px solid #efefef;
+    border-radius: 10px;
 }
+
 
 .submenu{
 	flex-direction: column;
@@ -161,17 +199,9 @@ a:active{
 .a{
 	color: #818181;
 }
-
-.hr{
-	width: 100%;
-}
-
-.header-hr1{
-	margin-top: -8px;
-}
-.header-hr2{
-    margin-top: 8px;
-	border: 1px solid #6c71ce;
+.a:hover{
+	text-decoration: none;
+	color : #303030;
 }
 
 /* 드롭다운 ㅠㅠㅠ */

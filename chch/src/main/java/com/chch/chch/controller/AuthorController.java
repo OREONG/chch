@@ -19,7 +19,7 @@ import com.chch.chch.model.Like_table;
 import com.chch.chch.model.Review;
 import com.chch.chch.service.AuthorService;
 import com.chch.chch.service.LikeService;
-import com.chch.chch.service.ReviewService;
+
 
 @Controller
 public class AuthorController {
@@ -27,8 +27,7 @@ public class AuthorController {
 	private AuthorService as;
 	@Autowired
 	private LikeService ls;
-	@Autowired
-	private ReviewService rs;
+
 	
 	//나도 작가되기 메인 화면(작품 등록 버튼, 작품 리스트)
 	@RequestMapping("writing")
@@ -130,7 +129,7 @@ public class AuthorController {
 		as.updateReadCount(author_work_no);
 		Author_work author_work = as.selectWork(author_work_no);
 		//댓글 가져오기
-		List<Review> review_list = rs.selectAllReview(author_work_no);
+		List<Review> review_list = as.selectAllReview(author_work_no);
 		//댓글 좋아요
 		for (Review review : review_list) {
 			Map<String, Object> map = new HashMap<String, Object>();
@@ -191,7 +190,7 @@ public class AuthorController {
 		review.setAuthor_work_no(author_work_no);
 		review.setId(id);
 		review.setReview_content(review2.getReview_content());
-		result = rs.insertReview(review);
+		result = as.insertReview(review);
 		
 		model.addAttribute("result", result);
 		model.addAttribute("review", review);
@@ -215,7 +214,7 @@ public class AuthorController {
 		result = ls.insertReview(like_table); 
 		
 		//댓글가져오기
-		List<Review> review_list = rs.selectAllReview(author_work_no);
+		List<Review> review_list = as.selectAllReview(author_work_no);
 		//댓글 좋아요 갯수
 		for (Review review : review_list) {
 			int review_no1 = review.getReview_no();
@@ -239,7 +238,7 @@ public class AuthorController {
 		result = ls.deleteReview(map);
 		
 		//댓글가져오기
-		List<Review> review_list = rs.selectAllReview(author_work_no);
+		List<Review> review_list = as.selectAllReview(author_work_no);
 		//댓글 좋아요 갯수
 		for (Review review : review_list) {
 			int review_no1 = review.getReview_no();
@@ -305,5 +304,28 @@ public class AuthorController {
 		model.addAttribute("result", result);
 		model.addAttribute("author_work", author_work);
 		return "/author/author_workDeleteConfirm";
+	}
+	
+	//리뷰 수정
+	@RequestMapping(value = "reviewUpdate", produces = "text/html;charset=utf-8")
+	@ResponseBody 
+	public String reviewUpdate(Review review) {
+		String msg = "";
+		int result = 0;
+		result = as.reviewUpdate(review);
+		if(result == 1) msg = "y";
+		else msg = "n";
+		return msg;
+	}
+	//리뷰 삭제
+
+	@RequestMapping("reviewDelete")
+	public String reviewDelete(int review_no, int author_work_no, Model model) {
+		int result = 0;
+		result = as.reviewDelete(review_no);
+		System.out.println(result);
+		model.addAttribute("result", result);
+		model.addAttribute("author_work_no", author_work_no);
+		return "/author/reviewDelete";
 	}
 }

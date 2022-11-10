@@ -12,7 +12,7 @@
 <style type="text/css">@import url("/chch/resources/css/header.css");</style>
 
 <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
-<c:set var="ipAdd" value="//172.30.1.77:8080"></c:set>
+<c:set var="ipAdd" value="//192.168.0.31:8080"></c:set>
 <c:set var="ip" value="http:${ipAdd}/chch"></c:set>
 <link rel="stylesheet" type="text/css"href="${path }/resources/bootstrap/css/bootstrap.min.css">
 <script type="text/javascript" src="${path}/resources/bootstrap/js/jquery.js"></script>
@@ -23,10 +23,15 @@
 
 
 <script type="text/javascript">
+
+
 	var socket  = null;
 	var id = '${id}';
 	
 	$(document).ready(function(){
+		$('.bookMenu').hide();
+		
+		
 	    // 웹소켓 연결
 	    sock = new SockJS("<c:url value='/echo.do'/>");
 	    socket = sock;
@@ -261,6 +266,15 @@
 		return changedTime;
 	}
 
+	
+	function openCloseMenu(){
+	    let status = $('.bookMenu').css('display');
+	    if (status =='block') {
+	        $('.bookMenu').hide();
+	    } else {
+	        $('.bookMenu').show();
+	    }
+	}
 </script>
 
 
@@ -271,19 +285,7 @@
 		
 		<div class="header-container">
 			<div class="header-content">
-					<div class="header-btn-wrap">
-						<ul class="login-join-cart-wrap">
-							<c:if test="${empty id }">
-								<li class="top-li"><a href="loginForm.do" class="top-t" >로그인</a></li>
-								<li class="top-li"><a href="joinForm.do" class="top-t" >회원가입</a></li>
-							
-							</c:if>
-							<c:if test="${not empty id }">
-								<li class="top-t li li-id"><a class="top-t" >${id }님 환영합니다</a></li>
-								<li class="top-t li"><a href="logout.do" class="top-t" >로그아웃</a></li>
-							</c:if>
-						</ul>			
-					</div>	
+						
 				<!-- 로고, 검색, 알림 wrap -->
 				<div class="top-container">
 						<!-- 로고, 검색 -->
@@ -295,48 +297,66 @@
 								</a>
 							</li>
 							<!-- 검색 -->
-							<li><input id="searchInput" type="text" placeholder="검색 이걸로 쓰세욤~~"></li>
+							<li>
+
+								<input id="searchInput" type="text" placeholder="검색 이걸로 쓰세욤~~">
+							</li>
+							
+							<li>
+								<input type="text" name="noticePopUp" id="noticePopUp" class="form-control col-sm-8" style="resize: none; border: none;">
+							</li>
 							<!-- 알림 종 -->
 							<li>
 								<a href="">
 									<img id="bell" src="/chch/resources/images/bell.png">
 								</a>
 							</li>
-<!-- 							<li>
-								<a href="">
-									<img id="cart" src="/chch/resources/images/cart.png">
-								</a>
 
-							</li> -->
-							<li>
-								<input type="text" name="noticePopUp" id="noticePopUp" class="form-control col-sm-8" style="resize: none; border: none;">
-							</li>
+
 						</ul>
 					
 				</div>
 			
 			
-			<hr class="header-hr1 hr">
+
 			
 				<div class="bottom-container">
 				
 					<!-- 신작도서 and bookMenu wrap -->
 					<div class="cate">
 					
-						<div>
-						<a class="cate-c newBook" href="newList.do?book_kind=all&order=recent">신작도서▼</a>
+						<div class="cate-sub">
+						
+						<button class="bookMenuBtn" onclick="openCloseMenu()"><img id="hamburger" alt="" src="/chch/resources/images/hamburger.png"> </button>
+						
+						<a class="cate-c newBook" href="newList.do?book_kind=all&order=recent">신작도서</a>
 						<a class="cate-c" href="usedList.do">중고도서</a>
 						<a class="cate-c" href="usedAddForm.do">판매하기</a>
 						<a class="cate-c" href="writing.do">나도 작가</a>
+						<a class="cate-c" href="communityMain.do">커뮤니티</a>
 						<a class="cate-c" href="myPage_main.do">마이페이지</a>
 						<a class="cate-c" href="faq.do">고객센터</a>
-						<a class="cate-c" href="communityMain.do">커뮤니티</a>
-						<a class="cate-c" href="chatMemberList.do">채팅방</a>
-						<a class="cate-c" href="adminMain.do">관리자</a>
-						<a class="cate-c" href="notice.do">알림</a>
+						<!-- <a class="cate-c" href="chatMemberList.do">채팅방</a> -->
+						<!-- <a class="cate-c" href="adminMain.do">관리자</a> -->
+						<!-- <a class="cate-c" href="notice.do">알림</a> -->
+						<!-- <a class="cate-c" href="updateForm.do">회원수정</a>
+						<a class="cate-c" href="reportList.do">독후감</a> -->
+
 						
-						<a class="cate-c" href="updateForm.do">회원수정</a>
-						<a class="cate-c" href="reportList.do">독후감</a>
+						<div class="cate-c-sub">
+							<c:if test="${empty id }">
+								<a href="loginForm.do" class="top-t" >로그인</a>
+								<a class="top-t">|</a>
+								<a href="joinForm.do" class="top-t" >회원가입</a>
+								
+							</c:if>
+							<c:if test="${not empty id }">
+								<a href="logout.do" class="top-t" >장바구니</a>
+								<a class="top-t">|</a>
+								<a href="logout.do" class="top-t" >로그아웃</a>
+								
+							</c:if>
+						</div>
 						
 						
 						</div>
@@ -344,12 +364,11 @@
 								
 				</div>
 		
-				<hr class="header-hr2 hr">
 		
 		
-<!--  							신작도서 bookMenu
+							<!-- 신작도서 bookMenu -->
 							<div class="bookMenu">
-									IT
+									<!-- IT -->
 											<ul class="submenu">
 												<li class="li-main-c"><a href="/chch/newBook/newList.do?book_kind=it&order=recent" class="nav-class1">IT</a></li>
 												
@@ -360,7 +379,7 @@
 												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=IT-OS/데이터베이스&order=recent" class="a">OS/데이터베이스</a></li>
 											</ul>
 									
-									문학
+									<!-- 문학 -->
 											<ul class="submenu">
 												<li class="li-main-c"><a href="/chch/newBook/newList.do?book_kind=문학&order=recent" class="nav-class1">문학</a></li>
 												
@@ -372,7 +391,7 @@
 											</ul>
 
 									
-									역사
+									<!-- 역사 -->
 											<ul class="submenu">
 												<li class="li-main-c"><a href="/chch/newBook/newList.do?book_kind=역사&order=recent" class="nav-class1">역사</a></li>
 												
@@ -384,7 +403,7 @@
 											</ul>
 
 									
-									과학
+									<!-- 과학 -->
 											<ul class="submenu">
 												<li class="li-main-c"><a href="/chch/newBook/newList.do?book_kind=과학&order=recent" class="nav-class1">과학</a></li>
 												
@@ -395,7 +414,7 @@
 												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=과학-화학&order=recent" class="a">화학</a></li>
 											</ul>
 									
-									경제
+									<!-- 경제 -->
 											<ul class="submenu">
 												<li class="li-main-c"><a href="/chch/newBook/newList.do?book_kind=경제&order=recent" class="nav-class1">경제</a></li>
 												
@@ -408,8 +427,8 @@
 									
 									
 							</div>
-							신작도서 bookMenu끝			
- -->		
+							<!-- 신작도서 bookMenu끝	 -->		
+	
 		
 			</div>
 		</div>

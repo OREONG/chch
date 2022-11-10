@@ -80,7 +80,7 @@
 	</insert>
 	<!-- 댓글 전체 불러오기 -->
 	<select id="selectAllReview" parameterType="integer" resultType="review">
-		select * from review where author_work_no=#{author_work_no} order by review_reg_date desc
+		select * from review where author_work_no=#{author_work_no} and review_del='n' order by review_reg_date desc
 	</select>
 
 	<!-- 작품 정보 수정 -->
@@ -122,4 +122,13 @@
 	<delete id="author_workDelete" parameterType="integer">
 		delete author_work where author_work_no=#{author_work_no}
 	</delete>
+	
+	<!-- 리뷰 수정 -->
+	<update id="reviewUpdate" parameterType="review">
+		update review set review_content=#{review_content} where review_no=#{review_no}
+	</update>
+	<!-- 리뷰 삭제 -->
+	<update id="reviewDelete" parameterType="integer">
+		update review set review_del='y' where review_no=#{review_no}
+	</update>
 </mapper>

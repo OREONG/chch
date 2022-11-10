@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.chch.chch.model.Author;
 import com.chch.chch.model.Author_work;
+import com.chch.chch.model.Review;
 
 @Repository
 public class AuthorDaoImpl implements AuthorDao {
@@ -39,6 +40,15 @@ public class AuthorDaoImpl implements AuthorDao {
 	//작품 한개 불러오기
 	public Author select(int author_no) {
 		return sst.selectOne("authorns.select", author_no);
+	}
+	//작품 댓글 입력
+	public int insertReview(Review review) {
+		return sst.insert("authorns.insertReview", review);
+	}
+
+	//댓글 전체 가져오기
+	public List<Review> selectAllReview(int author_work_no) {
+		return sst.selectList("authorns.selectAllReview", author_work_no);
 	}
 	//회차 리스트 불러오기
 	public List<Author_work> authorWork_list(int author_no) {
@@ -73,6 +83,14 @@ public class AuthorDaoImpl implements AuthorDao {
 	//글(회차)삭제
 	public int author_workDelete(int author_work_no) {
 		return sst.delete("authorns.author_workDelete", author_work_no);
+	}
+	//리뷰 수정
+	public int reviewUpdate(Review review) {
+		return sst.update("authorns.reviewUpdate", review);
+	}
+	//리뷰 삭제 del='y'
+	public int reviewDelete(int review_no) {
+		return sst.update("authorns.reviewDelete", review_no);
 	}
 
 
