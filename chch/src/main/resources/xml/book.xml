@@ -55,9 +55,10 @@
 				where book_kind like '경제' || '%'
 			</if>
 		</if>
-<!-- 		<if test="book_kind like '%'||'-'||'%'"> -->
-<!-- 			where book_kind = #{book_kind} -->
-<!-- 		</if> -->
+		<if test='!book_kind.equalsIgnoreCase("all") and !book_kind.equalsIgnoreCase("IT") and !book_kind.equals("문학") and !book_kind.equals("역사") 
+					and !book_kind.equals("과학") and !book_kind.equals("경제")'>
+			where book_kind = #{book_kind}
+		</if>
 		
 				<if test="order == 'recent' or order == null">
 					order by book_reg_date desc 
