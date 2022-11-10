@@ -1,6 +1,6 @@
 /* 나도 작가되기 전체 컨테이너 */
 .main-container{
-    margin-top: 200px;
+    margin-top: 50px;
 	display: flex;
     justify-content: center;
 }

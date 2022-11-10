@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -104,13 +105,17 @@ public class MemberController {
 	
 	//로그인 화면
 	@RequestMapping("loginForm")
-	public String loginForm() {
+	public String loginForm(Model model, HttpServletRequest request, String targetPage) {
+		
+		// 기존에 가려던 페이지 주소 전달
+		model.addAttribute("targetPage", targetPage);
+		
 		return "/member/loginForm";
 	}
 	
 	//로그인
 	@RequestMapping("login")
-	public String login(Member member, Model model, HttpSession session) {
+	public String login(Member member, Model model, HttpSession session, String targetPage) {
 		int result = 0;
 		Member member2 = ms.select(member.getId());
 		if (member2 == null || member2.getDel().equals("y")) result = -1; //없는 아이디
@@ -119,6 +124,14 @@ public class MemberController {
 			result = 1; //성공 -> 아이디와 비밀번호가 일치한다
 			session.setAttribute("id", member.getId());
 		}
+		
+		System.out.println("로그인에서의 targetPage : "+targetPage);
+		// 
+		if (targetPage.equals("") || targetPage == null) {
+			targetPage = "main.do";
+		}
+		
+		model.addAttribute("targetPage", targetPage);
 		model.addAttribute("result", result);
 		return "/member/login";
 	}

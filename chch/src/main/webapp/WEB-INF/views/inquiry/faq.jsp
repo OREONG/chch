@@ -19,9 +19,6 @@
 				<a href="inquirySelect.do?inquiryNumber=1">1:1 문의</a>
 			</div>
 		</div>
-		<div><br>
-			<button onclick="location.href='main.do'" class="btn">메인</button>
-		</div>
 		<hr>
 	</div>
 	

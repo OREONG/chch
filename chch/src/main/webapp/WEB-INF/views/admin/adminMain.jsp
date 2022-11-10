@@ -11,9 +11,5 @@
 		<button onclick="location.href='adminInquiryBeforeList.do?inquiryNumber=1'" class="btn btn-primary">문의사항관리</button>
 		<!-- <div class="adminItem" style="cursor: pointer; margin: 20px;" onclick="location.href='/chackcheck/views/admin/adminInquiryBeforeList.so?csInquiryNumber=1'"><img alt="" src="/chackcheck/images/adminMain3.png" width="180px"><br>문의사항관리</div> -->
 	</div>
-	<br>
-	<div>
-		<button onclick="location.href='main.do'" class="btn">메인</button>
-	</div>
 </body>
 </html>

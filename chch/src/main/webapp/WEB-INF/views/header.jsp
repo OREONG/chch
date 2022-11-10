@@ -309,7 +309,7 @@
 
 							</li> -->
 							<li>
-								<input type="text" name="noticePopUp" id="noticePopUp" class="form-control col-sm-8" style="resize: none; border: none;">
+								<input type="text" name="noticePopUp" id="noticePopUp" class="form-control col-sm-8" style="resize: none; border: none; width: 300px; background-color: #ffffff; color: #808080;" readonly="readonly">
 							</li>
 						</ul>
 					
@@ -324,14 +324,14 @@
 					<div class="cate">
 					
 						<div>
-						<a class="cate-c newBook" href="newList.do?book_kind=all&order=recent">신작도서▼</a>
-						<a class="cate-c" href="usedList.do">중고도서</a>
-						<a class="cate-c" href="usedAddForm.do">판매하기</a>
+						<a class="cate-c newBook" href="#">신작도서▼</a>			<!-- newList.do?book_kind=all&order=recent -->
+						<a class="cate-c" href="#">중고도서</a>					<!-- usedList.do -->
+						<a class="cate-c" href="#">판매하기</a>					<!-- usedAddForm.do -->
 						<a class="cate-c" href="writing.do">나도 작가</a>
-						<a class="cate-c" href="myPage_main.do">마이페이지</a>
+						<a class="cate-c" href="#">마이페이지</a>					<!-- myPage_main.do -->
 						<a class="cate-c" href="faq.do">고객센터</a>
 						<a class="cate-c" href="communityMain.do">커뮤니티</a>
-						<a class="cate-c" href="chatMemberList.do">채팅방</a>
+						<a class="cate-c" href="chatMemberList.do?targetPage=chatMemberList.do">채팅방</a>
 						<a class="cate-c" href="adminMain.do">관리자</a>
 						<a class="cate-c" href="notice.do">알림</a>
 						

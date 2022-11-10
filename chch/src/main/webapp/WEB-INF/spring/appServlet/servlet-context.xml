@@ -31,16 +31,39 @@
 	<beans:bean id="sc" class="com.chch.chch.service.SessionChk"></beans:bean>
 	<interceptors>
 		<interceptor>
+			<!-- HJ -->
 			<mapping path="/updateForm.do"/>
 			<mapping path="/update.do"/>
 			<mapping path="/deleteForm.do"/>
 			<mapping path="/delete.do"/>
 			<mapping path="/logout.do"/>
-			<mapping path="/author/authorMain.do"/>
-			<mapping path="/author/authorIntro.do"/>
-			<mapping path="/author/authorIntroConfirm.do"/>
-			<mapping path="/author/authorWriting.do"/>
-			<mapping path="/author/writingDetail.do"/>
+			<mapping path="/authorMain.do"/>
+			<mapping path="/authorIntro.do"/>
+			<mapping path="/authorIntroConfirm.do"/>
+			<mapping path="/authorWriting.do"/>
+			<mapping path="/writingDetail.do"/>
+			<mapping path="/reportList.do"/>
+			
+			
+			<!-- SB -->
+			<mapping path="/chatMemberList.do"/>
+			<mapping path="/chat.do"/>
+			<mapping path="/communityMain.do"/>
+			<mapping path="/communityInsertForm.do"/>
+			<mapping path="/communityDetail.do"/>
+			<mapping path="/communityMyList.do"/>
+			<mapping path="/communityAllList.do"/>
+			<mapping path="/inquirySelect.do"/>
+			<mapping path="/inquiryList.do"/>
+			<mapping path="/notice.do"/>
+			<mapping path="/adminMain.do"/>
+			<mapping path="/adminMemberList.do"/>
+			<mapping path="/adminBookList.do"/>
+			<mapping path="/adminBookDetail.do"/>
+			<mapping path="/adminBookAddForm.do"/>
+			<mapping path="/adminInquiryBeforeList.do"/>
+			<mapping path="/adminInquiryAfterList.do"/>
+			
 			<beans:ref bean="sc"/>
 		</interceptor>
 	</interceptors>

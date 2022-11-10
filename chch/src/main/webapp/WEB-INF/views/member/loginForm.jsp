@@ -12,6 +12,8 @@
 	<!-- 메인 컨테이너 -->
 	<div class="main-container">
 			<form action="login.do">
+					<!-- 이전 페이지 주소 -->
+					<input type="hidden" name="targetPage" value="${targetPage}">
 					<!-- 로고 이미지 -->
 					<div class="img-div">
 						<img alt="" src="/chch/resources/images/chackcheckCheckLogo2-1.png">

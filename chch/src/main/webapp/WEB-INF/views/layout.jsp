@@ -13,7 +13,7 @@
 		flex-direction: row;
 		justify-content: space-around;
 		width: 100%;
-		height: 110px;
+		height: 251px;
 		/* margin: 0;
 		padding: 0;
 		background-color: white;

@@ -11,8 +11,18 @@ public class SessionChk extends HandlerInterceptorAdapter{
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		HttpSession session = request.getSession();
+		
 		if(session == null || session.getAttribute("id") == null ||
 				session.getAttribute("id").equals("")) {
+			
+			// 기존에 가려면 페이지의 주소를 저장해서 전달
+			String path = request.getRequestURI();
+			String pathSplit[] = path.split("/");
+			String targetPage = pathSplit[2];
+			
+			System.out.println(targetPage);
+			
+			session.setAttribute("targetPage", targetPage);
 			response.sendRedirect("loginForm.do");
 			return false;
 		}
