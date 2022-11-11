@@ -38,7 +38,7 @@
 								<a href=""><button class="button1" id="button1-2">구매확정</button></a>
 						</c:if>
 						<c:if test="${used.used_status=='n'}">
-							<a href="${path}/likeInsert_used.do?used_no=${used.used_no }"><button class="button1" id="button1-1">❤</button></a>
+							<a href=likeInsert_used.do?used_no=${used.used_no }"><button class="button1" id="button1-1">❤</button></a>
 						</c:if>
 					 </div>
 					<p>

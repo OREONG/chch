@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-	
+<%@ include file="../header.jsp" %>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,9 +10,8 @@
 <title>Insert title here</title>
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"	rel="stylesheet">
 <style type="text/css">
-@import url("/chackcheck/css/list.css");
- @import url("/chackcheck/css/font.css"); 
-@import url("/chackcheck/css/gallery.css");
+@import url("${path}/resources/css/list.css");
+@import url("${path}/resources/css/gallery.css");
 </style>
 </head>
 <body>
@@ -43,7 +42,7 @@ $(document).ready(function() {
 				purchase_Select += $(this).next('.no').val()+",";			
 			});
 				/* alert(purchase_Select); */
-			   location.href="purchase_DelAll.ko?purchase_Select="+purchase_Select;  
+			   location.href="purchase_DelAll.do?purchase_Select="+purchase_Select;  
 		}
 
 

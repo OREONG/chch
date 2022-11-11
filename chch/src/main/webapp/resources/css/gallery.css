@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+/* 갤러리형 보기 */
+.board_list_head  {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-content: space-around;
+	justify-content: flex-start;
+}
+ .board_list_head>div {
+	font-size: 15px;
+	text-align: center;
+	vertical-align: middle;
+} 
+
+.board_list_head img {
+	width: 122px;
+	margin-top: 20px;
+	padding: 0px;
+}
+
+.board_list_head a {
+	margin-left: 50px; 
+}
+
+.books a {
+	text-decoration: none;
+	color: black;
+	float: left;
+}
+
+.books {
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0;
+	width: 740px;
+	text-align: center;
+}
+
+#new,#old{
+	background-color: white;
+	cursor:pointer;
+ 	border-radius: 2px;
+  	border: 1px #9d9c9c solid;
+}
+

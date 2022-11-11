@@ -14,6 +14,10 @@ public interface DealDao {
 
 	int sales_update(int deal_no, String id);
 
+	int sales_DelAll(int deal_no, String id);
+
+	int purchase_DelAll(int deal_no, String id);
+
 	
 
 

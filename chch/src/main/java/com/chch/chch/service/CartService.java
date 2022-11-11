@@ -12,7 +12,13 @@ public interface CartService {
 
 	int delete(int cart_no, String id);
 
-	int insert(int book_no, int cart_count, String id, Cart cart);
+	int insert(Cart cart);
+
+	
+
+	int update_cart(Cart cart);
+
+	Cart select(Cart cart);
 
 
 }

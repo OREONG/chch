@@ -11,15 +11,24 @@
 	<!-- order by b.book_no -->
 	 </select>
 	 <!-- 장바구니 수량 수정 -->
-	 <update id="update" parameterType="integer">
+	 <update id="update" parameterType="cart">
 	 	update cart set cart_count=#{cart_count} where cart_no = #{cart_no}
 	 </update>
 	 <delete id="delete">
 	 	delete from cart where cart_no = #{cart_no} and id= #{id}
 	 </delete>
 	 <!-- 장바구니 상품 추가 -->
-	<insert id="insert" parameterType="map">
-		insert into cart values((SELECT NVL(MAX(cart_no), 0) + 1 FROM cart), #{book_no},#{id},#{cart_count})
+	<insert id="insert" parameterType="cart">
+		<selectKey keyProperty="cart_no" order="BEFORE" resultType="integer">
+			SELECT NVL(MAX(cart_no), 0) + 1 cart_no FROM cart
+		</selectKey>
+		insert into cart values(#{cart_no}, #{book_no},#{id},#{cart_count})
 		
 	</insert>
+	<select id="select" parameterType="cart" resultType="cart">
+		select * from cart where id= #{id} and book_no=#{book_no}
+		</select>
+	<update id="update_cart" parameterType="cart">
+		update cart set  cart_count=#{cart_count} where book_no = #{book_no} and id=#{id}
+	</update>
 </mapper>

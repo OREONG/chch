@@ -24,7 +24,7 @@
 		<c:if test="${not empty list}">
 			<c:forEach var="list" items="${list }">
 				<div class="btn btn-success">
-					<a href="${path }/newBook/newDetail.do?book_no=${list.book_no }">
+					<a href="${path }/newBook/newDetail.do?book_no=${list.book_no }&pageNum=${pageNum}">
 					<img src="">
 						<p>${list.book_title }</p>
 						<p><fmt:formatNumber value="${list.book_price }" pattern="#,###" />원</p>

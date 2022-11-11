@@ -29,7 +29,13 @@
 	 <update id="sales_update" parameterType="map">
 	 	update deal set sales_list_del ='y' where seller_id=#{id} and deal_no=#{deal_no}
 	 </update>
-	 
-	 
+	 	 <!-- 판매목록에서 선택삭제 눌렀을 때 n => y로 update -->
+	<update id="sales_DelAll" parameterType="map">
+	 	update deal set sales_list_del ='y' where seller_id=#{id} and deal_no=#{deal_no}
+	 </update>
+	 <!-- 구매목록에서 선택삭제 눌렀을 때 n => y로 update -->
+	<update id="purchase_DelAll" parameterType="map">
+	 	update deal set purchase_list_del ='y' where purchase_id=#{id} and deal_no=#{deal_no}
+	 </update>
 	
 </mapper>

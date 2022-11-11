@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ include file="../header.jsp" %>
+<%@ include file="../header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,28 +50,21 @@ $(function() {
 	}); */
 }); 
 
-
-
-
-// 리뷰 페이징 스크롤 높이
-document.addEventListener("DOMContentLoaded" ,function(){  // html load 이후
-	if (${pageNum} > 1) {
-		window.scrollTo(0, $('.scrollTop').position().top);
-	}
-);
-
-
-	
-	
-	
 </script>
-
 <script type="text/javascript">
+	// 구매 갯수
+	var cc = 1;
+	// 리뷰 페이징 스크롤 높이
+	document.addEventListener("DOMContentLoaded" ,function(){  // html load 이후
+		if (parseInt("${pageNum}") > 1) {
+			window.scrollTo(0, $('.scrollTop').position().top);
+		}
+	});
 
 	function addcart(book_no) {
 		var cart_count = $('#cart_count_'+book_no).val() + cc;
 		var book_no =  $('#book_no_'+book_no).val();
-		location.href="${path}/cartInsert.do?book_no=${book.book_no }&id=${id}&cart_count=" + cc;	
+		location.href="cartInsert.do?book_no=${book.book_no }&id=${id}&cart_count=" + cc;	
 		
 	}
 	
@@ -91,43 +84,40 @@ document.addEventListener("DOMContentLoaded" ,function(){  // html load 이후
 
 	}
 
-// 구매 갯수
-var cc = 1;
-function count(type)  {
-	  // 결과를 표시할 element
-	  const resultElement = document.getElementById('cart_count');
+
+	function count(type)  {
+		// 결과를 표시할 element
+	  	const resultElement = document.getElementById('cart_count');	  
+	  	// 현재 화면에 표시된 값
+	  	let number = resultElement.innerText;
 	  
-	  // 현재 화면에 표시된 값
-	  let number = resultElement.innerText;
-	  
-	  // 더하기/빼기
-	  if(type === 'plus') {
-		  if(number >= ${book.book_count}) {
+	  	// 더하기/빼기
+ 	  	if(type == 'plus') {
+		  	if(number >= parseInt("${book.book_count}")) {
 			  alert("더이상 구매할 수 없습니다");
-		  }
-		  else 
-	   		 number = parseInt(number) + 1;
-		  
-	  }else(type === 'minus')  
+		  	}
+		  	else 
+	   			 number = parseInt(number) + 1; 
+		   
+	  }else if (type == 'minus')  {
 		  if(number <= 1) {
 			  alert("1개 이상 입력하세요");
 		  }else {
-	    number = parseInt(number) - 1;
-		  }
-	  
-	  
+	    		number = parseInt(number) - 1;
+		  }	  
 	  // 결과 출력
 	  resultElement.innerText = number;
 	  cc = number;
 	}
-	
-//리뷰 삭제 confirm
-function reviewDelete(review_no) {
-	var con = confirm("리뷰를 정말 삭제하시겠습니까?");
-	if (con) {
-		location.href="reviewDelete.do?id=${review.id }&book_no=${review.book_no }&review_no="+review_no;
 	}
-}
+
+	//리뷰 삭제 confirm
+	function reviewDelete(review_no) {
+		var con = confirm("리뷰를 정말 삭제하시겠습니까?");
+		if (con) {
+			location.href="reviewDelete.do?id=${review.id }&book_no=${review.book_no }&review_no="+review_no;
+		}
+	}
 </script>
 </head>
 <body>
@@ -179,9 +169,9 @@ function reviewDelete(review_no) {
 					<input type='button' class="count-pm" onclick='count("minus")'
 						value='-' />
 					<div id="cart_count_${book.book_no }">1</div>
-						<input 	type="hidden" value="${book.book_no}"  id="book_no_${book.book_no}"> 
-						<input type='button' class="count-pm" onclick='count("plus")'
-						value='+' />
+					<input type="hidden" value="${book.book_no}"
+						id="book_no_${book.book_no}"> <input type='button'
+						class="count-pm" onclick='count("plus")' value='+' />
 				</div>
 
 				<!-- 리뷰 별점 -->
@@ -191,30 +181,30 @@ function reviewDelete(review_no) {
 				</div>
 
 				<ul class="btn-wrap">
-					<li><a onclick="addcart(${book.book_no})"><button class="button1" id="button1-2">장바구니</button></a></li>
-					<li><a onclick="purchase()"><button class="button1" id="button1-2">구매하기</button></a></li>
-				  <c:if test="${like.book_no == null }">
-					 <a href="${path }/likeInsert.do?book_no=${book.book_no }">관심 🤍</a><p>
-				</c:if>
-				
-				<c:if test="${like.book_no != null }">
-					<a href="${path }/likeDelete.do?book_no=${book.book_no }">관심 💗</a><p>
-				</c:if>    
-					 <%--  <li><a href="${path}/likeInsert.do?book_no=${book.book_no }"><button class="button1" id="button1-1">💗</button></a></li>   --%>
-				</ul> 
-			
+					<li><a onclick="addcart(${book.book_no})"><button
+								class="button1" id="button1-2">장바구니</button></a></li>
+					<li><a onclick="purchase()"><button class="button1"
+								id="button1-2">구매하기</button></a></li>
+					<c:if test="${like.book_no == null }">
+						<a href="likeInsert.do?book_no=${book.book_no }">관심 🤍</a>
+						<p>
+					</c:if>
 
+					<c:if test="${like.book_no != null }">
+						<a href="likeDelete.do?book_no=${book.book_no }">관심 💗</a>
+						<p>
+					</c:if>
+					<%--  <li><a href="${path}/likeInsert.do?book_no=${book.book_no }"><button class="button1" id="button1-1">💗</button></a></li>   --%>
+				</ul>
 
-		like.book_no가 비어있나?  ${like.book_no == null}<p>
-		like.book_no가 들어있나?  ${like.book_no != null}<p>
-		like.used_no가 비워져있나?  ${like.used_no == null}<p>
-		===============<p>
-		like.book_no가 비어있나?  ${empty like.book_no}<p>
-		like.book_no가 들어있나?  ${not empty like.book_no}<p>
-		like.used_no가 비워져있나?  ${empty like.used_no}
-		
-
-
+				<a href="${path }/mypage/cart.do" class="btn btn-success">장바구니</a>
+				<p>like.book_no가 비어있나? ${like.book_no == null}
+				<p>like.book_no가 들어있나? ${like.book_no != null}
+				<p>like.used_no가 비워져있나? ${like.used_no == null}
+				<p>===============
+				<p>like.book_no가 비어있나? ${empty like.book_no}
+				<p>like.book_no가 들어있나? ${not empty like.book_no}
+				<p>like.used_no가 비워져있나? ${empty like.used_no}
 				<div class="sales-link">
 					<!-- <a href="#" id="sales-a">나도 판매하기 ▶️</a> -->
 				</div>
@@ -263,9 +253,10 @@ function reviewDelete(review_no) {
 				<li>
 					<div class="review-form-div">
 						<form action="reviewUpdate.do" method="post">
-						<input type="hidden" name="book_no" value="${book.book_no }">	
-						<input type="hidden" name="review_no" value="${review.review_no }">	
-							
+							<input type="hidden" name="book_no" value="${book.book_no }">
+							<input type="hidden" name="review_no"
+								value="${review.review_no }">
+
 							<div class="reviewbox">
 								<div class="star">
 									<p>★★★★★${review.star_rate }</p>
@@ -286,8 +277,9 @@ function reviewDelete(review_no) {
 										<div class="show_btn">
 
 											<a id="review-update" onclick="reviewUpdate()"
-												class="btn btn_stroke btn_small review_update">수정</a> 
-											<a id="review-delete" onclick="reviewDelete(${review.review_no})"
+												class="btn btn_stroke btn_small review_update">수정</a> <a
+												id="review-delete"
+												onclick="reviewDelete(${review.review_no})"
 												class="btn btn_stroke btn_small">삭제</a>
 
 										</div>
@@ -342,8 +334,8 @@ function reviewDelete(review_no) {
 
 		<!-- 리뷰 등록 -->
 
-		<form action="reviewInsert.do" method="post">		
-		<%-- <input type="hidden" name="book_no" value="${book.book_no }"> --%>
+		<form action="reviewInsert.do" method="post">
+			<%-- <input type="hidden" name="book_no" value="${book.book_no }"> --%>
 			<h3 class="sub_title">리뷰 작성</h3>
 			<textarea id="write_review" name="review_content"
 				placeholder="책에대한 느낌과 생각을 적어 주세요." required></textarea>
@@ -360,7 +352,8 @@ function reviewDelete(review_no) {
 		    		+gradient_value * event.target.value +'%, rgb(236, 236, 236) ' 
 		    		+gradient_value *  event.target.value + '%, rgb(236, 236, 236) 100%)';
 		   });
-		</script>
+		
+			</script>
 			<div class="submit_box">
 				<input type="submit" class="btn" id="review-input-btn" value="등록하기">
 			</div>

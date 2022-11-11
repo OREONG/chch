@@ -5,13 +5,13 @@
 <title>Insert title here</title></head><body>
 <c:if test="${result > 0}">
 	<script type="text/javascript">
-		alert("삭제 성공");
-		location.href="sales_list.do";
+		alert("선택삭제 성공");
+		location.href="purchase_list.do?id=${id}";
 	</script>
 </c:if>
 <c:if test="${result == 0}">
 	<script type="text/javascript">
-		alert("삭제 실패");
+		alert("선택삭제 실패");
 		history.back();
 	</script>
 </c:if>

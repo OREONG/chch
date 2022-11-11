@@ -1,6 +1,8 @@
 package com.chch.chch.controller;
 
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
+
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -26,6 +28,7 @@ public class MypageController {
 	private DealService ds;
 	@Autowired
 	private Like_listService ls;
+	
 	
 	//장바구니 목록 
 	@RequestMapping("/mypage/cart")
@@ -55,15 +58,23 @@ public class MypageController {
 		return "/mypage/cartDelete";
 	}
 	//장바구니에 상품 추가
-	@RequestMapping("/mypage/cartInsert")
-	public String cartInsert (HttpSession session,int book_no ,int cart_count,Model model,Cart cart ) {
-		String id = (String)session.getAttribute("id");
-		int result = cs.insert(book_no,cart_count,id,cart);
+	@RequestMapping("/newBook/cartInsert")
+	public String cartInsert (Cart cart,HttpSession session,Model model,int book_no) {
+//		String id = (String)session.getAttribute("id");
+		int result = 0;
+		Cart cart2 = cs.select(cart);
+		//String book_no1 = (String) session.getAttribute("book_no");
+		//같은 상품이 있으면 수량을 update
+		if(cart2==null){
+			result = cs.insert(cart);
+		}
+		else {
+			int count = cart2.getCart_count() + cart.getCart_count();
+			cart.setCart_count(count);
+			result = cs.update_cart(cart);
+		}
 		model.addAttribute("result",result);
 		model.addAttribute("book_no",book_no);
-		
-		model.addAttribute("cart",cart);
-		model.addAttribute("id",id);
 		return "/mypage/cartInsert";
 	}
 	//장바구니 선택상품 전체삭제
@@ -78,6 +89,38 @@ public class MypageController {
 		 model.addAttribute("result",result);
 		 model.addAttribute("id",id);
 		 return "/mypage/delAll";
+	 }
+	 
+	//
+	//
+	 //판매목록 선택상품 전체삭제
+	 @RequestMapping("/mypage/sales_DelAll")
+	 public String sales_DelAll(HttpSession session,Model model,@RequestParam(value="sales_Select", required = false)String deal_no) {
+		int result = 0;
+		 String id = (String)session.getAttribute("id");
+		 String [] sales_Select1 = deal_no.split(",");
+		 for(String sales_Select:sales_Select1) {
+			result = ds.sales_DelAll(Integer.parseInt(sales_Select),id);
+		}
+		 model.addAttribute("deal_no",deal_no);
+		 model.addAttribute("result",result);
+		 return "/mypage/sales_DelAll";
+	 }
+	 
+	 //
+	 //
+	 //구매목록 선택상품 전체삭제
+	 @RequestMapping("/mypage/purchase_DelAll")
+	 public String purchase_DelAll(HttpSession session,Model model,@RequestParam(value="purchase_Select", required = false)String deal_no) {
+		 int result = 0;
+		 String id = (String)session.getAttribute("id");
+		 String [] purchase_Select1 = deal_no.split(",");
+		 for(String purchase_Select:purchase_Select1) {
+			 result = ds.purchase_DelAll(Integer.parseInt(purchase_Select),id);
+		 }
+		 model.addAttribute("deal_no",deal_no);
+		 model.addAttribute("result",result);
+		 return "mypage/purchase_DelAll";
 	 }
 		
 	//구매목록 불러오기
@@ -107,34 +150,34 @@ public class MypageController {
 		String id = (String)session.getAttribute("id");
 		List<Deal> sales_list = ds.sales_list(id);
 		model.addAttribute("sales_list",sales_list);
-		return "sales_list";
+		return "/mypage/sales_list";
 	}
 	
 	//판매목록 삭제
-	@RequestMapping("sales_list_Update")
+	@RequestMapping("/mypage/sales_list_Update")
 	public String sales_list_Update(HttpSession session,int deal_no,Model model) {
 		String id = (String)session.getAttribute("id");
 		int result = ds.sales_update(deal_no,id);
 		model.addAttribute("result",result);
 		model.addAttribute("deal_no",deal_no);
 		model.addAttribute("id",id);
-		return "sales_list_Update";
+		return "/mypage/sales_list_Update";
 	}
 	
 	//찜목록 불러오기
-	@RequestMapping("like_list")
+	@RequestMapping("/mypage/like_list")
 	   public String like_list(HttpSession session,Like_list like_list,Model model) {
 		String id = (String)session.getAttribute("id");
 		List<Like_list> Booklike_list = ls.Booklike_list(id);
 		List<Like_list> Usedlike_list = ls.Usedlike_list(id);
 		model.addAttribute("Usedlike_list",Usedlike_list);
 		model.addAttribute("Booklike_list",Booklike_list);
-		return "like_list";
+		return "/mypage/like_list";
 		
 	}
 	
 	//찜목록 삭제
-	@RequestMapping("like_listDelete")
+	@RequestMapping("/mypage/like_listDelete")
 	public String like_listDelete(HttpSession session,int like_no,Model model) {
 		String id = (String)session.getAttribute("id");
 		int result = ls.delete(like_no,id);
@@ -144,7 +187,7 @@ public class MypageController {
 		return "/mypage/like_listDelete";
 	}
 	//찜목록에 상품추가
-	@RequestMapping("/mypage/likeInsert")
+	@RequestMapping("/newBook/likeInsert")
 	public String likeInsert(HttpSession session,int book_no,Model model) {
 		String id = (String)session.getAttribute("id");
 		Like_list like_list = new Like_list();
@@ -176,7 +219,7 @@ public class MypageController {
 	 * //usedDetail페이지에서 하트 누르면 찜목록 삭제
 	 */
 	//찜목록에 중고 상품 추가
-	@RequestMapping("/mypage/likeInsert_used")
+	@RequestMapping("/usedBook/likeInsert_used")
 	public String likeInsert_used(HttpSession session,int used_no,Like_list like_list,Model model) {
 		String id = (String)session.getAttribute("id");
 		int result = ls.insert_used(used_no,like_list,id);
@@ -185,6 +228,11 @@ public class MypageController {
 		model.addAttribute("like_list",like_list);
 		model.addAttribute("id",id);
 		return "/mypage/likeInsert_used";
+	}
+	
+	@RequestMapping("mypageMain")
+	public String mypageMain() {
+		return "mypageMain";
 	}
 	
 }

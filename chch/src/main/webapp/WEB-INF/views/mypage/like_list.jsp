@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<%@ include file="../header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,14 +11,11 @@
 <link
 	href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
 	rel="stylesheet">
-<style type="text/css">
-@import url("/chackcheck/css/list.css");
-
-@import url("/chackcheck/css/gallery.css");
-
-@import url("/chackcheck/css/font.css");
-</style>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<style type="text/css">
+@import url("${path}/resources/css/list.css");
+@import url("${path}/resources/css/gallery.css");
+</style>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#like_usedBook').hide();
@@ -92,7 +89,7 @@
 	<div class="board_mainbtns">
 		<a href="cart.do"
 			class="board_bigorderbtn left">장바구니 가기</a> 
-			<a href="main.do" class="board_bigorderbtn right">메인으로</a>
+			<a href="${path }/main.do" class="board_bigorderbtn right">메인으로</a>
 	</div>
 
 

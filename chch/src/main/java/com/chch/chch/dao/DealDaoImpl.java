@@ -40,5 +40,21 @@ public class DealDaoImpl implements DealDao{
 		return sst.update("dealns.sales_update",map);
 	}
 
+	@Override
+	public int sales_DelAll(int deal_no, String id) {
+		Map<String,Object> map = new HashMap<>();
+		map.put("id", id);
+		map.put("deal_no",deal_no);
+		return sst.update("dealns.sales_DelAll",map);
+	}
+
+	@Override
+	public int purchase_DelAll(int deal_no, String id) {
+		Map<String,Object> map = new HashMap<>();
+		map.put("id", id);
+		map.put("deal_no",deal_no);
+		return sst.update("dealns.purchase_DelAll",map);
+	}
+
 	
 }

@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="../header.jsp" %>
 <!DOCTYPE html>
 <html>
@@ -13,7 +11,8 @@
 	rel="stylesheet">
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <style type="text/css">
-
+@import url("${path}/resources/css/list.css");
+@import url("${path}/resources/css/gallery.css");
 </style>
 <script>
 	$(document).ready(function() {
@@ -40,8 +39,10 @@
 		$('input[name=chk]:checked').each(function() {
 			cart_nos += $(this).next('.no').val()+",";			
 		});
-		
+		  if(confirm("장바구니를 비우시겠습니까?")) {
 		  location.href="delAll.do?cart_nos="+cart_nos; 
+			  
+		  }
 	}
 	
 	function order() {
@@ -135,7 +136,7 @@
 							<div class="num">${k }</div>
 							<div class="img">
 								<a href="#"> <img alt="책 이미지"
-									src="${path }/resources/images/${cart.book_image }"
+									src="resources/images/${cart.book_image }"
 									style="width: 10%">
 								</a>												
 							</div>
@@ -145,8 +146,8 @@
 								<br>저자 : ${cart.book_author }
 								<br>출판사 : ${cart.book_publisher }
 							</div>
-							<div ><input type="number" id="cart_count_${cart.cart_no}" value="${cart.cart_count }">권
-								<input type="button" value="수정" onclick="chk(${cart.cart_no})">
+							<div ><input type="number" id="cart_count_${cart.cart_no}" value="${cart.cart_count }" style="width: 50px">권
+								 <input type="button" value="수정" onclick="chk(${cart.cart_no})" >
 							</div>
 							<div class="info">2일 후 도착예정</div>
 							<c:set var="i" value="${cart.cart_count * cart.book_price}" />
@@ -156,7 +157,7 @@
 								<c:set var="total" value="${total+i }"/></div>
 								<div class="delete">
 								<input type="button" class="del" value="삭제" name="cart_no" 
-									onclick="location.href='mypage/cartDelete.do?cart_no=${cart.cart_no}'">
+									onclick="location.href='cartDelete.do?cart_no=${cart.cart_no}'">
 							</div>
 						</div>
 					</c:forEach>

@@ -33,5 +33,15 @@ public class DealServiceImpl implements DealService{
 		return dd.sales_update(deal_no,id);
 	}
 
+	@Override
+	public int sales_DelAll(int deal_no,String id) {
+		return dd.sales_DelAll(deal_no,id);
+	}
+
+	@Override
+	public int purchase_DelAll(int deal_no, String id) {
+		return dd.purchase_DelAll(deal_no,id);
+	}
+
 	
 }

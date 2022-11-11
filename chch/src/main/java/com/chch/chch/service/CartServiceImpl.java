@@ -29,7 +29,19 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public int insert(int book_no, int cart_count,String id,Cart cart) {
-		return cd.insert(book_no,cart_count,id,cart);
+	public int insert(Cart cart) {
+		return cd.insert(cart);
 	}
+
+	@Override
+	public Cart select(Cart cart) {
+		return cd.select(cart);
+	}
+
+
+	@Override
+	public int update_cart(Cart cart) {
+		return cd.update_cart(cart);
+	}
+
 }

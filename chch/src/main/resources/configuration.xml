@@ -3,14 +3,26 @@
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias alias="member" type="com.chch.chch.model.Member"/>
+		<typeAlias type="com.chch.chch.model.Book" alias="book" />
+		<typeAlias type="com.chch.chch.model.Like_list" alias="like" />
+		<typeAlias type="com.chch.chch.model.Deal" alias="deal" />
+		<typeAlias type="com.chch.chch.model.Cart" alias="cart" />
+		<typeAlias type="com.chch.chch.model.Member" alias="member" />
+		<typeAlias type="com.chch.chch.model.Used" alias="used" />
+		<typeAlias type="com.chch.chch.model.Review" alias="review" />
 		<typeAlias alias="chat" type="com.chch.chch.model.Chat" />
 		<typeAlias alias="book" type="com.chch.chch.model.Book" />
 		<typeAlias alias="community" type="com.chch.chch.model.Community" />
-		<typeAlias alias="inquiry" type="com.chch.chch.model.Inquiry" />
+		<typeAlias alias="inquiry"	type="com.chch.chch.model.Inquiry" />
 	</typeAliases>
 	<mappers>
-		<mapper resource="xml/member.xml"/>
+		<mapper resource="xml/book.xml" />
+		<mapper resource="xml/like.xml" />
+		<mapper resource="xml/deal.xml" />
+		<mapper resource="xml/cart.xml" />
+		<mapper resource="xml/member.xml" />
+		<mapper resource="xml/used.xml" />
+		<mapper resource="xml/review.xml" />
 		<mapper resource="xml/chat.xml" />
 		<mapper resource="xml/book.xml" />
 		<mapper resource="xml/community.xml" />

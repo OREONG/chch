@@ -2,13 +2,17 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<%@ include file="../header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<style type="text/css">
+@import url("${path}/resources/css/list.css");
+@import url("${path}/resources/css/gallery.css");
+</style>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#chkAll").click(function() {
@@ -30,12 +34,14 @@
 	});
 
 	function delSelect() {
-		var sales_Select = "";
+		var sales_Select = 0;
+		
+		
 		$('input[name=chk]:checked').each(function() {
 			sales_Select += $(this).next('.no').val()+",";			
 		});
-			 
-		   location.href="sales_DelAll.ko?sales_Select="+sales_Select;   
+		   location.href="sales_DelAll.do?sales_Select="+sales_Select;   
+		
 	}
 </script>
 </head>
@@ -46,7 +52,7 @@
 		<div class="board_list" id="list_Area">
 			<div class="board_list_head">
 				<div class="checkbox">
-					<input type="checkbox" id="chkAll" name="chkAll"  onclick="chkAll()"/>
+					<input type="checkbox" id="chkAll" name="chkAll" /> <!-- onclick="chkAll()" -->
 				</div>
 				<div class="num">번호</div>
 				<div class="img">책이미지</div>
@@ -67,7 +73,7 @@
 					<c:set var="i" value="${i+1 }"/>	
 				<div class="item">
 					<div class="checkbox">
-						<input type="checkbox" name="chk" onclick="check()"> 
+						<input type="checkbox" name="chk" > <!-- onclick="check()" -->
 						<input type="hidden" value="${deal.deal_no}" class="no" >
 						
 					</div>
@@ -93,7 +99,8 @@
 			</div>
 		<div class="select_product">
 		<button class="board_list_optionbtn_del" type="button"
-			id="deleteButton" onclick="delSelect()">선택 삭제</button>		</div>
+			id="deleteButton" onclick="delSelect()">선택 삭제</button>
+			</div>
 		</div>
 		<div class="board_mainbtns">
 			<a href="main.do" class="board_bigorderbtn left">메인으로</a>
