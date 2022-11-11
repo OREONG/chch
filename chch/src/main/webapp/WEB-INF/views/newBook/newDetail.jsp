@@ -181,10 +181,12 @@ $(function() {
 				</div>
 
 				<ul class="btn-wrap">
+		!!!!!!!여기보세요 수경		<%-- addcart(${book.book_no})를 누르면 cartInsert(마이페이지->장바구니) 들어갑니다 --%>
 					<li><a onclick="addcart(${book.book_no})"><button
 								class="button1" id="button1-2">장바구니</button></a></li>
 					<li><a onclick="purchase()"><button class="button1"
 								id="button1-2">구매하기</button></a></li>
+!!!!!!!여기보세요 수경	<!-- likeInsert(마이페이지->관심)으로 들어갑니다 -->
 					<c:if test="${like.book_no == null }">
 						<a href="likeInsert.do?book_no=${book.book_no }">관심 🤍</a>
 						<p>
