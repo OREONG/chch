@@ -30,6 +30,9 @@ public class MypageController {
 	private Like_listService ls;
 	
 	
+	
+//	                   여기서부터는 장바구니
+	 
 	//장바구니 목록 
 	@RequestMapping("/mypage/cart")
 	public String cart(HttpSession session,Cart cart, Model model) {
@@ -57,6 +60,9 @@ public class MypageController {
 		model.addAttribute("id",id);
 		return "/mypage/cartDelete";
 	}
+	
+	
+	//newDetail.jsp에서 addcart누르면 cartInsert(바로아래) 여기로 들어옵니다
 	//장바구니에 상품 추가
 	@RequestMapping("/newBook/cartInsert")
 	public String cartInsert (Cart cart,HttpSession session,Model model,int book_no) {
@@ -91,37 +97,8 @@ public class MypageController {
 		 return "/mypage/delAll";
 	 }
 	 
-	//
-	//
-	 //판매목록 선택상품 전체삭제
-	 @RequestMapping("/mypage/sales_DelAll")
-	 public String sales_DelAll(HttpSession session,Model model,@RequestParam(value="sales_Select", required = false)String deal_no) {
-		int result = 0;
-		 String id = (String)session.getAttribute("id");
-		 String [] sales_Select1 = deal_no.split(",");
-		 for(String sales_Select:sales_Select1) {
-			result = ds.sales_DelAll(Integer.parseInt(sales_Select),id);
-		}
-		 model.addAttribute("deal_no",deal_no);
-		 model.addAttribute("result",result);
-		 return "/mypage/sales_DelAll";
-	 }
-	 
-	 //
-	 //
-	 //구매목록 선택상품 전체삭제
-	 @RequestMapping("/mypage/purchase_DelAll")
-	 public String purchase_DelAll(HttpSession session,Model model,@RequestParam(value="purchase_Select", required = false)String deal_no) {
-		 int result = 0;
-		 String id = (String)session.getAttribute("id");
-		 String [] purchase_Select1 = deal_no.split(",");
-		 for(String purchase_Select:purchase_Select1) {
-			 result = ds.purchase_DelAll(Integer.parseInt(purchase_Select),id);
-		 }
-		 model.addAttribute("deal_no",deal_no);
-		 model.addAttribute("result",result);
-		 return "mypage/purchase_DelAll";
-	 }
+	
+//	               여기서부터는 구매목록
 		
 	//구매목록 불러오기
 	@RequestMapping("/mypage/purchase_list")
@@ -131,6 +108,20 @@ public class MypageController {
 		List<Deal> purchase_list = ds.list(id);
 		model.addAttribute("purchase_list",purchase_list);
 		return "/mypage/purchase_list";
+	}
+	
+	//구매목록 선택상품 전체삭제
+	@RequestMapping("/mypage/purchase_DelAll")
+	public String purchase_DelAll(HttpSession session,Model model,@RequestParam(value="purchase_Select", required = false)String deal_no) {
+		int result = 0;
+		String id = (String)session.getAttribute("id");
+		String [] purchase_Select1 = deal_no.split(",");
+		for(String purchase_Select:purchase_Select1) {
+			result = ds.purchase_DelAll(Integer.parseInt(purchase_Select),id);
+		}
+		model.addAttribute("deal_no",deal_no);
+		model.addAttribute("result",result);
+		return "mypage/purchase_DelAll";
 	}
 	
 	//구매목록 삭제
@@ -143,6 +134,11 @@ public class MypageController {
 		model.addAttribute("id",id);
 		return "/mypage/purchase_list_Update";
 	}
+	
+	
+	
+//                          여기서부터는 판매목록
+
 	
 	//판매목록 불러오기
 	@RequestMapping("/mypage/sales_list")
@@ -163,6 +159,25 @@ public class MypageController {
 		model.addAttribute("id",id);
 		return "/mypage/sales_list_Update";
 	}
+	
+	
+	 //판매목록 선택상품 전체삭제
+	 @RequestMapping("/mypage/sales_DelAll")
+	 public String sales_DelAll(HttpSession session,Model model,@RequestParam(value="sales_Select", required = false)String deal_no) {
+		int result = 0;
+		 String id = (String)session.getAttribute("id");
+		 String [] sales_Select1 = deal_no.split(",");
+		 for(String sales_Select:sales_Select1) {
+			result = ds.sales_DelAll(Integer.parseInt(sales_Select),id);
+		}
+		 model.addAttribute("deal_no",deal_no);
+		 model.addAttribute("result",result);
+		 return "/mypage/sales_DelAll";
+	 }
+	 
+	 
+//                         여기서부터는 찜목록
+ 
 	
 	//찜목록 불러오기
 	@RequestMapping("/mypage/like_list")
@@ -187,6 +202,7 @@ public class MypageController {
 		return "/mypage/like_listDelete";
 	}
 	//찜목록에 상품추가
+	//newDetail.jsp에서 likeInsert누르면 likeInsert(바로아래) 여기로 들어옵니다
 	@RequestMapping("/newBook/likeInsert")
 	public String likeInsert(HttpSession session,int book_no,Model model) {
 		String id = (String)session.getAttribute("id");
@@ -203,22 +219,8 @@ public class MypageController {
 		return "/mypage/likeInsert";
 	}
 
-	/*
-	 * //newDetail페이지에서 하트 누르면 찜목록 삭제
-	 * 
-	 * @RequestMapping("likeDelete") public String likeDelete(HttpSession
-	 * session,int book_no,Model model) { String id =
-	 * (String)session.getAttribute("id"); Like_list like_table = new Like_list();
-	 * like_table.setId(id); like_table.setBook_no(book_no); int result =
-	 * ls.likeDelete(like_table);
-	 * 
-	 * model.addAttribute("result",result); model.addAttribute("book_no",book_no);
-	 * model.addAttribute("like_table",like_table); model.addAttribute("id",id);
-	 * return "likeDelete"; }
-	 * 
-	 * //usedDetail페이지에서 하트 누르면 찜목록 삭제
-	 */
 	//찜목록에 중고 상품 추가
+	//usedDetail.jsp에서 likeInsert_used누르면 likeInsert_used(바로아래) 여기로 들어옵니다
 	@RequestMapping("/usedBook/likeInsert_used")
 	public String likeInsert_used(HttpSession session,int used_no,Like_list like_list,Model model) {
 		String id = (String)session.getAttribute("id");
@@ -236,3 +238,20 @@ public class MypageController {
 	}
 	
 }
+	
+	/*
+	 * //newDetail페이지에서 하트 누르면 찜목록 삭제
+	 * 
+	 * @RequestMapping("likeDelete") public String likeDelete(HttpSession
+	 * session,int book_no,Model model) { String id =
+	 * (String)session.getAttribute("id"); Like_list like_table = new Like_list();
+	 * like_table.setId(id); like_table.setBook_no(book_no); int result =
+	 * ls.likeDelete(like_table);
+	 * 
+	 * model.addAttribute("result",result); model.addAttribute("book_no",book_no);
+	 * model.addAttribute("like_table",like_table); model.addAttribute("id",id);
+	 * return "likeDelete"; }
+	 * 
+	 * //usedDetail페이지에서 하트 누르면 찜목록 삭제
+	 */
+	
