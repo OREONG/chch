@@ -41,7 +41,7 @@ public class MailSendService {
 		// true 매개값을 전달하면 multipart 형식의 메세지 전달이 가능.문자 인코딩 설정도 가능하다.
 		try {
 			MimeMessageHelper mmh = new MimeMessageHelper(mm, true, "utf-8");
-			mmh.setFrom("helen1282@naver.com");
+			mmh.setFrom("ksb5341@naver.com");
 			mmh.setTo(toMail);
 			mmh.setSubject(title);
 			// true 전달 > html 형식으로 전송 , 작성하지 않으면 단순 텍스트로 전달.

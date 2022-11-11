@@ -6,18 +6,21 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	console.log("result : ${result}")
+</script>
 </head>
 <body>
 
 <c:if test="${result > 0 }">
 	<script type="text/javascript">
-		alert("모임 생성 완료")
-		location.href="communityDetail.do?community_no=${community_no}";
+		alert("모임을 나갔습니다")
+		location.href="communityAllList.do?";
 	</script>
 </c:if>
 <c:if test="${!(result > 0) }">
 	<script type="text/javascript">
-		alert("글 등록 실패")
+		alert("가입 실패")
 		history.back();
 	</script>
 </c:if>

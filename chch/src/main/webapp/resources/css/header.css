@@ -101,7 +101,7 @@ header {
 /* 알림 아이콘 */
 #bell{
     width: 30px;
-    margin-left: 235px;
+    /* margin-left: 235px; */
 }
 #cart{
 	width: 33px;

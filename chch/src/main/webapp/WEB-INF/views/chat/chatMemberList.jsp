@@ -11,7 +11,7 @@
 <body>
 <fmt:formatDate var="nowDate" value="${date }" pattern="yyyyMMdd" />
 
-<c:forEach var="list" items="${chatMemberList }">
+<c:forEach var="list" items="${selectMyRoom }">
 	<fmt:formatDate var="sendDate" value="${list.send_time }" pattern="yyyyMMdd" />
 	<div onclick="location.href='chat.do?room_no=${list.room_no}&room_name=${list.room_name }'" style="cursor: pointer;">
 		<div>
@@ -33,9 +33,5 @@
 		<hr>
 	</div>
 </c:forEach>
-	<br>
-	<div>
-		<button onclick="location.href='main.do'" class="btn">메인</button>
-	</div>
 </body>
 </html>

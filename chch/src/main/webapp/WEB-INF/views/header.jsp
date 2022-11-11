@@ -38,6 +38,8 @@
 	    // 데이터를 전달 받았을때 
 	    sock.onmessage = onMessage; // toast 생성
 	    
+	    loadUnread();
+	    
 	});
 	    
 	$(function() {
@@ -45,7 +47,7 @@
 	    $('#sendBtn1').click(function() { sendNotice(); });
 	    $('#sendBtn2').click(function() { sendChat(); });
 	    $('#sendBtn3').click(function() { inquiryReply(); });
-	    $('#sendBtn4').click(function() { joinRoom(); });
+	    
 	    
 	    $('#notice').keypress(function() { // enter키를 누르면 메세지 전송
 			//  누른 key값(asscii)  IE ?      IE의 값         IE아닌 모든 web값
@@ -104,6 +106,9 @@
 				var msg = split1[3]
 				var send_time = split1[4];
 				
+				checkRoom(id, room_no);
+				
+				
 				var s_time = timeChange(send_time);
 				
 				if (split1[0] == "chat" && room_no == "${room_no}") {
@@ -131,13 +136,19 @@
 				// var room_no = split1[2];
 				var msg = split1[3]
 				// var send_time = split1[4];
+			    var loadUnread = split1[5];
 				
 				var view =sender+"님의 메세지 : "+msg;
 			    				
 				$("#noticePopUp").children().remove();
 			    $("#noticePopUp").val(view);
 				
+				$("#unreadNotice").children().remove();
+				$("#unreadNotice").val(loadUnread);
+				
 			}
+			
+					
 			
 			
 			
@@ -206,15 +217,6 @@
 		sock.send(inquiryReply);
 	}
 	
-	function joinRoom() {
-		var userId = $('#userId').val();
-		var room_name = $('#room_name').val();
-		var room_no = $('#room_no').val();
-		
-		var joinRoom = "joinRoom,"+userId+","+room_no+","+room_name;
-		sock.send(joinRoom);
-	}
-	
 	function sendChat() {
 		var msg = $('#message').val(); // 입력한 메세지 글 읽기
 		
@@ -227,7 +229,6 @@
 	
 		// ajax로 채팅 내용 저장
 		$(function() {
-			console.log(id+' ${room_no} '+msg);
 			$.ajax({
 				url : "saveMessage.do?id=${id}&msg="+msg+"&room_no=${room_no}",
 				async : true,
@@ -260,7 +261,29 @@
 		
 		return changedTime;
 	}
-
+	
+	
+	function loadUnread() {
+		
+		var id = '${id}';
+		
+		$.post('loadUnread.do', 'id='+id, function(data) {
+			$("#unreadNotice").val(data);
+		});
+	}
+	
+	function checkRoom(id, room_no) {
+		$(function() {
+			$.ajax({
+				url : "checkRoom.do?id="+id+"&room_no="+room_no,
+				async : true,
+				type : "POST",
+				dataType : "html",
+				cache : false
+			});
+		});
+	}
+	
 </script>
 
 
@@ -297,11 +320,21 @@
 							<!-- 검색 -->
 							<li><input id="searchInput" type="text" placeholder="검색 이걸로 쓰세욤~~"></li>
 							<!-- 알림 종 -->
-							<li>
-								<a href="">
-									<img id="bell" src="/chch/resources/images/bell.png">
-								</a>
-							</li>
+							
+								<c:if test="${not empty id }">
+								<li>
+									<ul>
+									<li>
+											<input type="text" name="unreadNotice" id="unreadNotice" style="resize: none; border: none; width: 50px; background-color: #ffffff; color: #808080; margin-left: 185px;" readonly="readonly">
+									</li>							
+									<li>
+											<a href="">
+												<img id="bell" src="/chch/resources/images/bell.png">
+											</a>
+									</li>
+									</ul>
+								</li>
+								</c:if>
 <!-- 							<li>
 								<a href="">
 									<img id="cart" src="/chch/resources/images/cart.png">
@@ -330,10 +363,9 @@
 						<a class="cate-c" href="writing.do">나도 작가</a>
 						<a class="cate-c" href="#">마이페이지</a>					<!-- myPage_main.do -->
 						<a class="cate-c" href="faq.do">고객센터</a>
-						<a class="cate-c" href="communityMain.do">커뮤니티</a>
-						<a class="cate-c" href="chatMemberList.do?targetPage=chatMemberList.do">채팅방</a>
+						<a class="cate-c" href="communityMain.do">모임</a>
+						<a class="cate-c" href="chatMemberList.do">채팅방</a>
 						<a class="cate-c" href="adminMain.do">관리자</a>
-						<a class="cate-c" href="notice.do">알림</a>
 						
 						<a class="cate-c" href="updateForm.do">회원수정</a>
 						<a class="cate-c" href="reportList.do">독후감</a>

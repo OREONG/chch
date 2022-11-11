@@ -42,17 +42,18 @@ public class CommunityController {
 		int new_room_no = cs.currentLastRoom()+1;
 		
 		Chat chat = new Chat();
-		chat.setRoom_no(new_room_no);
+		int room_no = new_room_no;
+		chat.setRoom_no(room_no);
 		chat.setId(id);
 		chat.setRoom_name(community.getCommunity_subject());
 		
 		cs.insertRoom(chat);
-				
-		community.setRoom_no(new_room_no);
+		
+		community.setRoom_no(room_no);
 		community.setHost_id(id);
 		int result = coms.insert(community);
 		
-		int community_no = coms.selectByRoomNo(new_room_no);
+		int community_no = coms.selectByRoomNo(room_no);
 		
 		model.addAttribute("result", result);
 		model.addAttribute("community_no", community_no);
@@ -69,9 +70,14 @@ public class CommunityController {
 		
 		String room_name = coms.selectRoomName(community.getRoom_no());
 		
+		System.out.println("room_name : "+room_name);
+		
+		int currentMember = coms.currentMember(community.getRoom_no());
+		
 		model.addAttribute("id", id);
 		model.addAttribute("community", community);
 		model.addAttribute("room_name", room_name);
+		model.addAttribute("currentMember", currentMember);
 		return "/community/communityDetail";
 	}
 	
@@ -113,7 +119,14 @@ public class CommunityController {
 		community.setId(id);
 		community.setRoom_name(room_name);
 		
-		int result = coms.joinRoom(room_no, id, room_name);
+//		기존에 가입했던 방인지 확인
+		int leaveHistory = coms.leaveHistoryChk(room_no, id);
+		int result = 0;
+		if (leaveHistory > 0) {
+			result = coms.rejoinRoom(room_no, id);
+		} else {
+			result = coms.joinRoom(room_no, id, room_name);
+		}
 		
 		model.addAttribute("result", result);
 		model.addAttribute("community", community);
@@ -121,4 +134,42 @@ public class CommunityController {
 		return "/community/joinRoom";
 	}
 	
+	@RequestMapping("communityLeave")
+	public String communityLeave(Model model, HttpSession session, int community_no) {
+		String id = (String)session.getAttribute("id");
+		
+		Community community = coms.select(community_no);
+		
+		int result = coms.leaveRoom(id, community.getRoom_no());
+		
+		if (result > 0) {
+		Chat chat = new Chat();
+		chat.setRoom_no(community.getRoom_no());
+		chat.setId(id);
+		chat.setChat_content(id+"님이 퇴장하였습니다");
+		cs.insertChat(chat);
+		}
+		
+		model.addAttribute("result", result);
+		return "/community/communityLeave";
+	}
+	
+	@RequestMapping("communityDelete")
+	public String communityDelete(Model model, HttpSession session, int community_no) {
+		String id = (String)session.getAttribute("id");
+		
+		Community community = coms.select(community_no);
+		
+		coms.banRoom(community.getRoom_no());
+		
+		int result = coms.communityDelete(id, community_no);
+		
+		model.addAttribute("result", result);
+		
+		return "/community/communityDelete";
+	}
+	
+	
 }
+
+

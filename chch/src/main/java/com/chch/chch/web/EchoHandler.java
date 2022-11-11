@@ -55,19 +55,6 @@ public class EchoHandler extends TextWebSocketHandler {
 					WebSocketSession recieverWriterSession = userSessionsMap.get(userId);
 					recieverWriterSession.sendMessage(new TextMessage(msg));
 					
-				} else if (strs !=null && "joinRoom".equals(cmd)) {				// notice로 분류될 때
-					int room_no = Integer.parseInt(strs[2]);
-					
-					List<Chat> roomMember = cs.selectRoomMember(room_no);			
-					
-					WebSocketSession recieverWriterSession;
-					
-					for (int i = 0; i < roomMember.size(); i++) {
-						recieverWriterSession = userSessionsMap.get(roomMember.get(i).getId());		// roomMember에서 구한 유저들의 세션정보 가져오기
-						if (recieverWriterSession != null) {							// 세션에 해당 유저가 접속해있는지 확인
-							recieverWriterSession.sendMessage(new TextMessage(msg));	// 세션에 접속해 있을 때만 해당 유저에게 채팅 전달
-						}
-					}
 				} else if (strs !=null && "chat".equals(cmd)) {						// chat으로 분류될 때
 					int room_no = Integer.parseInt(strs[2]);
 					
@@ -75,10 +62,23 @@ public class EchoHandler extends TextWebSocketHandler {
 					
 					WebSocketSession recieverWriterSession;					// 메세지 받을 사람들의 세션 선언
 					
+					System.out.println("chat으로 시작하는 메세지인 것으로 확인"+msg);
+					
 					for (int i = 0; i < roomMember.size(); i++) {
 						recieverWriterSession = userSessionsMap.get(roomMember.get(i).getId());		// roomMember에서 구한 유저들의 세션정보 가져오기
 						if (recieverWriterSession != null) {							// 세션에 해당 유저가 접속해있는지 확인
-							recieverWriterSession.sendMessage(new TextMessage(msg));	// 세션에 접속해 있을 때만 해당 유저에게 채팅 전달
+							
+							
+							List<Chat> myRoom = cs.selectMyRoom(roomMember.get(i).getId());
+							int sum1 = 0;
+							for (int j = 0; j < myRoom.size(); j++) {
+								sum1 += cs.loadUnread(roomMember.get(i).getId(), myRoom.get(j).getRoom_no());
+							}
+							
+							sum1 += 1;
+							String sum = String.valueOf(sum1);
+							
+							recieverWriterSession.sendMessage(new TextMessage(msg+","+sum));	// 세션에 접속해 있을 때만 해당 유저에게 채팅 전달
 						}
 					}
 				} else if (strs !=null && "status".equals(cmd)) {
