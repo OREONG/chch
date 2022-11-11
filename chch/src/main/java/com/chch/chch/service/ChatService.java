@@ -22,4 +22,6 @@ public interface ChatService {
 
 	void insertRoom(Chat chat);
 
+	List<Chat> selectRoomMember(int room_no);
+
 }

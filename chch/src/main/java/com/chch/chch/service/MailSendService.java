@@ -1,9 +1,13 @@
 package com.chch.chch.service;
 
 import java.util.Random;
+<<<<<<< HEAD
 
 import javax.mail.internet.MimeMessage;
 
+=======
+import javax.mail.internet.MimeMessage;
+>>>>>>> origin/SungBeen
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
@@ -54,4 +58,8 @@ public class MailSendService {
 		}
 	}
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/SungBeen

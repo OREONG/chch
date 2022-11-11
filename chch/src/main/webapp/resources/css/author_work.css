@@ -1,0 +1,144 @@
+.main-container{
+    margin-top: 50px;
+	display: flex;
+    justify-content: center;
+}
+
+.content{
+	position: relative;
+    overflow: visible;
+    width: 1020px;
+    margin: 0 auto;
+    padding: 0 52px 1px;
+    z-index: 30;
+}
+
+#back_click {
+	width: 100%;
+    cursor: pointer;
+}
+
+#back{
+	font-size: 14px;
+    font-family: 'AppleSDGothicNeo';
+    color: #5055b1;
+    font-weight: 900;
+}
+
+.subject-readCount-div{
+	margin-top: 20px;
+	
+}
+
+#subject-text{
+	font-size: 22px;
+    font-weight: 900;
+}
+
+#readCount-text{
+	font-size: 13px;
+    color: #929292;
+    margin-left: 87%;
+}
+
+.content-div{
+	margin: 49px 0 77px 10px;
+}
+
+.comment-div{
+    margin-left: 10px;
+    padding-top: 13px;
+}
+
+.comment-sub-div{
+	border: 1px solid #cdcdcd;
+	height: 145px;
+    padding: 10px;
+	
+}
+
+.a-div{
+	margin-left: 10px;
+	margin-top: -31px;
+}
+
+.mb-3{
+}
+
+
+.review-div{
+	border: 1px solid #dedede;
+	padding: 27px 35px 40px 35px;
+    margin-top: 76px;
+}
+.review-textarea-div{
+	border: 1px solid gray;
+    height: 243px;
+	padding:17px 25px 11px 25px;
+    position: static;
+}
+
+#textarea-hr{
+	margin-top: 11px;
+}
+
+textarea{
+	resize: none;
+	border: none;
+}
+
+fieldset{
+	position:relative;
+	    left: 629px;
+}
+
+#input-btn{
+	width : 100px;
+    background: #5055b1;;
+    border: 1px solid #5055b1;;
+    border-radius: 6px;
+    height: 49px;
+	transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+	
+	color: #fff;
+	font-size: 15px;
+    font-weight: 600;
+    
+    position: relative;
+    left: 692px;
+}
+
+#input-btn:hover{
+	cursor:pointer;
+	background: #30347f;
+}
+
+/* 반응형 */
+@media screen and (max-width:1000px) {
+	.container{
+		width:1000px;
+	}
+	#readCount-text{
+		margin-left:80%;
+	}
+
+}
+
+@media screen and (max-width:649px){
+	#readCount-text{
+		margin-left:70%;
+	}	
+}
+@media screen and (max-width:471px){
+	#readCount-text{
+		margin-left:60%;
+	}	
+}
+
+.hr1{
+	color : #c9c9c9;
+}
+
+.hr2{
+	margin-top: 9px;
+}

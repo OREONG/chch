@@ -5,6 +5,7 @@
 	<!-- id 중복검사 -->
 	<select id="select" parameterType="string" resultType="member">
 		select * from member where id=#{id}
+<<<<<<< HEAD
 	</select>
 	<!-- email 중복검사 -->
 	<select id="selectEmail" parameterType="string" resultType="member">
@@ -14,4 +15,63 @@
 	<insert id="insert" parameterType="member">
 		insert into member(id, password, email, reg_date) values(#{id}, #{password}, #{email}, sysdate)
 	</insert>
+=======
+	</select>
+	<!-- email 중복검사 -->
+	<select id="selectEmail" parameterType="string" resultType="member">
+		select * from member where email=#{email}
+	</select>
+	<!-- 초기 회원가입 -->
+	<insert id="insert" parameterType="member">
+		insert into member(id, password, email, reg_date) values(#{id}, #{password}, #{email}, sysdate)
+	</insert>
+	<!-- 회원정보 수정 -->
+	<update id="update" parameterType="member">
+		update member set email=#{email}
+		<!-- 파일이 있으면 변경하고, 없으면 기존 파일명 그대로 사용  -->
+		<if test="fileName != null">
+		,fileName=#{fileName}
+		</if>
+		<if test="name != null">
+		,name=#{name}
+		</if>
+		<if test="birth != null">
+		,birth=#{birth}
+		</if>
+		<if test="gender != null">
+		,gender=#{gender}
+		</if>
+		<if test="phone != null">
+		,phone=#{phone}
+		</if>
+		where id=#{id}
+	</update>
+	<!-- 회원 탈퇴 -->
+	<update id="delete" parameterType="string">
+		update member set del='y' where id=#{id}
+	</update>
+	<!-- 비밀번호 찾기 비밀번호 재 설정 -->
+	<update id="updatePassword" parameterType="member">
+		update member set password=#{password} where id=#{id}
+	</update>
+	
+	
+	<!-- KSB -->
+	<!--  전체 회원 수 구하기 -->
+	<select id="getTotal" resultType="int">
+		select count(*) from member
+	</select>
+	
+	<!--  회원 페이징 -->
+	<select id="memberList" parameterType="map" resultType="member">
+		select * from (select rowNum rn, a.* from (select * from member order by email)a) where rn between #{startRow} and #{endRow}
+	</select>
+	
+	<!-- 회원 삭제 -->
+	<update id="adminDelete" parameterType="map">
+		update member set del=#{del} where email=#{email}
+	</update>
+	
+	
+>>>>>>> origin/SungBeen
 </mapper>

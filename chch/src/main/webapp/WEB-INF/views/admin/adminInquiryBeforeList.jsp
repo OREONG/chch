@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/header.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,6 +63,8 @@
 											<input type="hidden" name="inquiryNumber" value="1">
 											<input type="hidden" name="category_no" value="${inquiry.category_no }">
 											<input type="hidden" name="inquiry_no" value="${inquiry.inquiry_no}">
+											<input type="hidden" name="inquiry_subject" id="inquiry_subject" value="${inquiry.inquiry_subject}">
+											<input type="hidden" name="id" id="userId" value="${inquiry.id}">
 											<div class="adminInquiryReply-content">
 												<div class="adminInquiryReply-labelArea">
 													답변	
@@ -71,7 +73,7 @@
 													<textarea name="reply_content" class="adminInquiryReply-content-input" maxlength="100"></textarea>
 												</div>
 												<div class="adminInquiryReply-submitArea">
-													<input type="submit" value="확인" class="adminInquiryReply-submit">
+													<input type="submit" id="sendBtn3" value="확인" class="adminInquiryReply-submit">
 												</div>
 											</div>	
 										</form>

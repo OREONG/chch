@@ -11,6 +11,26 @@ public interface MemberDao {
 
 	//초기 회원가입
 	int insert(Member member);
+<<<<<<< HEAD
 
+=======
+	//회원 정보 수정
+	int update(Member member);
+	//회원 탈퇴(del 수정)
+	int delete(String id);
+	//비밀번호 찾기 비밀번호 재설정
+	int updatePassword(Member member);
+
+	
+	// KSB
+	// 전체 회원 수 조회
+	int getTotal();
+	
+	// 전체 멤버 리스트 (페이징)
+	List<Member> memberList(int startRow, int endRow);
+	
+	// 멤버 삭제 y/n 수정
+	int adminDelete(String id, String del);
+>>>>>>> origin/SungBeen
 
 }

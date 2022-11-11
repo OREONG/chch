@@ -21,13 +21,72 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+<<<<<<< HEAD
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
       <beans:property name="maxUploadSize" value="10485760" />
       <beans:property name="defaultEncoding" value="utf-8" />
    </beans:bean>
-	
+=======
 	<context:component-scan base-package="com.chch.chch" />
 	
+	<!-- 세션체크 intercept -->
+	<beans:bean id="sc" class="com.chch.chch.service.SessionChk"></beans:bean>
+	<interceptors>
+		<interceptor>
+			<!-- HJ -->
+			<mapping path="/updateForm.do"/>
+			<mapping path="/update.do"/>
+			<mapping path="/deleteForm.do"/>
+			<mapping path="/delete.do"/>
+			<mapping path="/logout.do"/>
+			<mapping path="/authorMain.do"/>
+			<mapping path="/authorIntro.do"/>
+			<mapping path="/authorIntroConfirm.do"/>
+			<mapping path="/authorWriting.do"/>
+			<mapping path="/writingDetail.do"/>
+			<mapping path="/reportList.do"/>
+			
+			
+			<!-- SB -->
+			<mapping path="/chatMemberList.do"/>
+			<mapping path="/chat.do"/>
+			<mapping path="/communityMain.do"/>
+			<mapping path="/communityInsertForm.do"/>
+			<mapping path="/communityDetail.do"/>
+			<mapping path="/communityMyList.do"/>
+			<mapping path="/communityAllList.do"/>
+			<mapping path="/inquirySelect.do"/>
+			<mapping path="/inquiryList.do"/>
+			<mapping path="/notice.do"/>
+			<mapping path="/adminMain.do"/>
+			<mapping path="/adminMemberList.do"/>
+			<mapping path="/adminBookList.do"/>
+			<mapping path="/adminBookDetail.do"/>
+			<mapping path="/adminBookAddForm.do"/>
+			<mapping path="/adminInquiryBeforeList.do"/>
+			<mapping path="/adminInquiryAfterList.do"/>
+			
+			<beans:ref bean="sc"/>
+		</interceptor>
+	</interceptors>
+	
+	<!-- Tiles 3 resolver -->
+	<beans:bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />
+		<beans:property name="order" value="1" />
+	</beans:bean>
+	
+	<!-- Tiles 3 Configurer -->
+	<beans:bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<beans:property name="definitions">
+			<beans:list>
+				<beans:value>/WEB-INF/tiles/tiles.xml</beans:value>
+			</beans:list>
+		</beans:property>
+	</beans:bean>
+>>>>>>> origin/SungBeen
+	
+	<context:component-scan base-package="com.chch.chch" />
 	
 	
 </beans:beans>

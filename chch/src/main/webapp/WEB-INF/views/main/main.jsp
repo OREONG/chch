@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,8 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<script type="text/javascript">
-		location.href="main.do";
-</script>
+	메인페이지!!
+	
 </body>
 </html>

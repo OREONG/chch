@@ -8,7 +8,11 @@
 </head>
 <body>
 <script type="text/javascript">
+<<<<<<< HEAD
 	location.href="main.do";
+=======
+	location.href="${ip}/main.do"
+>>>>>>> origin/SungBeen
 </script>
 </body>
 </html>

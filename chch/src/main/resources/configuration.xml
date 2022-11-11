@@ -4,14 +4,35 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="book" type="com.chch.chch.model.Book" />
+<<<<<<< HEAD
 		<typeAlias alias="member" type="com.chch.chch.model.Member" />
 		<typeAlias alias="used" type="com.chch.chch.model.Used" />
+=======
+		<typeAlias alias="community" type="com.chch.chch.model.Community" />
+		<typeAlias alias="inquiry" type="com.chch.chch.model.Inquiry" />
+		
+		<typeAlias alias="author" type="com.chch.chch.model.Author" />
+		<typeAlias alias="author_work" type="com.chch.chch.model.Author_work" />
+		<typeAlias alias="report" type="com.chch.chch.model.Report" />
+		<typeAlias alias="book" type="com.chch.chch.model.Book" />
+		<typeAlias alias="like_table" type="com.chch.chch.model.Like_table" />
+>>>>>>> origin/SungBeen
 		<typeAlias alias="review" type="com.chch.chch.model.Review" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="xml/book.xml" />
+<<<<<<< HEAD
 		<mapper resource="xml/member.xml" />
 		<mapper resource="xml/used.xml" />
 		<mapper resource="xml/review.xml" />
+=======
+		<mapper resource="xml/community.xml" />
+		<mapper resource="xml/inquiry.xml" />
+		
+		<mapper resource="xml/author.xml" />
+		<mapper resource="xml/report.xml" />
+		<mapper resource="xml/like_table.xml" />
+>>>>>>> origin/SungBeen
 	</mappers>
 </configuration>
+

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/header.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,9 +18,6 @@
 			<div>
 				<a href="inquirySelect.do?inquiryNumber=1">1:1 문의</a>
 			</div>
-		</div>
-		<div><br>
-			<button onclick="location.href='main.do'" class="btn">메인</button>
 		</div>
 		<hr>
 	</div>

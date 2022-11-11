@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/header.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +8,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<input type="hidden" name="id" id="userId" value="${id}">
+	<input type="hidden" name="room_name" id="room_name" value="${room_name }">
+	<input type="hidden" name="room_no" id="room_no" value="${community.room_no }">
 	<div>
 		<div>
 			카테고리
@@ -72,7 +75,7 @@
 	
 	<c:if test="${community.participation == 0 }">
 	<div>
-		<button onclick="location.href='joinRoom.do?room_no=${community.room_no}'" class="btn btn-success">가입</button>
+		<button onclick="location.href='joinRoom.do?room_no=${community.room_no}'" id="sendBtn4" class="btn btn-success">가입</button>
 	</div>
 	</c:if>
 	

@@ -57,4 +57,9 @@ public class ChatDaoImpl implements ChatDao {
 	public void insertRoom(Chat chat) {
 		sst.insert("chatns.insertRoom", chat);
 	}
+
+	@Override
+	public List<Chat> selectRoomMember(int room_no) {
+		return sst.selectList("chatns.selectRoomMember", room_no);
+	}
 }
