@@ -238,6 +238,23 @@ hr{
 	 cursor: pointer;
 }
 
+.reviewUD-text{
+	font-size:12px;
+}
+
+
+/* 작품 리스트 화면 */
+#authorEachLink:hover{
+	cursor: pointer;
+}
+
+
+
+
+
+
+
+
 /* 반응형 */
 @media screen and (max-width:950px) {
 	#subjectText{

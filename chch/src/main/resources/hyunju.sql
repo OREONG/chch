@@ -141,7 +141,7 @@ insert into author_work values(
 );
 insert into author_work values(
 (SELECT NVL(MAX(author_work_no), 0) + 1 FROM author_work)
-,'짱쎈 드래곤 6화 : 투명 드래곤은 육삼빌딩보다 커다랗다'
+,'짱쎈 드래곤 5화 : 투명 드래곤은 육삼빌딩보다 커다랗다'
 ,'63빌딩이 잇었다 아니 100층도 넘는빌딩이 있엇다
 근대 그빌딩보다 투명드래곤이더 컷다
 
@@ -413,7 +413,11 @@ drop table review CASCADE CONSTRAINTS;
 
 
 
+select * from(select a.*, rowNum rn from(select * from review where author_work_no=1 and review_del='n' order by review_reg_date desc) a)where rn between 1 and 5
 
 
+select * from author a, author_work aw where a.author_no(+)=aw.author_no and a.author_no=1;
 
+select * from author where del='n' and ((select count(*) from author a, author_work aw where a.author_no(+)=aw.author_no and a.author_no=2) != 0) order by like_count desc;
 
+select count(*) from author a, author_work aw where a.author_no(+)=aw.author_no and a.author_no=3

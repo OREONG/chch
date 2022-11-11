@@ -179,7 +179,7 @@ fieldset{
 	cursor: pointer; 	
 }
 
-#reviewUpdate2{
+.reviewUpdate-btn{
     position: relative;
     top: -89px;
     left: 689px;
@@ -189,7 +189,7 @@ fieldset{
     font-size: 12px;
     font-weight: 400;
 }
-#reviewUpdate2:hover{
+.reviewUpdate-btn:hover{
 	text-decoration: none;
 	cursor: pointer; 
 }

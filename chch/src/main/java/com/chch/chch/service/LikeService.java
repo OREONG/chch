@@ -21,12 +21,11 @@ public interface LikeService {
 	//글 좋아요 취소
 	int deleteReview(Map<String, Object> map);
 
-
 	//댓글 좋아요 불러오기
 	Like_table selectReview(Map<String, Object> map);
 
 	//댓글 좋아요 불러오기
-	Like_table selectLike_table(Map<String, Object> mapap);
+	Like_table selectLike_table(Map<String, Object> map);
 
 	//댓글 좋아요 갯수
 	int updateReviewLike(int review_no);

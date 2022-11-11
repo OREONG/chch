@@ -26,7 +26,10 @@ a:active{
 
 
 /* header 시작 */
-
+header{
+	    width: 100%;
+    margin: 0;
+}
 
 .hearder-container{
     position: relative;
@@ -84,6 +87,7 @@ a:active{
 	align-items: center;
 	position: relative;
     width: 100%;
+    justify-content: center;
 }
 
 /* 로고 이미지 */
@@ -134,6 +138,7 @@ a:active{
     height: 100%;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .bookMenuBtn{
@@ -204,28 +209,13 @@ a:active{
 	color : #303030;
 }
 
-/* 드롭다운 ㅠㅠㅠ */
 
-/* .book-wrap .bookMenu {
-	display: none;
-	position: absolute;
-	margin-top: 10px;
-}
-
-.book-wrap:hover .bookMenu {
-	display: flex
-	text-align: center;
-}
-
-.book-wrap:hover {
-	color: #2bc5c1;
-} */
-
-/* 반응형 */
+/* 
+반응형
 @media screen and (max-width:1500px) {
 
 	.bottom-container{
-		/* width: 940px; */
+		width: 940px;
 	}
 
 }
@@ -245,3 +235,4 @@ a:active{
 	}
 
 }
+ */

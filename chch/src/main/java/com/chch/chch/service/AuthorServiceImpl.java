@@ -49,13 +49,13 @@ public class AuthorServiceImpl implements AuthorService{
 	}
 
 	//댓글 전체 가져오기
-	public List<Review> selectAllReview(int author_work_no) {
-		return ad.selectAllReview(author_work_no);
+	public List<Review> selectAllReview(Review review2) {
+		return ad.selectAllReview(review2);
 	}
 	
 	//회차 리스트 불러오기
-	public List<Author_work> authorWork_list(int author_no) {
-		return ad.authorWork_list(author_no);
+	public List<Author_work> authorWork_list(Author_work author_work) {
+		return ad.authorWork_list(author_work);
 	}
 	//글 상세 페이지(글 읽는 부분)
 	public Author_work selectWork(int author_work_no) {
@@ -94,6 +94,22 @@ public class AuthorServiceImpl implements AuthorService{
 	//리뷰 삭제
 	public int reviewDelete(int review_no) {
 		return ad.reviewDelete(review_no);
+	}
+	//페이징 용 댓글 갯수
+	public int getTotalReview(int author_work_no) {
+		return ad.getTotalReview(author_work_no);
+	}
+	//페이징 없이 댓글 가져오기
+	public List<Review> selectAllReviewOri(int author_work_no) {
+		return ad.selectAllReviewOri(author_work_no);
+	}
+	//이전화, 다음화 -> author 모델안에 author_work join
+	public List<Author> authorAll(Author_work author_work2) {
+		return ad.authorAll(author_work2);
+	}
+	//글 리스트 갯수
+	public int getTotalAuthor(int author_no) {
+		return ad.getTotalAuthor(author_no);
 	}
 
 

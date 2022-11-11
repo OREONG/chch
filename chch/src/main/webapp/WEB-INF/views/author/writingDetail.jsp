@@ -25,24 +25,25 @@ function del(author_work_no) {
 
 /* 리뷰 수정 */
 	function reviewUpdate(review_no) {
-		$('#reviewContent-textarea').attr("readonly",false); 
-		$('#reviewContent-textarea').css({
+		$('#reviewContent-textarea_'+review_no).attr("readonly",false); 
+		$('#reviewContent-textarea_'+review_no).css({
 			"border":"1px solid #d4d4d4",
 			"border-radius": "3px",
 
 		});
-		$('#reviewContent-textarea').focus();
-		$('#reviewUpdate2').show();
+		$('#reviewContent-textarea_'+review_no).focus();
+		$('#reviewUpdate2_'+review_no).show();
 		}
 						
 		function reviewUpdateFun(review_no) {
-			var review_content=$('#reviewContent-textarea').val();
+			var review_content=$('#reviewContent-textarea_'+review_no).val();
 				$.post('reviewUpdate.do', "review_no="+review_no+"&review_content="+review_content, function(data) {
 					if(data == "y"){
-						$('#reviewContent-textarea').css({
+						$('#reviewContent-textarea_'+review_no).css({
 							"border":"none",
 						});
-						$('#reviewContent-textarea').attr("readonly",true); 		
+						$('#reviewUpdate2_'+review_no).hide();
+						$('#reviewContent-textarea_'+review_no).attr("readonly",true); 		
 					}
 			});
 		}
@@ -52,7 +53,7 @@ function del(author_work_no) {
 function reviewDelete(review_no) {
 	var cf = confirm("정말로 삭제하시겠어요?");
 		if (cf) location.href="reviewDelete.do?review_no="+review_no+"&author_work_no="+${author_work.author_work_no};
-		else alert("삭제가 취소되었습니다");
+		else alert("삭제가 취소되었습니다"); 
 	}
 </script>
 
@@ -79,10 +80,22 @@ function reviewDelete(review_no) {
 			</div>
 			</c:if>
 
-
 		<div>
-		
-		이전화 다음화
+			<c:if test="${pre_no == 0}">
+				이전화가 없습니다
+			</c:if>
+			<c:if test="${pre_no != 0}">
+				<a href="writingDetail.do?author_no=${author_work.author_no }&author_work_no=${pre_no}">이전화</a>
+			</c:if>
+			<c:if test="${next_no == 10000}">
+				다음화가 없습니다
+			</c:if>
+			<c:if test="${next_no != 10000}">
+				<a href="writingDetail.do?author_no=${author_work.author_no }&author_work_no=${next_no}">다음화</a>
+			</c:if>
+
+
+
 		
 		</div>
 
@@ -90,7 +103,7 @@ function reviewDelete(review_no) {
 		<div class="review-div">
 		
 		<!-- 댓글 리스트 -->
-		<h3>댓글()</h3>
+		<h3>댓글(${total })</h3>
 		<!-- 댓글, 별점 -->
 		<form action="reviewWrite.do"  class="mb-3" name="myform" id="myform" method="post">
 			
@@ -116,7 +129,6 @@ function reviewDelete(review_no) {
 					
 				</div>
 				
-				
 		</form>	
 		<hr>
 		<c:if test="${empty review_list }">
@@ -128,15 +140,15 @@ function reviewDelete(review_no) {
 				<div class="reviewList-wrap">
 				
 					<div>
-						<!-- 리뷰 작성한 사람 아이디 -->
+						<!-- 댓글 작성한 사람 아이디 -->
 						<div>
 							<input id="reviewId-input" type="text" name="id" value="${review.id }" readonly="readonly">
 						</div>
-						<!-- 리뷰 내용 -->
+						<!-- 댓글 내용 -->
 						<div>
-							<textarea id="reviewContent-textarea" rows="" cols="110" name="review_content" readonly="readonly">${review.review_content }</textarea>
+							<textarea id="reviewContent-textarea_${review.review_no }" class="reviewContentTextarea" rows="" cols="115" name="review_content" readonly="readonly">${review.review_content }</textarea>
 						</div>
-						<!-- 리뷰 작성 일 -->
+						<!-- 댓글 작성 날짜 -->
 						<div class="reviewDate-div">
 							<input id="reviewDate-input" type="text" name="review_reg_date" value="${review.review_reg_date }" readonly="readonly">
 						</div>
@@ -151,24 +163,75 @@ function reviewDelete(review_no) {
 			
 							</c:if>
 						</div>
-					
-						
 					</div>
 					
-					<!-- 자신의 리뷰일 경우 수정/삭제 노출 -->
+					<!-- 자신의 댓글일 경우 수정/삭제 노출 -->
 					<c:if test="${review.id == id }">
 						<a id="reviewUpdate1" class="reviewUD-text" onclick="reviewUpdate(${review.review_no})">수정</a>
 						<a class="reviewUD-text" onclick="reviewDelete(${review.review_no})">삭제</a>
-						<a id="reviewUpdate2" class="reviewUpdate-btn" onclick="reviewUpdateFun(${review.review_no} )">수정하기</a>
+						<a id="reviewUpdate2_${review.review_no }" class="reviewUpdate-btn" onclick="reviewUpdateFun(${review.review_no} )">수정하기</a>
 					</c:if>
 					
 				</div> 
 				<hr>
 			</c:forEach>
 		</c:if>
-
-	
-
+		
+		<!-- 댓글 페이징 -->
+		<div class="paging">
+ 				<c:if test="${empty review_list }">
+					<div id="nonData-btn-wrap">
+						<button id="preBtn">이전</button>
+						<button id="pageClick-btn" style="">0</button>
+						<button id="nextBtn">다음</button>
+					</div>
+				</c:if> 
+				<c:if test="${not empty review_list }">
+					
+					<ul class="pagination">
+						<c:if test="${pb.startPage > pb.pagePerBlock }">
+							<li>
+								<a id="preBtn" href="writingDetail.do?author_work_no=${author_work_no }&pageNum=1">
+									<span>이전</span>
+								</a>
+							</li>
+							<li>
+								<a id="preBtn" href="writingDetail.do?author_work_no=${author_work_no }&pageNum=${pb.startPage-1 }">
+									<span>이전</span>
+								</a>
+							</li>							
+						</c:if>
+						<c:forEach var="i" begin="${pb.startPage }" end="${pb.endPage }">
+							<c:if test="${pb.currentPage == i }">
+								<li class="active">
+									<a href="writingDetail.do?author_work_no=${author_work_no }&pageNum=${i }">${i }</a>
+								</li>
+							</c:if>
+							<c:if test="${pb.currentPage != i }">
+								<li>
+									<a href="writingDetail.do?author_work_no=${author_work_no }&pageNum=${i }">${i }</a>
+								</li>
+							</c:if>
+						</c:forEach>
+						<c:if test="${pb.endPage < pb.totalPage }">
+							<li>
+								<a id="nextBtn" href="writingDetail.do?author_work_no=${author_work_no }&pageNum=${pb.endPage+1 }">
+									<span>다음</span>
+								</a>
+							</li>
+							<li>
+								<a id="nextBtn" href="writingDetail.do?author_work_no=${author_work_no }&pageNum=${pb.endPage }">
+									<span>다음</span>
+								</a>
+							</li>
+						</c:if>
+					</ul>
+					
+				</c:if>
+		</div>
+		<!-- 페이징 끝 -->
+		
+		
 		</div>
 
 

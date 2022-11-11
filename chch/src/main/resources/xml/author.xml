@@ -8,7 +8,7 @@
 	</select>
 	<!-- 전체 작품 불러오기(날짜 순 정렬) -->
 	<select id="allList_date" resultType="author">
-		select * from author where del='n' order by  reg_date desc
+		select * from author where del='n' order by reg_date desc
 	</select>
 	<!-- 작품 insert -->
 	<insert id="insert" parameterType="author">
@@ -48,8 +48,8 @@
 		select * from author where author_no=#{author_no}
 	</select>
 	<!-- 회차 리스트 불러오기 -->
-	<select id="authorWork_list" parameterType="integer" resultType="author_work">
-		select * from author_work where author_no=#{author_no} order by author_work_date desc
+	<select id="authorWork_list" parameterType="author_work" resultType="author_work">
+		select * from(select a.*, rowNum rn from(select * from author_work where author_no=#{author_no} order by author_work_date desc) a)where rn between #{startRow} and #{endRow}
 	</select>
 	<!-- 글 상세페이지(글 읽는 부분) -->
 	<select id="selectWork" parameterType="integer" resultType="author_work">
@@ -79,8 +79,8 @@
 		)
 	</insert>
 	<!-- 댓글 전체 불러오기 -->
-	<select id="selectAllReview" parameterType="integer" resultType="review">
-		select * from review where author_work_no=#{author_work_no} and review_del='n' order by review_reg_date desc
+	<select id="selectAllReview" parameterType="review" resultType="review">
+		select * from(select a.*, rowNum rn from(select * from review where author_work_no=#{author_work_no} and review_del='n' order by review_reg_date desc) a)where rn between #{startRow} and #{endRow}
 	</select>
 
 	<!-- 작품 정보 수정 -->
@@ -131,4 +131,20 @@
 	<update id="reviewDelete" parameterType="integer">
 		update review set review_del='y' where review_no=#{review_no}
 	</update>
+	<!-- 페이징 용 댓글 갯수 -->
+	<select id="getTotalReview" parameterType="integer" resultType="integer">
+		select count(*) from review where author_work_no=#{author_work_no} and review_del='n'
+	</select>
+	<!-- 페이징 없이 댓글 불러오기 -->
+	<select id="selectAllReviewOri" parameterType="integer" resultType="review">
+		select * from review where author_work_no=#{author_work_no} and review_del='n'
+	</select>
+	<!-- 이전화, 다음화 -> author 모델안에 author_work join -->
+	<select id="authorAll" parameterType="author_work" resultType="author">
+		select * from author a, author_work aw where a.author_no(+)=aw.author_no and a.author_no=#{author_no}
+	</select>
+	<!-- 글 리스트 개수 -->
+	<select id="getTotalAuthor" parameterType="integer" resultType="integer">
+		select count(*) from author_work where author_no=#{author_no}
+	</select>
 </mapper>

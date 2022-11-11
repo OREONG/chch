@@ -25,9 +25,9 @@ public interface AuthorService {
 	int insertReview(Review review);
 
 	//댓글 전체 가져오기
-	List<Review> selectAllReview(int author_work_no);
+	List<Review> selectAllReview(Review review2);
 	//회차 리스트 불러오기
-	List<Author_work> authorWork_list(int author_no);
+	List<Author_work> authorWork_list(Author_work author_work);
 	//글 상세 페이지(글 읽는 부분) 불러오기
 	Author_work selectWork(int author_work_no);
 	//조회수
@@ -47,6 +47,14 @@ public interface AuthorService {
 	int reviewUpdate(Review review);
 	//리뷰 삭제
 	int reviewDelete(int review_no);
+	//페이징 용 댓글 갯수
+	int getTotalReview(int author_work_no);
+	//페이징 없이 댓글 가져오기
+	List<Review> selectAllReviewOri(int author_work_no);
+	//이전화, 다음화 -> author 모델안에 author_work join
+	List<Author> authorAll(Author_work author_work2);
+	//글 리스트 갯수
+	int getTotalAuthor(int author_no);
 	
 
 

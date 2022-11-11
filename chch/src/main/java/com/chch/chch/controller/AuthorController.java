@@ -1,6 +1,7 @@
 package com.chch.chch.controller;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+
+import com.chch.chch.service.PagingBean;
 import com.chch.chch.model.Author;
 import com.chch.chch.model.Author_work;
 import com.chch.chch.model.Like_table;
@@ -83,22 +86,45 @@ public class AuthorController {
 	
 	//작품 각각의 상세 페이지
 	@RequestMapping("authorEach")
-	public String authorEach(Model model, HttpSession session, int author_no) {
+	public String authorEach(Model model, HttpSession session, int author_no, String pageNum) {
 		String id = (String)session.getAttribute("id");
 		//전체 관심 수
 		as.updateLikeCount(author_no);
 		Author author = as.select(author_no);
-		List<Author_work> authorWork_list = as.authorWork_list(author_no);
+		
+		Author_work author_work = new Author_work();
+		author_work.setAuthor_no(author_no);
+		//회차 가져오기+페이징
+		int rowPerPage = 5; //한 화면에 보여주는 갯수
+		if (pageNum == null || pageNum.equals("")) pageNum = "1";
+		int currentPage = Integer.parseInt(pageNum);
+		int total = as.getTotalAuthor(author_no);
+		int startRow = (currentPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		int num = total - startRow + 1;
+		author_work.setStartRow(startRow);
+		author_work.setEndRow(endRow);
+		List<Author_work> authorWork_list = as.authorWork_list(author_work);
+		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", id);
 		map.put("author_no", author_no);
+		
 		//관심 불러오기
 		Like_table like_table = ls.selectAuthor(map);
+		
+		
+
 		model.addAttribute("id", id);
 		model.addAttribute("author", author);
 		model.addAttribute("authorWork_list", authorWork_list);
 		model.addAttribute("like_table", like_table);
-		//페이징
+		
+		model.addAttribute("author_no", author_no);
+		model.addAttribute("total", total);
+		model.addAttribute("num", num);
+		model.addAttribute("pb", pb);
 		return "/author/authorEach";
 	}
 	
@@ -123,33 +149,92 @@ public class AuthorController {
 	
 	//글 상세 페이지(글 읽는 부분)
 	@RequestMapping("writingDetail")
-	public String writingDetail(int author_work_no, Model model, HttpSession session) {
+	public String writingDetail(Review review2, int author_work_no, Model model, HttpSession session, String pageNum) {
 		String id = (String)session.getAttribute("id");
+	
 		//조회수
 		as.updateReadCount(author_work_no);
 		Author_work author_work = as.selectWork(author_work_no);
-		//댓글 가져오기
-		List<Review> review_list = as.selectAllReview(author_work_no);
+		
+		//댓글 가져오기+페이징
+		int rowPerPage = 5; //한 화면에 보여주는 갯수
+		if (pageNum == null || pageNum.equals("")) pageNum = "1";
+		int currentPage = Integer.parseInt(pageNum);
+		int total = as.getTotalReview(author_work_no);
+		int startRow = (currentPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		int num = total - startRow + 1;
+		review2.setAuthor_work_no(author_work_no);
+		review2.setStartRow(startRow);
+		review2.setEndRow(endRow);
+		List<Review> review_list = as.selectAllReview(review2);
+		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
+		
 		//댓글 좋아요
 		for (Review review : review_list) {
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("id", id);
 			map.put("review_no", review.getReview_no());
 			Like_table lt = ls.selectLike_table(map);
-
 			if (lt == null )
 				review.setLike_review_no(0);
 			else
 				review.setLike_review_no(1);
+			
+			
 		}
-		System.out.println(review_list);
-		System.out.println(author_work.getAuthor_no());
+		
+		//이전화, 다음화
+		Author_work author_work2 = new Author_work();
+
+		author_work2.setAuthor_no(author_work.getAuthor_no());		
+		List<Author> authorAll = as.authorAll(author_work2);
+		
+		int[] author_work_noArr = new int [authorAll.size()-1];
+		int[] author_work_noArr2 = new int [authorAll.size()-1];
+		
+		int i = 0;
+		int pre_no = 0; //작은 수 중에 가장 큰 값
+		int next_no = 10000; //큰 수 중에 가장 작은 값
+
+		for(Author authorall : authorAll) {
+			
+			//이전화
+			if(author_work_no > authorall.getAuthor_work_no()) {
+				author_work_noArr[i] = authorall.getAuthor_work_no();
+				if (author_work_noArr[i] > pre_no) {
+					pre_no = author_work_noArr[i];
+				}
+				i = i + 1;
+			}
+			//다음화
+			else if(author_work_no < authorall.getAuthor_work_no()) {
+				
+				author_work_noArr2[i] = authorall.getAuthor_work_no();
+				if (author_work_noArr2[i] < next_no) {
+					next_no = author_work_noArr2[i];
+				}		
+				i = i + 1;
+			}
+		}
+		
+		model.addAttribute("id", id);
 		model.addAttribute("author_work", author_work);
 		model.addAttribute("review_list", review_list);
-		model.addAttribute("id", id);
+		model.addAttribute("author_work_no", author_work_no);
+		model.addAttribute("review2", review2); 
+		model.addAttribute("total", total);
+		model.addAttribute("num", num);
+		model.addAttribute("pb", pb);
+		
+		model.addAttribute("next_no", next_no);
+		model.addAttribute("pre_no", pre_no);
 
 		return "/author/writingDetail";
 	}
+	
+
+	
 	
 	//작품 관심
 	@RequestMapping("likeInsert_author")
@@ -214,7 +299,8 @@ public class AuthorController {
 		result = ls.insertReview(like_table); 
 		
 		//댓글가져오기
-		List<Review> review_list = as.selectAllReview(author_work_no);
+		List<Review> review_list = as.selectAllReviewOri(author_work_no);
+		System.out.println(review_list);
 		//댓글 좋아요 갯수
 		for (Review review : review_list) {
 			int review_no1 = review.getReview_no();
@@ -238,7 +324,7 @@ public class AuthorController {
 		result = ls.deleteReview(map);
 		
 		//댓글가져오기
-		List<Review> review_list = as.selectAllReview(author_work_no);
+		List<Review> review_list = as.selectAllReviewOri(author_work_no);
 		//댓글 좋아요 갯수
 		for (Review review : review_list) {
 			int review_no1 = review.getReview_no();
@@ -317,8 +403,8 @@ public class AuthorController {
 		else msg = "n";
 		return msg;
 	}
+	
 	//리뷰 삭제
-
 	@RequestMapping("reviewDelete")
 	public String reviewDelete(int review_no, int author_work_no, Model model) {
 		int result = 0;
