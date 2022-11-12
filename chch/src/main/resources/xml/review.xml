@@ -7,8 +7,8 @@
 		<selectKey keyProperty="review_no" order="BEFORE" resultType="integer">
 			select nvl(max(review_no), 0) + 1 review_no from review
 		</selectKey>
-		insert into review values(#{review_no}, #{star_rate}, #{review_content},
-		sysdate, 'n', #{id}, #{book_no})
+		insert into review (review_no, star_rate, review_content, review_reg_date, review_del, id, book_no)
+		values(#{review_no}, #{star_rate}, #{review_content}, sysdate, 'n', #{id}, #{book_no})
 	</insert>
 	
 	<select id="reviewList" parameterType="review" resultType="review">

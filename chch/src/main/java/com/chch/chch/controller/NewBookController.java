@@ -19,7 +19,7 @@ public class NewBookController {
 	@Autowired
 	private NewBookService ns;
 	
-	@RequestMapping("/newBook/newList")
+	@RequestMapping("newList")
 	public String newList(String order, String book_kind, Model model, Book book, String pageNum) {
 		
 		//신작도서 페이징
@@ -71,7 +71,7 @@ public class NewBookController {
 		return "/newBook/newList";
 	}
 	
-	@RequestMapping("/newBook/newDetail")
+	@RequestMapping("newDetail")
 	public String newDetail(int book_no, Model model, Book book, Review review, String pageNum) {
 		// 리뷰 페이징
 		int rowPerPage = 5; // 페이지 당 게시글 갯수
@@ -101,7 +101,7 @@ public class NewBookController {
 		model.addAttribute("pb", pb);
 		model.addAttribute("num", num);
 		model.addAttribute("star_avg", star_avg);
-		return "newBook/newDetail";
+		return "/newBook/newDetail";
 	}
 	
 }

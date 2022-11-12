@@ -2,13 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ include file="../header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">body{margin-top: 100px;}</style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
@@ -66,11 +64,11 @@ document.addEventListener("DOMContentLoaded", function() { // html load 이후
 
 	
 	function addcart() {
-		location.href="/chackcheck/views/myPage/cartInsert.do?book_no=${book.book_no }&id=${id}&cart_count=" + cc;	
+		location.href="cartInsert.do?book_no=${book.book_no }&id=${id}&cart_count=" + cc;	
 	}
 	
 	function purchase() {
-		location.href="/chackcheck/views/sales/purchaseStep11.do?book_no=${book.book_no }&count=" + cc;	
+		location.href="purchaseStep11.do?book_no=${book.book_no }&count=" + cc;	
 	}
 	
 	
@@ -191,7 +189,7 @@ function reviewDelete(review_no) {
 		</div>
 		<div class="detail-sub-wrap">
 			<div class="detail">
-				<img id="" src="">
+				<img id="" src="/chch/resources/images/${book.book_image}">
 			</div>
 
 			<div class="detailtext">

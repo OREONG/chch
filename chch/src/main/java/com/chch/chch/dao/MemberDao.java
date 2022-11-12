@@ -1,5 +1,7 @@
 package com.chch.chch.dao;
 
+import java.util.List;
+
 import com.chch.chch.model.Member;
 
 public interface MemberDao {
@@ -11,9 +13,6 @@ public interface MemberDao {
 
 	//초기 회원가입
 	int insert(Member member);
-<<<<<<< HEAD
-
-=======
 	//회원 정보 수정
 	int update(Member member);
 	//회원 탈퇴(del 수정)
@@ -31,6 +30,5 @@ public interface MemberDao {
 	
 	// 멤버 삭제 y/n 수정
 	int adminDelete(String id, String del);
->>>>>>> origin/SungBeen
 
 }

@@ -1,5 +1,9 @@
 package com.chch.chch.dao;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -18,14 +22,6 @@ public class MemberDaoImpl implements MemberDao{
 	//이메일 중복검사
 	public Member selectEmail(String email) {
 		return sst.selectOne("memberns.selectEmail", email);
-<<<<<<< HEAD
-	}
-
-	//초기 회원가입
-	public int insert(Member member) {
-		return sst.insert("memberns.insert", member);
-	}
-=======
 	}
 
 	//초기 회원가입
@@ -69,6 +65,4 @@ public class MemberDaoImpl implements MemberDao{
 		map.put("del", del);
 		return sst.update("memberns.adminDelete", map);
 	}
->>>>>>> origin/SungBeen
-
 }

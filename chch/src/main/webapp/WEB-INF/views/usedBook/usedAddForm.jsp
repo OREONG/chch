@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ include file="../header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,7 +50,7 @@
 							<i class="bi bi-file-earmark-image"></i>
 						</div>
 					</div>
-					<script type="text/javascript" src="/resources/bootstrap/js/used.js"></script>
+					<script type="text/javascript" src="/chch/resources/bootstrap/js/used.js"></script>
 					<div id="used-Infotext-box">
 						<div id="blank1"></div>
 						<input class="input" type="text" id="used_subject_input"

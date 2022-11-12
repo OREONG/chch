@@ -16,7 +16,7 @@ public class ReviewController {
 	@Autowired
 	private ReviewService rs;
 	
-	@RequestMapping("/newBook/reviewInsert.do")
+	@RequestMapping("reviewInsert.do")
 	public String reviewInsert(Review review, Model model, Member member, HttpSession session) {
 		member.getId();
 		int result = 0;
@@ -33,7 +33,7 @@ public class ReviewController {
 		return "review/reviewInsert";
 	}
 	
-	@RequestMapping("/newBook/reviewUpdate.do")
+	@RequestMapping("reviewUpdate.do")
 	public String reviewUpdate(Review review, Model model, HttpSession session) {
 		int result = 0;
 		result = rs.update(review);
@@ -42,7 +42,7 @@ public class ReviewController {
 		return "review/reviewUpdate";
 	}
 	
-	@RequestMapping("/newBook/reviewDelete.do")
+	@RequestMapping("reviewDelete.do")
 	public String reviewDelete(Review review,  Model model, Member member, HttpSession session) {
 		int result = 0;
 		String id = (String) session.getAttribute("id");

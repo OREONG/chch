@@ -5,17 +5,6 @@
 	<!-- id 중복검사 -->
 	<select id="select" parameterType="string" resultType="member">
 		select * from member where id=#{id}
-<<<<<<< HEAD
-	</select>
-	<!-- email 중복검사 -->
-	<select id="selectEmail" parameterType="string" resultType="member">
-		select * from member where email=#{email}
-	</select>
-	<!-- 초기 회원가입 -->
-	<insert id="insert" parameterType="member">
-		insert into member(id, password, email, reg_date) values(#{id}, #{password}, #{email}, sysdate)
-	</insert>
-=======
 	</select>
 	<!-- email 중복검사 -->
 	<select id="selectEmail" parameterType="string" resultType="member">
@@ -72,6 +61,4 @@
 		update member set del=#{del} where email=#{email}
 	</update>
 	
-	
->>>>>>> origin/SungBeen
 </mapper>

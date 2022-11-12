@@ -1,5 +1,7 @@
 package com.chch.chch.service;
 
+import java.util.List;
+
 import com.chch.chch.model.Member;
 
 public interface MemberService {
@@ -12,10 +14,6 @@ public interface MemberService {
 	//초기 회원가입
 	int insert(Member member);
 	
-<<<<<<< HEAD
-
-}
-=======
 	//회원 정보 수정
 	int update(Member member);
 	//회원 탈퇴(del 수정)
@@ -35,4 +33,3 @@ public interface MemberService {
 	int adminDelete(String id, String del);
 	
 }
->>>>>>> origin/SungBeen

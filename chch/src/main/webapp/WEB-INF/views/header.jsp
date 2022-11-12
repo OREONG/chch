@@ -1,38 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<<<<<<< HEAD
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!DOCTYPE html>
-=======
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
->>>>>>> origin/SungBeen
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" charset="UTF-8">
 <title>header</title>
-<<<<<<< HEAD
-<style type="text/css">@import url("/chch/resources/bootstrap/css/header.css");</style>
 
-<c:set var="path" value="${pageContext.request.contextPath }"></c:set>
-<link rel="stylesheet" type="text/css"href="${path }/resources/bootstrap/css/bootstrap.min.css">
-
-<script type="text/javascript" src="${path }/resources/bootstrap/js/jquery.js"></script>
-<script type="text/javascript" src="${path }/resources/bootstrap/js/jquery1.js"></script>
-<script type="text/javascript" src="${path }/resources/bootstrap/js/bootstrap.min.js"></script>
-=======
 <style type="text/css">@import url("/chch/resources/css/header.css");</style>
-
 <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
-<c:set var="ipAdd" value="//172.30.1.10:8080"></c:set>
+<c:set var="ipAdd" value="//192.168.200.101:8080"></c:set>
 <c:set var="ip" value="http:${ipAdd}/chch"></c:set>
 <link rel="stylesheet" type="text/css"href="${path }/resources/bootstrap/css/bootstrap.min.css">
 <script type="text/javascript" src="${path}/resources/bootstrap/js/jquery.js"></script>
-<%-- <script type="text/javascript" src="${path}/resources/bootstrap/js/jquery1.js"></script> --%>
+<script type="text/javascript" src="${path}/resources/bootstrap/js/jquery1.js"></script>
 <script type="text/javascript" src="${path}/resources/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${path}/resources/bootstrap/js/sockjs.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
@@ -276,10 +260,39 @@
 		
 		return changedTime;
 	}
-
 </script>
 
->>>>>>> origin/SungBeen
+
+<!-- <script type="text/javascript">
+	// 드롭다운 메뉴
+	const menu=document.querySelector(".bookMenu");
+const subBar=document.querySelector(".bookMenu>.submenu");
+
+let subToggle=true;
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function slide_menu(){
+    if(subToggle){
+        for(let i=0;i<120;i++){
+          subBar.style.height=`${i}px`;
+          await sleep(10);
+        }
+        subToggle=!subToggle;
+    }else{
+      for(let i=120;i>0;i--){
+          subBar.style.height=`${i}px`;
+          await sleep(10);
+        }
+        subToggle=!subToggle;
+    }
+}
+
+menu.addEventListener("click",slide_menu);
+</script> -->
+
 
 </head>
 <body>
@@ -291,22 +304,14 @@
 					<div class="header-btn-wrap">
 						<ul class="login-join-cart-wrap">
 							<c:if test="${empty id }">
-<<<<<<< HEAD
-								<li class="top-li"><a href="${path }/member/loginForm.do" class="top-t" >로그인</a></li>
-								<li class="top-li"><a href="${path }/member/joinForm.do" class="top-t" >회원가입</a></li>
-=======
+
 								<li class="top-li"><a href="loginForm.do" class="top-t" >로그인</a></li>
 								<li class="top-li"><a href="joinForm.do" class="top-t" >회원가입</a></li>
->>>>>>> origin/SungBeen
 							
 							</c:if>
 							<c:if test="${not empty id }">
 								<li class="top-t li li-id"><a class="top-t" >${id }님 환영합니다</a></li>
-<<<<<<< HEAD
-								<li class="top-t li"><a href="${path }/member/logout.do" class="top-t" >로그아웃</a></li>
-=======
 								<li class="top-t li"><a href="logout.do" class="top-t" >로그아웃</a></li>
->>>>>>> origin/SungBeen
 							</c:if>
 						</ul>			
 					</div>	
@@ -317,11 +322,7 @@
 							<!-- 로고 이미지 -->
 							<li>
 								<a href="${path}/main.do">
-<<<<<<< HEAD
-									<img id="logoImg" alt="이미지가 없습니다" src="/chackcheckPrac/resources/images/chackcheckCheckLogo2-1.png">
-=======
 									<img id="logoImg" alt="이미지가 없습니다" src="/chch/resources/images/chackcheckCheckLogo2-1.png">
->>>>>>> origin/SungBeen
 								</a>
 							</li>
 							<!-- 검색 -->
@@ -329,15 +330,6 @@
 							<!-- 알림 종 -->
 							<li>
 								<a href="">
-<<<<<<< HEAD
-									<img id="bell" src="/chackcheckPrac/resources/images/bell.png">
-								</a>
-							</li>
-							<li>
-								<a href="">
-									<img id="cart" src="/chackcheckPrac/resources/images/cart.png">
-								</a>
-=======
 									<img id="bell" src="/chch/resources/images/bell.png">
 								</a>
 							</li>
@@ -349,7 +341,6 @@
 							</li> -->
 							<li>
 								<input type="text" name="noticePopUp" id="noticePopUp" class="form-control col-sm-8" style="resize: none; border: none; width: 300px; background-color: #ffffff; color: #808080;" readonly="readonly">
->>>>>>> origin/SungBeen
 							</li>
 						</ul>
 					
@@ -364,17 +355,10 @@
 					<div class="cate">
 					
 						<div>
-<<<<<<< HEAD
-						<a class="cate-c newBook" href="${path }/newBook/newList.do?book_kind=all&order=recent">신작도서▼</a>
-						<a class="cate-c" href="${path }/usedBook/usedList.do">중고도서</a>
-						<a class="cate-c" href="${path }/usedBook/usedAddForm.do">판매하기</a>
-						<a class="cate-c" href="/chackcheckPrac/author/writing.do">나도 작가</a>
-						<a class="cate-c" href="/chackcheckPrac/myPage/myPage_main.do">마이페이지</a>
-						<a class="cate-c" href="/chackcheckPrac/customerService/csFAQ.do">고객센터</a>
-=======
-						<a class="cate-c newBook" href="#">신작도서▼</a>			<!-- newList.do?book_kind=all&order=recent -->
-						<a class="cate-c" href="#">중고도서</a>					<!-- usedList.do -->
-						<a class="cate-c" href="#">판매하기</a>					<!-- usedAddForm.do -->
+
+						<a class="cate-c newBook" href="newList.do?book_kind=all&order=recent">신작도서▼</a>
+						<a class="cate-c usedBook" href="usedList.do">중고도서</a>
+						<a class="cate-c" href="usedAddForm.do">판매하기</a>
 						<a class="cate-c" href="writing.do">나도 작가</a>
 						<a class="cate-c" href="#">마이페이지</a>					<!-- myPage_main.do -->
 						<a class="cate-c" href="faq.do">고객센터</a>
@@ -387,7 +371,6 @@
 						<a class="cate-c" href="reportList.do">독후감</a>
 						
 						
->>>>>>> origin/SungBeen
 						</div>
 					</div>
 								
@@ -395,128 +378,69 @@
 		
 				<hr class="header-hr2 hr">
 		
-		
-<<<<<<< HEAD
-  							신작도서 bookMenu
+
+ 							<!-- 신작도서 bookMenu -->
 							<div class="bookMenu">
-									IT
+									<!-- IT -->
 											<ul class="submenu">
-												<li class="li-main-c"><a href="${path }/newBook/newList.do?book_kind=IT&order=recent" class="nav-class1">IT</a></li>
+												<li class="li-main-c"><a href="newList.do?book_kind=IT&order=recent" class="nav-class1">IT</a></li>
 												
-												<li class="li-c"><a href="${path }/newBook/newList.do?book_kind=IT-프로그래밍언어&order=recent" class="a">프로그래밍언어</a></li>
-												<li class="li-c"><a href="${path }/newBook/newList.do?book_kind=IT-컴퓨터공학&order=recent" class="a">컴퓨터공학</a></li>
-												<li class="li-c"><a href="${path }/newBook/newList.do?book_kind=IT-해킹/보안&order=recent" class="a">해킹/보안</a></li>
-												<li class="li-c"><a href="${path }/newBook/newList.do?book_kind=IT-그래픽/디자인&order=recent" class="a">그래픽/디자인</a></li>
-												<li class="li-c"><a href="${path }/newBook/newList.do?book_kind=IT-OS/데이터베이스&order=recent" class="a">OS/데이터베이스</a></li>
-=======
-<!--  							신작도서 bookMenu
-							<div class="bookMenu">
-									IT
-											<ul class="submenu">
-												<li class="li-main-c"><a href="/chch/newBook/newList.do?book_kind=it&order=recent" class="nav-class1">IT</a></li>
-												
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=IT-프로그래밍언어&order=recent" class="a">프로그래밍언어</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=IT-컴퓨터공학&order=recent" class="a">컴퓨터공학</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=IT-해킹/보안&order=recent" class="a">해킹/보안</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=IT-그래픽/디자인&order=recent" class="a">그래픽/디자인</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=IT-OS/데이터베이스&order=recent" class="a">OS/데이터베이스</a></li>
->>>>>>> origin/SungBeen
+												<li class="li-c"><a href="newList.do?book_kind=IT-프로그래밍언어&order=recent" class="a">프로그래밍언어</a></li>
+												<li class="li-c"><a href="newList.do?book_kind=IT-컴퓨터공학&order=recent" class="a">컴퓨터공학</a></li>
+												<li class="li-c"><a href="newList.do?book_kind=IT-해킹/보안&order=recent" class="a">해킹/보안</a></li>
+												<li class="li-c"><a href="newList.do?book_kind=IT-그래픽/디자인&order=recent" class="a">그래픽/디자인</a></li>
+												<li class="li-c"><a href="newList.do?book_kind=IT-OS/데이터베이스&order=recent" class="a">OS/데이터베이스</a></li>
 											</ul>
 									
-									문학
+									<!-- 문학 -->
 											<ul class="submenu">
-<<<<<<< HEAD
-												<li class="li-main-c"><a href="${path }/newBook/newList.do?book_kind=문학&order=recent" class="nav-class1">문학</a></li>
+												<li class="li-main-c"><a href="newList.do?book_kind=문학&order=recent" class="nav-class1">문학</a></li>
 												
-												<li class="li-c"><a href="${path }/newBook/newList.do?book_kind=문학-한국소설&order=recent" class="a">한국소설</a></li>
-												<li class="li-c"><a href="${path }/newBook/newList.do?book_kind=문학-해외소설&order=recent" class="a">해외소설</a></li>
-												<li class="li-c"><a href="${path }/newBook/newList.do?book_kind=문학-시&order=recent" class="a">시</a></li>
-												<li class="li-c"><a href="${path }/newBook/newList.do?book_kind=문학-에세이&order=recent" class="a">에세이</a></li>
-												<li class="li-c"><a href="${path }/newBook/newList.do?book_kind=문학-고전문학&order=recent" class="a">고전문학</a></li>
-=======
-												<li class="li-main-c"><a href="/chch/newBook/newList.do?book_kind=문학&order=recent" class="nav-class1">문학</a></li>
-												
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=문학-한국소설&order=recent" class="a">한국소설</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=문학-해외소설&order=recent" class="a">해외소설</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=문학-시&order=recent" class="a">시</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=문학-에세이&order=recent" class="a">에세이</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=문학-고전문학&order=recent" class="a">고전문학</a></li>
->>>>>>> origin/SungBeen
+												<li class="li-c"><a href="newList.do?book_kind=문학-한국소설&order=recent" class="a">한국소설</a></li>
+												<li class="li-c"><a href="newList.do?book_kind=문학-해외소설&order=recent" class="a">해외소설</a></li>
+												<li class="li-c"><a href="newList.do?book_kind=문학-시&order=recent" class="a">시</a></li>
+												<li class="li-c"><a href="newList.do?book_kind=문학-에세이&order=recent" class="a">에세이</a></li>
+												<li class="li-c"><a href="newList.do?book_kind=문학-고전문학&order=recent" class="a">고전문학</a></li>
 											</ul>
 
 									
-									역사
+									<!-- 역사 -->
 											<ul class="submenu">
-<<<<<<< HEAD
-												<li class="li-main-c"><a href="${path }/newBook/newList.do?book_kind=역사&order=recent" class="nav-class1">역사</a></li>
+												<li class="li-main-c"><a href="newList.do?book_kind=역사&order=recent" class="nav-class1">역사</a></li>
 												
-												<li class="li-c"><a href="${path }/newBook/newList.do?book_kind=역사-한국사/한국문화&order=recent" class="a">한국사/한국문화</a></li>
-												<li class="li-c"><a href="${path }/newBook/newList.do?book_kind=역사-동양사/동양문화&order=recent" class="a">동양사/동양문화</a></li>
-												<li class="li-c"><a href="${path }/newBook/newList.do?book_kind=역사-서양사/서양문화&order=recent" class="a">서양사/서양문화</a></li>
-												<li class="li-c"><a href="${path }/newBook/newList.do?book_kind=역사-세계사/세계문화&order=recent" class="a">세계사/세계문화</a></li>
-												<li class="li-c"><a href="${path }/newBook/newList.do?book_kind=역사-역사학이론/비평&order=recent" class="a">역사학이론/비평</a></li>
-=======
-												<li class="li-main-c"><a href="/chch/newBook/newList.do?book_kind=역사&order=recent" class="nav-class1">역사</a></li>
-												
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=역사-한국사/한국문화&order=recent" class="a">한국사/한국문화</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=역사-동양사/동양문화&order=recent" class="a">동양사/동양문화</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=역사-서양사/서양문화&order=recent" class="a">서양사/서양문화</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=역사-세계사/세계문화&order=recent" class="a">세계사/세계문화</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=역사-역사학이론/비평&order=recent" class="a">역사학이론/비평</a></li>
->>>>>>> origin/SungBeen
+												<li class="li-c"><a href="newList.do?book_kind=역사-한국사/한국문화&order=recent" class="a">한국사/한국문화</a></li>
+												<li class="li-c"><a href="newList.do?book_kind=역사-동양사/동양문화&order=recent" class="a">동양사/동양문화</a></li>
+												<li class="li-c"><a href="newList.do?book_kind=역사-서양사/서양문화&order=recent" class="a">서양사/서양문화</a></li>
+												<li class="li-c"><a href="newList.do?book_kind=역사-세계사/세계문화&order=recent" class="a">세계사/세계문화</a></li>
+												<li class="li-c"><a href="newList.do?book_kind=역사-역사학이론/비평&order=recent" class="a">역사학이론/비평</a></li>
 											</ul>
 
 									
-									과학
+									<!-- 과학 -->
 											<ul class="submenu">
-<<<<<<< HEAD
-												<li class="li-main-c"><a href="${path }/newBook/newList.do?book_kind=과학&order=recent" class="nav-class1">과학</a></li>
+												<li class="li-main-c"><a href="newList.do?book_kind=과학&order=recent" class="nav-class1">과학</a></li>
 												
-												<li class="li-c"><a href="${path }/newBook/newList.do?book_kind=과학-공학&order=recent" class="a">공학</a></li>
-												<li class="li-c"><a href="${path }/newBook/newList.do?book_kind=과학-물리학&order=recent" class="a">물리학</a></li>
-												<li class="li-c"><a href="${path }/newBook/newList.do?book_kind=과학-생명과학&order=recent" class="a">생명과학</a></li>
-												<li class="li-c"><a href="${path }/newBook/newList.do?book_kind=과학-천문학&order=recent" class="a">천문학</a></li>
-												<li class="li-c"><a href="${path }/newBook/newList.do?book_kind=과학-화학&order=recent" class="a">화학</a></li>
-=======
-												<li class="li-main-c"><a href="/chch/newBook/newList.do?book_kind=과학&order=recent" class="nav-class1">과학</a></li>
-												
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=과학-공학&order=recent" class="a">공학</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=과학-물리학&order=recent" class="a">물리학</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=과학-생명과학&order=recent" class="a">생명과학</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=과학-천문학&order=recent" class="a">천문학</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=과학-화학&order=recent" class="a">화학</a></li>
->>>>>>> origin/SungBeen
+												<li class="li-c"><a href="newList.do?book_kind=과학-공학&order=recent" class="a">공학</a></li>
+												<li class="li-c"><a href="newList.do?book_kind=과학-물리학&order=recent" class="a">물리학</a></li>
+												<li class="li-c"><a href="newList.do?book_kind=과학-생명과학&order=recent" class="a">생명과학</a></li>
+												<li class="li-c"><a href="newList.do?book_kind=과학-천문학&order=recent" class="a">천문학</a></li>
+												<li class="li-c"><a href="newList.do?book_kind=과학-화학&order=recent" class="a">화학</a></li>
 											</ul>
 									
-									경제
+									<!-- 경제 -->
 											<ul class="submenu">
-<<<<<<< HEAD
-												<li class="li-main-c"><a href="${path }/newBook/newList.do?book_kind=경제&order=recent" class="nav-class1">경제</a></li>
+												<li class="li-main-c"><a href="newList.do?book_kind=경제&order=recent" class="nav-class1">경제</a></li>
 												
-												<li class="li-c"><a href="${path }/newBook/newList.do?book_kind=경제-경제&order=recent" class="a">경제</a></li>
-												<li class="li-c"><a href="${path }/newBook/newList.do?book_kind=경제-경영&order=recent" class="a">경영</a></li>
-												<li class="li-c"><a href="${path }/newBook/newList.do?book_kind=경제-투자/재테크&order=recent" class="a">투자/재테크</a></li>
-												<li class="li-c"><a href="${path }/newBook/newList.do?book_kind=경제-마케팅/세일즈&order=recent" class="a">마케팅/세일즈</a></li>
-												<li class="li-c"><a href="${path }/newBook/newList.do?book_kind=경제-CEO/비즈니스&order=recent" class="a">CEO/비즈니스</a></li>
-=======
-												<li class="li-main-c"><a href="/chch/newBook/newList.do?book_kind=경제&order=recent" class="nav-class1">경제</a></li>
-												
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=경제-경제&order=recent" class="a">경제</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=경제-경영&order=recent" class="a">경영</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=경제-투자/재테크&order=recent" class="a">투자/재테크</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=경제-마케팅/세일즈&order=recent" class="a">마케팅/세일즈</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=경제-CEO/비즈니스&order=recent" class="a">CEO/비즈니스</a></li>
->>>>>>> origin/SungBeen
+												<li class="li-c"><a href="newList.do?book_kind=경제-경제&order=recent" class="a">경제</a></li>
+												<li class="li-c"><a href="newList.do?book_kind=경제-경영&order=recent" class="a">경영</a></li>
+												<li class="li-c"><a href="newList.do?book_kind=경제-투자/재테크&order=recent" class="a">투자/재테크</a></li>
+												<li class="li-c"><a href="newList.do?book_kind=경제-마케팅/세일즈&order=recent" class="a">마케팅/세일즈</a></li>
+												<li class="li-c"><a href="newList.do?book_kind=경제-CEO/비즈니스&order=recent" class="a">CEO/비즈니스</a></li>
 											</ul>
 									
 									
 							</div>
-							신작도서 bookMenu끝			
-<<<<<<< HEAD
-	
-=======
- -->		
->>>>>>> origin/SungBeen
+							<!-- 신작도서 bookMenu끝 -->			
 		
 			</div>
 		</div>

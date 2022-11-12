@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ include file="../header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +13,7 @@
 <c:if test="${result > 0 }">
 	<script type="text/javascript">
 		alert("중고거래 글 등록 완료")
-		location.href="/chchtest/usedBook/usedList.do";
+		location.href="usedList.do";
 	</script>
 </c:if>
 <c:if test="${!(result > 0) }">

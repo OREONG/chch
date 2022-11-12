@@ -1,10 +1,7 @@
 package com.chch.chch.dao;
 
-<<<<<<< HEAD
-=======
 import java.util.List;
 
->>>>>>> origin/SungBeen
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -16,7 +13,6 @@ public class ReviewDaoImpl implements ReviewDao {
 	@Autowired
 	private SqlSessionTemplate sst;
 
-<<<<<<< HEAD
 	@Override
 	public int insert(Review review) {
 		return sst.insert("reviewns.insert", review);
@@ -31,7 +27,6 @@ public class ReviewDaoImpl implements ReviewDao {
 	public int delete(Review review) {
 		return sst.delete("reviewns.delete", review);
 	}
-=======
 	//작품 댓글 입력
 	public int insertReview(Review review) {
 		return sst.insert("authorns.insertReview", review);
@@ -42,5 +37,4 @@ public class ReviewDaoImpl implements ReviewDao {
 		return sst.selectList("authorns.selectAllReview", author_work_no);
 	}
 
->>>>>>> origin/SungBeen
 }

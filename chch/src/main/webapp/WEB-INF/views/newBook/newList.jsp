@@ -2,14 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ include file="../header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
 <title>책첵!</title>
 <meta charset="utf-8" />
 <script type="text/javascript" src="js/jquery.js"></script>
-<style type="text/css">body{margin-top: 100px;}</style>
 </head>
 
 <body>
@@ -20,12 +18,12 @@
 	
 	<div id="product_order_list">
 			<p>
-			<a href="${path }/newBook/newList.do?book_kind=${book_kind}&order=publish">출간순</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-			<a href="${path }/newBook/newList.do?book_kind=${book_kind}&order=best">베스트셀러</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-			<a href="${path }/newBook/newList.do?book_kind=${book_kind}&order=review">리뷰많은순</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-			<a href="${path }/newBook/newList.do?book_kind=${book_kind}&order=lowPrice">낮은가격순</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-			<a href="${path }/newBook/newList.do?book_kind=${book_kind}&order=highPrice">높은가격순</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-			<a href="${path }/newBook/newList.do?book_kind=${book_kind}&order=title">제목순</a> </p>
+			<a href="newList.do?book_kind=${book_kind}&order=publish">출간순</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+			<a href="newList.do?book_kind=${book_kind}&order=best">베스트셀러</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+			<a href="newList.do?book_kind=${book_kind}&order=review">리뷰많은순</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+			<a href="newList.do?book_kind=${book_kind}&order=lowPrice">낮은가격순</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+			<a href="newList.do?book_kind=${book_kind}&order=highPrice">높은가격순</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+			<a href="newList.do?book_kind=${book_kind}&order=title">제목순</a> </p>
 		</div>
 	
 	<div id="line"></div>
@@ -36,8 +34,8 @@
 		<c:if test="${not empty bookList}">
 			<c:forEach var="book" items="${bookList }">
 				<div class="btn btn-outline" style="width: 45%; margin-top: 5px">
-					<a href="${path }/newBook/newDetail.do?book_no=${book.book_no }">
-					<img src="">
+					<a href="newDetail.do?book_no=${book.book_no }">
+					<img src="/chch/resources/images/${book.book_image}">
 						<p>${book.book_title }</p>
 						<p><fmt:formatNumber value="${book.book_price }" pattern="#,###" />원</p>
 						<div>

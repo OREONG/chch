@@ -2,13 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ include file="../header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">body{margin-top: 100px;}</style>
 </head> 
 <body>
 
@@ -17,7 +15,7 @@
 		<div class="detail">
 			<!-- 이미지 -->
 			<div class="detail-wrap">
-			<img id="detail_img" src="">
+			<img id="detail_img" src="/chch/resources/images/${used.used_image}">
 			</div>
 			
 			<div class="detail-info-wrap">
@@ -43,7 +41,7 @@
 						</c:if>
 					 </div>
 					<p>
-						<a id="info-a" href="${path }/newBook/newDetail.do?book_no=${used.book_no }">책 정보 보기 ▶️</a>
+						<a id="info-a" href="newDetail.do?book_no=${used.book_no }">책 정보 보기 ▶️</a>
 					</p>
 				</div>
 				<div class="content">

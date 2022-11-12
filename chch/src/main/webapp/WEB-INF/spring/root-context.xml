@@ -9,13 +9,10 @@
 		class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.naver.com" />
 		<property name="port" value="465" />
-<<<<<<< HEAD
-		<property name="username" value="88bhs@naver.com" />
-		<property name="password" value="spqj15634" />
-=======
+
 		<property name="username" value="" />
 		<property name="password" value="" />
->>>>>>> origin/SungBeen
+
 		<property value="smtps" name="protocol" />
 		<property value="utf-8" name="defaultEncoding" />
 		<property name="javaMailProperties">
@@ -28,26 +25,17 @@
 			</props>
 		</property>
 	</bean>
-<<<<<<< HEAD
-	
-=======
+
 	<!-- 그림파일 업로드 -->
 	<bean id="multipartResolver"
 	class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 	</bean>
->>>>>>> origin/SungBeen
+
 	<!-- 암호화 -->
 	<bean id="passwordEncoder"
 		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
 	</bean>
-<<<<<<< HEAD
-   <!-- 그림파일 업로드 -->
-   <bean id="multipartResolver"
-   class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-   </bean>	
-=======
-	
->>>>>>> origin/SungBeen
+
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<context:property-placeholder location="classpath:db.properties"/>
 	<!-- myBatis시작 -->
@@ -72,8 +60,5 @@
 		<constructor-arg ref="hikariConfig"></constructor-arg>
 	</bean>	
 
-<<<<<<< HEAD
+
 </beans>
-=======
-</beans>
->>>>>>> origin/SungBeen

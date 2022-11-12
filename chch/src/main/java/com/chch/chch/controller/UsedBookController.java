@@ -22,7 +22,7 @@ public class UsedBookController {
 	@Autowired
 	private UsedBookService us;
 	
-	@RequestMapping("/usedBook/usedList")
+	@RequestMapping("usedList")
 	public String usedList(Model model, Used used, String pageNum) {
 		int rowPerPage = 12; // 페이지 당 게시글 갯수
 		if (pageNum == null || pageNum.equals("")) pageNum = "1";
@@ -42,19 +42,19 @@ public class UsedBookController {
 		return "/usedBook/usedList";
 	}
 	
-	@RequestMapping("/usedBook/usedDetail")
+	@RequestMapping("usedDetail")
 	public String usedBook(int used_no, Model model, Used used) {
 		used = us.selectUsed(used_no);
 		model.addAttribute("used", used);
 		return "/usedBook/usedDetail";
 	}
 	
-	@RequestMapping("/usedBook/usedAddForm")
+	@RequestMapping("usedAddForm")
 	public String usedAddForm() {
 		return "/usedBook/usedAddForm";
 	}
 	
-	@RequestMapping("/usedBook/usedAdd")
+	@RequestMapping("usedAdd")
 	public String usedAdd(Model model, Used used, HttpSession session, String used_subject) throws IOException {
 
 		int result = 0;
@@ -77,7 +77,7 @@ public class UsedBookController {
 		return "/usedBook/usedAdd";
 	}
 	
-	@RequestMapping("/usedBook/usedSearch")
+	@RequestMapping("usedSearch")
 	public String usedSearch(String searchText, Used used, Book book, Model model) {
 		List<Book> bookList = us.bookSearch(searchText);
 		

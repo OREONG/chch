@@ -1,5 +1,7 @@
 package com.chch.chch.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,16 +20,6 @@ public class MemberServiceImpl implements MemberService{
 	//이메일 중복검사
 	public Member selectEmail(String email) {
 		return md.selectEmail(email);
-<<<<<<< HEAD
-	}
-
-	//초기 회원가입
-	public int insert(Member member) {
-		return md.insert(member);
-	}
-
-}
-=======
 	}
 
 	//초기 회원가입
@@ -66,4 +58,3 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 }
->>>>>>> origin/SungBeen

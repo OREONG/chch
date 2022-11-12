@@ -2,14 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ include file="../header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <title>책첵!</title>
 <meta charset="utf-8" />
 <script type="text/javascript" src="js/jquery.js"></script>
-<style type="text/css">body{margin-top: 100px;}</style>
 </head>
 
 <body>
@@ -26,8 +24,8 @@
 		<c:if test="${not empty list}">
 			<c:forEach var="list" items="${list }">
 				<div class="btn btn-info" style="width: 24%; height: auto; margin-top: 5px">
-					<a href="${path }/usedBook/usedDetail.do?used_no=${list.used_no }&book_no=${list.book_no }">
-						<img src="${path }/resources/images/${list.used_image}">
+					<a href="usedDetail.do?used_no=${list.used_no }&book_no=${list.book_no }">
+						<img style="width: 50%; height: auto;" src="/chch/resources/images/${list.used_image}">
 						<p>
 							<c:if test="${ list.used_status=='y'}">[판매완료]</c:if>
 							${list.used_subject }

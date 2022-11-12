@@ -26,7 +26,7 @@
 	<c:if test="${result == -1}">
 		<script type="text/javascript">
 			alert("로그인이 필요한 서비스 입니다");
-			location.href="/chchtest/member/loginForm.do";
+			location.href="loginForm.do";
 		</script>
 	</c:if>
 </body>

@@ -141,10 +141,12 @@ header {
     float: inherit;
     margin-top: -18px;
     padding-top: 4px;
+/*     display: none; */
 }
 
 .submenu{
 	flex-direction: column;
+/* 	display: none; */
 	
 }
 
