@@ -13,6 +13,7 @@ create table member(
 );
 select * from member;
 
+insert into member values('1', 'fdehgbfd', '1', 'rgef', 'srftgdhb', sysdate, '1', '01034324656', sysdate, 'n');
 drop table member cascade constraint;
 
 select* from tabs;
@@ -31,12 +32,16 @@ CREATE TABLE used (
 	CONSTRAINT used_book_no_fk FOREIGN KEY (book_no) REFERENCES book(book_no),
 	CONSTRAINT used_id_fk FOREIGN KEY (id) REFERENCES member(id)
 );
-SELECT * FROM used;
+SELECT * FROM used order by used_no;
+
+delete from used where used_no < 8;
 
 drop table used cascade constraint;
 
 insert into used values((SELECT NVL(MAX(used_no), 0) + 1 FROM used), 1, '돈의 심리학', '팝니다', ' ', 10000, 'n', 'n', sysdate, '2');
 
+
+select * from member;
 
 -- review
 

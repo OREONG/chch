@@ -8,6 +8,7 @@
 <title>책첵!</title>
 <meta charset="utf-8" />
 <script type="text/javascript" src="js/jquery.js"></script>
+<style type="text/css">@import url("/chch/resources/css/newList.css");</style>
 </head>
 
 <body>

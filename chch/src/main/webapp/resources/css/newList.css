@@ -1,0 +1,83 @@
+body h1 {
+	text-align: center;
+	margin-top: 50px;
+	margin-bottom: 60px;
+	font-size: 24px;
+	font-style: bold;
+	color: #545454;
+	font-family: jalnan;
+}
+
+#line {
+	margin: 10px 400px 18px;
+	padding: 0;
+	border-top: 2px solid #2bc5c1;
+}
+
+#line2 {
+	margin: 10px 400px 18px;
+	padding: 0;
+	border-top: 2px solid #e7e7e7;
+}
+
+.products {
+	display: table;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0;
+	width: 840px;
+	text-align: center;
+	font-family: 'AppleSDGothicNeo';
+}
+
+.products img {
+	width: 160px;
+	height: 240px;
+	margin-right: 20px;
+	margin-left: 20px;
+	margin-bottom: 10px;
+	margin-top: 50px;
+}
+
+.products a {
+	text-decoration: none;
+	color: black;
+	float: left;
+	font-size: 16px;
+}
+
+.products p {
+	margin-top: 4px;
+	margin-bottom: 10px;
+	font-family: 'AppleSDGothicNeo';
+}
+
+
+
+
+.clearfix {
+	clear: both;
+}
+
+.page_btn {
+	padding: 4px;
+    margin-right: 3px;
+    margin-top: 50px;
+    color: #ffffff;
+    font: bold 12px tahoma;
+    border: 1px solid #eee;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 7px;
+    background-color: #2bc5c1;
+}
+.page_btn:hover {
+	color: #ffffff;
+    border: 1px solid #000;
+    background-color: #000;
+}
+
+.listItem {
+	width: 180px;
+}

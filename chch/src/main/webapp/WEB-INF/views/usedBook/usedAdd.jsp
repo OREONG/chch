@@ -16,9 +16,15 @@
 		location.href="usedList.do";
 	</script>
 </c:if>
-<c:if test="${!(result > 0) }">
+<c:if test="${!(result == 0) }">
 	<script type="text/javascript">
 		alert("입력 실패")
+		history.back();
+	</script>
+</c:if>
+<c:if test="${!(result < 0) }">
+	<script type="text/javascript">
+		alert("로그인 해주세요")
 		history.back();
 	</script>
 </c:if>

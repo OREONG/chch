@@ -8,6 +8,7 @@
 <title>책첵!</title>
 <meta charset="utf-8" />
 <script type="text/javascript" src="js/jquery.js"></script>
+<style type="text/css">@import url("/chch/resources/css/usedList.css");</style>
 </head>
 
 <body>
@@ -23,7 +24,7 @@
 		</c:if>
 		<c:if test="${not empty list}">
 			<c:forEach var="list" items="${list }">
-				<div class="btn btn-info" style="width: 24%; height: auto; margin-top: 5px">
+				<div class="btn" style="width: 24%; height: auto; margin-top: 5px">
 					<a href="usedDetail.do?used_no=${list.used_no }&book_no=${list.book_no }">
 						<img style="width: 50%; height: auto;" src="/chch/resources/images/${list.used_image}">
 						<p>
@@ -72,10 +73,6 @@
 		</ul>
 	</div>
 	
-	<div align="right" class="btn btn-danger">
-		<a href="usedAddForm.do">나도 판매하기</a>
-	</div>
-
 
 </body>
 </html>
