@@ -20,8 +20,8 @@ public class AuthorDaoImpl implements AuthorDao {
 		return sst.selectList("authorns.authorAllList");
 	}
 	//작품 소개 모두 전체 불러오기(날짜 순 정렬)
-	public List<Author> allList_date() {
-		return sst.selectList("authorns.allList_date");
+	public List<Author> allList_date(Author author2) {
+		return sst.selectList("authorns.allList_date", author2);
 	}
 	//작품 (소개) 등록
 	public int insert(Author author) {
@@ -29,8 +29,8 @@ public class AuthorDaoImpl implements AuthorDao {
 	}
 
 	//작품 소개 한사람 전체 불러오기
-	public List<Author> list(String id) {
-		return sst.selectList("authorns.authorList", id);
+	public List<Author> list(Author author) {
+		return sst.selectList("authorns.authorList", author);
 	}
 	
 	//글 쓰기 입력
@@ -107,6 +107,14 @@ public class AuthorDaoImpl implements AuthorDao {
 	//글 리스트 개수
 	public int getTotalAuthor(int author_no) {
 		return sst.selectOne("authorns.getTotalAuthor", author_no);
+	}
+	//작품 불러오기 날짜 순 - 개수
+	public int getTotalAuthor_date(Author author2) {
+		return sst.selectOne("authorns.getTotalAuthor_date", author2);
+	}
+	//내 작품 리스트 페이징 용 갯수
+	public int getTotalAuthor_list(Author author) {
+		return sst.selectOne("authorns.getTotalAuthor_list", author);
 	}
 
 

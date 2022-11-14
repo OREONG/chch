@@ -19,6 +19,7 @@ import com.chch.chch.service.PagingBean;
 import com.chch.chch.model.Author;
 import com.chch.chch.model.Author_work;
 import com.chch.chch.model.Like_table;
+import com.chch.chch.model.Report;
 import com.chch.chch.model.Review;
 import com.chch.chch.service.AuthorService;
 import com.chch.chch.service.LikeService;
@@ -34,7 +35,7 @@ public class AuthorController {
 	
 	//나도 작가되기 메인 화면(작품 등록 버튼, 작품 리스트)
 	@RequestMapping("writing")
-	public String writing(Model model) {
+	public String writing(Model model, String pageNum, Author author2) {
 		//작품 모두 가져오기 (관심 수 정렬)
 		List<Author> authorAll_list = as.allList();
 		//댓글 좋아요
@@ -45,24 +46,57 @@ public class AuthorController {
 		model.addAttribute("authorAll_list", authorAll_list);
 		
 		//작품 모두 가져오기 (날짜 순 정렬)
-		List<Author> authorAllDate_list = as.allList_date();
+		//페이징
+		int rowPerPage = 10; //한 화면에 보여주는 갯수
+		if (pageNum == null || pageNum.equals("")) pageNum = "1";
+		int currentPage = Integer.parseInt(pageNum);
+		int total = as.getTotalAuthor_date(author2);
+		int startRow = (currentPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		int num = total - startRow + 1;
+		author2.setStartRow(startRow);
+		author2.setEndRow(endRow);
+		List<Author> authorAllDate_list = as.allList_date(author2);
+		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);		
+		
 		//댓글 좋아요
 		for (Author author : authorAllDate_list) {
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("author_no", author.getAuthor_no());
 		}
 		model.addAttribute("authorAllDate_list", authorAllDate_list);
+		model.addAttribute("author", author2); 
+		model.addAttribute("num", num);
+		model.addAttribute("pb", pb);
 		//페이징 작업
 		return "/author/writing";
 	}
 	
-	//등록한 작품들 리스트 페이지(없을경우 작품 등록페이지 authorIntro.do로 이동)
+	//등록한 작품들 리스트 페이지
 	@RequestMapping("authorMain")
-	public String authorMain(HttpSession session, Model model) {
+	public String authorMain(HttpSession session, Model model, String pageNum, Author author) {
 		String id = (String)session.getAttribute("id");
-		List<Author> author_list = as.list(id);
+		System.out.println(id);
+		//페이징
+		int rowPerPage = 10; //한 화면에 보여주는 갯수
+		if (pageNum == null || pageNum.equals("")) pageNum = "1";
+		int currentPage = Integer.parseInt(pageNum);
+		author.setId(id);
+		int total = as.getTotalAuthor_list(author);
+		int startRow = (currentPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		int num = total - startRow + 1;
+		author.setStartRow(startRow);
+		author.setEndRow(endRow);
+		List<Author> author_list = as.list(author);
+		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);	
+		
 		model.addAttribute("author_list", author_list);
-		//페이징 추가
+		model.addAttribute("author", author); 
+		model.addAttribute("num", num);
+		model.addAttribute("pb", pb);
+		model.addAttribute("id",id);
+		
 		return "/author/authorMain";
 	}
 	
@@ -114,12 +148,30 @@ public class AuthorController {
 		//관심 불러오기
 		Like_table like_table = ls.selectAuthor(map);
 		
+		//첫화보기
+		Author_work author_work2 = new Author_work();
+		author_work2.setAuthor_no(author_work.getAuthor_no());		
+		List<Author> authorAll = as.authorAll(author_work2);
 		
+		int[] author_work_noArr = new int [authorAll.size()];
+		
+		int i = 0;
+		int first_no = 10000; //author_work가 같은 글 중 author_work_no의 가장 작은 값(첫 화)
+
+		for(Author authorall : authorAll) {
+			author_work_noArr[i] = authorall.getAuthor_work_no();
+			//첫 화
+			if (author_work_noArr[i] < first_no) {
+				first_no = author_work_noArr[i];
+			}
+			i = i + 1;
+		}
 
 		model.addAttribute("id", id);
 		model.addAttribute("author", author);
 		model.addAttribute("authorWork_list", authorWork_list);
 		model.addAttribute("like_table", like_table);
+		model.addAttribute("first_no", first_no);
 		
 		model.addAttribute("author_no", author_no);
 		model.addAttribute("total", total);

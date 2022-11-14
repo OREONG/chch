@@ -14,13 +14,6 @@
 		justify-content: space-around;
 		width: 100%;
 		height: 110px;
-		/* margin: 0;
-		padding: 0;
-		background-color: white;
-		position: fixed;
-		top: 0;
-		z-index: 1;
-		border-bottom: 1px solid #cbcbcb; */
 	}
 	
 	.menu {
@@ -46,7 +39,6 @@
 	.footer {
 		display: flex;
 		flex-direction: row;
-		justify-content: space-around;
 		width: 100%;
 		margin-top:70px;
 	}
@@ -54,7 +46,6 @@
 	.body {
 		margin-top: 150px;
 		width: 100%;
-		height: 770px;
 	}
 
 </style>

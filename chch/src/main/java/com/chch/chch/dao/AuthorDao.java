@@ -11,13 +11,13 @@ public interface AuthorDao {
 	//작품 소개 모두 전체 불러오기(관심 수 정렬)
 	List<Author> allList();
 	//작품 소개 모두 전체 불러오기(날짜 순 정렬)
-	List<Author> allList_date();
+	List<Author> allList_date(Author author2);
 	
 	//작품 (소개) 등록
 	int insert(Author author);
 	
 	//작품 소개 한사람 전체 불러오기
-	List<Author> list(String id);
+	List<Author> list(Author author);
 	
 	//글 쓰기 입력
 	int insertWork(Author_work author_work);
@@ -56,6 +56,10 @@ public interface AuthorDao {
 	List<Author> authorAll(Author_work author_work2);
 	//글 리스트 갯수
 	int getTotalAuthor(int author_no);
+	//작품 불러오기 날짜 순 - 갯수
+	int getTotalAuthor_date(Author author2);
+	//내 작품 리스트 페이징 용 갯수
+	int getTotalAuthor_list(Author author);
 
 
 	

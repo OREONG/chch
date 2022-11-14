@@ -211,6 +211,435 @@ insert into book values(4, 'SQL로 시작하는 데이터 분석', 'book4.jpg', 
 insert into book values(5, '파이써닉한 파이썬을 익히는 간결한 안내서', 'book5.jpg', '데이비드M, 비블리', '프로그래밍 인사이트', 10, 10000, sysdate, sysdate, '안녕', '문학', 'n');
 
 
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
+insert into review values((SELECT NVL(MAX(review_no ), 0) + 1 FROM review),'','이개 말이댐?',sysdate,'n','test2','',1,0);
 
 --회원 테이블
 --member table create
@@ -362,6 +791,20 @@ insert into report values((SELECT NVL(MAX(report_no), 0) + 1 FROM report), 'test
 insert into report values((SELECT NVL(MAX(report_no), 0) + 1 FROM report), 'test1', sysdate, '데이터 분석', '책 표지 귀엽다 무슨 새지??', 'y', 'n', 4);
 insert into report values((SELECT NVL(MAX(report_no), 0) + 1 FROM report), 'test1', sysdate, '파이썬', '파이썬도 열심히 해야지..', 'y', 'n', 5);
 
+CREATE TABLE used (
+	used_no	NUMBER(10) PRIMARY KEY,			--중고거래번호
+	book_no	NUMBER(10) NOT NULL,			--책번호
+	used_subject VARCHAR2(100) NOT NULL,	--제목
+	used_content VARCHAR2(2000) NOT NULL,	--내용
+	used_image VARCHAR2(100) NOT NULL,		--이미지
+	used_price NUMBER(10) NOT NULL,			--가격
+	used_status CHAR(1) DEFAULT 'n',			--판매상태
+	used_del CHAR(1) DEFAULT 'n',				--삭제여부
+	used_reg_date DATE NOT NULL,			--등록일시
+	id VARCHAR2(20) NOT NULL,				--판매자 아이디
+	CONSTRAINT used_book_no_fk FOREIGN KEY (book_no) REFERENCES book(book_no),
+	CONSTRAINT used_id_fk FOREIGN KEY (id) REFERENCES member(id)
+);
 
 --좋아요, 관심, 찜 테이블
 --like_table table create
@@ -369,7 +812,7 @@ create table like_table(
 	like_no	number(10) primary key, --찜번호
 	book_no	number(10), 			--책번호 fk
 	id varchar2(20) not null, 		--아이디fk
-	--used_no number(10), 			--중고거래번호fk
+	used_no number(10), 			--중고거래번호fk
 	author_no number(10), 			--작가되기 번호fk
 	author_work_no number(10), 		--작가되기 컨텐츠 번호fk
 	review_no number(10),			--댓글 번호fk
@@ -377,6 +820,7 @@ create table like_table(
 	
 	foreign key(book_no) references book(book_no),
 	foreign key(id) references member(id),
+	foreign key(used_no) references used(used_no),
 	foreign key(author_no) references author(author_no),
 	foreign key(author_work_no) references author_work(author_work_no),
 	foreign key(review_no) references review(review_no)
@@ -421,3 +865,19 @@ select * from author a, author_work aw where a.author_no(+)=aw.author_no and a.a
 select * from author where del='n' and ((select count(*) from author a, author_work aw where a.author_no(+)=aw.author_no and a.author_no=2) != 0) order by like_count desc;
 
 select count(*) from author a, author_work aw where a.author_no(+)=aw.author_no and a.author_no=3
+
+select count(*) from author where del='n'
+
+select * from author where del='n' order by like_count desc
+
+SELECT *
+  FROM (
+         SELECT author_no
+			  , author_subject
+              , id
+              , author_class
+			  , like_count
+              , DENSE_RANK() OVER(ORDER BY like_count DESC) AS rnk
+           FROM author
+       )
+ WHERE rnk <= 10 and like_count > 0;

@@ -20,17 +20,22 @@
 <script type="text/javascript" src="${path}/resources/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${path}/resources/bootstrap/js/sockjs.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-
+<style type="text/css">@import url("/chch/resources/css/font.css");</style>
 
 <script type="text/javascript">
-
+	function openCloseMenu(){
+	    let status = $('.hideBookMenu').css('display');
+	    if (status =='block') {
+	        $('.hideBookMenu').hide();
+	    } else {
+	        $('.hideBookMenu').show();
+	    }
+	}
 
 	var socket  = null;
 	var id = '${id}';
 	
 	$(document).ready(function(){
-		$('.bookMenu').hide();
-		
 		
 	    // 웹소켓 연결
 	    sock = new SockJS("<c:url value='/echo.do'/>");
@@ -267,14 +272,6 @@
 	}
 
 	
-	function openCloseMenu(){
-	    let status = $('.bookMenu').css('display');
-	    if (status =='block') {
-	        $('.bookMenu').hide();
-	    } else {
-	        $('.bookMenu').show();
-	    }
-	}
 </script>
 
 
@@ -303,7 +300,7 @@
 							</li>
 							
 							<li>
-								<input type="text" name="noticePopUp" id="noticePopUp" class="form-control col-sm-8" style="resize: none; border: none;">
+								<input type="text" name="noticePopUp" id="noticePopUp" class="form-control col-sm-8" readonly="readonly">
 							</li>
 							<!-- 알림 종 -->
 							<li>
@@ -365,7 +362,7 @@
 				</div>
 		
 		
-		
+						<div class="hideBookMenu">
 							<!-- 신작도서 bookMenu -->
 							<div class="bookMenu">
 									<!-- IT -->
@@ -428,7 +425,7 @@
 									
 							</div>
 							<!-- 신작도서 bookMenu끝	 -->		
-	
+						</div>
 		
 			</div>
 		</div>

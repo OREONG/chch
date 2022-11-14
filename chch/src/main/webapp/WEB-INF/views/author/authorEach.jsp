@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">@import url("/chch/resources/css/authorEach.css");</style>
+<style type="text/css">@import url("/chch/resources/css/paging.css");</style>
 
 <script type="text/javascript">
 	function writingDetailFun(author_work_no) {
@@ -48,7 +49,7 @@
 				</div>
 			</c:if>
 			<c:if test="${author.id != id }">
-				<a href="writingDetail.do?author_no=${author_work.author_no }&author_work_no=${first_no}" id="firstWorkBtn">첫화 보기</a><p>
+				<a href="writingDetail.do?author_no=${author.author_no }&author_work_no=${first_no}" id="firstWorkBtn">첫화 보기</a><p>
 			</c:if>
 			
 			<!-- 작품 리스트 -->
@@ -74,49 +75,49 @@
 			</c:if>
 			
 			<!-- 회차 페이징 -->
-			<div class="paging">
+			<div class="paging-div">
 	 				<c:if test="${empty authorWork_list }">
 						<div id="nonData-btn-wrap">
-							<button id="preBtn">이전</button>
+							<!-- <button id="preBtn">이전</button>
 							<button id="pageClick-btn" style="">0</button>
-							<button id="nextBtn">다음</button>
+							<button id="nextBtn">다음</button> -->
 						</div>
 					</c:if> 
 					<c:if test="${not empty authorWork_list }">
 						
-						<ul class="pagination">
+						<ul class="pagination-ul">
 							<c:if test="${pb.startPage > pb.pagePerBlock }">
 								<li>
-									<a id="preBtn" href="authorEach.do?author_no=${author_no }&pageNum=1">
+									<a id="pre-btn" href="authorEach.do?author_no=${author_no }&pageNum=1">
 										<span>이전</span>
 									</a>
 								</li>
 								<li>
-									<a id="preBtn" href="authorEach.do?author_no=${author_no }&pageNum=${pb.startPage-1 }">
+									<a id="pre-btn" href="authorEach.do?author_no=${author_no }&pageNum=${pb.startPage-1 }">
 										<span>이전</span>
 									</a>
 								</li>							
 							</c:if>
 							<c:forEach var="i" begin="${pb.startPage }" end="${pb.endPage }">
 								<c:if test="${pb.currentPage == i }">
-									<li class="active">
+									<li class="active-btn">
 										<a href="authorEach.do?author_no=${author_no }&pageNum=${i }">${i }</a>
 									</li>
 								</c:if>
 								<c:if test="${pb.currentPage != i }">
-									<li>
+									<li class="non-active-btn">
 										<a href="authorEach.do?author_no=${author_no }&pageNum=${i }">${i }</a>
 									</li>
 								</c:if>
 							</c:forEach>
 							<c:if test="${pb.endPage < pb.totalPage }">
 								<li>
-									<a id="nextBtn" href="authorEach.do?author_no=${author_no }&pageNum=${pb.endPage+1 }">
-										<span>다음</span>
+									<a id="next-btn" href="authorEach.do?author_no=${author_no }&pageNum=${pb.endPage }">
+										<span>다음</span> 
 									</a>
 								</li>
 								<li>
-									<a id="nextBtn" href="authorEach.do?author_no=${author_no }&pageNum=${pb.endPage }">
+									<a id="next-btn" href="authorEach.do?author_no=${author_no }&pageNum=${pb.endPage+1 }">
 										<span>다음</span>
 									</a>
 								</li>

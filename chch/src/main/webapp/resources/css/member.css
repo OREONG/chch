@@ -73,6 +73,8 @@ img{
 
 /* 중복확인, 인증 버튼 */
 .btn{
+	display: flex;
+    justify-content: center;
 	width: 19%;
 	height: 44px;
 	border: 1px solid #c2c2c2;
@@ -229,6 +231,18 @@ ul{
 	font-size: 13px;
 	margin-left:20px;
 }
+.text-wrap{
+	margin-bottom: 25px;
+}
+#info-main-text{
+	font-family: 'Jalnan';
+    font-size: 20px;
+}
+#info-text{
+    font-size: 15px;
+    font-weight: 400;
+}
+}
 
 /* 공통속성 */
 ul{
@@ -268,4 +282,66 @@ a:hover, a:active {
 	display: flex;
     flex-direction: column;
     align-items: center;
+}
+.idInfo-text{
+	font-size: 20px;
+}
+.id-show{
+	color: #5055b1;
+    font-weight: 600;
+}
+
+.find-idLogin-div{
+    margin-top: 17px;
+}
+.find-idLogin{
+	width: 280px;
+    border: 1px solid #5055b1;
+    border-radius: 6px;
+    height: 49px;
+    margin-top: 12px;
+    transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+    color: #5055b1;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto 0 0 10px;
+}
+
+.find-idLogin:hover{
+	cursor:pointer;
+	background: #30347f;
+	color: #fff;
+}
+
+.find-idfindPass{
+	width: 280px;
+    border: 1px solid #c7c7c7;
+    border-radius: 6px;
+    height: 49px;
+    margin-top: 12px;
+    transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+    color: #747474;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: -11px 0 0 10px;
+}
+.find-idfindPass:hover{
+	cursor:pointer;
+	border: 1px solid #30347f;
+	background: #30347f;
+	color: #fff;
+}
+/* 반응형 */
+@media screen and (max-width:500px) {
+	.main-container{
+		width:500px;
+	}
+
+
 }

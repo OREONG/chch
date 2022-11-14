@@ -10,6 +10,7 @@
 <style type="text/css">
 @import url("/chch/resources/css/author_work.css");
 </style>
+<style type="text/css">@import url("/chch/resources/css/paging.css");</style>
 <script type="text/javascript">
 
 $(document).ready(function(){
@@ -80,23 +81,19 @@ function reviewDelete(review_no) {
 			</div>
 			</c:if>
 
-		<div>
+		<div class="preNext-div">
 			<c:if test="${pre_no == 0}">
-				이전화가 없습니다
+				<span class="pN-btn" id="notPre">&#60;&nbsp;이전화</span>
 			</c:if>
 			<c:if test="${pre_no != 0}">
-				<a href="writingDetail.do?author_no=${author_work.author_no }&author_work_no=${pre_no}">이전화</a>
+				<a style='text-decoration:none;' href="writingDetail.do?author_no=${author_work.author_no }&author_work_no=${pre_no}"><span class="pN-btn" id="yesPre">&#60;&nbsp;이전화</span></a>
 			</c:if>
 			<c:if test="${next_no == 10000}">
-				다음화가 없습니다
+				<span class="pN-btn" id="notNext">다음화&nbsp;&#62;</span>
 			</c:if>
 			<c:if test="${next_no != 10000}">
-				<a href="writingDetail.do?author_no=${author_work.author_no }&author_work_no=${next_no}">다음화</a>
+				<a style='text-decoration:none;' href="writingDetail.do?author_no=${author_work.author_no }&author_work_no=${next_no}"><span class="pN-btn" id="yesNext">다음화&nbsp;&#62;</span></a>
 			</c:if>
-
-
-
-		
 		</div>
 
 
@@ -178,50 +175,50 @@ function reviewDelete(review_no) {
 		</c:if>
 		
 		<!-- 댓글 페이징 -->
-		<div class="paging">
+		<div class="paging-div">
  				<c:if test="${empty review_list }">
 					<div id="nonData-btn-wrap">
-						<button id="preBtn">이전</button>
+						<!-- <button id="preBtn">이전</button>
 						<button id="pageClick-btn" style="">0</button>
-						<button id="nextBtn">다음</button>
+						<button id="nextBtn">다음</button> -->
 					</div>
 				</c:if> 
 				<c:if test="${not empty review_list }">
 					
-					<ul class="pagination">
+					<ul class="pagination-ul">
 						<c:if test="${pb.startPage > pb.pagePerBlock }">
-							<li>
-								<a id="preBtn" href="writingDetail.do?author_work_no=${author_work_no }&pageNum=1">
-									<span>이전</span>
+							<li class="pre-btn">
+								<a href="writingDetail.do?author_work_no=${author_work_no }&pageNum=1">
+									<span class="glyphicon glyphicon-chevron-left"></span>
 								</a>
 							</li>
-							<li>
-								<a id="preBtn" href="writingDetail.do?author_work_no=${author_work_no }&pageNum=${pb.startPage-1 }">
-									<span>이전</span>
+							<li class="pre-btn">
+								<a href="writingDetail.do?author_work_no=${author_work_no }&pageNum=${pb.startPage-1 }">
+									<span class="glyphicon glyphicon-chevron-left"></span>
 								</a>
 							</li>							
 						</c:if>
 						<c:forEach var="i" begin="${pb.startPage }" end="${pb.endPage }">
 							<c:if test="${pb.currentPage == i }">
-								<li class="active">
+								<li class="active-btn">
 									<a href="writingDetail.do?author_work_no=${author_work_no }&pageNum=${i }">${i }</a>
 								</li>
 							</c:if>
 							<c:if test="${pb.currentPage != i }">
-								<li>
+								<li class="non-active-btn">
 									<a href="writingDetail.do?author_work_no=${author_work_no }&pageNum=${i }">${i }</a>
 								</li>
 							</c:if>
 						</c:forEach>
 						<c:if test="${pb.endPage < pb.totalPage }">
-							<li>
-								<a id="nextBtn" href="writingDetail.do?author_work_no=${author_work_no }&pageNum=${pb.endPage+1 }">
-									<span>다음</span>
+							<li class="next-btn">
+								<a href="writingDetail.do?author_work_no=${author_work_no }&pageNum=${pb.endPage }">
+									<span class="glyphicon glyphicon-chevron-right"></span>
 								</a>
 							</li>
-							<li>
-								<a id="nextBtn" href="writingDetail.do?author_work_no=${author_work_no }&pageNum=${pb.endPage }">
-									<span>다음</span>
+							<li class="next-btn">
+								<a href="writingDetail.do?author_work_no=${author_work_no }&pageNum=${pb.endPage+1 }">
+									<span class="glyphicon glyphicon-chevron-right"></span>
 								</a>
 							</li>
 						</c:if>

@@ -4,11 +4,22 @@
 <mapper namespace="authorns">
 	<!-- 전체 작품 불러오기(관심 수 정렬) -->
 	<select id="authorAllList" resultType="author">
-		select * from author where del='n' order by like_count desc
+		SELECT *
+		FROM (
+		         SELECT author_no
+		         	  , author_subject
+		              , id
+		              , author_class
+					  , like_count
+		              , DENSE_RANK() OVER(ORDER BY like_count DESC) AS rnk
+		           FROM author
+		       )
+		 WHERE rnk  <![CDATA[<]]> 11 and like_count  <![CDATA[>]]> 0
 	</select>
 	<!-- 전체 작품 불러오기(날짜 순 정렬) -->
-	<select id="allList_date" resultType="author">
-		select * from author where del='n' order by reg_date desc
+	<select id="allList_date" resultType="author" parameterType="author">
+		select * from(select a.*, rowNum rn from(select * from author where del='n' order by reg_date desc) a) where rn between #{startRow} and #{endRow}
+		
 	</select>
 	<!-- 작품 insert -->
 	<insert id="insert" parameterType="author">
@@ -23,8 +34,8 @@
 		,0)
 	</insert>
 	<!-- 내 작품 list -->
-	<select id="authorList" parameterType="string" resultType="author">
-		select * from author where id=#{id} and del='n'
+	<select id="authorList" parameterType="author" resultType="author">
+		select * from(select a.*, rowNum rn from(select * from author where id=#{id} and del='n' order by reg_date desc) a) where rn between #{startRow} and #{endRow}
 	</select>
 	<!-- 글쓰기 insert -->
 	<insert id="workInsert" parameterType="author_work">
@@ -80,7 +91,7 @@
 	</insert>
 	<!-- 댓글 전체 불러오기 -->
 	<select id="selectAllReview" parameterType="review" resultType="review">
-		select * from(select a.*, rowNum rn from(select * from review where author_work_no=#{author_work_no} and review_del='n' order by review_reg_date desc) a)where rn between #{startRow} and #{endRow}
+		select * from(select a.*, rowNum rn from(select * from review where author_work_no=#{author_work_no} and review_del='n' order by review_like_count desc) a)where rn between #{startRow} and #{endRow}
 	</select>
 
 	<!-- 작품 정보 수정 -->
@@ -146,5 +157,13 @@
 	<!-- 글 리스트 개수 -->
 	<select id="getTotalAuthor" parameterType="integer" resultType="integer">
 		select count(*) from author_work where author_no=#{author_no}
+	</select>
+	<!-- 작품 불러오기 날짜 순 - 개수 -->
+	<select id="getTotalAuthor_date" parameterType="author" resultType="integer">
+		select count(*) from author where del='n'
+	</select>
+	<!-- 내 작품 리스트 페이징 용 갯수 -->
+	<select id="getTotalAuthor_list" parameterType="author" resultType="integer">
+		select count(*) from author where id=#{id} and del='n'
 	</select>
 </mapper>

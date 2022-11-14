@@ -21,8 +21,8 @@ public class AuthorServiceImpl implements AuthorService{
 		return ad.allList();
 	}
 	//작품 소개 모두 전체 불러오기(날짜 순 정렬)
-	public List<Author> allList_date() {
-		return ad.allList_date();
+	public List<Author> allList_date(Author author2) {
+		return ad.allList_date(author2);
 	}
 	//작품 (소개) 등록
 	public int insert(Author author) {
@@ -30,8 +30,8 @@ public class AuthorServiceImpl implements AuthorService{
 	}
 
 	//작품 소개 한사람 전체 불러오기
-	public List<Author> list(String id) {
-		return ad.list(id);
+	public List<Author> list(Author author) {
+		return ad.list(author);
 	}
 	
 	//글 쓰기 입력
@@ -110,6 +110,14 @@ public class AuthorServiceImpl implements AuthorService{
 	//글 리스트 갯수
 	public int getTotalAuthor(int author_no) {
 		return ad.getTotalAuthor(author_no);
+	}
+	//작품 불러오기 날짜순 - 갯수
+	public int getTotalAuthor_date(Author author2) {
+		return ad.getTotalAuthor_date(author2);
+	}
+	//내 작품 리스트 페이징 용 갯수
+	public int getTotalAuthor_list(Author author) {
+		return ad.getTotalAuthor_list(author);
 	}
 
 

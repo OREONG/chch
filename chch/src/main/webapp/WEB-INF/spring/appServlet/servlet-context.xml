@@ -36,11 +36,28 @@
 			<mapping path="/deleteForm.do"/>
 			<mapping path="/delete.do"/>
 			<mapping path="/logout.do"/>
-			<mapping path="/author/authorMain.do"/>
-			<mapping path="/author/authorIntro.do"/>
-			<mapping path="/author/authorIntroConfirm.do"/>
-			<mapping path="/author/authorWriting.do"/>
-			<mapping path="/author/writingDetail.do"/>
+			<mapping path="/updateForm.do"/>
+			
+			<mapping path="/authorEach.do"/>
+			<mapping path="/authorMain.do"/>
+			<mapping path="/authorIntro.do"/>
+			<mapping path="/authorIntroConfirm.do"/>
+			<mapping path="/authorWriting.do"/>
+			<mapping path="/writingDetail.do"/>
+			
+			<mapping path="/reportList.do"/>
+			
+			
+			<mapping path="/mypageMain.do"/>
+			
+			<mapping path="/cart.do"/>
+			<mapping path="/like_list.do"/>
+			<mapping path="/sales_list.do"/>
+			<mapping path="/purchase_list.do"/>
+			
+			<!-- <mapping path="/purchaseStemForm.do"/> -->
+			<!-- 판매하기 페이지  -->
+
 			<beans:ref bean="sc"/>
 		</interceptor>
 	</interceptors>

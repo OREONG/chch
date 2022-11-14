@@ -13,8 +13,10 @@
 	<!-- 메인 컨테이너 -->
 	<div class="main-container">
 		<form action="findPassword.do">
-		
-			<span id="">비밀번호를 잊어버리셨나요? <br> 회원님의 아이디를 알려주세요</span>
+			<div class="text-wrap">
+				<span id="info-main-text">비밀번호 찾기 step.1</span><br>
+				<span id="info-text">회원님의 아이디를 입력해주세요</span>
+			</div>
 			
 				<!--아이디 -->
 				<div class="login-wrap" >
