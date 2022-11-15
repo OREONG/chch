@@ -63,8 +63,11 @@
 				</div>
 			</a>
 			<!-- 최신 글 순 리스트 -->
-			<div class="dateDiv">
+			<div class="textDiv">
 				<span class="new-list">새로 업로드 된 신작</span>
+			</div>
+			
+			<div class="dateDiv">
 				<div class="dateDesc_content">
 					<c:if test="${empty authorAllDate_list }">
 						글이 없습니다
