@@ -22,7 +22,7 @@
 				<!-- 프로필 사진이 없을 경우 기본 프로필 사진 띄움 -->
 				<c:if test="${member.fileName == null }">
 					<img id="img" src="/chch/resources/images/memberImg/profileImg.png">
-					<div class="flex-item "><a href="updateForm.do"><i class="bi bi-pencil-square"></i><br>개인정보 수정</a></div>
+				
 				</c:if>
 				<!-- 프로필 사진이 있을 경우 db에서 불러옴 -->
 				<c:if test="${member.fileName != null }">
