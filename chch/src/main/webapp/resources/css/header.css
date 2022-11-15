@@ -32,7 +32,6 @@ header{
 }
 
 .hearder-container{
-    position: relative;
     background-color: #fff;
     border-bottom: 1px solid #eaeaea;
     z-index: 1000;
@@ -92,7 +91,6 @@ header{
 .img-search-wrap{
 	display: flex;
 	align-items: center;
-	position: relative;
     width: 100%;
     justify-content: center;
 }
@@ -187,7 +185,7 @@ header{
     width: 789px;
     position: relative;
 	left: 142px;
-    top: 12px;
+    top: -1px;
     border: 1px solid #efefef;
     border-radius: 10px;
     z-index:100;
@@ -232,4 +230,81 @@ header{
 		width: 1030px;
 	}
 }
-
+@media screen and (max-width:1920px) {
+	.bookMenu{
+		position:relative;
+		left: 450px;
+	}
+}
+@media screen and (max-width:1900px) {
+	.bookMenu{
+		position:relative;
+		left: 430px;
+	}
+}
+@media screen and (max-width:1850px) {
+	.bookMenu{
+		position:relative;
+		left: 380px;
+	}
+}
+@media screen and (max-width:1800px) {
+	.bookMenu{
+		position:relative;
+		left: 350px;
+	}
+}
+@media screen and (max-width:1650px) {
+	.bookMenu{
+		position:relative;
+		left: 300px;
+	}
+}
+@media screen and (max-width:1570px) {
+	.bookMenu{
+		position:relative;
+		left: 250px;
+	}
+}
+@media screen and (max-width:1470px) {
+	.bookMenu{
+		position:relative;
+		left: 200px;
+	}
+}
+@media screen and (max-width:1390px) {
+	.bookMenu{
+		position:relative;
+		left: 150px;
+	}
+}
+@media screen and (max-width:1300px) {
+	.bookMenu{
+		position:relative;
+		left: 110px;
+	}
+}
+@media screen and (max-width:1190px) {
+	.bookMenu{
+		position:relative;
+		left: 80px;
+	}
+}
+@media screen and (max-width:1156px) {
+	.bookMenu{
+		position:relative;
+		left: 50px;
+	}
+}
+@media screen and (max-width:1132px) {
+	.bookMenu{
+		position:relative;
+		left: 20px;
+	}
+}
+@media screen and (max-width:1000px) {
+	.bookMenu{
+		position:relative;
+		left: 13px;
+	}
+}

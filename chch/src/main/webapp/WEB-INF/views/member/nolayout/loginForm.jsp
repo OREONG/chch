@@ -29,9 +29,11 @@
 	<div class="main-container">
 			<form action="login.do">
 					<!-- 로고 이미지 -->
+					<a href="main.do">
 					<div class="img-div">
-						<img alt="" src="/chch/resources/images/chackcheckCheckLogo2-1.png">
+						<img alt="" src="/chch/resources/images/chackcheckCheckLogo2-1.png">	
 					</div>
+					</a>
 					<!-- 아이디 -->
 					<div class="login-wrap" >
 						<input type="text" name="id" required="required" autofocus="autofocus" placeholder="아이디를 입력해주세요">

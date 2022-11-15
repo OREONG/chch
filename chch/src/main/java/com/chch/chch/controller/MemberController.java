@@ -42,7 +42,7 @@ public class MemberController {
 	//초기 회원가입 화면
 	@RequestMapping("joinForm")
 	public String joinForm() {
-		return "/member/joinForm";
+		return "/member/nolayout/joinForm";
 	}
 	
 	//아이디 중복검사
@@ -105,7 +105,7 @@ public class MemberController {
 	//로그인 화면
 	@RequestMapping("loginForm")
 	public String loginForm() {
-		return "/member/loginForm";
+		return "/member/nolayout/loginForm";
 	}
 	
 	//로그인

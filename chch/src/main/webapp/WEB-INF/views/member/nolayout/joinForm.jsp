@@ -183,9 +183,11 @@
 	<div class="main-container">
 		<form action="join.do" name="frm" onsubmit="return chk()">
 			<!-- 로고 이미지 -->
+			<a href="main.do">
 			<div class="img-div">
 				<img alt="" src="/chch/resources/images/chackcheckCheckLogo2-1.png">
 			</div>
+			</a>
 				<!--아이디 -->
 				<div class="join-wrap" >
 	            	<div class="row-div">
