@@ -53,6 +53,7 @@ public class ReportController {
 	public String search(String searchText, Model model) {
 		List<Book> bookList = rs.bookSearch(searchText);
 		model.addAttribute("bookList", bookList);
+		
 		return "/myPage/nolay/search";
 	}
 	

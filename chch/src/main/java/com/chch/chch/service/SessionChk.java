@@ -20,7 +20,7 @@ public class SessionChk extends HandlerInterceptorAdapter{
 			String pathSplit[] = path.split("/");
 			String targetPage = pathSplit[2];
 			
-			System.out.println(targetPage);
+			System.out.println("targetPage(세션체크) : "+targetPage);
 			
 			session.setAttribute("targetPage", targetPage);
 			response.sendRedirect("loginForm.do");

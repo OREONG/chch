@@ -41,7 +41,6 @@ public class ReportDaoImpl implements ReportDao{
 	}
 	//페이징 용 독서록 개수 불러오기
 	public int getTotal(Report report) {
-		
 		return sst.selectOne("reportns.getTotal", report);
 	}
 }

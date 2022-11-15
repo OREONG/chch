@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MailSendService {
+	@SuppressWarnings("unused")
 	private JavaMailSender jms;
 	private int authNumber;
 

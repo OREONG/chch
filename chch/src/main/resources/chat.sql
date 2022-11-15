@@ -61,6 +61,7 @@ CREATE TABLE room (
 	join_date DATE,
 	check_time DATE,
 	leave CHAR(1),
+	unread NUMBER(10) DEFAULT 0,
 	CONSTRAINT room_pk PRIMARY KEY(room_no, id)
 );
 
@@ -100,8 +101,8 @@ CREATE TABLE community (
 	max_age NUMBER(3),
 	community_location VARCHAR2(100),
 	community_del CHAR(1)--,
-	--CONSTRAINT community_room_fk FOREIGN KEY (room_no) REFERENCES room(room_no),
-	--CONSTRAINT community_member_fk FOREIGN KEY (host_id) REFERENCES member(id)
+	CONSTRAINT community_room_fk FOREIGN KEY (room_no) REFERENCES room(room_no),
+	CONSTRAINT community_member_fk FOREIGN KEY (host_id) REFERENCES member(id)
 )
 
 SELECT * FROM community;
@@ -609,4 +610,59 @@ SELECT COUNT(*) FROM inquiry WHERE reply_check='n' AND id='a';
 UPDATE inquiry SET reply_check='n' WHERE inquiry_no=2;
 
 
+SELECT * FROM TABS;
 
+SELECT * FROM inquiry;
+
+CREATE TABLE inquiry(
+	inquiry_no NUMBER(10) PRIMARY KEY,			--문의번호
+	id VARCHAR2(20) NOT NULL,					--아이디
+	category_no NUMBER(10) NOT NULL,			--카테고리번호
+	inquiry_subject VARCHAR2(500) NOT NULL,		--문의제목
+	inquiry_content VARCHAR2(4000) NOT NULL,	--문의내용
+	reg_time DATE NOT NULL,						--문의시간
+	reply CHAR(1) DEFAULT 'n',					--답변여부
+	reply_content VARCHAR2(4000),				--답변내용
+	reply_time DATE,							--답변시간
+	reply_check CHAR(1) DEFAULT 'n',			--답변확인
+	CONSTRAINT inquiry_id_fk FOREIGN KEY (id) REFERENCES member(id)
+);
+
+CREATE TABLE chat (
+	chat_no NUMBER(10) PRIMARY KEY,					--메세지번호
+	room_no NUMBER(10) NOT NULL,					--대화방번호
+	sender VARCHAR2 (200) NOT NULL,					--발신자
+	chat_content VARCHAR2 (200) NOT NULL,			--내용
+	send_time DATE NOT NULL,						--발신일시
+	CONSTRAINT chat_id_fk FOREIGN KEY (sender) REFERENCES member(id),
+	CONSTRAINT chat_room_no_fk FOREIGN KEY (room_no) REFERENCES room(room_no)
+);
+
+CREATE TABLE room (
+	room_no NUMBER(10),
+	id VARCHAR2(100),
+	room_name VARCHAR2(100),
+	join_date DATE,
+	check_time DATE,
+	leave CHAR(1),
+	unread NUMBER(10) DEFAULT 0,
+	CONSTRAINT room_pk PRIMARY KEY(room_no, id),
+	CONSTRAINT room_id_fk FOREIGN KEY (id) REFERENCES member(id)
+);
+
+CREATE TABLE community (
+	community_no NUMBER(10) PRIMARY KEY,
+	room_no NUMBER(10),
+	host_id VARCHAR2(20),
+	community_category VARCHAR2(100),
+	community_subject VARCHAR2(100),
+	community_content VARCHAR2(100),
+	max_member NUMBER(2),
+	community_gender VARCHAR2(6),
+	min_age NUMBER(3),
+	max_age NUMBER(3),
+	community_location VARCHAR2(100),
+	community_del CHAR(1)--,
+	CONSTRAINT community_room_fk FOREIGN KEY (room_no) REFERENCES room(room_no),
+	CONSTRAINT community_member_fk FOREIGN KEY (host_id) REFERENCES member(id)
+);

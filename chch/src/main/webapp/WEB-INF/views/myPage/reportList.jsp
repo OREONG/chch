@@ -7,6 +7,8 @@
 <meta charset="UTF-8">
 <title>첵책!나의 독서</title>
 <style type="text/css">@import url("/chch/resources/css/report.css");</style>
+<style type="text/css">@import url("/chch/resources/css/paging.css");</style>
+
 <!-- <script type="text/javascript" src="/chackcheck/js/jquery.js"></script> -->
 <script type="text/javascript">
 	function openClose(){
@@ -130,7 +132,7 @@
 				</div>
 
 
-				<div class="paging">
+				<div class="paging-div">
 				<!-- 페이징 작업 -->
  				<c:if test="${empty reportList }">
 					<div id="nonData-btn-wrap">
@@ -141,39 +143,39 @@
 				</c:if> 
 				<c:if test="${not empty reportList }">
 					
-					<ul class="pagination">
+					<ul class="pagination-ul">
 						<c:if test="${pb.startPage > pb.pagePerBlock }">
-							<li>
-								<a id="preBtn" href="reportList.do?pageNum=1">
+							<li class="pre-btn">
+								<a href="reportList.do?pageNum=1">
 									<span>이전</span>
 								</a>
 							</li>
 							<li>
-								<a id="preBtn" href="reportList.do?pageNum=${pb.startPage-1 }">
+								<a href="reportList.do?pageNum=${pb.startPage-1 }">
 									<span>이전</span>
 								</a>
 							</li>							
 						</c:if>
 						<c:forEach var="i" begin="${pb.startPage }" end="${pb.endPage }">
 							<c:if test="${pb.currentPage == i }">
-								<li class="active">
+								<li class="active-btn">
 									<a href="reportList.do?pageNum=${i }">${i }</a>
 								</li>
 							</c:if>
 							<c:if test="${pb.currentPage != i }">
-								<li>
+								<li class="non-active-btn">
 									<a href="reportList.do?pageNum=${i }">${i }</a>
 								</li>
 							</c:if>
 						</c:forEach>
 						<c:if test="${pb.endPage < pb.totalPage }">
-							<li>
-								<a id="nextBtn" href="reportList.do?pageNum=${pb.endPage+1 }">
+							<li class="next-btn">
+								<a href="reportList.do?pageNum=${pb.endPage+1 }">
 									<span>다음</span>
 								</a>
 							</li>
 							<li>
-								<a id="nextBtn" href="reportList.do?pageNum=${pb.endPage }">
+								<a href="reportList.do?pageNum=${pb.endPage }">
 									<span>다음</span>
 								</a>
 							</li>

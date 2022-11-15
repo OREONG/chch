@@ -22,4 +22,6 @@ public class Member {
 	private String del; //탈퇴여부
 	//upload용
 	private MultipartFile file;
+	
+	private String targetPage;
 }

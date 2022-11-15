@@ -67,13 +67,16 @@
 	<div class="main-container">
 		<form action="findId.do" name="frm" onsubmit="return chk()">
 				<input type="hidden" name="id" value="${member.id }">
-				<span id="">이메일 인증을 진행합니다</span>
+				<div class="text-wrap">
+					<span id="info-main-text">비밀번호 찾기 step.2</span><br>
+					<span id="info-text">이메일 인증을 진행해 주세요</span>
+				</div>
 				
 	            <!-- 이메일 -->
 	            <div class="join-wrap" >
 	            	<div class="row-div">
 		            	<input id="email" type="email" name="email" placeholder="이메일주소를 입력해주세요" class="input1">
-		            	<input type="button" name="emailSend" class="btn" onclick="emailChkShow()" id="emailChk-button" value="인증번호&#10;전송"/>
+		            	<input type="button" name="emailSend" class="btn" onclick="emailChkShow()" id="emailChk-button" value="전송"/>
 	            	</div>
 	            	<div id="email-msg"></div>
 	            </div>
@@ -81,7 +84,7 @@
 	            <div class="join-wrap" id="emailConfirmHidden">
 	            	<div class="row-div">
 		            	<input id="emailChk-input" type="text" name="emailConfirm" placeholder="인증번호를 입력해주세요" class="input1"/>
-		            	<input type="button" name="emailConfirmBtn" class="btn" onclick="emailConfirmFun()" id="emailConfirm-button" value="인증번호&#10;확인"/>
+		            	<input type="button" name="emailConfirmBtn" class="btn" onclick="emailConfirmFun()" id="emailConfirm-button" value="확인"/>
 	            	</div>
 	            	<div id="emailChk-msg"></div>
 	            </div>

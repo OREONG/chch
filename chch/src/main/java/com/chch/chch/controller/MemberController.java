@@ -43,7 +43,7 @@ public class MemberController {
 	//초기 회원가입 화면
 	@RequestMapping("joinForm")
 	public String joinForm() {
-		return "/member/joinForm";
+		return "/member/nolayout/joinForm";
 	}
 	
 	//아이디 중복검사
@@ -105,12 +105,18 @@ public class MemberController {
 	
 	//로그인 화면
 	@RequestMapping("loginForm")
-	public String loginForm(Model model, HttpServletRequest request, String targetPage) {
+	public String loginForm(Model model, HttpSession session, String targetPage) {
 		
 		// 기존에 가려던 페이지 주소 전달
+		
+		targetPage = (String) session.getAttribute("targetPage");
+		System.out.println("targetPage(로그인폼) : "+targetPage);
+		
 		model.addAttribute("targetPage", targetPage);
 		
-		return "/member/loginForm";
+		System.out.println(model);
+		
+		return "/member/nolay/loginForm";
 	}
 	
 	//로그인
@@ -125,11 +131,12 @@ public class MemberController {
 			session.setAttribute("id", member.getId());
 		}
 		
-		System.out.println("로그인에서의 targetPage : "+targetPage);
-		// 
+		
+		System.out.println("targetPage(로그인) : "+targetPage);
 		if (targetPage.equals("") || targetPage == null) {
 			targetPage = "main.do";
 		}
+		
 		
 		model.addAttribute("targetPage", targetPage);
 		model.addAttribute("result", result);

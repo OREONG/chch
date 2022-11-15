@@ -16,17 +16,26 @@
 <c:set var="ip" value="http:${ipAdd}/chch"></c:set>
 <link rel="stylesheet" type="text/css"href="${path }/resources/bootstrap/css/bootstrap.min.css">
 <script type="text/javascript" src="${path}/resources/bootstrap/js/jquery.js"></script>
-<%-- <script type="text/javascript" src="${path}/resources/bootstrap/js/jquery1.js"></script> --%>
 <script type="text/javascript" src="${path}/resources/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${path}/resources/bootstrap/js/sockjs.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-
+<style type="text/css">@import url("/chch/resources/css/font.css");</style>
 
 <script type="text/javascript">
+	function openCloseMenu(){
+	    let status = $('.hideBookMenu').css('display');
+	    if (status =='block') {
+	        $('.hideBookMenu').hide();
+	    } else {
+	        $('.hideBookMenu').show();
+	    }
+	}
+
 	var socket  = null;
 	var id = '${id}';
 	
 	$(document).ready(function(){
+		
 	    // 웹소켓 연결
 	    sock = new SockJS("<c:url value='/echo.do'/>");
 	    socket = sock;
@@ -321,8 +330,6 @@
 		return changedTime;
 	}
 	
-	var unreadChat;
-	
 	function loadUnread() {
 		
 		var id = '${id}';
@@ -356,19 +363,7 @@
 		
 		<div class="header-container">
 			<div class="header-content">
-					<div class="header-btn-wrap">
-						<ul class="login-join-cart-wrap">
-							<c:if test="${empty id }">
-								<li class="top-li"><a href="loginForm.do" class="top-t" >로그인</a></li>
-								<li class="top-li"><a href="joinForm.do" class="top-t" >회원가입</a></li>
-							
-							</c:if>
-							<c:if test="${not empty id }">
-								<li class="top-t li li-id"><a class="top-t" >${id }님 환영합니다</a></li>
-								<li class="top-t li"><a href="logout.do" class="top-t" >로그아웃</a></li>
-							</c:if>
-						</ul>			
-					</div>	
+						
 				<!-- 로고, 검색, 알림 wrap -->
 				<div class="top-container">
 						<!-- 로고, 검색 -->
@@ -380,7 +375,11 @@
 								</a>
 							</li>
 							<!-- 검색 -->
-							<li><input id="searchInput" type="text" placeholder="검색 이걸로 쓰세욤~~"></li>
+							<li>
+
+								<input id="searchInput" type="text" placeholder="검색 이걸로 쓰세욤~~">
+							</li>
+							
 							<!-- 알림 종 -->
 							
 								<c:if test="${not empty id }">
@@ -405,26 +404,42 @@
 				</div>
 			
 			
-			<hr class="header-hr1 hr">
+
 			
 				<div class="bottom-container">
 				
 					<!-- 신작도서 and bookMenu wrap -->
 					<div class="cate">
 					
-						<div>
-						<a class="cate-c newBook" href="#">신작도서▼</a>			<!-- newList.do?book_kind=all&order=recent -->
-						<a class="cate-c" href="#">중고도서</a>					<!-- usedList.do -->
-						<a class="cate-c" href="#">판매하기</a>					<!-- usedAddForm.do -->
-						<a class="cate-c" href="writing.do">나도 작가</a>
-						<a class="cate-c" href="#">마이페이지</a>					<!-- myPage_main.do -->
-						<a class="cate-c" href="faq.do">고객센터</a>
-						<a class="cate-c" href="communityMain.do">모임</a>
-						<a class="cate-c" href="chatMemberList.do">채팅방</a>
-						<a class="cate-c" href="adminMain.do">관리자</a>
+						<div class="cate-sub">
 						
-						<a class="cate-c" href="updateForm.do">회원수정</a>
-						<a class="cate-c" href="reportList.do">독후감</a>
+						<button class="bookMenuBtn" onclick="openCloseMenu()"><img id="hamburger" alt="" src="/chch/resources/images/hamburger.png"> </button>
+						
+						<a class="cate-c newBook" href="newList.do?book_kind=all&order=recent">신작도서</a>
+						<a class="cate-c" href="usedList.do">중고도서</a>
+						<a class="cate-c" href="usedAddForm.do">판매하기</a>
+						<a class="cate-c" href="writing.do">나도 작가</a>
+						<a class="cate-c" href="communityMain.do">커뮤니티</a>
+						<a class="cate-c" href="mypageMain.do">마이페이지</a>
+						<a class="cate-c" href="faq.do">고객센터</a>
+						<!-- <a class="cate-c" href="communityMain.do">모임</a>
+						<a class="cate-c" href="chatMemberList.do">채팅방</a>
+						<a class="cate-c" href="adminMain.do">관리자</a> -->
+						
+						<div class="cate-c-sub">
+							<c:if test="${empty id }">
+								<a href="loginForm.do" class="top-t" >로그인</a>
+								<a class="top-t">|</a>
+								<a href="joinForm.do" class="top-t" >회원가입</a>
+								
+							</c:if>
+							<c:if test="${not empty id }">
+								<a href="logout.do" class="top-t" >장바구니</a>
+								<a class="top-t">|</a>
+								<a href="logout.do" class="top-t" >로그아웃</a>
+								
+							</c:if>
+						</div>
 						
 						
 						</div>
@@ -432,7 +447,70 @@
 								
 				</div>
 		
-				<hr class="header-hr2 hr">
+						<div class="hideBookMenu">
+							<!-- 신작도서 bookMenu -->
+							<div class="bookMenu">
+									<!-- IT -->
+											<ul class="submenu">
+												<li class="li-main-c"><a href="/chch/newBook/newList.do?book_kind=it&order=recent" class="nav-class1">IT</a></li>
+												
+												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=IT-프로그래밍언어&order=recent" class="a">프로그래밍언어</a></li>
+												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=IT-컴퓨터공학&order=recent" class="a">컴퓨터공학</a></li>
+												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=IT-해킹/보안&order=recent" class="a">해킹/보안</a></li>
+												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=IT-그래픽/디자인&order=recent" class="a">그래픽/디자인</a></li>
+												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=IT-OS/데이터베이스&order=recent" class="a">OS/데이터베이스</a></li>
+											</ul>
+									
+									<!-- 문학 -->
+											<ul class="submenu">
+												<li class="li-main-c"><a href="/chch/newBook/newList.do?book_kind=문학&order=recent" class="nav-class1">문학</a></li>
+												
+												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=문학-한국소설&order=recent" class="a">한국소설</a></li>
+												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=문학-해외소설&order=recent" class="a">해외소설</a></li>
+												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=문학-시&order=recent" class="a">시</a></li>
+												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=문학-에세이&order=recent" class="a">에세이</a></li>
+												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=문학-고전문학&order=recent" class="a">고전문학</a></li>
+											</ul>
+
+									
+									<!-- 역사 -->
+											<ul class="submenu">
+												<li class="li-main-c"><a href="/chch/newBook/newList.do?book_kind=역사&order=recent" class="nav-class1">역사</a></li>
+												
+												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=역사-한국사/한국문화&order=recent" class="a">한국사/한국문화</a></li>
+												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=역사-동양사/동양문화&order=recent" class="a">동양사/동양문화</a></li>
+												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=역사-서양사/서양문화&order=recent" class="a">서양사/서양문화</a></li>
+												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=역사-세계사/세계문화&order=recent" class="a">세계사/세계문화</a></li>
+												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=역사-역사학이론/비평&order=recent" class="a">역사학이론/비평</a></li>
+											</ul>
+
+									
+									<!-- 과학 -->
+											<ul class="submenu">
+												<li class="li-main-c"><a href="/chch/newBook/newList.do?book_kind=과학&order=recent" class="nav-class1">과학</a></li>
+												
+												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=과학-공학&order=recent" class="a">공학</a></li>
+												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=과학-물리학&order=recent" class="a">물리학</a></li>
+												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=과학-생명과학&order=recent" class="a">생명과학</a></li>
+												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=과학-천문학&order=recent" class="a">천문학</a></li>
+												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=과학-화학&order=recent" class="a">화학</a></li>
+											</ul>
+									
+									<!-- 경제 -->
+											<ul class="submenu">
+												<li class="li-main-c"><a href="/chch/newBook/newList.do?book_kind=경제&order=recent" class="nav-class1">경제</a></li>
+												
+												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=경제-경제&order=recent" class="a">경제</a></li>
+												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=경제-경영&order=recent" class="a">경영</a></li>
+												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=경제-투자/재테크&order=recent" class="a">투자/재테크</a></li>
+												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=경제-마케팅/세일즈&order=recent" class="a">마케팅/세일즈</a></li>
+												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=경제-CEO/비즈니스&order=recent" class="a">CEO/비즈니스</a></li>
+											</ul>
+									
+									
+							</div>
+							<!-- 신작도서 bookMenu끝	 -->		
+						</div>
 		
 			</div>
 		</div>

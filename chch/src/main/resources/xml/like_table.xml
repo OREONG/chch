@@ -4,7 +4,7 @@
 <mapper namespace="like_tablens">
 	<!-- 작품 관심 -->
 	<insert id="insertAuthor" parameterType="like_table">
-		insert into like_table values ((select nvl(max(like_no), 0) + 1 from like_table), '', #{id}, #{author_no}, '', '', '')
+		insert into like_table values ((select nvl(max(like_no), 0) + 1 from like_table), '', #{id}, '', #{author_no}, '', '', '')
 	</insert>
 	<!-- 작품 관심 불러오기 -->
 	<select id="selectAuthor" parameterType="map" resultType="like_table">
@@ -17,7 +17,7 @@
 	
 	<!-- 글 좋아요 -->
 	<insert id="insertReview" parameterType="like_table">
-		insert into like_table values ((select nvl(max(like_no), 0) + 1 from like_table), '', #{id}, '', '', #{review_no}, 'n')
+		insert into like_table values ((select nvl(max(like_no), 0) + 1 from like_table), '', #{id}, '', '', '', #{review_no}, 'n')
 	</insert>
 	
 	<!-- 글 좋아요 취소 -->
