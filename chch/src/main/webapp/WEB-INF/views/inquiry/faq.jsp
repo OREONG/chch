@@ -7,6 +7,101 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+<style type="text/css">
+input[class='toggle'] {
+	display: none;
+}
+
+.wrap-collabsible {
+	margin: 1px;
+}
+
+.lbl-toggle {
+	display: block;
+	font-size: 1.2rem;
+	text-align: left;
+	padding: 1rem;
+	color: black;
+	background: #F6F6F6;
+	cursor: pointer;
+	border-radius: 7px;
+}
+
+.lbl-toggle:hover {
+	color: #FFF;
+}
+
+.lbl-toggle::before {
+	content: ' ';
+	display: inline-block;
+	border-top: 5px solid transparent;
+	border-bottom: 5px solid transparent;
+	border-left: 5px solid currentColor;
+	vertical-align: middle;
+	margin-right: .7rem;
+	transform: translateY(-2px);
+	transition: transform .2s ease-out;
+}
+
+.toggle:checked+.lbl-toggle::before {
+	transform: rotate(90deg) translateX(-3px);
+}
+
+.collapsible-content {
+	max-height: 0px;
+	overflow: hidden;
+	transition: max-height .25s ease-in-out;
+}
+
+.toggle:checked+.lbl-toggle+.collapsible-content {
+	max-height: 700px;
+}
+
+.toggle:checked+.lbl-toggle {
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+.collapsible-content .content-inner {
+	background: white;
+	border: 1px solid;
+	border-bottom-left-radius: 7px;
+	border-bottom-right-radius: 7px;
+	padding: .5rem 1rem;
+}
+
+.collapsible-content p {
+	margin-bottom: 0;
+}
+
+.flex-container {
+	display: flex;
+}
+.flex-item {
+	margin: 5px;
+	padding: 10px;
+	border: 10px;
+	
+}
+.flex-item.one {
+	display: flex;
+	background-color: #2bc5c1;
+	flex-direction: row;
+	justify-content: space-between;
+	border-radius: 10px;
+}
+.flex-item.a1 {
+	padding-left: 40px;
+	color: white;
+	border-radius: 10px;
+}
+.flex-item.a2 {
+	padding-right: 40px;
+}
+
+.flex-container.column{flex-direction: column;}
+</style>
+
 </head>
 <body>
 

@@ -60,7 +60,7 @@ public class ChatController {
 			int diffDays = calToday.get(Calendar.DAY_OF_YEAR)-calSendDay.get(Calendar.DAY_OF_YEAR);
 			selectMyRoom.get(i).setDiffDays(diffDays);
 			
-			selectMyRoom.get(i).setUnread(cs.loadUnread(id, room_no));
+			selectMyRoom.get(i).setUnread(cs.loadUnreadChat(id, room_no));
 			
 		}
 		
@@ -110,10 +110,6 @@ public class ChatController {
 		chat.setRoom_no(Integer.parseInt(room_no));
 
 		int result = cs.insertChat(chat);
-		
-//		if (result > 0) {
-//			cs. 
-//		}
 
 		model.addAttribute("result", result);
 

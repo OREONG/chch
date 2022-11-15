@@ -30,6 +30,6 @@ public interface ChatService {
 
 	void checkRoom(int room_no, String id);
 
-	int loadUnread(String id, int room_no);
+	int loadUnreadChat(String id, int room_no);
 
 }

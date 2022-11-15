@@ -12,7 +12,7 @@
 <style type="text/css">@import url("/chch/resources/css/header.css");</style>
 
 <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
-<c:set var="ipAdd" value="//172.30.1.39:8080"></c:set>
+<c:set var="ipAdd" value="//172.30.1.10:8080"></c:set>
 <c:set var="ip" value="http:${ipAdd}/chch"></c:set>
 <link rel="stylesheet" type="text/css"href="${path }/resources/bootstrap/css/bootstrap.min.css">
 <script type="text/javascript" src="${path}/resources/bootstrap/js/jquery.js"></script>
@@ -105,6 +105,9 @@
 			console.log('room_no : ${room_no}');
 			console.log('room_no=${room_no}');
 			
+			var check3 = document.location.href.split("/");
+			console.log(check3[4]);
+			
 			if (check11=='chat.do' && check22=='room_no='+room_no) {	//'chat.do'에 해당하는 주소이고 room_no가 동일할 때 메세지를 append
 				console.log("header60 chat으로 시작하는 메세지 : "+msg);
 				
@@ -156,9 +159,29 @@
 				$("#unreadNotice").children().remove();
 				$("#unreadNotice").val(loadUnread);
 				
-			} else {						// 해당 채팅방 안에 있지 않을 때는 notice에 알림
+			} else if (check3[4] == 'noticeMain.do') {
 				
-				console.log("이게 나오면 안됨");
+				console.log("noticeMain 화면에 있을 때");
+				
+				var sender = split1[1];
+				var room_no = split1[2];
+				var msg = split1[3]
+				// var send_time = split1[4];
+			    var loadUnread = split1[5];
+
+			    
+				var view =sender+"님의 메세지 : "+msg;
+			    				
+				$("#noticePopUp").children().remove();
+			    $("#noticePopUp").val(view);
+				
+				$("#unreadNotice").children().remove();
+				$("#unreadNotice").val(loadUnread);
+				
+				$("#unreadChat").children().remove();
+				$("#unreadChat").val(loadUnreadChat);
+				
+			} else {						// 해당 채팅방 안에 있지 않을 때는 notice에 알림
 				
 				var sender = split1[1];
 				var room_no = split1[2];
@@ -176,12 +199,15 @@
 				$("#unreadNotice").children().remove();
 				$("#unreadNotice").val(loadUnread);
 				
-				document.querySelector('#room_no'+room_no).innerText=roomUnread;
-				document.querySelector('#msgRoom_no'+room_no).innerText=msg;
+				if (check3[4] == 'chatMemberList.do') {
+					document.querySelector('#room_no'+room_no).innerText=roomUnread;
+					document.querySelector('#msgRoom_no'+room_no).innerText=msg;
+					
+					var content = document.querySelector('#room'+room_no);
+					var parent = content.parentNode;
+					parent.insertBefore(content, parent.firstChild);
+				}
 				
-				var content = document.querySelector('#room'+room_no);
-				var parent = content.parentNode;
-				parent.insertBefore(content, parent.firstChild);
 				
 			}
 			
@@ -295,6 +321,7 @@
 		return changedTime;
 	}
 	
+	var unreadChat;
 	
 	function loadUnread() {
 		
@@ -303,7 +330,9 @@
 		$.post('loadUnread.do', 'id='+id, function(data) {
 			$("#unreadNotice").val(data);
 		});
+		
 	}
+	
 	
 	function checkRoom(id, room_no) {
 		$(function() {
@@ -358,22 +387,16 @@
 								<li>
 									<ul>
 									<li>
-											<input type="text" name="unreadNotice" id="unreadNotice" style="resize: none; border: none; width: 50px; background-color: #ffffff; color: #808080; margin-left: 185px;" readonly="readonly">
+										<input type="text" name="unreadNotice" id="unreadNotice" style="resize: none; border: none; width: 50px; background-color: #ffffff; color: #808080; margin-left: 185px;" readonly="readonly">
 									</li>							
 									<li>
-											<a href="">
+											<a href="noticeMain.do">
 												<img id="bell" src="/chch/resources/images/bell.png">
 											</a>
 									</li>
 									</ul>
 								</li>
 								</c:if>
-<!-- 							<li>
-								<a href="">
-									<img id="cart" src="/chch/resources/images/cart.png">
-								</a>
-
-							</li> -->
 							<li>
 								<input type="text" name="noticePopUp" id="noticePopUp" class="form-control col-sm-8" style="resize: none; border: none; width: 300px; background-color: #ffffff; color: #808080;" readonly="readonly">
 							</li>
@@ -410,71 +433,6 @@
 				</div>
 		
 				<hr class="header-hr2 hr">
-		
-		
-<!--  							신작도서 bookMenu
-							<div class="bookMenu">
-									IT
-											<ul class="submenu">
-												<li class="li-main-c"><a href="/chch/newBook/newList.do?book_kind=it&order=recent" class="nav-class1">IT</a></li>
-												
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=IT-프로그래밍언어&order=recent" class="a">프로그래밍언어</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=IT-컴퓨터공학&order=recent" class="a">컴퓨터공학</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=IT-해킹/보안&order=recent" class="a">해킹/보안</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=IT-그래픽/디자인&order=recent" class="a">그래픽/디자인</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=IT-OS/데이터베이스&order=recent" class="a">OS/데이터베이스</a></li>
-											</ul>
-									
-									문학
-											<ul class="submenu">
-												<li class="li-main-c"><a href="/chch/newBook/newList.do?book_kind=문학&order=recent" class="nav-class1">문학</a></li>
-												
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=문학-한국소설&order=recent" class="a">한국소설</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=문학-해외소설&order=recent" class="a">해외소설</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=문학-시&order=recent" class="a">시</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=문학-에세이&order=recent" class="a">에세이</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=문학-고전문학&order=recent" class="a">고전문학</a></li>
-											</ul>
-
-									
-									역사
-											<ul class="submenu">
-												<li class="li-main-c"><a href="/chch/newBook/newList.do?book_kind=역사&order=recent" class="nav-class1">역사</a></li>
-												
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=역사-한국사/한국문화&order=recent" class="a">한국사/한국문화</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=역사-동양사/동양문화&order=recent" class="a">동양사/동양문화</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=역사-서양사/서양문화&order=recent" class="a">서양사/서양문화</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=역사-세계사/세계문화&order=recent" class="a">세계사/세계문화</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=역사-역사학이론/비평&order=recent" class="a">역사학이론/비평</a></li>
-											</ul>
-
-									
-									과학
-											<ul class="submenu">
-												<li class="li-main-c"><a href="/chch/newBook/newList.do?book_kind=과학&order=recent" class="nav-class1">과학</a></li>
-												
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=과학-공학&order=recent" class="a">공학</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=과학-물리학&order=recent" class="a">물리학</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=과학-생명과학&order=recent" class="a">생명과학</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=과학-천문학&order=recent" class="a">천문학</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=과학-화학&order=recent" class="a">화학</a></li>
-											</ul>
-									
-									경제
-											<ul class="submenu">
-												<li class="li-main-c"><a href="/chch/newBook/newList.do?book_kind=경제&order=recent" class="nav-class1">경제</a></li>
-												
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=경제-경제&order=recent" class="a">경제</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=경제-경영&order=recent" class="a">경영</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=경제-투자/재테크&order=recent" class="a">투자/재테크</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=경제-마케팅/세일즈&order=recent" class="a">마케팅/세일즈</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=경제-CEO/비즈니스&order=recent" class="a">CEO/비즈니스</a></li>
-											</ul>
-									
-									
-							</div>
-							신작도서 bookMenu끝			
- -->		
 		
 			</div>
 		</div>

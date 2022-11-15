@@ -72,7 +72,7 @@ public class EchoHandler extends TextWebSocketHandler {
 							List<Chat> myRoom = cs.selectMyRoom(roomMember.get(i).getId());
 							int sum1 = 0;
 							for (int j = 0; j < myRoom.size(); j++) {
-								sum1 += cs.loadUnread(roomMember.get(i).getId(), myRoom.get(j).getRoom_no());
+								sum1 += cs.loadUnreadChat(roomMember.get(i).getId(), myRoom.get(j).getRoom_no());
 								System.out.println("id : "+roomMember.get(i).getId()+", room_no : "+myRoom.get(j).getRoom_no()+", sum1 : "+sum1);
 							}
 							
@@ -82,7 +82,7 @@ public class EchoHandler extends TextWebSocketHandler {
 							
 							String sum = String.valueOf(sum1);
 							
-							int unread = cs.loadUnread(roomMember.get(i).getId(), room_no);
+							int unread = cs.loadUnreadChat(roomMember.get(i).getId(), room_no);
 							
 							recieverWriterSession.sendMessage(new TextMessage(msg+","+sum+","+unread));	// 세션에 접속해 있을 때만 해당 유저에게 채팅 전달
 						}

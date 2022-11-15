@@ -352,6 +352,10 @@ public class AdminController {
 		model.addAttribute("totalPage", totalPage);
 		model.addAttribute("PAGE_PER_BLOCK", PAGE_PER_BLOCK);
 		model.addAttribute("cycle", cycle);
+		model.addAttribute("book_kind", book_kind);
+		model.addAttribute("dateFrom", dateFrom);
+		model.addAttribute("dateTo", dateTo);
+		
 		
 		return "/admin/nolay/KPISelect";
 	}
@@ -401,6 +405,10 @@ public class AdminController {
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("totalPage", totalPage);
 		model.addAttribute("PAGE_PER_BLOCK", PAGE_PER_BLOCK);
+		model.addAttribute("sort", sort);
+		model.addAttribute("book_kind", book_kind);
+		model.addAttribute("dateFrom", dateFrom);
+		model.addAttribute("dateTo", dateTo);
 		
 		return "/admin/nolay/salesRankingSelect";
 	}
@@ -451,6 +459,7 @@ public class AdminController {
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("totalPage", totalPage);
 		model.addAttribute("PAGE_PER_BLOCK", PAGE_PER_BLOCK);
+		model.addAttribute("book_no", book_no);
 		
 		return "/admin/nolay/salesHistorySelect";
 	}

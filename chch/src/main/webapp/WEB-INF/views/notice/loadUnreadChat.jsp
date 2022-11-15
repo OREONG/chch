@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div id="loadUnread">
+	<div id="loadUnreadChat">
 		${sum}		
 	</div>
 </body>

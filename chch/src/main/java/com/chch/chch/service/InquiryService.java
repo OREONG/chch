@@ -16,4 +16,8 @@ public interface InquiryService {
 
 	List<Inquiry> inquiryList(int startRow, int endRow, String id);
 
+	int replyCheck(int inquiry_no);
+
+	int unreadInquiryCount(String id);
+
 }

@@ -74,7 +74,7 @@
 	</update>
 	
 	<!-- SB  -->
-	<select id="loadUnread" parameterType="map" resultType="int">
+	<select id="loadUnreadChat" parameterType="map" resultType="int">
 	 	SELECT COUNT(*)
 	 		FROM chat c, room r
 	 		WHERE c.room_no = r.room_no AND id=#{id} AND sender!=#{id} AND r.room_no=#{room_no}

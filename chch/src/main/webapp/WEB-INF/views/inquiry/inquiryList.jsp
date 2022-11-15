@@ -7,6 +7,83 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+<style type="text/css">
+
+input[class='toggle'] {
+	display: none;
+}
+
+.lbl-toggle-inquiryList {
+	display: block;
+	font-size: 16px;
+	text-align: left;
+	padding: 1rem;
+	/* color: white;
+	background: gray; */
+	cursor: pointer;
+	border-radius: 7px;
+}
+
+
+
+.lbl-toggle-inquiryList::before {
+	content: ' ';
+	display: inline-block;
+	border-top: 5px solid transparent;
+	border-bottom: 5px solid transparent;
+	border-left: 5px solid currentColor;
+	vertical-align: middle;
+	margin-right: .7rem;
+	transform: translateY(-2px);
+	transition: transform .2s ease-out;
+}
+
+.toggle:checked+.lbl-toggle-inquiryList::before {
+	transform: rotate(90deg) translateX(-3px);
+}
+
+.collapsible-content-inquiryList {
+	max-height: 0px;
+	overflow: hidden;
+	transition: max-height .25s ease-in-out;
+}
+
+.toggle:checked+.lbl-toggle-inquiryList+.collapsible-content-inquiryList {
+	max-height: 700px;
+}
+
+.toggle:checked+.lbl-toggle-inquiryList {
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+.collapsible-content-inquiryList .content-inner-inquiryList {
+	background: #ececec;
+	padding: 10px;
+}
+
+.collapsible-content-inquiryList p {
+	margin-bottom: 0;
+}
+</style>
+
+<script type="text/javascript">
+	function replyCheck(inquiry_no) {
+		$(function() {
+			$.ajax({
+				url : "replyCheck.do?inquiry_no="+inquiry_no,
+				async : true,
+				type : "POST",
+				dataType : "html",
+				cache : false
+			});
+		});
+		
+		// sock.send(); <--- 실시간으로 읽은 것 알림에서 뻬야함
+	}
+</script>
+
+
 </head>
 <body>
 
@@ -18,9 +95,6 @@
 			<div>
 				<a href="inquirySelect.do?inquiryNumber=1">1:1 문의</a>
 			</div>
-		</div>
-		<div><br>
-			<button onclick="location.href='main.do'" class="btn">메인</button>
 		</div>
 		<hr>
 	</div>
@@ -69,7 +143,7 @@
 						<div class="flex-container column">
 							<div class="wrap-collabsible-inquiryList">
 								<input id="collapsible${i }" class="toggle" type="checkbox">
-								<label for="collapsible${i }" class="lbl-toggle-inquiryList">
+								<label for="collapsible${i }" class="lbl-toggle-inquiryList" onclick="replyCheck('${inquiry.inquiry_no}')">
 
 									<c:if test="${inquiry.reply=='y'}">답변완료 </c:if> <c:choose>
 										<c:when test="${inquiry.category_no == 1}">환불 신청</c:when>
@@ -85,7 +159,7 @@
 									<div class="content-inner-inquiryList">
 										<p>${inquiry.inquiry_content }</p>
 										<c:if test="${inquiry.reply=='y' }">
-											<hr>${inquiry.reply_content}<br>${inquiry.reply_time } <!-- 관리자 대답 + 대답시간 추가해야함 -->
+											<hr>${inquiry.reply_content}<br>${inquiry.reply_time }
 										</c:if>
 									</div>
 								</div>

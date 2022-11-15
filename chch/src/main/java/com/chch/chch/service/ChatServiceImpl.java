@@ -70,7 +70,7 @@ public class ChatServiceImpl implements ChatService {
 	}
 
 	@Override
-	public int loadUnread(String id, int room_no) {
-		return cd.loadUnread(id, room_no);
+	public int loadUnreadChat(String id, int room_no) {
+		return cd.loadUnreadChat(id, room_no);
 	}
 }

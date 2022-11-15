@@ -56,6 +56,8 @@ public class Admin {
 	private int cycle;
 	private String s_date;
 	private int sort;
+	private String w_date;
+	
 	
 	private int startRow;
 	private int endRow;

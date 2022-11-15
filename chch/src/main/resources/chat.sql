@@ -108,6 +108,20 @@ SELECT * FROM community;
 
 
 
+CREATE TABLE inquiry(
+	inquiry_no NUMBER(10) PRIMARY KEY,			--문의번호
+	id VARCHAR2(20) NOT NULL,					--아이디
+	category_no NUMBER(10) NOT NULL,			--카테고리번호
+	inquiry_subject VARCHAR2(500) NOT NULL,		--문의제목
+	inquiry_content VARCHAR2(4000) NOT NULL,	--문의내용
+	reg_time DATE NOT NULL,						--문의시간
+	reply CHAR(1) DEFAULT 'n',					--답변여부
+	reply_content VARCHAR2(4000),				--답변내용
+	reply_time DATE,							--답변시간
+	reply_check CHAR(1) DEFAULT 'n',			--답변확인
+	CONSTRAINT inquiry_id_fk FOREIGN KEY (id) REFERENCES member(id)
+);
+
 
 
 
@@ -420,20 +434,20 @@ FROM (SELECT rowNum rn, a.*
 		ORDER BY TO_CHAR(deal_date, 'YYYYMMDD'))a)
 WHERE rn BETWEEN #{startRow} and #{endRow}
 
--- 일별 KPI 조회 (mybatis)
+-- 주별 KPI 조회 (mybatis)
 SELECT *
 FROM (SELECT rowNum rn, a.*
-	FROM (SELECT TO_CHAR(TRUNC(deal_date, 'IW'), 'YYYYMMDD') AS s_date, SUM(deal_price * deal_count) AS total_sales
+	FROM (SELECT TO_CHAR(TRUNC(deal_date, 'IW'), 'YYYYMMDD') AS s_date, TO_CHAR(TRUNC(deal_date, 'IW' + 6), 'YYYYMMDD') AS w_date, SUM(deal_price * deal_count) AS total_sales
 			FROM deal d, book b
 			WHERE deal_date >= TO_CHAR(#{dateFrom}, 'YYYYMMDD')
 				AND deal_date < TO_CHAR(#{dateTo}+1, 'YYYYMMDD')
 				AND d.book_no=b.book_no
 				AND book_kind=#{book_kind}
-			GROUP BY TRUNC(deal_date, 'IW')
+			GROUP BY TRUNC(deal_date, 'IW'), TRUNC(deal_date, 'IW') + 6
 			ORDER BY TRUNC(deal_date, 'IW'))a)
 WHERE rn BETWEEN #{startRow} and #{endRow}
 
--- 일별 KPI 조회 (mybatis)
+-- 월별 KPI 조회 (mybatis)
 SELECT *
 FROM (SELECT rowNum rn, a.* FROM
 		(SELECT TO_CHAR(deal_date, 'YYYYMM') AS s_date, SUM(deal_price * deal_count) AS total_sales
@@ -543,6 +557,56 @@ SELECT COUNT(*)
 FROM chat c, room r
 WHERE c.room_no = r.room_no AND id='a' AND sender!='a' AND r.room_no=6
 	AND c.send_time > (SELECT check_time FROM room WHERE id='a' AND room_no=6);
+
+
+-- 주별 KPI 조회 (mybatis)
+SELECT *
+FROM (SELECT rowNum rn, a.*
+	FROM (SELECT TO_CHAR(TRUNC(deal_date, 'IW'), 'YYYYMMDD') AS s_date, TO_CHAR(TRUNC(deal_date, 'IW')+6, 'YYYYMMDD') AS W_date, SUM(deal_price * deal_count) AS total_sales
+			FROM deal d, book b
+			WHERE deal_date >= TO_CHAR(#{dateFrom}, 'YYYYMMDD')
+				AND deal_date < TO_CHAR(#{dateTo}+1, 'YYYYMMDD')
+				AND d.book_no=b.book_no
+				AND book_kind='문학'
+			GROUP BY TRUNC(deal_date, 'IW')
+			ORDER BY TRUNC(deal_date, 'IW'))a)
+WHERE rn BETWEEN 1 and 10
+
+
+SELECT TO_CHAR(TRUNC(deal_date, 'IW'), 'YYYYMMDD') AS s_date, TO_CHAR(TRUNC(deal_date, 'IW')+6, 'YYYYMMDD') AS W_date, SUM(deal_price * deal_count) AS total_sales
+FROM deal d, book b
+WHERE deal_date >= '20221001'
+	AND deal_date < '20221130'
+	AND d.book_no=b.book_no
+	AND book_kind='문학'
+GROUP BY TRUNC(deal_date, 'IW'), TRUNC(deal_date, 'IW')+6
+ORDER BY TRUNC(deal_date, 'IW');
+
+
+
+
+SELECT *
+			FROM (SELECT rowNum rn, a.*
+				FROM (SELECT b.book_no, book_title, book_kind, book_author, book_publisher, book_publish_date, sum(deal_count) deal_count, sum(deal_price) deal_price
+					FROM book b, deal d
+					WHERE b.book_no=d.book_no
+						AND used_no is null
+						AND deal_date >= '20221001'
+						AND deal_date < '20221115'
+						--AND book_kind=#{book_kind}
+					GROUP BY b.book_no, book_title, book_kind, book_author, book_publisher, book_publish_date
+					ORDER BY deal_count DESC)a)
+			WHERE rn BETWEEN 1 and 10
+
+
+SELECT * FROM inquiry;
+
+ALTER TABLE inquiry MODIFY reply_check CHAR(1) DEFAULT 'n';
+
+SELECT COUNT(*) FROM inquiry WHERE reply_check='n' AND id='a';
+
+
+UPDATE inquiry SET reply_check='n' WHERE inquiry_no=2;
 
 
 

@@ -89,10 +89,10 @@ public class ChatDaoImpl implements ChatDao {
 	}
 
 	@Override
-	public int loadUnread(String id, int room_no) {
+	public int loadUnreadChat(String id, int room_no) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("room_no", room_no);
 		map.put("id", id);
-		return sst.selectOne("chatns.loadUnread", map);
+		return sst.selectOne("chatns.loadUnreadChat", map);
 	}
 }
