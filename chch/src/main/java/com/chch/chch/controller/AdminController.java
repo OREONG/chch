@@ -3,6 +3,7 @@ package com.chch.chch.controller;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -14,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.chch.chch.model.Admin;
 import com.chch.chch.model.Book;
 import com.chch.chch.model.Inquiry;
 import com.chch.chch.model.Member;
+import com.chch.chch.service.AdminService;
 import com.chch.chch.service.BookService;
 import com.chch.chch.service.InquiryService;
 import com.chch.chch.service.MemberService;
@@ -34,6 +37,9 @@ public class AdminController {
 	@Autowired
 	private InquiryService ins;
 	
+	@Autowired
+	private AdminService as;
+	
 //	SB 관리자 메인 화면
 	@RequestMapping("adminMain")
 	public String adminMain() {
@@ -47,7 +53,9 @@ public class AdminController {
 		
 		final int ROW_PER_PAGE = 10;
 		final int PAGE_PER_BLOCK = 10;
-		if (pageNum == null || pageNum.equals("")) pageNum = "1";
+		if (pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		}
 		int currentPage = Integer.parseInt(pageNum);
 		int startRow = (currentPage - 1) * ROW_PER_PAGE + 1;
 		int endRow = startRow + ROW_PER_PAGE - 1;
@@ -298,6 +306,155 @@ public class AdminController {
 		
 		return "/admin/adminInquiryAfterList";
 	}
+	
+	@RequestMapping("CMS")
+	public String CMS() {
+		return "/admin/CMS";
+	}
+	
+	@RequestMapping("KPI")
+	public String KPI() {
+		return "/admin/KPI";
+	}
+	
+	@RequestMapping("KPISelect")
+	public String KPISelect(Model model, String pageNum, String book_kind, Date dateFrom, Date dateTo, int cycle) {
+		final int ROW_PER_PAGE = 10;
+		final int PAGE_PER_BLOCK = 10;
+		if (pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		}
+		
+		int currentPage = Integer.parseInt(pageNum);
+		int startRow = (currentPage - 1) * ROW_PER_PAGE + 1;
+		int endRow = startRow + ROW_PER_PAGE - 1;
+		Admin kpiInfo = new Admin();
+		kpiInfo.setBook_kind(book_kind);
+		kpiInfo.setDateFrom(dateFrom);
+		kpiInfo.setDateTo(dateTo);
+		kpiInfo.setCycle(cycle);
+		int total = as.getKPITotal(kpiInfo);
+		int totalPage = (int) Math.ceil((double)total/ROW_PER_PAGE);
+		int startPage = currentPage - (currentPage - 1) % PAGE_PER_BLOCK;
+		int endPage = startPage + PAGE_PER_BLOCK - 1;
+		
+		if (endPage > totalPage) endPage = totalPage;
+		
+		kpiInfo.setStartRow(startRow);
+		kpiInfo.setEndRow(endRow);
+		
+		List<Admin> KPI = as.KPI(kpiInfo);
+		
+		model.addAttribute("KPI", KPI);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("totalPage", totalPage);
+		model.addAttribute("PAGE_PER_BLOCK", PAGE_PER_BLOCK);
+		model.addAttribute("cycle", cycle);
+		
+		return "/admin/nolay/KPISelect";
+	}
+	
+	@RequestMapping("salesRanking")
+	public String salesRanking () {
+		return "/admin/salesRanking";
+	}
+	
+	@RequestMapping("salesRankingSelect")
+	public String salesRankingSelect (Model model, String pageNum, String book_kind, Date dateFrom, Date dateTo, int sort) {
+		
+		final int ROW_PER_PAGE = 10;
+		final int PAGE_PER_BLOCK = 10;
+		if (pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		}
+		
+		int currentPage = Integer.parseInt(pageNum);
+		int startRow = (currentPage - 1) * ROW_PER_PAGE + 1;
+		int endRow = startRow + ROW_PER_PAGE - 1;
+		Admin salesInfo = new Admin();
+		salesInfo.setBook_kind(book_kind);
+		salesInfo.setDateFrom(dateFrom);
+		salesInfo.setDateTo(dateTo);
+		int total = as.getRankingTotal(salesInfo);
+		
+		int totalPage = (int) Math.ceil((double)total/ROW_PER_PAGE);
+		int startPage = currentPage - (currentPage - 1) % PAGE_PER_BLOCK;
+		int endPage = startPage + PAGE_PER_BLOCK - 1;
+		
+		if (endPage > totalPage) endPage = totalPage;
+		
+		salesInfo.setStartRow(startRow);
+		salesInfo.setEndRow(endRow);
+		salesInfo.setSort(sort);
+		
+		System.out.println(salesInfo);
+		
+		List<Admin> salesRanking = as.salesRanking(salesInfo);
+		
+		System.out.println(salesRanking);
+		
+		model.addAttribute("salesRanking", salesRanking);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("totalPage", totalPage);
+		model.addAttribute("PAGE_PER_BLOCK", PAGE_PER_BLOCK);
+		
+		return "/admin/nolay/salesRankingSelect";
+	}
+	
+	@RequestMapping("salesHistory")
+	public String salesHistory () {
+		return "/admin/salesHistory";
+	}
+	
+	@RequestMapping("salesHistorySelect")
+	public String salesHistorySelect (Model model, String pageNum, int book_no, Date dateFrom, Date dateTo) {
+		 
+		final int ROW_PER_PAGE = 10;
+		final int PAGE_PER_BLOCK = 10;
+		if (pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		}
+		System.out.println(book_no);
+		
+		int currentPage = Integer.parseInt(pageNum);
+		int startRow = (currentPage - 1) * ROW_PER_PAGE + 1;
+		int endRow = startRow + ROW_PER_PAGE - 1;
+		Admin salesInfo = new Admin();
+		salesInfo.setBook_no(book_no);
+		salesInfo.setDateFrom(dateFrom);
+		salesInfo.setDateTo(dateTo);
+		int total = as.salesHistoryTotal(salesInfo);
+		
+		
+		int totalPage = (int) Math.ceil((double)total/ROW_PER_PAGE);
+		int startPage = currentPage - (currentPage - 1) % PAGE_PER_BLOCK;
+		int endPage = startPage + PAGE_PER_BLOCK - 1;
+		
+		if (endPage > totalPage) endPage = totalPage;
+		
+		salesInfo.setStartRow(startRow);
+		salesInfo.setEndRow(endRow);
+		
+		System.out.println(salesInfo);
+		
+		List<Admin> salesHistory = as.salesHistory(salesInfo);
+		
+		System.out.println(salesHistory);
+		
+		model.addAttribute("salesHistory", salesHistory);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("totalPage", totalPage);
+		model.addAttribute("PAGE_PER_BLOCK", PAGE_PER_BLOCK);
+		
+		return "/admin/nolay/salesHistorySelect";
+	}
+	
 	
 	
 }

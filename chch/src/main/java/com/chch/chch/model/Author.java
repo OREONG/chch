@@ -2,7 +2,6 @@ package com.chch.chch.model;
 
 import java.sql.Date;
 
-import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Data;
 

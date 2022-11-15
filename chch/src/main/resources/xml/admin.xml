@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="adminns">
+
+	<!-- SB 전체 라인 수 확인-->
+	<select id="getKPITotal" parameterType="admin" resultType="int">
+		<if test="cycle == 1">
+			<![CDATA[
+				SELECT COUNT(DISTINCT TO_CHAR(deal_date, 'YYYYMMDD')) AS getTotal
+				FROM deal d, book b
+				WHERE deal_date >= TO_CHAR(#{dateFrom}, 'YYYYMMDD')
+					AND deal_date < TO_CHAR(#{dateTo}+1, 'YYYYMMDD')
+					AND d.book_no=b.book_no
+					AND book_kind=#{book_kind}
+			]]> 
+		</if>
+		
+		<if test="cycle == 2">
+			<![CDATA[
+				SELECT COUNT(DISTINCT TRUNC(deal_date, 'IW')) AS getTotal
+				FROM deal d, book b
+				WHERE deal_date >= TO_CHAR(#{dateFrom}, 'YYYYMMDD')
+					AND deal_date < TO_CHAR(#{dateTo}+1, 'YYYYMMDD')
+					AND d.book_no=b.book_no
+					AND book_kind=#{book_kind}
+			]]> 
+		</if>
+		
+		<if test="cycle == 3">
+			<![CDATA[
+				SELECT COUNT(DISTINCT TO_CHAR(deal_date, 'YYYYMM')) AS getTotal
+				FROM deal d, book b
+				WHERE deal_date >= TO_CHAR(#{dateFrom}, 'YYYYMMDD')
+					AND deal_date < TO_CHAR(#{dateTo}+1, 'YYYYMMDD')
+					AND d.book_no=b.book_no
+					AND book_kind=#{book_kind}
+			]]>
+		</if>
+	</select>
+	
+	<!-- SB KPI 조회 (일/주/월별)-->
+	<select id="KPI" parameterType="admin" resultType="admin">
+		<if test="cycle == 1">
+			<![CDATA[
+				SELECT *
+				FROM (SELECT rowNum rn, a.* FROM
+					(SELECT TO_CHAR(deal_date, 'YYYYMMDD') AS s_date, SUM(deal_price * deal_count) AS total_sales
+					FROM deal d, book b
+					WHERE deal_date >= TO_CHAR(#{dateFrom}, 'YYYYMMDD')
+						AND deal_date < TO_CHAR(#{dateTo}+1, 'YYYYMMDD')
+						AND d.book_no=b.book_no
+						AND book_kind=#{book_kind}
+					GROUP BY TO_CHAR(deal_date, 'YYYYMMDD')
+					ORDER BY TO_CHAR(deal_date, 'YYYYMMDD'))a)
+				WHERE rn BETWEEN #{startRow} and #{endRow}
+			]]> 
+		</if>
+		
+		<if test="cycle == 2">
+			<![CDATA[
+				SELECT *
+				FROM (SELECT rowNum rn, a.*
+					FROM (SELECT TO_CHAR(TRUNC(deal_date, 'IW'), 'YYYYMMDD') AS s_date, SUM(deal_price * deal_count) AS total_sales
+							FROM deal d, book b
+							WHERE deal_date >= TO_CHAR(#{dateFrom}, 'YYYYMMDD')
+								AND deal_date < TO_CHAR(#{dateTo}+1, 'YYYYMMDD')
+								AND d.book_no=b.book_no
+								AND book_kind=#{book_kind}
+							GROUP BY TRUNC(deal_date, 'IW')
+							ORDER BY TRUNC(deal_date, 'IW'))a)
+				WHERE rn BETWEEN #{startRow} and #{endRow}
+			]]>
+		</if>
+		
+		<if test="cycle == 3">
+			<![CDATA[
+				SELECT *
+				FROM (SELECT rowNum rn, a.* FROM
+						(SELECT TO_CHAR(deal_date, 'YYYYMM') AS s_date, SUM(deal_price * deal_count) AS total_sales
+						FROM deal d, book b
+						WHERE deal_date >= TO_CHAR(#{dateFrom}, 'YYYYMMDD')
+							AND deal_date < TO_CHAR(#{dateTo}+1, 'YYYYMMDD')
+							AND d.book_no=b.book_no
+							AND book_kind=#{book_kind}
+						GROUP BY TO_CHAR(deal_date, 'YYYYMM')
+						ORDER BY TO_CHAR(deal_date, 'YYYYMM'))a)
+				WHERE rn BETWEEN #{startRow} and #{endRow}
+			]]>
+		</if>
+	</select>
+	
+	<select id="getRankingTotal" parameterType="admin" resultType="int">
+		<![CDATA[
+			SELECT COUNT(DISTINCT b.book_no) AS getTotal
+			FROM deal d, book b
+			WHERE deal_date >= TO_CHAR(#{dateFrom}, 'YYYYMMDD')
+				AND deal_date < TO_CHAR(#{dateTo}+1, 'YYYYMMDD')
+				AND d.book_no=b.book_no
+				AND book_kind=#{book_kind}
+		]]>
+	</select>
+	
+	
+	<select id="salesRanking" parameterType="admin" resultType="admin">
+		<if test="book_kind == '전체'">
+		
+		</if>
+		
+		<if test="sort == 1">
+		<![CDATA[
+			SELECT *
+			FROM (SELECT rowNum rn, a.*
+				FROM (SELECT b.book_no, book_title, book_kind, book_publisher, book_publish_date, sum(deal_count) deal_count, sum(deal_price) deal_price
+					FROM book b, deal d
+					WHERE b.book_no=d.book_no
+						AND used_no is null
+						AND deal_date >= TO_CHAR(#{dateFrom}, 'YYYYMMDD')
+						AND deal_date < TO_CHAR(#{dateTo}+1, 'YYYYMMDD')
+		]]>
+						<if test="book_kind != '전체'">
+							AND book_kind=#{book_kind}
+						</if> 
+		<![CDATA[
+					GROUP BY b.book_no, book_title, book_kind, book_publisher, book_publish_date
+					ORDER BY deal_count DESC)a)
+			WHERE rn BETWEEN #{startRow} and #{endRow}
+		]]>
+		</if>
+		<if test="sort == 2">
+			<![CDATA[
+				SELECT *
+				FROM (SELECT rowNum rn, a.*
+					FROM (SELECT b.book_no, book_title, book_kind, book_publisher, book_publish_date, sum(deal_count) deal_count, sum(deal_price) deal_price
+						FROM book b, deal d
+						WHERE b.book_no=d.book_no
+							AND used_no is null
+							AND deal_date >= TO_CHAR(#{dateFrom}, 'YYYYMMDD')
+							AND deal_date < TO_CHAR(#{dateTo}+1, 'YYYYMMDD')
+			]]>
+						<if test="book_kind != '전체'">
+							AND book_kind=#{book_kind}
+						</if> 
+			<![CDATA[
+						GROUP BY b.book_no, book_title, book_kind, book_publisher, book_publish_date
+						ORDER BY deal_price DESC)a)
+				WHERE rn BETWEEN #{startRow} and #{endRow}
+			]]>
+		</if>
+	</select>
+	
+	<select id="salesHistoryTotal" parameterType="admin" resultType="int">
+		<![CDATA[
+			SELECT COUNT(deal_no) as salesHistoryTotal
+			FROM book b, deal d
+			WHERE b.book_no=d.book_no
+				AND used_no is null
+				AND b.book_no=#{book_no}
+				AND deal_date >= TO_CHAR(#{dateFrom}, 'YYYYMMDD')
+				AND deal_date < TO_CHAR(#{dateTo}+1, 'YYYYMMDD')
+		]]>
+	</select>
+	
+	
+	<select id="salesHistory" parameterType="admin" resultType="admin">
+		<![CDATA[
+			SELECT *
+			FROM (SELECT rowNum rn, a.* 
+					FROM (SELECT purchase_id, b.book_no, book_title, deal_no, deal_date, deal_price, deal_count, book_kind
+						FROM book b, deal d
+						WHERE b.book_no=d.book_no
+							AND used_no is null
+							AND b.book_no=#{book_no}
+						ORDER BY deal_date DESC)a)
+			WHERE rn BETWEEN #{startRow} AND #{endRow}
+		]]>
+	</select>
+	
+	
+	
+	
+	
+	
+</mapper>

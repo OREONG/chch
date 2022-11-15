@@ -343,3 +343,206 @@ SELECT c.* FROM chat c, room r WHERE c.room_no = r.room_no AND id='a' AND r.room
 
 SELECT COUNT(*) FROM chat c, room r WHERE c.room_no = r.room_no AND id='test1' AND sender != 'test1' AND r.room_no=5 AND c.send_time > (SELECT check_time FROM room WHERE id='test1' AND room_no=5);
 
+SELECT * FROM chat;
+
+SELECT *
+	 		FROM chat c, room r
+	 		WHERE c.room_no = r.room_no AND id='b' AND sender!='b' AND r.room_no=4
+	 			AND c.send_time > (SELECT check_time FROM room WHERE id='b' AND room_no=4);
+
+SELECT COUNT(*)
+	 		FROM chat c, room r
+	 		WHERE c.room_no = r.room_no AND id='a' AND sender!='a' AND r.room_no=#{room_no}
+	 			AND c.send_time > (SELECT check_time FROM room WHERE id=#{id} AND room_no=#{room_no});
+
+
+SELECT * FROM deal;
+
+SELECT * FROM book;
+
+SELECT * FROM delivery;
+
+SELECT * FROM used;
+
+INSERT INTO used VALUES (1, 1, '수면 아래 팝니다!!', '싸게 팝니다 사가세요~~~!!', 'newBook1.jpg', 7000, 'n', 'n', sysdate, 'b');
+
+INSERT INTO delivery VALUES (1, 'd1', 'adr1', 'subadr1', '01011112222', 'rec1');
+INSERT INTO delivery VALUES (2, 'd1', 'adr2', 'subadr2', '01011113333', 'rec1');
+
+INSERT INTO deal VALUES (1, 1, 1, 'a', '', '', 1, TO_DATE('2022-10-13', 'YYYY--MM-DD'), 13500, 1, 'n', 'n');
+INSERT INTO deal VALUES (2, 2, 1, 'c', 1, 'b', '', TO_DATE('2022-11-01', 'YYYY--MM-DD'), 7000, 1, 'n', 'n');
+INSERT INTO deal VALUES (3, 3, 13, 'a', '', '', 1, TO_DATE('2022-11-03', 'YYYY--MM-DD'), 18000, 1, 'n', 'n');
+INSERT INTO deal VALUES (4, 4, 1, 'b', '', '', 2, TO_DATE('2022-11-09', 'YYYY--MM-DD'), 13500, 2, 'n', 'n');
+INSERT INTO deal VALUES (5, 4, 2, 'b', '', '', 2, TO_DATE('2022-11-09', 'YYYY--MM-DD'), 16000, 1, 'n', 'n');
+INSERT INTO deal VALUES (6, 5, 2, 'a', '', '', 1, TO_DATE('2022-11-10', 'YYYY--MM-DD'), 16000, 1, 'n', 'n');
+
+
+DELETE FROM deal;
+DELETE FROM delivery;
+
+
+
+
+-- 일별 전체 행 수 확인 (mybatis)
+SELECT COUNT(DISTINCT TO_CHAR(deal_date, 'YYYYMMDD')) AS getTotal
+FROM deal d, book b
+WHERE deal_date >= TO_CHAR(#{dateFrom}, 'YYYYMMDD')
+	AND deal_date < TO_CHAR(#{dateTo}+1, 'YYYYMMDD')
+	AND d.book_no=b.book_no
+	AND book_kind=#{book_kind}
+
+-- 주별 전체 행 수 확인 (mybatis)
+SELECT COUNT(DISTINCT TRUNC(deal_date, 'IW')) AS getTotal
+FROM deal d, book b
+WHERE deal_date >= TO_CHAR(#{dateFrom}, 'YYYYMMDD')
+	AND deal_date < TO_CHAR(#{dateTo}+1, 'YYYYMMDD')
+	AND d.book_no=b.book_no
+	AND book_kind=#{book_kind}
+
+-- 월별 전체 행 수 확인 (mybatis)
+SELECT COUNT(DISTINCT TO_CHAR(deal_date, 'YYYYMM')) AS getTotal
+FROM deal d, book b
+WHERE deal_date >= TO_CHAR(#{dateFrom}, 'YYYYMMDD')
+	AND deal_date < TO_CHAR(#{dateTo}+1, 'YYYYMMDD')
+	AND d.book_no=b.book_no
+	AND book_kind=#{book_kind}
+
+-- 일별 KPI 조회 (mybatis)
+SELECT *
+FROM (SELECT rowNum rn, a.*
+	FROM (SELECT TO_CHAR(deal_date, 'YYYYMMDD') AS s_date, SUM(deal_price * deal_count) AS total_sales
+		FROM deal d, book b
+		WHERE deal_date >= TO_CHAR(#{dateFrom}, 'YYYYMMDD')
+			AND deal_date < TO_CHAR(#{dateTo}+1, 'YYYYMMDD')
+			AND d.book_no=b.book_no
+			AND book_kind=#{book_kind}
+		GROUP BY TO_CHAR(deal_date, 'YYYYMMDD')
+		ORDER BY TO_CHAR(deal_date, 'YYYYMMDD'))a)
+WHERE rn BETWEEN #{startRow} and #{endRow}
+
+-- 일별 KPI 조회 (mybatis)
+SELECT *
+FROM (SELECT rowNum rn, a.*
+	FROM (SELECT TO_CHAR(TRUNC(deal_date, 'IW'), 'YYYYMMDD') AS s_date, SUM(deal_price * deal_count) AS total_sales
+			FROM deal d, book b
+			WHERE deal_date >= TO_CHAR(#{dateFrom}, 'YYYYMMDD')
+				AND deal_date < TO_CHAR(#{dateTo}+1, 'YYYYMMDD')
+				AND d.book_no=b.book_no
+				AND book_kind=#{book_kind}
+			GROUP BY TRUNC(deal_date, 'IW')
+			ORDER BY TRUNC(deal_date, 'IW'))a)
+WHERE rn BETWEEN #{startRow} and #{endRow}
+
+-- 일별 KPI 조회 (mybatis)
+SELECT *
+FROM (SELECT rowNum rn, a.* FROM
+		(SELECT TO_CHAR(deal_date, 'YYYYMM') AS s_date, SUM(deal_price * deal_count) AS total_sales
+		FROM deal d, book b
+		WHERE deal_date >= TO_CHAR(#{dateFrom}, 'YYYYMMDD')
+			AND deal_date < TO_CHAR(#{dateTo}+1, 'YYYYMMDD')
+			AND d.book_no=b.book_no
+			AND book_kind=#{book_kind}
+		GROUP BY TO_CHAR(deal_date, 'YYYYMM')
+		ORDER BY TO_CHAR(deal_date, 'YYYYMM'))a)
+WHERE rn BETWEEN #{startRow} and #{endRow}
+
+
+-- 판매순위 전체 행 수 확인
+SELECT COUNT(DISTINCT b.book_no) AS getTotal
+FROM deal d, book b
+WHERE deal_date >= '20221001'
+	AND deal_date < '20221114'
+	AND d.book_no=b.book_no
+	AND book_kind='문학';
+
+
+-- 판매순위 전체 행 수 확인 (mybats)
+SELECT COUNT(DISTINCT b.book_no) AS getTotal
+FROM deal d, book b
+WHERE deal_date >= TO_CHAR(#{dateFrom}, 'YYYYMMDD')
+	AND deal_date < TO_CHAR(#{dateTo}+1, 'YYYYMMDD')
+	AND d.book_no=b.book_no
+	AND book_kind=#{book_kind}
+
+
+-- 판매 순위
+SELECT *
+FROM (SELECT rowNum rn, a.*
+	FROM (SELECT b.book_no, book_title, book_kind, book_author, book_publisher, book_publish_date, sum(deal_count) deal_count, sum(deal_price) deal_price
+		FROM book b, deal d
+		WHERE b.book_no=d.book_no
+			AND used_no is null
+			AND deal_date >= '20221001'
+			AND deal_date < '20221114'
+			AND book_kind='문학'
+		GROUP BY b.book_no, book_title, book_kind, book_author, book_publisher, book_publish_date
+		ORDER BY deal_count DESC)a)
+WHERE rn BETWEEN 1 and 10;
+
+-- 판매 순위 (mybats)
+SELECT *
+FROM (SELECT rowNum rn, a.*
+	FROM (SELECT b.book_no, book_title, book_kind, book_author, book_publisher, book_publish_date, sum(deal_count) deal_count, sum(deal_price) deal_price
+		FROM book b, deal d
+		WHERE b.book_no=d.book_no
+			AND used_no is null
+			AND deal_date >= TO_CHAR(#{dateFrom}, 'YYYYMMDD')
+			AND deal_date < TO_CHAR(#{dateTo}+1, 'YYYYMMDD')
+			AND book_kind=#{book_kind}
+		GROUP BY b.book_no, book_title, book_kind, book_author, book_publisher, book_publish_date
+		ORDER BY deal_count DESC)a)
+WHERE rn BETWEEN #{startRow} AND #{endRow}
+
+
+-- 작품별 구매내역 행 수 확인
+
+SELECT COUNT(deal_no) as salesHistoryTotal
+FROM book b, deal d
+WHERE b.book_no=d.book_no
+	AND used_no is null
+	AND b.book_no=1
+	AND deal_date >= '20221001'
+	AND deal_date < '20221114';
+
+-- 작품별 구매내역 행 수 확인 (mybatis)
+
+SELECT COUNT(deal_no) as salesHistoryTotal
+FROM book b, deal d
+WHERE b.book_no=d.book_no
+	AND used_no is null
+	AND b.book_no=#{book_no}
+	AND deal_date >= TO_CHAR(#{dateFrom}, 'YYYYMMDD')
+	AND deal_date < TO_CHAR(#{dateTo}+1, 'YYYYMMDD')
+
+-- 작품별 구매내역
+SELECT *
+FROM (SELECT rowNum rn, a.* 
+		FROM (SELECT purchase_id, b.book_no, book_title, deal_no, deal_date, deal_price, deal_count, book_kind
+			FROM book b, deal d
+			WHERE b.book_no=d.book_no
+				AND used_no is null
+				AND b.book_no=1
+			ORDER BY deal_date DESC)a)
+WHERE rn BETWEEN 1 AND 10;
+
+
+-- 작품별 구매내역 (mybatis)
+SELECT *
+FROM (SELECT rowNum rn, a.* 
+		FROM (SELECT purchase_id, b.book_no, book_title, deal_no, deal_date, deal_price, deal_count, book_kind
+			FROM book b, deal d
+			WHERE b.book_no=d.book_no
+				AND used_no is null
+				AND b.book_no=#{book_no}
+			ORDER BY deal_date DESC)a)
+WHERE rn BETWEEN #{startRow} AND #{endRow}
+
+
+
+SELECT COUNT(*)
+FROM chat c, room r
+WHERE c.room_no = r.room_no AND id='a' AND sender!='a' AND r.room_no=6
+	AND c.send_time > (SELECT check_time FROM room WHERE id='a' AND room_no=6);
+
+
+

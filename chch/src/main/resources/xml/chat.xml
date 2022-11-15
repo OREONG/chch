@@ -55,7 +55,7 @@
 	 
 	 <!-- SB 대화방 생성 -->
 	<insert id="insertRoom" parameterType="chat">
-	 	INSERT INTO room VALUES(#{room_no}, #{id}, #{room_name}, sysdate, sysdate, 'n')
+	 	INSERT INTO room VALUES(#{room_no}, #{id}, #{room_name}, sysdate, sysdate, 'n', 0)
 	 </insert>
 	 
 	 <!-- SB 로그인한 대상자중에 지정된 room_no에 참석중인 인원 -->

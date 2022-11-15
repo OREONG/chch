@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.chch.chch.model.Author;
 import com.chch.chch.model.Author_work;
-import com.chch.chch.model.Like_table;
 
 public interface AuthorService {
 

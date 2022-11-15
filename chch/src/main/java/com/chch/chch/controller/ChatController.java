@@ -51,7 +51,6 @@ public class ChatController {
 			selectMyRoom.get(i).setRoom_name(room_name);
 			selectMyRoom.get(i).setChat_content(lastMessageText);
 			selectMyRoom.get(i).setSend_time(lastMessage.getSend_time());
-			System.out.println(selectMyRoom.get(i).getSend_time());
 			
 			Date date = new Date();
 			Calendar calToday = Calendar.getInstance();
@@ -60,6 +59,9 @@ public class ChatController {
 			calSendDay.setTime(lastMessage.getSend_time());
 			int diffDays = calToday.get(Calendar.DAY_OF_YEAR)-calSendDay.get(Calendar.DAY_OF_YEAR);
 			selectMyRoom.get(i).setDiffDays(diffDays);
+			
+			selectMyRoom.get(i).setUnread(cs.loadUnread(id, room_no));
+			
 		}
 		
 		model.addAttribute("selectMyRoom", selectMyRoom);
@@ -121,7 +123,6 @@ public class ChatController {
 	@RequestMapping(value = "checkRoom", produces = "text/html;charset=utf-8")
 	public String checkRoom(@RequestParam("id") String id, @RequestParam("room_no") String room_no,
 			HttpSession session, Chat chat, Model model) {
-		System.out.println("와우네");
 		int room_no1 = Integer.parseInt(room_no); 
 		cs.checkRoom(room_no1, id);
 		

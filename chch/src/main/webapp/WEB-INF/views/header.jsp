@@ -12,7 +12,7 @@
 <style type="text/css">@import url("/chch/resources/css/header.css");</style>
 
 <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
-<c:set var="ipAdd" value="//172.30.1.10:8080"></c:set>
+<c:set var="ipAdd" value="//172.30.1.39:8080"></c:set>
 <c:set var="ip" value="http:${ipAdd}/chch"></c:set>
 <link rel="stylesheet" type="text/css"href="${path }/resources/bootstrap/css/bootstrap.min.css">
 <script type="text/javascript" src="${path}/resources/bootstrap/js/jquery.js"></script>
@@ -76,11 +76,13 @@
 		
 	function appendMessage(msg) {
 		var split1 = msg.split(',');
+		var cmd = split1[0];
+		var room_no = split1[2];
 		
 		console.log("header55 : "+msg);
 		console.log("header56 : "+split1);
 		
-		if (msg != null && msg.trim() != '' && split1[0] == 'chat') {
+		if (msg != null && msg.trim() != '' && cmd == 'chat') {
 			var check1;
 			var check2;
 			if (document.location.href.includes('?')) {
@@ -98,7 +100,12 @@
 				check22=0;;
 			}
 			
-			if (check11 == 'chat.do' && check22 == 'room_no=${room_no}') {	//'chat.do'에 해당하는 주소이고 room_no가 동일할 때 메세지를 append
+			console.log("check11 : "+check11);
+			console.log('check22 : '+check22);
+			console.log('room_no : ${room_no}');
+			console.log('room_no=${room_no}');
+			
+			if (check11=='chat.do' && check22=='room_no='+room_no) {	//'chat.do'에 해당하는 주소이고 room_no가 동일할 때 메세지를 append
 				console.log("header60 chat으로 시작하는 메세지 : "+msg);
 				
 				var sender = split1[1];
@@ -130,14 +137,17 @@
 								+ "</div>");
 					}
 				}
-			} else {						// 해당 채팅방 안에 있지 않을 때는 notice에 알림
+			} else if (check11 == 'chat.do' && check22 != 'room_no='+room_no) {
+				
+				console.log("chat.do는 맞지만 방번호가 다를 때");
 				
 				var sender = split1[1];
-				// var room_no = split1[2];
+				var room_no = split1[2];
 				var msg = split1[3]
 				// var send_time = split1[4];
 			    var loadUnread = split1[5];
-				
+
+			    
 				var view =sender+"님의 메세지 : "+msg;
 			    				
 				$("#noticePopUp").children().remove();
@@ -146,11 +156,34 @@
 				$("#unreadNotice").children().remove();
 				$("#unreadNotice").val(loadUnread);
 				
+			} else {						// 해당 채팅방 안에 있지 않을 때는 notice에 알림
+				
+				console.log("이게 나오면 안됨");
+				
+				var sender = split1[1];
+				var room_no = split1[2];
+				var msg = split1[3]
+				// var send_time = split1[4];
+			    var loadUnread = split1[5];
+
+			    var roomUnread = split1[6];
+			    
+				var view =sender+"님의 메세지 : "+msg;
+			    				
+				$("#noticePopUp").children().remove();
+			    $("#noticePopUp").val(view);
+				
+				$("#unreadNotice").children().remove();
+				$("#unreadNotice").val(loadUnread);
+				
+				document.querySelector('#room_no'+room_no).innerText=roomUnread;
+				document.querySelector('#msgRoom_no'+room_no).innerText=msg;
+				
+				var content = document.querySelector('#room'+room_no);
+				var parent = content.parentNode;
+				parent.insertBefore(content, parent.firstChild);
+				
 			}
-			
-					
-			
-			
 			
 		} else if (msg != null && msg.trim() != '' && split1[0] == 'notice'){
 			
