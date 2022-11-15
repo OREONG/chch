@@ -319,7 +319,7 @@ textarea{
     width: 80%;
     height: 13px;
     margin: 7px auto 3px 4px;
-    font-size: 13px;
+    font-size: 12px;
 }
 .title:focus{
 	outline: none;
