@@ -1,3 +1,4 @@
+
 --member table create
 create table member(
    id varchar2(20)   primary key,      --아이디
@@ -12,6 +13,8 @@ create table member(
    del char(1) default 'n'            --탈퇴여부
 );
 select * from member;
+
+select count(*) from report where del='n' and expose='y' and book_no=11;
 
 insert into member values('1', 'fdehgbfd', '1', 'rgef', 'srftgdhb', sysdate, '1', '01034324656', sysdate, 'n');
 drop table member cascade constraint;
@@ -33,6 +36,7 @@ CREATE TABLE used (
 	CONSTRAINT used_id_fk FOREIGN KEY (id) REFERENCES member(id)
 );
 SELECT * FROM used order by used_no;
+
 
 delete from used where used_no < 8;
 
@@ -87,6 +91,11 @@ CREATE TABLE book (
 select * from book;
 
 drop table book cascade constraint;
+
+
+select * from (select a.*, rowNum rn from (select * from report 
+		where expose='y' and del='n' and book_no=11 order by report_date desc)a)
+		where rn between 1 and 5
 
 insert into book values((SELECT NVL(MAX(book_no), 0) + 1 FROM book), '수면 아래', 'newBook1.jpg', ' ', '이주란', '문학동네', 10, 13500, '2022-08-12', sysdate,
 to_clob('<h3>한국문학의 독보적 감수성<br>

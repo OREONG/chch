@@ -7,8 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">body{margin-top: 100px;}</style>
 <script type="text/javascript" src="/resources/bootstrap/js/jquery.js"></script>
+<style type="text/css">@import url("/chch/resources/css/usedAddForm.css");</style>
 <script type="text/javascript">
 	function acyncMovePage() {
 
@@ -44,9 +44,10 @@
 				<div id="used-Img-used-wrap">
 					<div id="used-Img-box">
 						<input type="file" name="file" id="file"
-							class="real-upload" accept="image/*" required>
+							class="real-upload" accept="image/*" style="display: none;" required>
 						<div class="used-sub-box" id="used-Infoimage-box"
 							style="cursor: pointer;">
+							<p align="center">클릭하여 사진을 추가해 주세요</p>
 							<i class="bi bi-file-earmark-image"></i>
 						</div>
 					</div>

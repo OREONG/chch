@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">@import url("/chch/resources/css/usedDetail.css");</style>
 </head> 
 <body>
 
@@ -22,6 +23,8 @@
 				<!-- 텍스트 -->
 				<div class="detailtext">
 					<div class="info-txt-div"><div class="info-txt1">
+						<c:if test="${used.used_status=='n' }">[판매중]</c:if>
+						<c:if test="${used.used_status=='r' }">[예약중]</c:if>
 						<c:if test="${used.used_status=='y' }">[판매완료]</c:if>
 						${used.used_subject }</div></div>
 					<div class="info-txt-div"><div class="info-txt">책 제목</div>			
@@ -35,9 +38,38 @@
 						<c:if test="${used.used_status=='n' && used.id!=id }">
 								<a href=""><button class="button1" id="button1-2">채팅하기</button></a>
 								<a href=""><button class="button1" id="button1-2">구매확정</button></a>
+								<a href=""><button class="button1" id="button1-1">❤</button></a>
 						</c:if>
-						<c:if test="${used.used_status=='n'}">
-							<a href=""><button class="button1" id="button1-1">❤</button></a>
+						<c:if test="${used.id==id }">
+							<form action="changeStatus.do">
+								<c:if test="${used.used_status=='n' }">
+									<select name="status">
+										<option value="n" selected>판매중</option>
+										<option value="r">예약중</option>
+										<option value="y">판매완료</option>
+									</select>
+									<input type="submit" value="상태 변경">
+									<input type="hidden" name="used_no" value="${used.used_no }">
+								</c:if>
+								<c:if test="${used.used_status=='r' }">
+									<select name="status">
+										<option value="n">판매중</option>
+										<option value="r" selected>예약중</option>
+										<option value="y">판매완료</option>
+									</select>
+									<input type="submit" value="상태 변경">
+									<input type="hidden" name="used_no" value="${used.used_no }">
+								</c:if>
+								<c:if test="${used.used_status=='y' }">
+									<select name="status">
+										<option value="n">판매중</option>
+										<option value="r">예약중</option>
+										<option value="y" selected>판매완료</option>
+									</select>
+									<input type="submit" value="상태 변경">
+									<input type="hidden" name="used_no" value="${used.used_no }">
+								</c:if>
+							</form>
 						</c:if>
 					 </div>
 					<p>

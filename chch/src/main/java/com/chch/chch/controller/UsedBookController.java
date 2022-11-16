@@ -3,7 +3,9 @@ package com.chch.chch.controller;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -23,7 +25,7 @@ public class UsedBookController {
 	private UsedBookService us;
 	
 	@RequestMapping("usedList")
-	public String usedList(Model model, Used used, String pageNum) {
+	public String usedList(Model model, Used used, String pageNum, String status) {
 		int rowPerPage = 12; // 페이지 당 게시글 갯수
 		if (pageNum == null || pageNum.equals("")) pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
@@ -33,8 +35,11 @@ public class UsedBookController {
 		int num = total - startRow + 1;
 		used.setStartRow(startRow);
 		used.setEndRow(endRow);
-		List<Used> list = us.usedBookList(used);
 		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
+		
+		used.setStatus(status);
+		List<Used> list = us.usedBookList(used);
+		
 		model.addAttribute("list", list);
 		model.addAttribute("used", used);
 		model.addAttribute("pb", pb);
@@ -83,6 +88,21 @@ public class UsedBookController {
 		
 		model.addAttribute("bookList", bookList);
 		model.addAttribute("book", book);
-		return "/usedBook/usedSearch";
+		return "/usedBook/nolay/usedSearch";
 	}
+	
+	@RequestMapping("changeStatus")
+	public String changeStatus(Model model, String status, int used_no) {
+		int result = 0;
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("status", status);
+		map.put("used_no", used_no);
+		result = us.updateStatus(map);
+		
+		model.addAttribute("result", result);
+		model.addAttribute("used_no", used_no);
+		return "/usedBook/changeStatus";
+	}
+
 }

@@ -41,4 +41,14 @@ public class UsedBookDaoImpl implements UsedBookDao {
 	public int insertUsed(Used used) {
 		return sst.insert("usedns.insertUsed", used);
 	}
+
+	@Override
+	public List<Used> searchList(String keyword) {
+		return sst.selectList("usedns.searchList", keyword);
+	}
+
+	@Override
+	public int updateStatus(Map<String, Object> map) {
+		return sst.update("usedns.updateStatus", map);
+	}
 }

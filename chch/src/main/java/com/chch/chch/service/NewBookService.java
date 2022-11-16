@@ -3,6 +3,7 @@ package com.chch.chch.service;
 import java.util.List;
 
 import com.chch.chch.model.Book;
+import com.chch.chch.model.Report;
 import com.chch.chch.model.Review;
 
 public interface NewBookService {
@@ -24,6 +25,12 @@ public interface NewBookService {
 	double star_avg(Review review);
 
 	int selectReview_cnt(int book_no);
+
+	List<Book> searchList(Book book);
+
+	List<Report> reportList(Report report);
+
+	int getTotal1(Report report);
 
 
 }

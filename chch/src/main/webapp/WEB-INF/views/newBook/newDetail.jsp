@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">@import url("/chch/resources/css/newDetail.css");</style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
@@ -126,6 +127,46 @@ function reviewDelete(review_no) {
 }
 
 </script>
+<script type="text/javascript">
+$(document).ready(function(){
+	 
+    $('.reportbox').each(function(){
+        //var content = $(this).children('.content');
+        var content = $(this).find('.detail_txt');
+
+        var content_txt = content.text();
+        var content_html = content.html();
+        var content_txt_short = content_txt.substring(0,100)+"...";
+        var btn_more = $('<a href="javascript:void(0)" class="more">더보기</a>');
+
+        
+        $(this).append(btn_more);
+        
+        if(content_txt.length >= 100){
+            content.html(content_txt_short)
+            
+        }else{
+            btn_more.hide()
+        }
+        
+        btn_more.click(toggle_content);
+        function toggle_content(){
+            if($(this).hasClass('short')){
+                // 접기 상태
+                $(this).html('더보기');
+                content.html(content_txt_short)
+                $(this).removeClass('short');
+            }else{
+                // 더보기 상태
+                $(this).html('접기');
+                content.html(content_html);
+                $(this).addClass('short');
+
+            }
+        }
+    });
+});
+</script>
 
 <style type="text/css">
 #myform fieldset {
@@ -230,8 +271,16 @@ function reviewDelete(review_no) {
 
 				<!-- 리뷰 별점 -->
 				<div class="scroll-moveBox flex flex-br-c">
-					<a href="#div1" id="scroll_move"> ★★★★★${star_avg }
-						리뷰(${review_cnt })</a>
+					<a href="#div1" id="scroll_move">
+						<c:if test="${star_avg <= 0.4}">☆☆☆☆☆</c:if>
+						<c:if test="${star_avg >= 0.5 && star_avg < 1.4}">★☆☆☆☆</c:if>
+						<c:if test="${star_avg >= 1.5 && star_avg < 2.4}">★★☆☆☆</c:if>
+						<c:if test="${star_avg >= 2.5 && star_avg < 3.4}">★★★☆☆</c:if>
+						<c:if test="${star_avg >= 3.5 && star_avg < 4.4}">★★★★☆</c:if>
+						<c:if test="${star_avg >= 4.5}">★★★★★</c:if>
+						${star_avg}
+						리뷰(${review_cnt })
+					</a>
 				</div>
 
 
@@ -284,11 +333,17 @@ function reviewDelete(review_no) {
 		</div>
 		<!-- 평균 별점 -->
 		<div class="star_avg">
-			★★★★★ &nbsp;<span class="text">${star_avg }</span>
+			<c:if test="${star_avg <= 0.4}">☆☆☆☆☆</c:if>
+			<c:if test="${star_avg >= 0.5 && star_avg < 1.4}">★☆☆☆☆</c:if>
+			<c:if test="${star_avg >= 1.5 && star_avg < 2.4}">★★☆☆☆</c:if>
+			<c:if test="${star_avg >= 2.5 && star_avg < 3.4}">★★★☆☆</c:if>
+			<c:if test="${star_avg >= 3.5 && star_avg < 4.4}">★★★★☆</c:if>
+			<c:if test="${star_avg >= 4.5}">★★★★★</c:if>
+			<span class="text">${star_avg }</span>
 		</div>
 		<div id="line"></div>
 		<ul class="review_list_box">
-			<c:forEach var="review" items="${list }">
+			<c:forEach var="review" items="${reviewList }">
 				<li>
 					<div class="review-form-div">
 						<form action="reviewUpdate.do" method="post">
@@ -298,7 +353,14 @@ function reviewDelete(review_no) {
 
 							<div class="reviewbox">
 								<div class="star">
-									<p>★★★★★${review.star_rate }</p>
+									<p> <c:if test="${review.star_rate == 0}">☆☆☆☆☆</c:if>
+										<c:if test="${review.star_rate == 1}">★☆☆☆☆</c:if>
+										<c:if test="${review.star_rate == 2}">★★☆☆☆</c:if>
+										<c:if test="${review.star_rate == 3}">★★★☆☆</c:if>
+										<c:if test="${review.star_rate == 4}">★★★★☆</c:if>
+										<c:if test="${review.star_rate == 5}">★★★★★</c:if>
+										${review.star_rate}
+									</p>
 								</div>
 
 								<div>
@@ -347,41 +409,53 @@ function reviewDelete(review_no) {
 		<!-- 리뷰 리스트 : end -->
 
 		<!-- 페이징 시작 -->
-		<div align="center">
-			<ul class="pagination">
-				<!-- 시작페이지가 pagePerBlock(10)보다 크면 앞에 보여줄 것이 있다 -->
-				<c:if test="${pb.startPage > pb.pagePerBlock}">
-					<li><a href="newDetail.do?pageNum=1&book_no=${book.book_no}">
-							<span class="glyphicon glyphicon-fast-backward"></span>
-					</a></li>
-					<li><a
-						href="newDetail.do?pageNum=${pb.startPage-1 }&book_no=${book.book_no}">
-							<span class="glyphicon glyphicon-triangle-left"></span>
-					</a></li>
+		<div class="paging-div">
+ 				<c:if test="${empty reviewList }">
+				</c:if> 
+				<c:if test="${not empty reviewList }">
+					
+					<ul class="pagination-ul">
+						<c:if test="${pb.startPage > pb.pagePerBlock }">
+							<li class="pre-btn">
+								<a href="newDetail.do?pageNum=1&book_no=${book.book_no}">
+									<span class="glyphicon glyphicon-chevron-left"></span>
+								</a>
+							</li>
+							<li class="pre-btn">
+								<a href="newDetail.do?pageNum=${pb.startPage-1 }&book_no=${book.book_no}">
+									<span class="glyphicon glyphicon-chevron-left"></span>
+								</a>
+							</li>							
+						</c:if>
+						<c:forEach var="i" begin="${pb.startPage }" end="${pb.endPage }">
+							<c:if test="${pb.currentPage == i }">
+								<li class="active-btn">
+									<a href="newDetail.do?pageNum=${i }&book_no=${book.book_no}">${i }</a>
+								</li>
+							</c:if>
+							<c:if test="${pb.currentPage != i }">
+								<li class="non-active-btn">
+									<a href="newDetail.do?pageNum=${i }&book_no=${book.book_no}">${i }</a>
+								</li>
+							</c:if>
+						</c:forEach>
+						<c:if test="${pb.endPage < pb.totalPage }">
+							<li class="next-btn">
+								<a href="newDetail.do?pageNum=${pb.endPage+1 }&book_no=${book.book_no}">
+									<span class="glyphicon glyphicon-chevron-right"></span>
+								</a>
+							</li>
+							<li class="next-btn">
+								<a href="newDetail.do?pageNum=${pb.totalPage }&book_no=${book.book_no}">
+									<span class="glyphicon glyphicon-chevron-right"></span>
+								</a>
+							</li>
+						</c:if>
+					</ul>
+					
 				</c:if>
-				<c:forEach var="i" begin="${pb.startPage }" end="${pb.endPage }">
-					<c:if test="${pb.currentPage == i }">
-						<li class="active"><a
-							href="newDetail.do?pageNum=${i }&book_no=${book.book_no}">${i }</a></li>
-					</c:if>
-					<c:if test="${pb.currentPage != i }">
-						<li><a
-							href="newDetail.do?pageNum=${i }&book_no=${book.book_no}">${i }</a></li>
-					</c:if>
-				</c:forEach>
-				<!-- endPage보다 totalPage가 크면 보여줄 것이 뒤에 남아 있다 -->
-				<c:if test="${pb.endPage < pb.totalPage}">
-					<li><a
-						href="newDetail.do?pageNum=${pb.endPage+1 }&book_no=${book.book_no}">
-							<span class="glyphicon glyphicon-triangle-right"></span>
-					</a></li>
-					<li><a
-						href="newDetail.do?pageNum=${pb.totalPage }&book_no=${book.book_no}">
-							<span class="glyphicon glyphicon-fast-forward"></span>
-					</a></li>
-				</c:if>
-			</ul>
 		</div>
+		<!-- 페이징 끝 -->
 
 		<!-- 리뷰 등록 -->
 
@@ -421,13 +495,86 @@ function reviewDelete(review_no) {
 				<input type="submit" class="btn" id="review-input-btn" value="등록하기">
 			</div>
 		</form>
+		<!-- 리뷰 끝 -->
 
+		<!-- 감상문 리스트  -->
+		<div class="report-wrap">
+			<div id="div1">
+				<h3 class="sub_title pd_bottom">감상문</h3>
+			</div>
+			<div id="line"></div>
+			<ul class="report_list_box">
+				<c:if test="${empty reportList }">
+		등록된 감삼문이 없습니다
+				</c:if>
+				<c:if test="${not empty reportList }">
+					<c:forEach var="report" items="${reportList }">
+						<li>
+							<div class="reportbox">
+								<p class="title report">${report.report_title }</p>
+								<p class="detail_txt report">${report.report_content }</p>
+								<div class="profile">
+									<p class="nick_nm">${report.id }&nbsp;&nbsp;&nbsp;${report.report_date }</p>
+								</div>
+							</div>
+						</li>
+						<div id="line"></div>
+					</c:forEach>
+				</c:if>
+			</ul>
+			<div class="scroll_top">
+				<div class="arrow"></div>
+			</div>
 
-		<div class="scroll_top">
-			<div class="arrow"></div>
+		<!-- 페이징 시작 -->
+		<div class="paging-div">
+ 				<c:if test="${empty reportList }">
+				</c:if> 
+				<c:if test="${not empty reportList }">
+					
+					<ul class="pagination-ul">
+						<c:if test="${pb1.startPage1 > pb1.pagePerBlock1 }">
+							<li class="pre-btn">
+								<a href="newDetail.do?pageNum1=1&book_no=${book.book_no}">
+									<span class="glyphicon glyphicon-chevron-left"></span>
+								</a>
+							</li>
+							<li class="pre-btn">
+								<a href="newDetail.do?pageNum1=${pb1.startPage1-1 }&book_no=${book.book_no}">
+									<span class="glyphicon glyphicon-chevron-left"></span>
+								</a>
+							</li>							
+						</c:if>
+						<c:forEach var="i" begin="${pb1.startPage1 }" end="${pb1.endPage1 }">
+							<c:if test="${pb1.currentPage1 == i }">
+								<li class="active-btn">
+									<a href="newDetail.do?pageNum1=${i }&book_no=${book.book_no}">${i }</a>
+								</li>
+							</c:if>
+							<c:if test="${pb1.currentPage1 != i }">
+								<li class="non-active-btn">
+									<a href="newDetail.do?pageNum1=${i }&book_no=${book.book_no}">${i }</a>
+								</li>
+							</c:if>
+						</c:forEach>
+						<c:if test="${pb1.endPage1 < pb1.totalPage1 }">
+							<li class="next-btn">
+								<a href="newDetail.do?pageNum1=${pb1.endPage1+1 }&book_no=${book.book_no}">
+									<span class="glyphicon glyphicon-chevron-right"></span>
+								</a>
+							</li>
+							<li class="next-btn">
+								<a href="newDetail.do?pageNum1=${pb1.totalPage1 }&book_no=${book.book_no}">
+									<span class="glyphicon glyphicon-chevron-right"></span>
+								</a>
+							</li>
+						</c:if>
+					</ul>
+					
+				</c:if>
 		</div>
-
-	</div>
+		</div>
+		<!-- 페이징 끝 -->
 
 </body>
 </html>

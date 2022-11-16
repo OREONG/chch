@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.chch.chch.model.Book;
+import com.chch.chch.model.Report;
 import com.chch.chch.model.Review;
 
 @Repository
@@ -62,6 +63,21 @@ public class NewBookDaoImpl implements NewBookDao {
 	@Override
 	public int selectReview_cnt(int book_no) {
 		return sst.selectOne("reviewns.review_cnt", book_no);
+	}
+
+	@Override
+	public List<Book> searchList(Book book) {
+		return sst.selectList("bookns.searchList", book);
+	}
+
+	@Override
+	public List<Report> reportList(Report report) {
+		return sst.selectList("reportns.reportList", report);
+	}
+
+	@Override
+	public int getTotal1(Report report) {
+		return sst.selectOne("reportns.getTotal1", report);
 	}
 
 	

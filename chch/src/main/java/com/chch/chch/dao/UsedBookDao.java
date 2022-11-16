@@ -1,6 +1,7 @@
 package com.chch.chch.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.chch.chch.model.Book;
 import com.chch.chch.model.Used;
@@ -16,5 +17,9 @@ public interface UsedBookDao {
 	List<Book> bookSearch(String searchText);
 
 	int insertUsed(Used used);
+
+	List<Used> searchList(String keyword);
+
+	int updateStatus(Map<String, Object> map);
 
 }

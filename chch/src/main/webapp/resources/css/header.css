@@ -92,10 +92,20 @@ header {
 
 /* 검색 바 */
 #searchInput{
-    width: 560px;
+    width: 520px;
     height: 48px;
     border-radius: 2px;
     border: 3.5px solid #5055b1;
+}
+
+/* 검색 아이콘 */
+#search {
+	width: 40px;
+}
+
+#searchimg {
+	background-color: rgba(0,0,0,0);
+	border:none;
 }
 
 /* 알림 아이콘 */

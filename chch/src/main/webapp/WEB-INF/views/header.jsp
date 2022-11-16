@@ -20,6 +20,7 @@
 <script type="text/javascript" src="${path}/resources/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${path}/resources/bootstrap/js/sockjs.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 
 
 <script type="text/javascript">
@@ -263,37 +264,6 @@
 </script>
 
 
-<!-- <script type="text/javascript">
-	// 드롭다운 메뉴
-	const menu=document.querySelector(".bookMenu");
-const subBar=document.querySelector(".bookMenu>.submenu");
-
-let subToggle=true;
-
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-async function slide_menu(){
-    if(subToggle){
-        for(let i=0;i<120;i++){
-          subBar.style.height=`${i}px`;
-          await sleep(10);
-        }
-        subToggle=!subToggle;
-    }else{
-      for(let i=120;i>0;i--){
-          subBar.style.height=`${i}px`;
-          await sleep(10);
-        }
-        subToggle=!subToggle;
-    }
-}
-
-menu.addEventListener("click",slide_menu);
-</script> -->
-
-
 </head>
 <body>
 <header>
@@ -325,8 +295,17 @@ menu.addEventListener("click",slide_menu);
 									<img id="logoImg" alt="이미지가 없습니다" src="/chch/resources/images/chackcheckCheckLogo2-1.png">
 								</a>
 							</li>
+							
 							<!-- 검색 -->
-							<li><input id="searchInput" type="text" placeholder="검색 이걸로 쓰세욤~~"></li>
+							<li>
+							<form action="searchBook.do">
+							<p>
+							<input id="searchInput" name="keyword" type="text" placeholder="검색 이걸로 쓰세욤~~">
+							<button id="searchimg"><img id="search" src="/chch/resources/images/search.png"></button>
+							</p>
+							</form>
+							</li>
+							
 							<!-- 알림 종 -->
 							<li>
 								<a href="">

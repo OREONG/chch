@@ -123,6 +123,8 @@ public class MemberController {
 		else if (bpe.matches(member.getPassword(), member2.getPassword())) {
 			result = 1; //성공 -> 아이디와 비밀번호가 일치한다
 			session.setAttribute("id", member.getId());
+			System.out.println(member.getPassword());
+			System.out.println(member2.getPassword());
 		}
 		
 		System.out.println("로그인에서의 targetPage : "+targetPage);

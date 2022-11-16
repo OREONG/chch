@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.chch.chch.dao.NewBookDao;
 import com.chch.chch.model.Book;
+import com.chch.chch.model.Report;
 import com.chch.chch.model.Review;
 
 @Service
@@ -57,6 +58,21 @@ public class NewBookServiceImpl implements NewBookService {
 	@Override
 	public int selectReview_cnt(int book_no) {
 		return nd.selectReview_cnt(book_no);
+	}
+
+	@Override
+	public List<Book> searchList(Book book) {
+		return nd.searchList(book);
+	}
+
+	@Override
+	public List<Report> reportList(Report report) {
+		return nd.reportList(report);
+	}
+
+	@Override
+	public int getTotal1(Report report) {
+		return nd.getTotal1(report);
 	}
 
 

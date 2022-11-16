@@ -24,4 +24,6 @@ public class Used {
 	private int endRow;
 // upload용
 	private MultipartFile file;
+//	상태변경
+	private String status;
 }

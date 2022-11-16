@@ -95,4 +95,12 @@
 	<select id="bookSearch" parameterType="String" resultType="book">
 		select * from book where book_title like '%'||#{searchText}||'%' order by book_no
 	</select>
+	
+	<select id="searchList" parameterType="book" resultType="book">
+		select * from book where
+			book_title like '%' || #{keyword} || '%' or
+			book_author like '%' || #{keyword} || '%' or
+			book_publisher like '%' || #{keyword} || '%'
+		order by book_publish_date
+	</select>
 </mapper>

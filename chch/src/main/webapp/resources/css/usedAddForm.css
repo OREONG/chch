@@ -1,0 +1,482 @@
+@charset "UTF-8";
+
+.topColumnBook {
+	float: left;
+	font-size: 9pt;
+	word-break:break-all;
+	height: auto;
+	min-height : 30px;
+	padding-top: 13px;
+	margin: 2px;
+}
+
+.listColumnBook {
+	float: left;
+	font-size: 9pt;
+	word-break:break-all;
+	height: auto;
+	min-height : 40px;
+	padding-top: 12px;
+	margin: 2px;
+}
+
+.topRowBook {
+	height: auto;
+	min-height : 40px;
+	text-align: center;
+	padding: 7px;
+	border: 1px solid;
+}
+
+.listRowBook {
+	text-align: center;
+	padding: 7px;
+	border: 1px dotted #bcb6b2;
+    height: 44.5px;
+    font-family: AppleSDGothicNeo;
+    display: flex;
+    align-self: self-start;
+	width: 100%;
+}
+
+#used-write-box{
+    border: 1px solid #a3a3a3;
+    display: flex;
+    flex-direction: column;
+    margin: 40px auto 0 auto;
+    align-items: center;
+    width: 50%;
+    height: auto;
+}
+
+
+
+/* 메인 wrap */
+.used-main-wrap{
+	margin-top: 80px;
+}
+/* 메인 글씨 */
+.used-text-wrap{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+#used-main-text{
+    font-size: 25px;
+    color: #210e00;
+    font-family: AppleSDGothicNeo;
+}
+
+#used-sub-text{
+	font-size: 15px;
+    color: #919191;
+    font-family: AppleSDGothicNeo;
+	margin-top: 10px;
+}
+
+/* 클릭하면 기록하는 창 나오는 기록하기 버튼 */
+#used-btn{
+	text-align: center;
+    background: #2bc5c1;
+    height: 52px;
+    width: 18%;
+    font-size: 18px;
+    margin-top: 30px;
+    color: aliceblue;
+    border: none;
+    font-family: AppleSDGothicNe;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 6px;
+}
+#used-btn:hover{
+	background: black;
+}
+
+/* 독서록 글 쓰는 페이지; 숨김가능 */
+
+
+
+.used-update-wrap{
+	margin-top:100px;
+}
+
+#used-write-box{
+    border: 1px solid #a3a3a3;
+    display: flex;
+    flex-direction: column;
+    margin: 40px auto 0 auto;
+    align-items: center;
+    width: 50%;
+}
+
+hr{
+	    width: 93%;
+		color:black;
+}
+
+#book-input{
+margin-top: 25px;
+    align-self: start;
+    margin-left: 5%;
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #1c1c1c;
+    font-family: 'AppleSDGothicNeo';
+}    
+.used-sub-box{
+    /* border-radius: 3px; */
+    border: 1px dotted #bcb6b2;
+    height: 20px;
+    margin-bottom: 10px;
+    font-family: AppleSDGothicNeo;
+    display: flex;
+    align-self: self-start;
+}
+.input{
+    border: 1px dotted #bcb6b2;
+    height: 44.5px;
+    margin: 10px 0 0 0;
+    font-family: AppleSDGothicNeo;
+    display: flex;
+    align-self: self-start;
+	width: 100%;
+}
+
+.real-upload {
+	display: none;
+}
+
+#used-Infoimage-box {
+	cursor: pointer;
+ 	display: flex;
+	justify-content: center;
+	align-items: center;
+	color:gray;
+	font-size: 14px; 
+}
+#used-imgInput{
+	height:30px;
+	width:30px;
+}
+
+#used-class-box {
+	width: 39%;
+}
+
+/* 책 정보 wrap */
+#used-Img-used-wrap{
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+	width: 90%;
+
+    margin-bottom: 4px;
+    margin-top: 20px;
+    justify-content: space-between;
+}
+
+
+/* 책 정보 이미지 */
+
+#used-Img-box{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+height: 174px;
+    width: 120px;
+
+}
+
+#used-Infoimage-box{
+	height: 174px;
+    width: 120px;
+    
+}
+#img{
+	height: 174px;
+    width: 120px;
+}
+/* 책 정보 텍스트(제목, 저자, 분류) */
+#used-Infotext-box{
+    width: 100%;
+    margin-left: 10px;
+    height: 174px
+}
+
+#used-used-box{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	width: 90%;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+#used-title{
+    border: 1px dotted #bcb6b2;
+        height: 44.5px;
+    margin-bottom: 10px;
+    font-family: AppleSDGothicNeo;
+    display: flex;
+    align-self: self-start;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+#used-content{
+    border: 1px dotted #bcb6b2;
+    height: 160px;
+    margin-bottom: 10px;
+    font-family: AppleSDGothicNeo;
+    display: flex;
+    align-self: self-start;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#input-btn{
+	text-align: center;
+    background: #6c71ce;
+    height: 52px;
+    width:30%;
+    font-size: 16px;
+    color: aliceblue;
+    border: none;
+    font-family: AppleSDGothicNe;
+    font-weight: bold;
+    border-radius: 6px;
+    margin: auto;
+    display: block;
+}    
+
+#input-btn:hover{
+	background: black;
+}
+/* 글 목록 */
+#delete-span{
+	display: flex;
+    justify-content: center;
+    margin-top: 150px;
+    color: lightgrey;
+}
+
+ #card-box{
+    justify-content: center;
+    margin: auto;
+ }
+
+
+.used-list-wrap{
+    width: 80%;
+    margin: 50px auto 0 auto;
+}
+
+.card-colums{
+	display: flex;
+	width: 65%;
+	
+}
+
+#nonData-text{
+	margin: 60px 0 50px 0;
+}    
+
+.card{
+	width: 200px;
+    height: 350px;
+    border: 1px solid lightgrey;
+    margin: 10px;
+    cursor: pointer;
+    position: relative; 
+}
+.card-img-top{
+    width: 200px;
+	height: 250px;
+}
+
+.name {
+	border: none;
+    width: 80%;
+    height: 14px;
+    margin: 4px auto 0px 5px;
+    font-size: 13.5px;
+    font-weight: bold;
+}
+.name:focus{
+	outline: none;
+}
+
+
+.author {
+    border: none;
+    width: 80%;
+    height: 10px;
+    margin: 0 auto 3px 5px;
+    font-size: 13px;
+}
+.author:focus{
+	outline: none;
+}
+
+.title {
+    border: none;
+    width: 80%;
+    height: 14px;
+    margin: 6px auto 3px 5px;
+    font-size: 12px;
+}
+.title:focus{
+	outline: none;
+}
+
+.date {
+    height: 12px;
+    border: none;
+    margin: 4px auto 3px 5px;
+    font-size: 9px;
+}
+.date:focus{
+	outline: none;
+}
+
+
+#detail_btn{
+    border-style: none;
+    position: relative;
+    cursor: pointer;
+    width: 200px;
+    height: 350px;
+    top: -347px;
+    border: none;
+    background: none;
+}
+    
+
+
+
+/* 페이징작업 */
+
+#nonData-btn-wrap{
+	display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.paging{
+	z-index: 1;
+    position: relative;
+	margin-top: 30px;
+}
+#pageClick-btn{
+    background: #2bc5c1;
+    border-radius: 20px;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+#pageNonClick-btn{
+    background: none;
+    border-radius: 20px;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+#preBtn{
+	background: none;
+    border: none;
+    font-family: 'Jalnan';	
+    cursor: pointer;
+}	
+#nextBtn{
+	background: none;
+    border: none;
+    font-family: 'Jalnan';	
+    cursor: pointer;
+}
+
+/* 빈칸 */
+#blank1 {
+	height: 44.5px;
+}
+
+#blank2 {
+	height: 20px;
+}
+
+#bottomArea {
+	width: 90%;
+}
+
+.inputTextArea {
+	width: 100%;
+	margin-bottom: 5px;
+}
+.inputText {
+	border: 1px dotted #bcb6b2;
+    height: 160px;
+    margin-bottom: 10px;
+    font-family: AppleSDGothicNeo;
+    display: flex;
+    align-self: self-start;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    resize: none;
+}
+#submitArea {
+	width: 100%;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+#search-btn {
+	text-align: center;
+    background: #6c71ce;
+    height: 52px;
+    width:30%;
+    font-size: 16px;
+    color: aliceblue;
+    border: none;
+    font-family: AppleSDGothicNe;
+    font-weight: bold;
+    border-radius: 6px;
+    margin: auto;
+    display: block;
+}
+#searchTextInput {
+	border: 1px dotted #bcb6b2;
+    height: 44.5px;
+    margin: 20px 0 20px 0;
+    font-family: AppleSDGothicNeo;
+    display: flex;
+    align-self: self-start;
+	width: 100%;
+}
+
+#searchArea {
+	width: 100%;	
+}
+
+.inputarea {
+	width: 100%;
+}
+
+#searchResult2 {
+	border: none;
+    height: 44.5px;
+    margin: 20px 0 20px 0;
+    font-family: AppleSDGothicNeo;
+    display: flex;
+    align-self: self-start;
+}
+
+input::-webkit-outer-spin-button,
+	input::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+    }

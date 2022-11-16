@@ -17,8 +17,9 @@
 		<h1>중고 도서</h1>
 	</div>
 	<div id="line"></div>
+		<a href="usedList.do?status=n">거래가능만 보기</a><p>
+		<a href="usedList.do">모두 보기</a>
 	<div class="products">
-
 		<c:if test="${empty list}">
 		등록된 책이 없습니다
 		</c:if>
@@ -28,10 +29,14 @@
 					<a href="usedDetail.do?used_no=${list.used_no }&book_no=${list.book_no }">
 						<img style="width: 50%; height: auto;" src="/chch/resources/images/${list.used_image}">
 						<p>
-							<c:if test="${ list.used_status=='y'}">[판매완료]</c:if>
 							${list.used_subject }
 						</p>
 						<p class="price"><fmt:formatNumber value="${list.used_price }" pattern="#,###"/>원</p>
+						<p>
+							<c:if test="${ list.used_status=='n'}">[판매중]</c:if>
+							<c:if test="${ list.used_status=='r'}">[예약중]</c:if>
+							<c:if test="${ list.used_status=='y'}">[판매완료]</c:if>
+						</p>
 					</a>
 				</div>
 			</c:forEach>

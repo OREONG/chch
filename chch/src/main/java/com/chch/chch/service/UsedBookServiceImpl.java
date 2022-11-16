@@ -1,6 +1,7 @@
 package com.chch.chch.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,4 +39,15 @@ public class UsedBookServiceImpl implements UsedBookService {
 	public int insertUsed(Used used) {
 		return ud.insertUsed(used);
 	}
+
+	@Override
+	public List<Used> searchList(String keyword) {
+		return ud.searchList(keyword);
+	}
+
+	@Override
+	public int updateStatus(Map<String, Object> map) {
+		return ud.updateStatus(map);
+	}
+
 }

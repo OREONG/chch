@@ -12,8 +12,9 @@
 	</insert>
 	
 	<select id="reviewList" parameterType="review" resultType="review">
-		select * from (select a.*, rowNum rn from (select * from review order by review_reg_date desc)a)
-		where rn between #{startRow} and #{endRow} and book_no=#{book_no} and review_del='n'
+		select * from (select a.*, rowNum rn from (select * from review
+		where book_no=#{book_no} and review_del='n' order by review_reg_date desc)a)
+		where rn between #{startRow} and #{endRow}
 	</select>
 	
 	<update id="update" parameterType="review">
@@ -29,7 +30,7 @@
 	</select>
 	
 	<select id="getTotal" parameterType="review" resultType="integer">
-		select count(*) from review where review_del='n'
+		select count(*) from review where review_del='n' and book_no=#{book_no}
 	</select>
 	
 	<select id="star_avg" parameterType="review" resultType="double">

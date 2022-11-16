@@ -4,8 +4,14 @@
 <mapper namespace="usedns">
 
 	<select id="usedList" parameterType="used" resultType="used">
+	<if test='status == "n"'>
+		select * from (select a.*, rowNum rn from (select * from used where used_status='n' order by used_reg_date desc)a)
+		where rn between #{startRow} and #{endRow} and used_del='n'
+	</if>
+	<if test='status != "n"'>
 		select * from (select a.*, rowNum rn from (select * from used order by used_reg_date desc)a)
 		where rn between #{startRow} and #{endRow} and used_del='n'
+	</if>
 	</select>
 	
 	<select id="getTotal" parameterType="used" resultType="integer">
@@ -22,5 +28,16 @@
 		</selectKey>
 		insert into used values(#{used_no},#{book_no},#{used_subject},#{used_content},#{used_image},#{used_price},'n','n',sysdate,#{id})
 	</insert>
+	
+	<select id="searchList" parameterType="String" resultType="used">
+		select * from used where
+			used_subject like '%' || #{keyword} || '%' or
+			used_content like '%' || #{keyword} || '%'
+		order by used_reg_date
+	</select>
+	
+	<update id="updateStatus" parameterType="map">
+		update used set used_status = #{status} where used_no=#{used_no}
+	</update>
 	
 </mapper>

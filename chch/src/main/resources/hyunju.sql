@@ -358,12 +358,17 @@ drop table report CASCADE CONSTRAINTS;
 select * from(select a.*, rowNum rn from(select * from report r left outer join book b ON r.book_no = b.book_no where r.del='n' order by report_date desc) a) where rn between 1 and 4
 
 
-insert into report values((SELECT NVL(MAX(report_no), 0) + 1 FROM report), 'test1', sysdate, '지구 끝의 온실이란 뭘까?', '모르겠다 책을 안 읽어 봤다 ㅎㅎ', 'y', 'n', 1);
-insert into report values((SELECT NVL(MAX(report_no), 0) + 1 FROM report), 'test1', sysdate, '영화를 찍으며 뭘 생각했을까?', '배고프다 점심 뭐먹지 오늘 밤까왔는데 이따 수경이랑 먹어야겠다', 'y', 'n', 2);
-insert into report values((SELECT NVL(MAX(report_no), 0) + 1 FROM report), 'test1', sysdate, '알고리즘..', '요즘 유튜브 알고리즘에 자꾸 나는 실패작이야 쇼츠가 뜬다 그만 떴으면 좋겠는데 보다보면 또 재밌다 깔깔', 'y', 'n', 3);
-insert into report values((SELECT NVL(MAX(report_no), 0) + 1 FROM report), 'test1', sysdate, '데이터 분석', '책 표지 귀엽다 무슨 새지??', 'y', 'n', 4);
-insert into report values((SELECT NVL(MAX(report_no), 0) + 1 FROM report), 'test1', sysdate, '파이썬', '파이썬도 열심히 해야지..', 'y', 'n', 5);
-
+insert into report values((SELECT NVL(MAX(report_no), 0) + 1 FROM report), 'test1', sysdate, '지구 끝의 온실이란 뭘까?', '모르겠다 책을 안 읽어 봤다 ㅎㅎ', 'y', 'n', 11);
+insert into report values((SELECT NVL(MAX(report_no), 0) + 1 FROM report), 'test1', sysdate, '영화를 찍으며 뭘 생각했을까?', '배고프다 점심 뭐먹지 오늘 밤까왔는데 이따 수경이랑 먹어야겠다', 'y', 'n', 11);
+insert into report values((SELECT NVL(MAX(report_no), 0) + 1 FROM report), 'test1', sysdate, '알고리즘..', '요즘 유튜브 알고리즘에 자꾸 나는 실패작이야 쇼츠가 뜬다 그만 떴으면 좋겠는데 보다보면 또 재밌다 깔깔', 'y', 'n', 11);
+insert into report values((SELECT NVL(MAX(report_no), 0) + 1 FROM report), 'test1', sysdate, '데이터 분석', '책 표지 귀엽다 무슨 새지??', 'y', 'n', 11);
+insert into report values((SELECT NVL(MAX(report_no), 0) + 1 FROM report), 'test1', sysdate, '파이썬',
+'파이썬도 열심히 해야지..파이썬도 열심히 해야지..파이썬도 열심히 해야지..파이썬도 열심히 해야지..파이썬도 열심히 해야지..파이썬도 열심히 해야지..파이썬도 열심히 해야지..파이썬도 열심히 해야지..
+파이썬도 열심히 해야지..파이썬도 열심히 해야지..파이썬도 열심히 해야지..파이썬도 열심히 해야지..파이썬도 열심히 해야지..파이썬도 열심히 해야지..파이썬도 열심히 해야지..파이썬도 열심히 해야지..
+파이썬도 열심히 해야지..파이썬도 열심히 해야지..파이썬도 열심히 해야지..파이썬도 열심히 해야지..파이썬도 열심히 해야지..파이썬도 열심히 해야지..파이썬도 열심히 해야지..파이썬도 열심히 해야지..
+파이썬도 열심히 해야지..파이썬도 열심히 해야지..파이썬도 열심히 해야지..파이썬도 열심히 해야지..파이썬도 열심히 해야지..파이썬도 열심히 해야지..파이썬도 열심히 해야지..파이썬도 열심히 해야지..
+파이썬도 열심히 해야지..파이썬도 열심히 해야지..파이썬도 열심히 해야지..파이썬도 열심히 해야지..파이썬도 열심히 해야지..파이썬도 열심히 해야지..파이썬도 열심히 해야지..파이썬도 열심히 해야지..'
+, 'y', 'n', 11);
 
 --좋아요, 관심, 찜 테이블
 --like_table table create

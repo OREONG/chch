@@ -41,6 +41,8 @@ public class Book implements Comparable<Book> {
 	private double star_avg;
 //	도서리스트 정렬
 	private String order;
+//	검색 키워드
+	private String keyword;
 
 	
 	@Override
