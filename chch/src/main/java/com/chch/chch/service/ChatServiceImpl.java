@@ -26,8 +26,8 @@ public class ChatServiceImpl implements ChatService {
 		
 	}
 
-	public String lastMessage(int room_no) {
-		return cd.lastMessage(room_no);
+	public Chat lastMessage(int room_no, String id) {
+		return cd.lastMessage(room_no, id);
 	}
 
 	public String selectRoomName(int room_no, String id) {
@@ -51,5 +51,26 @@ public class ChatServiceImpl implements ChatService {
 	@Override
 	public List<Chat> selectRoomMember(int room_no) {
 		return cd.selectRoomMember(room_no);
+	}
+
+	@Override
+	public List<Chat> selectMyRoom(String id) {
+		return cd.selectMyRoom(id);
+	}
+
+	@Override
+	public int chatCount(int room_no, String id) {
+		return cd.chatCount(room_no, id);
+	}
+
+	@Override
+	public void checkRoom(int room_no, String id) {
+		cd.checkRoom(room_no, id);
+		
+	}
+
+	@Override
+	public int loadUnreadChat(String id, int room_no) {
+		return cd.loadUnreadChat(id, room_no);
 	}
 }

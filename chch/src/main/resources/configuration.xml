@@ -8,6 +8,7 @@
 		<typeAlias alias="used" type="com.chch.chch.model.Used" />
 		<typeAlias alias="community" type="com.chch.chch.model.Community" />
 		<typeAlias alias="inquiry" type="com.chch.chch.model.Inquiry" />
+		<typeAlias alias="admin" type="com.chch.chch.model.Admin" />
 		
 		<typeAlias alias="author" type="com.chch.chch.model.Author" />
 		<typeAlias alias="author_work" type="com.chch.chch.model.Author_work" />
@@ -23,6 +24,7 @@
 		<mapper resource="xml/review.xml" />
 		<mapper resource="xml/community.xml" />
 		<mapper resource="xml/inquiry.xml" />
+		<mapper resource="xml/admin.xml" />
 		
 		<mapper resource="xml/author.xml" />
 		<mapper resource="xml/report.xml" />

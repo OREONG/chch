@@ -2,7 +2,6 @@ package com.chch.chch.model;
 
 import java.sql.Date;
 
-import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Data;
 
@@ -25,4 +24,8 @@ public class Author {
 	private int author_work_count; //조회수	
 	private Date author_work_date; //작품 등록 날짜	
 	private String author_work_del; //삭제여부
+	
+	//paging용
+	private int startRow;
+	private int endRow;
 }

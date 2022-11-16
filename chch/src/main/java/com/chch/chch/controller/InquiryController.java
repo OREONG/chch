@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.chch.chch.model.Inquiry;
 import com.chch.chch.service.InquiryService;
@@ -36,7 +38,7 @@ public class InquiryController {
 		
 		model.addAttribute("page", page);
 		
-		return "/inquiry/inquiryForm";
+		return "/inquiry/nolay/inquiryForm";
 	}
 	
 	@RequestMapping("inquiry")
@@ -81,6 +83,29 @@ public class InquiryController {
 		model.addAttribute("inquiryNumber", inquiryNumber);
 		
 		return "/inquiry/inquiryList";
+	}
+	
+	@RequestMapping(value = "replyCheck", produces = "text/html;charset=utf-8")
+	public String replyCheck (@RequestParam("inquiry_no") int inquiry_no, Model model) {
+		
+		int result = ins.replyCheck(inquiry_no);
+		
+		model.addAttribute("result", result);
+		
+		return "/inquiry/inquiryList";
+	}
+	
+	@RequestMapping(value = "loadUnreadInquiry", produces = "text/html;charset=utf-8")
+	@ResponseBody
+	public String loadUnreadInquiry(HttpSession session, Model model) {
+		
+		String id = (String)session.getAttribute("id");
+		
+		int result = ins.unreadInquiryCount(id);
+		
+		String unreadInquiryCount = String.valueOf(result);
+		
+		return unreadInquiryCount;
 	}
 	
 }

@@ -9,19 +9,19 @@
 <body>
 
 	<div>
-		<button onclick="location.href='communityInsertForm.do'" class="btn btn-info">커뮤니티 글 등록</button>
+		<button onclick="location.href='communityInsertForm.do'" class="btn btn-info">모임 만들기</button>
 	</div>
 	
 	<br>
 	
 	<div>
-		<button onclick="location.href='communityAllList.do'" class="btn btn-primary">전체 커뮤니티 목록</button>
+		<button onclick="location.href='communityAllList.do'" class="btn btn-primary">전체 모임 보기</button>
 	</div>
 	
 	<br>
 	
 	<div>
-		<button onclick="location.href='communityMyList.do'" class="btn btn-success">가입한 커뮤니티 목록</button>
+		<button onclick="location.href='communityMyList.do'" class="btn btn-success">가입한 모임 보기</button>
 	</div>
 	
 </body>

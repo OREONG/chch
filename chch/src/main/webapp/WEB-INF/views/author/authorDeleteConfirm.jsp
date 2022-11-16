@@ -11,7 +11,7 @@
 	<c:if test="${result > 0 }">
 		<script type="text/javascript">
 			alert("삭제 되었습니다");
-			location.href="authorEach.do?author_no="+${author_work.author_no};
+			location.href="authorMain.do";
 		</script>
 	</c:if>
 	<c:if test="${result == 0 }">

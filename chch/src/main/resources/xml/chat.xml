@@ -4,35 +4,38 @@
 <mapper namespace="chatns">
 	
 	<!-- SB 전체 참여중인 대화방 목록 -->
-	<select id="chatMemberList" parameterType="String" resultType="chat">
-		SELECT MAX(sender) KEEP(DENSE_RANK FIRST ORDER BY send_time DESC) AS sender, c.room_no, MAX(chat_content) KEEP(DENSE_RANK FIRST ORDER BY send_time DESC) AS chat_content, MAX(send_time) KEEP(DENSE_RANK FIRST ORDER BY send_time DESC) AS send_time
-			FROM chat c, room r
-			WHERE c.room_no = r.room_no AND r.id=#{id}
+	<select id="selectMyRoom" parameterType="String" resultType="chat">
+		SELECT c.room_no, MAX(send_time) KEEP(DENSE_RANK FIRST ORDER BY send_time DESC) AS send_time
+			FROM room r, chat c
+			WHERE r.room_no=c.room_no AND id=#{id} AND leave='n'
 			GROUP BY c.room_no
 			ORDER BY send_time DESC
 	</select>
 	
 	<!-- SB room_no에 해당하는 대화방의 마지막 대화 조회 -->
-	<select id="lastMessage" parameterType="int" resultType="String">
-		SELECT max(chat_content) keep(dense_rank first order by send_time desc) as chat_content FROM chat WHERE room_no=#{room_no}
+	<select id="lastMessage" parameterType="map" resultType="chat">
+		SELECT MAX(sender) KEEP(DENSE_RANK FIRST ORDER BY send_time DESC) AS sender, c.room_no, MAX(chat_content) KEEP(DENSE_RANK FIRST ORDER BY send_time DESC) AS chat_content, MAX(send_time) KEEP(DENSE_RANK FIRST ORDER BY send_time DESC) AS send_time
+			FROM chat c, room r
+			WHERE c.room_no = r.room_no AND c.room_no=#{room_no} AND r.leave='n' AND c.send_time > (SELECT join_date from room where id=#{id} AND room_no=#{room_no})
+			GROUP BY c.room_no
+			ORDER BY send_time DESC
 	</select>
 	
-	<!-- SB 대화 불러올 때 가장 최근의 대화 20개 조회 -->
 	
+	<!-- SB 대화 불러올 때 가장 최근의 대화 20개 조회 -->
 	<select id="firstChatList" parameterType="map" resultType="chat">
 		<![CDATA[
-			SELECT rownum, chat_no, room_no, room_name, sender, chat_content, send_time, read_time, read_chk
+			SELECT rownum, chat_no, room_no, room_name, sender, chat_content, send_time
 			FROM (SELECT c.*, id, room_name, join_date, leave FROM chat c, room r WHERE c.send_time >
 				(SELECT join_date from room where id=#{id} AND room_no=#{room_no})
-				AND c.room_no=r.room_no AND sender=id  AND c.room_no=#{room_no} ORDER BY c.chat_no DESC) a
+				AND c.room_no=r.room_no AND r.room_no=#{room_no} AND id=#{id} ORDER BY c.chat_no DESC) a
 			WHERE rownum <= 20 ORDER BY chat_no ASC
 		]]> 
 	</select>
 	
 	<!-- SB 대화내용 DB에 입력 -->
 	<insert id="insertChat" parameterType="chat">
-	 	INSERT INTO chat
-	 		VALUES((SELECT NVL(MAX(chat_no), 0) + 1 FROM chat), #{room_no}, #{id}, #{chat_content}, sysdate, '', 'n')
+	 	INSERT INTO chat VALUES((SELECT NVL(MAX(chat_no), 0) + 1 FROM chat), #{room_no}, #{id}, #{chat_content}, sysdate)
 	 </insert>
 	 
 	 <!-- SB 대화방의 이름 조회 -->
@@ -40,9 +43,9 @@
 	 	SELECT room_name FROM room WHERE room_no=#{room_no} AND id=#{id}
 	 </select>
 	 
-	 <!-- SB 로그인한 대상자를 제외하고 지정된 room_no에 참석중인 인원 (나빼고 누가 있는가) -->
+	 <!-- SB 로그인한 대상자중에 나를 제외하고 지정된 room_no에 참석중인 인원 (나빼고 누가 있는가) -->
 	 <select id="roomList" parameterType="map" resultType="chat">
-	 	SELECT * FROM room WHERE room_no=#{room_no} AND id NOT IN #{id}
+	 	SELECT * FROM room WHERE room_no=#{room_no} AND leave='n' AND id NOT IN #{id}
 	 </select>
 	 
 	 <!-- SB 현재 마지막 방번호 조회 -->
@@ -52,15 +55,32 @@
 	 
 	 <!-- SB 대화방 생성 -->
 	<insert id="insertRoom" parameterType="chat">
-	 	INSERT INTO room
-	 		VALUES(#{room_no}, #{id}, #{room_name}, sysdate, 'n')
+	 	INSERT INTO room VALUES(#{room_no}, #{id}, #{room_name}, sysdate, sysdate, 'n', 0)
 	 </insert>
 	 
+	 <!-- SB 로그인한 대상자중에 지정된 room_no에 참석중인 인원 -->
 	 <select id="selectRoomMember" parameterType="int" resultType="chat">
-	 	SELECT * FROM room WHERE room_no=#{room_no}
+	 	SELECT * FROM room WHERE room_no=#{room_no} AND leave='n'
 	 </select>
 	 
+	 <!-- SB 대화방에 참여한 이후에 남긴 메세지가 하나라도 있는지 확인 -->
+	 <select id="chatCount" parameterType="map" resultType="int">
+	 	SELECT COUNT(*) FROM chat WHERE room_no=#{room_no} AND sender=#{id} AND send_time > (SELECT join_date from room where id=#{id} AND room_no=#{room_no})
+	 </select>
 	 
-	 
+	 <!-- SB 대화방을 마지막으로 확인한 시간 입력 -->
+	 <update id="checkRoom" parameterType="map">
+		UPDATE room SET check_time=sysdate WHERE room_no=#{room_no} AND id=#{id}
+	</update>
+	
+	<!-- SB  -->
+	<select id="loadUnreadChat" parameterType="map" resultType="int">
+	 	SELECT COUNT(*)
+	 		FROM chat c, room r
+	 		WHERE c.room_no = r.room_no AND id=#{id} AND sender!=#{id} AND r.room_no=#{room_no}
+	 			AND c.send_time > (SELECT check_time FROM room WHERE id=#{id} AND room_no=#{room_no})
+	 </select>
+	
+	
 	 
 </mapper>

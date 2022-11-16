@@ -22,10 +22,6 @@
  	<!-- 독후감 리스트 불러오기 -->
 	<select id="selectList" resultType="report" parameterType="report">
 		select * from(select a.*, rowNum rn from(select * from report r left outer join book b ON r.book_no = b.book_no where r.del='n' order by report_date desc) a) where rn between #{startRow} and #{endRow}
-		
-		<!-- select * from(select a.*, rowNum rn from(select * from report order by report_date desc) a) where rn between #{startRow} and #{endRow} -->
-	
-		<!-- select * from report r left outer join book b ON r.book_no = b.book_no where r.del='n' order by report_date desc -->
 	</select>
 	<!-- 독후감 상세 페이지 -->
 	<select id="select" parameterType="integer" resultType="report">

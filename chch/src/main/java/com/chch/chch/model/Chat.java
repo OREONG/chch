@@ -19,5 +19,7 @@ public class Chat {
 	private String room_name;
 	private String leave;
 	
+	private int unread;
+	
 	private long diffDays;
 }

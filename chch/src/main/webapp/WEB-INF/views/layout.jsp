@@ -7,20 +7,15 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+
+
 <style type="text/css">
 	.header {
 		display: flex;
 		flex-direction: row;
 		justify-content: space-around;
 		width: 100%;
-		height: 251px;
-		/* margin: 0;
-		padding: 0;
-		background-color: white;
-		position: fixed;
-		top: 0;
-		z-index: 1;
-		border-bottom: 1px solid #cbcbcb; */
+		height: 110px;
 	}
 	
 	.menu {
@@ -46,18 +41,17 @@
 	.footer {
 		display: flex;
 		flex-direction: row;
-		justify-content: space-around;
 		width: 100%;
 		margin-top:70px;
-		position: relative;
-		transform : translateY(-100%);
 	}
 
 	.body {
-		min-height: 700px;		
+		margin-top: 150px;
+		width: 100%;
 	}
 
 </style>
+
 
 </head>
 <body style="overflow-y: scroll; overflow-x: hidden; align-content: center;">

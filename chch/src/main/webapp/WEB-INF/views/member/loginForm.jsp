@@ -6,12 +6,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">@import url("/chch/resources/css/member.css");</style>
+
 </head>
 <body>
 <main>
 	<!-- 메인 컨테이너 -->
 	<div class="main-container">
-			<form action="login.do">
+			<form action="login.do" method="post">
 					<!-- 이전 페이지 주소 -->
 					<input type="hidden" name="targetPage" value="${targetPage}">
 					<!-- 로고 이미지 -->

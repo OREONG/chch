@@ -134,6 +134,7 @@
 	border: 1px solid #c2c2c2;
 	border-radius : 6px;
     font-size: 9px;
+    padding: 0 0px 0 2px;
     transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
 }
 .btn:hover{
@@ -189,4 +190,13 @@
 
 .backBtn-div{
 	width : 340px;
+}
+
+/* 반응형 */
+@media screen and (max-width:500px) {
+	.main-container{
+		width:500px;
+	}
+
+
 }

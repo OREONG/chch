@@ -17,11 +17,19 @@
 	</update>
 	
 	<insert id="inquirySubmit" parameterType="inquiry">
-		INSERT INTO inquiry VALUES ((SELECT NVL(MAX(inquiry_no), 0) + 1 FROM inquiry), #{id}, #{category_no}, #{inquiry_subject}, #{inquiry_content}, sysdate, 'n','', '' )
+		INSERT INTO inquiry VALUES ((SELECT NVL(MAX(inquiry_no), 0) + 1 FROM inquiry), #{id}, #{category_no}, #{inquiry_subject}, #{inquiry_content}, sysdate, 'n','', '', 'n' )
 	</insert>
 	
 	<select id="inquiryList" parameterType="map" resultType="inquiry">
 		SELECT * FROM (SELECT rowNum rn, a.* FROM (SELECT * FROM inquiry WHERE id=#{id} ORDER BY inquiry_no DESC)a) WHERE rn BETWEEN #{startRow} AND #{endRow}
+	</select>
+	
+	<update id="replyCheck" parameterType="int">
+		UPDATE inquiry SET reply_check='y' WHERE inquiry_no=#{inquiry_no} AND reply='y'
+	</update>
+	
+	<select id="unreadInquiryCount" resultType="int">
+		SELECT COUNT(*) FROM inquiry WHERE reply_check='n' AND reply='y' AND id=#{id}
 	</select>
 	
 </mapper>

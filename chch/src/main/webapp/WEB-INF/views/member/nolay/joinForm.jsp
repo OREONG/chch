@@ -1,10 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" charset="UTF-8">
+<title>header</title>
+<style type="text/css">@import url("/chch/resources/css/header.css");</style>
+
+<c:set var="path" value="${pageContext.request.contextPath }"></c:set>
+<c:set var="ipAdd" value="//172.30.1.78:8080"></c:set>
+<c:set var="ip" value="http:${ipAdd}/chch"></c:set>
+<link rel="stylesheet" type="text/css"href="${path }/resources/bootstrap/css/bootstrap.min.css">
+<script type="text/javascript" src="${path}/resources/bootstrap/js/jquery.js"></script>
+<script type="text/javascript" src="${path}/resources/bootstrap/js/jquery1.js"></script>
+<script type="text/javascript" src="${path}/resources/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${path}/resources/bootstrap/js/sockjs.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<style type="text/css">@import url("/chch/resources/css/font.css");</style>
 <style type="text/css">@import url("/chch/resources/css/member.css");</style>
 
 <script type="text/javascript">
@@ -167,9 +183,11 @@
 	<div class="main-container">
 		<form action="join.do" name="frm" onsubmit="return chk()">
 			<!-- 로고 이미지 -->
+			<a href="main.do">
 			<div class="img-div">
 				<img alt="" src="/chch/resources/images/chackcheckCheckLogo2-1.png">
 			</div>
+			</a>
 				<!--아이디 -->
 				<div class="join-wrap" >
 	            	<div class="row-div">

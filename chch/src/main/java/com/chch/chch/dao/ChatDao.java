@@ -12,7 +12,7 @@ public interface ChatDao {
 
 	int insertChat(Chat chat);
 
-	String lastMessage(int room_no);
+	Chat lastMessage(int room_no, String id);
 
 	String selectRoomName(int room_no, String id);
 
@@ -23,5 +23,13 @@ public interface ChatDao {
 	void insertRoom(Chat chat);
 
 	List<Chat> selectRoomMember(int room_no);
+
+	List<Chat> selectMyRoom(String id);
+
+	int chatCount(int room_no, String id);
+
+	void checkRoom(int room_no, String id);
+
+	int loadUnreadChat(String id, int room_no);
 
 }

@@ -6,6 +6,57 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<script type="text/javascript">
+
+	$(function() {
+		$('#currentMemberChk').click(function() { currentMemberChk(); });
+   		$('#communityDelete').click(function() { communityDelete(); });
+   		$('#communityLeave').click(function() { communityLeave(); });
+   		$('#communityJoin').click(function() { communityJoin(); });
+	});
+	
+	function communityJoin() {
+		var currentMember = ${currentMember};
+		var maxMember = ${community.max_member };
+		
+		console.log(currentMember+"/"+ maxMember);
+		
+		
+		
+		if (currentMember >= maxMember ) {
+			alert("가입 인원이 가득 찼습니다.");
+			return false;
+		} else {
+			var date = new Date();
+			var chatMsg = '${id}님이 입장하였습니다';
+			var chat = "chat,${id},${community.room_no},"+chatMsg+","+date;
+			sock.send(chat);
+			
+			location.href='joinRoom.do?room_no=${community.room_no}';
+		};
+	};
+	
+	
+	function communityDelete() {
+		location.href='communityDelete.do?community_no=${community.community_no }';
+	}
+	
+	function communityLeave() {
+		sendLeaveChat();
+		location.href='communityLeave.do?community_no=${community.community_no }';
+	}
+	
+	function sendLeaveChat() {
+		
+		var date = new Date();
+		var chatMsg = '${id}님이 퇴장하였습니다';
+		var chat = "chat,${id},${community.room_no},"+chatMsg+","+date;
+		sock.send(chat);
+	}
+
+</script>
+
 </head>
 <body>
 	<input type="hidden" name="id" id="userId" value="${id}">
@@ -43,7 +94,7 @@
 			인원
 		</div>
 		<div>
-			${community.max_member }
+			${currentMember} / ${community.max_member }
 		</div>
 	</div>
 	
@@ -75,14 +126,24 @@
 	
 	<c:if test="${community.participation == 0 }">
 	<div>
-		<button onclick="location.href='joinRoom.do?room_no=${community.room_no}'" id="sendBtn4" class="btn btn-success">가입</button>
+		<button id="communityJoin" class="btn btn-success">가입</button>
 	</div>
 	</c:if>
 	
 	<c:if test="${community.participation > 0 }">
 	<div>
-		<button onclick="location.href='chat.do?room_no=${community.room_no}&room_name=${community.room_name }'" class="btn btn-info">대화방으로</button>
+		<button  onclick="location.href='chat.do?room_no=${community.room_no}&room_name=${community.room_name }'" class="btn btn-info">대화방으로</button>
 	</div>
+		<c:if test="${community.host_id == id }">
+			<div>
+				<button id="communityDelete" class="btn btn-success">모임 삭제</button>
+			</div>
+		</c:if>
+		<c:if test="${community.host_id != id }">
+			<div>
+				<button id="communityLeave" class="btn btn-success">모임 나가기</button>
+			</div>
+		</c:if>
 	</c:if>
 		
 </body>

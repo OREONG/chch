@@ -11,7 +11,7 @@
 
 <c:if test="${result > 0 }">
 	<script type="text/javascript">
-		alert("글 등록 완료")
+		alert("모임 생성 완료")
 		location.href="communityDetail.do?community_no=${community_no}";
 	</script>
 </c:if>

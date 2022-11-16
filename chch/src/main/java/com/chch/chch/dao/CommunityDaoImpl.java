@@ -57,5 +57,51 @@ public class CommunityDaoImpl implements CommunityDao {
 		map.put("room_name", room_name);
 		return sst.insert("communityns.joinRoom", map);
 	}
-	
+
+	@Override
+	public int leaveRoom(String id, int room_no) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("room_no", room_no);
+		map.put("id", id);
+		return sst.update("communityns.leaveRoom", map);
+	}
+
+	@Override
+	public int leaveHistoryChk(String id, int room_no) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("room_no", room_no);
+		map.put("id", id);
+		return sst.selectOne("communityns.leaveHistoryChk", map);
+		
+	}
+
+	@Override
+	public int rejoinRoom(int room_no, String id) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("room_no", room_no);
+		map.put("id", id);
+		return sst.update("communityns.rejoinRoom", map);
+	}
+
+	@Override
+	public int communityLeave(String id, int community_no) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("community_no", community_no);
+		map.put("id", id);
+		return sst.update("communityns.communityLeave", map);
+	}
+
+	@Override
+	public int communityDelete(String id, int community_no) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("community_no", community_no);
+		map.put("id", id);
+		return sst.update("communityns.communityDelete", map);
+	}
+
+	@Override
+	public void banRoom(int room_no) {
+		sst.update("communityns.banRoom", room_no);
+	}
+
 }

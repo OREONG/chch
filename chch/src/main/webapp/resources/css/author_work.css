@@ -38,7 +38,7 @@
 #readCount-text{
 	font-size: 13px;
     color: #929292;
-    margin-left: 87%;
+    margin-left: 80%;
 }
 
 .content-div{
@@ -62,9 +62,89 @@
 	margin-top: -31px;
 }
 
-.mb-3{
+.preNext-div{
+	display: flex;
+    justify-content: center;
+    margin-top: 35px;
 }
 
+.pN-btn{
+	margin : 0 10px 0 10px;
+}
+
+#notPre{
+	width: 130px;
+    background: #f4f4f4;
+    border: 1px solid #c7c7c7;
+    border-radius: 6px;
+    height: 49px;
+    transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+    color: #7a7a7a;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto 0 0 10px;
+}
+
+#notNext{
+	width: 130px;
+    background: #f4f4f4;
+    border: 1px solid #c7c7c7;
+    border-radius: 6px;
+    height: 49px;
+    transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+    color: #7a7a7a;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto 0 0 10px;
+}
+
+#yesPre{
+	width: 130px;
+    border: 1px solid #5055b1;
+    border-radius: 6px;
+    height: 49px;
+    margin-top: 12px;
+    transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+    color: #5055b1;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto 0 0 10px;
+}
+#yesPre:hover{
+	cursor:pointer;
+	background: #30347f;
+	color: #fff;
+}
+
+#yesNext{
+	width: 130px;
+    border: 1px solid #5055b1;
+    border-radius: 6px;
+    height: 49px;
+    margin-top: 12px;
+    transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+    color: #5055b1;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto 0 0 10px;
+}
+#yesNext:hover{
+	cursor:pointer;
+	background: #30347f;
+	color: #fff;
+}
 
 .review-div{
 	border: 1px solid #dedede;
@@ -113,9 +193,93 @@ fieldset{
 	background: #30347f;
 }
 
+
+.reviewList-wrap{
+	padding: 0 10px 0 10px;
+    margin: 23px 0 -5px 0
+}
+
+
+/* 리뷰 */
+#reviewId-input{
+	border: none;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+#reviewId-input:focus{
+	outline:none;
+}
+#reviewContent-textarea{
+	border: none;
+}
+#reviewContent-textarea:focus{
+	outline:none;
+}
+#reviewDate-input{
+	border: none;
+    font-size: 12px;
+    color: gray;
+}
+#reviewDate-input:focus{
+	outline:none;
+}
+
+
+.reviewDate-div{
+	position: static;
+}
+.like-wrap{
+    position: relative;
+    right: -74px;
+    top: -19px;
+    width: 65px;
+}
+
+#reviewLike-borderY{
+	border : 1px solid #5055b1;
+	padding: 2px 5px 2px 5px;
+    border-radius: 1px;
+}
+#reviewLike-borderN{
+	border : 1px solid #e7e7e7;
+	padding: 2px 5px 2px 5px;
+    border-radius: 1px;
+}
+
+.thumbImg{
+	width: 13px;
+}
+
+.reviewUD-text{
+	font-size:12px;
+}
+
+.reviewUD-text:hover{
+	text-decoration: none;
+	cursor: pointer; 	
+}
+
+.reviewUpdate-btn{
+    position: relative;
+    top: -89px;
+    left: 689px;
+    border-radius: 6px;
+    padding: 7px 7px 7px 7px;
+    color: #5055b1;
+    font-size: 12px;
+    font-weight: 400;
+}
+.reviewUpdate-btn:hover{
+	text-decoration: none;
+	cursor: pointer; 
+}
+
+
+
+
 /* 반응형 */
 @media screen and (max-width:1000px) {
-	.container{
+	.main-container{
 		width:1000px;
 	}
 	#readCount-text{

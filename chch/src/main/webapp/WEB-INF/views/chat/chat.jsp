@@ -81,7 +81,7 @@
 	</div>
 	<div class="content chatcontent">
 		<div id="chatMessage">
-			<c:if test="${empty firstChatList }">데이터가 없습니다.</c:if>
+			<c:if test="${empty firstChatList }"></c:if>
 			<c:set var="preDate"></c:set>
 			<fmt:formatDate var="nowDate" value="${date }" pattern="yyyyMMdd" />
 

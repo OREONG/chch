@@ -28,7 +28,7 @@ public class InquiryDaoImpl implements InquiryDao {
 	}
 
 	public int replySubmit(Inquiry inquiry) {
-		return sst.insert("inquiryns.replySubmit", inquiry);
+		return sst.update("inquiryns.replySubmit", inquiry);
 	}
 
 	public int inquirySubmit(Inquiry inquiry) {
@@ -41,5 +41,15 @@ public class InquiryDaoImpl implements InquiryDao {
 		map.put("endRow", endRow);
 		map.put("id", id);
 		return sst.selectList("inquiryns.inquiryList", map);
+	}
+
+	@Override
+	public int replyCheck(int inquiry_no) {
+		return sst.update("inquiryns.replyCheck", inquiry_no);
+	}
+
+	@Override
+	public int unreadInquiryCount(String id) {
+		return sst.selectOne("inquiryns.unreadInquiryCount", id);
 	}
 }

@@ -16,18 +16,28 @@
 <c:set var="ip" value="http:${ipAdd}/chch"></c:set>
 <link rel="stylesheet" type="text/css"href="${path }/resources/bootstrap/css/bootstrap.min.css">
 <script type="text/javascript" src="${path}/resources/bootstrap/js/jquery.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <script type="text/javascript" src="${path}/resources/bootstrap/js/jquery1.js"></script>
 <script type="text/javascript" src="${path}/resources/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${path}/resources/bootstrap/js/sockjs.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-
+<style type="text/css">@import url("/chch/resources/css/font.css");</style>
 
 <script type="text/javascript">
+	function openCloseMenu(){
+	    let status = $('.hideBookMenu').css('display');
+	    if (status =='block') {
+	        $('.hideBookMenu').hide();
+	    } else {
+	        $('.hideBookMenu').show();
+	    }
+	}
+
 	var socket  = null;
 	var id = '${id}';
 	
 	$(document).ready(function(){
+		
 	    // 웹소켓 연결
 	    sock = new SockJS("<c:url value='/echo.do'/>");
 	    socket = sock;
@@ -39,6 +49,8 @@
 	    // 데이터를 전달 받았을때 
 	    sock.onmessage = onMessage; // toast 생성
 	    
+	    loadUnread();
+	    
 	});
 	    
 	$(function() {
@@ -46,7 +58,7 @@
 	    $('#sendBtn1').click(function() { sendNotice(); });
 	    $('#sendBtn2').click(function() { sendChat(); });
 	    $('#sendBtn3').click(function() { inquiryReply(); });
-	    $('#sendBtn4').click(function() { joinRoom(); });
+	    
 	    
 	    $('#notice').keypress(function() { // enter키를 누르면 메세지 전송
 			//  누른 key값(asscii)  IE ?      IE의 값         IE아닌 모든 web값
@@ -75,11 +87,13 @@
 		
 	function appendMessage(msg) {
 		var split1 = msg.split(',');
+		var cmd = split1[0];
+		var room_no = split1[2];
 		
 		console.log("header55 : "+msg);
 		console.log("header56 : "+split1);
 		
-		if (msg != null && msg.trim() != '' && split1[0] == 'chat') {
+		if (msg != null && msg.trim() != '' && cmd == 'chat') {
 			var check1;
 			var check2;
 			if (document.location.href.includes('?')) {
@@ -97,13 +111,24 @@
 				check22=0;;
 			}
 			
-			if (check11 == 'chat.do' && check22 == 'room_no=${room_no}') {	//'chat.do'에 해당하는 주소이고 room_no가 동일할 때 메세지를 append
+			console.log("check11 : "+check11);
+			console.log('check22 : '+check22);
+			console.log('room_no : ${room_no}');
+			console.log('room_no=${room_no}');
+			
+			var check3 = document.location.href.split("/");
+			console.log(check3[4]);
+			
+			if (check11=='chat.do' && check22=='room_no='+room_no) {	//'chat.do'에 해당하는 주소이고 room_no가 동일할 때 메세지를 append
 				console.log("header60 chat으로 시작하는 메세지 : "+msg);
 				
 				var sender = split1[1];
 				var room_no = split1[2];
 				var msg = split1[3]
 				var send_time = split1[4];
+				
+				checkRoom(id, room_no);
+				
 				
 				var s_time = timeChange(send_time);
 				
@@ -126,21 +151,76 @@
 								+ "</div>");
 					}
 				}
-			} else {						// 해당 채팅방 안에 있지 않을 때는 notice에 알림
+			} else if (check11 == 'chat.do' && check22 != 'room_no='+room_no) {
+				
+				console.log("chat.do는 맞지만 방번호가 다를 때");
 				
 				var sender = split1[1];
-				// var room_no = split1[2];
+				var room_no = split1[2];
 				var msg = split1[3]
 				// var send_time = split1[4];
-				
+			    var loadUnread = split1[5];
+
+			    
 				var view =sender+"님의 메세지 : "+msg;
 			    				
 				$("#noticePopUp").children().remove();
 			    $("#noticePopUp").val(view);
 				
+				$("#unreadNotice").children().remove();
+				$("#unreadNotice").val(loadUnread);
+				
+			} else if (check3[4] == 'noticeMain.do') {
+				
+				console.log("noticeMain 화면에 있을 때");
+				
+				var sender = split1[1];
+				var room_no = split1[2];
+				var msg = split1[3]
+				// var send_time = split1[4];
+			    var loadUnread = split1[5];
+
+			    
+				var view =sender+"님의 메세지 : "+msg;
+			    				
+				$("#noticePopUp").children().remove();
+			    $("#noticePopUp").val(view);
+				
+				$("#unreadNotice").children().remove();
+				$("#unreadNotice").val(loadUnread);
+				
+				$("#unreadChat").children().remove();
+				$("#unreadChat").val(loadUnreadChat);
+				
+			} else {						// 해당 채팅방 안에 있지 않을 때는 notice에 알림
+				
+				var sender = split1[1];
+				var room_no = split1[2];
+				var msg = split1[3]
+				// var send_time = split1[4];
+			    var loadUnread = split1[5];
+
+			    var roomUnread = split1[6];
+			    
+				var view =sender+"님의 메세지 : "+msg;
+			    				
+				$("#noticePopUp").children().remove();
+			    $("#noticePopUp").val(view);
+				
+				$("#unreadNotice").children().remove();
+				$("#unreadNotice").val(loadUnread);
+				
+				if (check3[4] == 'chatMemberList.do') {
+					document.querySelector('#room_no'+room_no).innerText=roomUnread;
+					document.querySelector('#msgRoom_no'+room_no).innerText=msg;
+					
+					var content = document.querySelector('#room'+room_no);
+					var parent = content.parentNode;
+					parent.insertBefore(content, parent.firstChild);
+				}
+				
+				
 			}
-			
-			
 			
 		} else if (msg != null && msg.trim() != '' && split1[0] == 'notice'){
 			
@@ -207,15 +287,6 @@
 		sock.send(inquiryReply);
 	}
 	
-	function joinRoom() {
-		var userId = $('#userId').val();
-		var room_name = $('#room_name').val();
-		var room_no = $('#room_no').val();
-		
-		var joinRoom = "joinRoom,"+userId+","+room_no+","+room_name;
-		sock.send(joinRoom);
-	}
-	
 	function sendChat() {
 		var msg = $('#message').val(); // 입력한 메세지 글 읽기
 		
@@ -228,7 +299,6 @@
 	
 		// ajax로 채팅 내용 저장
 		$(function() {
-			console.log(id+' ${room_no} '+msg);
 			$.ajax({
 				url : "saveMessage.do?id=${id}&msg="+msg+"&room_no=${room_no}",
 				async : true,
@@ -261,6 +331,30 @@
 		
 		return changedTime;
 	}
+	
+	function loadUnread() {
+		
+		var id = '${id}';
+		
+		$.post('loadUnread.do', 'id='+id, function(data) {
+			$("#unreadNotice").val(data);
+		});
+		
+	}
+	
+	
+	function checkRoom(id, room_no) {
+		$(function() {
+			$.ajax({
+				url : "checkRoom.do?id="+id+"&room_no="+room_no,
+				async : true,
+				type : "POST",
+				dataType : "html",
+				cache : false
+			});
+		});
+	}
+	
 </script>
 
 
@@ -271,20 +365,6 @@
 		
 		<div class="header-container">
 			<div class="header-content">
-					<div class="header-btn-wrap">
-						<ul class="login-join-cart-wrap">
-							<c:if test="${empty id }">
-
-								<li class="top-li"><a href="loginForm.do" class="top-t" >로그인</a></li>
-								<li class="top-li"><a href="joinForm.do" class="top-t" >회원가입</a></li>
-							
-							</c:if>
-							<c:if test="${not empty id }">
-								<li class="top-t li li-id"><a class="top-t" >${id }님 환영합니다</a></li>
-								<li class="top-t li"><a href="logout.do" class="top-t" >로그아웃</a></li>
-							</c:if>
-						</ul>			
-					</div>	
 				<!-- 로고, 검색, 알림 wrap -->
 				<div class="top-container">
 						<!-- 로고, 검색 -->
@@ -307,17 +387,21 @@
 							</li>
 							
 							<!-- 알림 종 -->
-							<li>
-								<a href="">
-									<img id="bell" src="/chch/resources/images/bell.png">
-								</a>
-							</li>
-<!-- 							<li>
-								<a href="">
-									<img id="cart" src="/chch/resources/images/cart.png">
-								</a>
-
-							</li> -->
+							
+								<c:if test="${not empty id }">
+								<li>
+									<ul>
+									<li>
+										<input type="text" name="unreadNotice" id="unreadNotice" style="resize: none; border: none; width: 50px; background-color: #ffffff; color: #808080; margin-left: 185px;" readonly="readonly">
+									</li>							
+									<li>
+											<a href="noticeMain.do">
+												<img id="bell" src="/chch/resources/images/bell.png">
+											</a>
+									</li>
+									</ul>
+								</li>
+								</c:if>
 							<li>
 								<input type="text" name="noticePopUp" id="noticePopUp" class="form-control col-sm-8" style="resize: none; border: none; width: 300px; background-color: #ffffff; color: #808080;" readonly="readonly">
 							</li>
@@ -326,28 +410,42 @@
 				</div>
 			
 			
-			<hr class="header-hr1 hr">
+
 			
 				<div class="bottom-container">
 				
 					<!-- 신작도서 and bookMenu wrap -->
 					<div class="cate">
 					
-						<div>
-
+						<div class="cate-sub">
+						
+						<button class="bookMenuBtn" onclick="openCloseMenu()"><img id="hamburger" alt="" src="/chch/resources/images/hamburger.png"> </button>
+						
 						<a class="cate-c newBook" href="newList.do?book_kind=all&order=recent">신작도서▼</a>
 						<a class="cate-c usedBook" href="usedList.do">중고도서</a>
 						<a class="cate-c" href="usedAddForm.do">판매하기</a>
 						<a class="cate-c" href="writing.do">나도 작가</a>
-						<a class="cate-c" href="#">마이페이지</a>					<!-- myPage_main.do -->
-						<a class="cate-c" href="faq.do">고객센터</a>
 						<a class="cate-c" href="communityMain.do">커뮤니티</a>
-						<a class="cate-c" href="chatMemberList.do?targetPage=chatMemberList.do">채팅방</a>
-						<a class="cate-c" href="adminMain.do">관리자</a>
-						<a class="cate-c" href="notice.do">알림</a>
+						<a class="cate-c" href="mypageMain.do">마이페이지</a>
+						<a class="cate-c" href="faq.do">고객센터</a>
+						<!-- <a class="cate-c" href="communityMain.do">모임</a>
+						<a class="cate-c" href="chatMemberList.do">채팅방</a>
+						<a class="cate-c" href="adminMain.do">관리자</a> -->
 						
-						<a class="cate-c" href="updateForm.do">회원수정</a>
-						<a class="cate-c" href="reportList.do">독후감</a>
+						<div class="cate-c-sub">
+							<c:if test="${empty id }">
+								<a href="loginForm.do" class="top-t" >로그인</a>
+								<a class="top-t">|</a>
+								<a href="joinForm.do" class="top-t" >회원가입</a>
+								
+							</c:if>
+							<c:if test="${not empty id }">
+								<a href="logout.do" class="top-t" >장바구니</a>
+								<a class="top-t">|</a>
+								<a href="logout.do" class="top-t" >로그아웃</a>
+								
+							</c:if>
+						</div>
 						
 						
 						</div>
@@ -355,10 +453,8 @@
 								
 				</div>
 		
-				<hr class="header-hr2 hr">
-		
-
- 							<!-- 신작도서 bookMenu -->
+						<div class="hideBookMenu">
+							<!-- 신작도서 bookMenu -->
 							<div class="bookMenu">
 									<!-- IT -->
 											<ul class="submenu">
@@ -419,8 +515,8 @@
 									
 									
 							</div>
-							<!-- 신작도서 bookMenu끝 -->			
-		
+							<!-- 신작도서 bookMenu끝	 -->		
+						</div>
 			</div>
 		</div>
 	

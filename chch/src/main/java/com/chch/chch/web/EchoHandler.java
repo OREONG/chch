@@ -38,7 +38,7 @@ public class EchoHandler extends TextWebSocketHandler {
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		
 		String msg = message.getPayload();
-		System.out.println(msg);
+		System.out.println("msg : "+msg);
 		
 		String[] strs = msg.split(",");				// 들어온 메세지를 , 기준으로 나눠 어떠한 메세지인지 분류한다
 		String cmd = strs[0];
@@ -55,19 +55,6 @@ public class EchoHandler extends TextWebSocketHandler {
 					WebSocketSession recieverWriterSession = userSessionsMap.get(userId);
 					recieverWriterSession.sendMessage(new TextMessage(msg));
 					
-				} else if (strs !=null && "joinRoom".equals(cmd)) {				// notice로 분류될 때
-					int room_no = Integer.parseInt(strs[2]);
-					
-					List<Chat> roomMember = cs.selectRoomMember(room_no);			
-					
-					WebSocketSession recieverWriterSession;
-					
-					for (int i = 0; i < roomMember.size(); i++) {
-						recieverWriterSession = userSessionsMap.get(roomMember.get(i).getId());		// roomMember에서 구한 유저들의 세션정보 가져오기
-						if (recieverWriterSession != null) {							// 세션에 해당 유저가 접속해있는지 확인
-							recieverWriterSession.sendMessage(new TextMessage(msg));	// 세션에 접속해 있을 때만 해당 유저에게 채팅 전달
-						}
-					}
 				} else if (strs !=null && "chat".equals(cmd)) {						// chat으로 분류될 때
 					int room_no = Integer.parseInt(strs[2]);
 					
@@ -75,10 +62,29 @@ public class EchoHandler extends TextWebSocketHandler {
 					
 					WebSocketSession recieverWriterSession;					// 메세지 받을 사람들의 세션 선언
 					
+					System.out.println("chat으로 시작하는 메세지인 것으로 확인"+msg);
+					
 					for (int i = 0; i < roomMember.size(); i++) {
 						recieverWriterSession = userSessionsMap.get(roomMember.get(i).getId());		// roomMember에서 구한 유저들의 세션정보 가져오기
 						if (recieverWriterSession != null) {							// 세션에 해당 유저가 접속해있는지 확인
-							recieverWriterSession.sendMessage(new TextMessage(msg));	// 세션에 접속해 있을 때만 해당 유저에게 채팅 전달
+							
+							
+							List<Chat> myRoom = cs.selectMyRoom(roomMember.get(i).getId());
+							int sum1 = 0;
+							for (int j = 0; j < myRoom.size(); j++) {
+								sum1 += cs.loadUnreadChat(roomMember.get(i).getId(), myRoom.get(j).getRoom_no());
+								System.out.println("id : "+roomMember.get(i).getId()+", room_no : "+myRoom.get(j).getRoom_no()+", sum1 : "+sum1);
+							}
+							
+							sum1 += 1;
+							
+							System.out.println(roomMember.get(i).getId()+"의 sum1 : "+sum1);
+							
+							String sum = String.valueOf(sum1);
+							
+							int unread = cs.loadUnreadChat(roomMember.get(i).getId(), room_no);
+							
+							recieverWriterSession.sendMessage(new TextMessage(msg+","+sum+","+unread));	// 세션에 접속해 있을 때만 해당 유저에게 채팅 전달
 						}
 					}
 				} else if (strs !=null && "status".equals(cmd)) {
@@ -100,71 +106,6 @@ public class EchoHandler extends TextWebSocketHandler {
 			}
 			
 		}
-			
-			
-//			if (message.getPayload().startsWith("{")) {
-//				for(WebSocketSession ws : sessions) {
-//					ws.sendMessage(message);
-//				}
-//			}
-//		}
-
-//		String senderEmail = getEmail(session);
-		// 모든 유저에게 보낸다 - 브로드 캐스팅
-//		for (WebSocketSession sess : sessions) {
-//			sess.sendMessage(new TextMessage(senderNickname + ": " +  message.getPayload()));
-//		}
-
-		// protocol : cmd , 댓글작성자, 게시글 작성자 , seq (reply , user2 , user1 , 12)
-//		String msg = message.getPayload();
-//		if(StringUtils.isNotEmpty(msg)) {
-//			String[] strs = msg.split(",");
-//			
-//			if(strs != null && strs.length == 5) {
-//				String cmd = strs[0];
-//				String caller = strs[1]; 
-//				String receiver = strs[2];
-//				String receiverEmail = strs[3];
-//				String seq = strs[4];
-//				
-//				//작성자가 로그인 해서 있다면
-//				WebSocketSession boardWriterSession = userSessionsMap.get(receiverEmail);
-//				
-//				if("reply".equals(cmd) && boardWriterSession != null) {
-//					TextMessage tmpMsg = new TextMessage(caller + "님이 " + 
-//										"<a type='external' href='/mentor/menteeboard/menteeboardView?seq="+seq+"&pg=1'>" + seq + "</a> 번 게시글에 댓글을 남겼습니다.");
-//					boardWriterSession.sendMessage(tmpMsg);
-//				
-//				}else if("follow".equals(cmd) && boardWriterSession != null) {
-//					TextMessage tmpMsg = new TextMessage(caller + "님이 " + receiver +
-//							 "님을 팔로우를 시작했습니다.");
-//					boardWriterSession.sendMessage(tmpMsg);
-//					
-//				}else if("scrap".equals(cmd) && boardWriterSession != null) {
-//					TextMessage tmpMsg = new TextMessage(caller + "님이 " +
-//										//변수를 하나더 보낼수 없어서 receiver 변수에 member_seq를 넣어서 썼다.
-//										"<a type='external' href='/mentor/essayboard/essayboardView?pg=1&seq="+seq+"&mentors="+ receiver +"'>" + seq + "</a>번 에세이를 스크랩 했습니다.");
-//					boardWriterSession.sendMessage(tmpMsg);
-//				}
-//			}
-//			// 모임 신청 했을때
-//			if(strs != null && strs.length == 5) {
-//				String cmd = strs[0];
-//				String mentee_name = strs[1];
-//				String mentor_email = strs[2];
-//				String meetingboard_seq = strs[3];
-//				String participation_seq = strs[4];
-//				
-//				// 모임 작성한 멘토가 로그인 해있으면
-//				WebSocketSession mentorSession = userSessionsMap.get(mentor_email);
-//				if(cmd.equals("apply") && mentorSession != null) {
-//					TextMessage tmpMsg = new TextMessage(
-//							mentee_name + "님이 모임을 신청했습니다. " +"<a type='external' href='/mentor/participation/participationView?mseq="+ meetingboard_seq +"&pseq="+ participation_seq +"'>신청서 보기</a>");
-//					mentorSession.sendMessage(tmpMsg);
-//				}
-//			}
-//		}
-//	}
 
 	// 연결 해제될때
 	@Override

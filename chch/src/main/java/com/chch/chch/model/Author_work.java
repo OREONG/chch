@@ -14,4 +14,8 @@ public class Author_work {
 	private Date author_work_date; //작품 등록 날짜	
 	private int author_no; //작가되기 번호
 	private String id;//아이디
+	
+	//paging용
+	private int startRow;
+	private int endRow;
 }

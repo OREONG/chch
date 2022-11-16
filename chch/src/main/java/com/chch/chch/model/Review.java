@@ -30,4 +30,5 @@ public class Review {
 	//private int  used_no;//	중고거래번호fk
 	private int author_no;		//작가되기 번호fk
 	private String del; //좋아요 여부
+	
 }

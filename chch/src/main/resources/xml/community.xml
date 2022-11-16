@@ -17,19 +17,23 @@
 	</select>
 	
 	<select id="communityMyList" parameterType="String" resultType="community">
-		SELECT * FROM community c, room r WHERE c.room_no=r.room_no AND id=#{id} ORDER BY community_no DESC
+		SELECT * FROM community c, room r WHERE c.room_no=r.room_no AND id=#{id} AND leave='n' ORDER BY community_no DESC
 	</select>
 	
 	<select id="currentMember" parameterType="int" resultType="int">
-		SELECT COUNT(*) FROM room WHERE room_no=#{room_no}
+		SELECT COUNT(*) FROM room WHERE room_no=#{room_no} AND leave='n'
 	</select>
 	
 	<select id="communityAllList" resultType="community">
-		SELECT * FROM community c, room r WHERE c.room_no=r.room_no AND c.host_id=r.id ORDER BY community_no DESC
+		SELECT * FROM community c, room r WHERE c.room_no=r.room_no AND c.host_id=r.id AND leave='n' ORDER BY community_no DESC
 	</select>
 	
 	<select id="participation" parameterType="map" resultType="int">
-		SELECT count(*) FROM room WHERE room_no=#{room_no} and id=#{id}
+		SELECT count(*) FROM room WHERE room_no=#{room_no} and id=#{id} and leave='n'
+	</select>
+	
+	<select id="leaveHistory" parameterType="map" resultType="int">
+		SELECT count(*) FROM room WHERE room_no=#{room_no} and id=#{id} and leave='y'
 	</select>
 	
 	<select id="selectRoomName" parameterType="int" resultType="String">
@@ -37,7 +41,28 @@
 	</select>
 	
 	<insert id="joinRoom" parameterType="map">
-		INSERT INTO room VALUES (#{room_no}, #{id}, #{room_name}, sysdate, 'n')
+		INSERT INTO room VALUES (#{room_no}, #{id}, #{room_name}, sysdate, sysdate, 'n', 0)
 	</insert>
+	
+	<update id="leaveRoom" parameterType="map">
+		UPDATE room SET leave='y' WHERE room_no=#{room_no} AND id=#{id}
+	</update>
+	
+	<select id="leaveHistoryChk" parameterType="map" resultType="int">
+		SELECT count(*) FROM room WHERE room_no=#{room_no} and id=#{id} and leave='y'
+	</select>
+	
+	<update id="rejoinRoom" parameterType="map">
+		UPDATE room SET leave='n', join_date=sysdate WHERE room_no=#{room_no} AND id=#{id}
+	</update>
+	
+	<update id="communityDelete" parameterType="map">
+		UPDATE community SET community_del='y' WHERE host_id=#{id} AND community_no=#{community_no}
+	</update>
+	
+	<update id="banRoom" parameterType="int">
+		UPDATE room SET leave='y' WHERE room_no=#{room_no}
+	</update>
+	
 	
 </mapper>
