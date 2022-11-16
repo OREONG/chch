@@ -18,4 +18,6 @@ public interface CartDao {
 
 	Cart select(Cart cart);
 
+	int getTotal(Cart cart);
+
 }

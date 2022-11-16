@@ -35,5 +35,8 @@
 		<select id="select"  parameterType="map" resultType="like">
 			select * from like_list where id =#{id} and book_no =#{book_no}
 		</select>
-	
+		<!--페이징 -->
+		<select id="getTotal" parameterType="like" resultType="integer">
+		select count(*) from like_list
+		</select>
 </mapper>

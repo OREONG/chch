@@ -62,4 +62,9 @@ public class Like_listDaoImpl implements Like_listDao{
 		return sst.selectList("likens.select",map);
 	}
 
+	@Override
+	public int getTotal(Like_list like_list) {
+		return sst.selectOne("likens.getTotal",like_list);
+	}
+
 }

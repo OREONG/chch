@@ -20,6 +20,8 @@ public interface Like_listService {
 
 	List<Like_list> newBookLike(String id, int book_no, Like_list like_list);
 
+	int getTotal(Like_list like_list);
+
 	
 
 }

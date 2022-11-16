@@ -13,6 +13,8 @@
 @import url("${path}/resources/css/list.css");
 @import url("${path}/resources/css/gallery.css");
 </style>
+<style type="text/css">@import url("/chch/resources/css/paging.css");</style>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#chkAll").click(function() {
@@ -46,6 +48,7 @@
 </script>
 </head>
 <body>
+<div id="board_wrap">
 <div class="board_name">판매목록</div>
 	
 	<div class="board_list_wrap">
@@ -101,9 +104,59 @@
 		<button class="board_list_optionbtn_del" type="button"
 			id="deleteButton" onclick="delSelect()">선택 삭제</button>
 			</div>
+			<!-- 페이징 -->
+		<div class="paging-div">
+ 				<c:if test="${empty sales_list }">
+				</c:if> 
+				<c:if test="${not empty sales_list }">
+					
+					<ul class="pagination-ul">
+						<c:if test="${pb.startPage > pb.pagePerBlock }">
+							<li class="pre-btn">
+								<a href="sales_list.do?id=${id}&pageNum=1">
+									<span class="glyphicon glyphicon-chevron-left"></span>
+								</a>
+							</li>
+							<li class="pre-btn">
+								<a href="sales_list.do?id=${id}&pageNum=${pb.startPage-1 }">
+									<span class="glyphicon glyphicon-chevron-left"></span>
+								</a>
+							</li>							
+						</c:if>
+						<c:forEach var="i" begin="${pb.startPage }" end="${pb.endPage }">
+							<c:if test="${pb.currentPage == i }">
+								<li class="active-btn">
+									<a href="sales_list.do?id=${id}&pageNum=${i }">${i }</a>
+								</li>
+							</c:if>
+							<c:if test="${pb.currentPage != i }">
+								<li class="non-active-btn">
+									<a href="sales_list.do?id=${id}&pageNum=${i }">${i }</a>
+								</li>
+							</c:if>
+						</c:forEach>
+						<c:if test="${pb.endPage < pb.totalPage }">
+							<li class="next-btn">
+								<a href="sales_list.do?id=${id}&pageNum=${pb.endPage }">
+									<span class="glyphicon glyphicon-chevron-right"></span>
+								</a>
+							</li>
+							<li class="next-btn">
+								<a href="sales_list.do?id=${id}&pageNum=${pb.endPage+1 }">
+									<span class="glyphicon glyphicon-chevron-right"></span>
+								</a>
+							</li>
+						</c:if>
+					</ul>
+					
+				</c:if>
+		</div>
+		<!-- 페이징 끝 -->
+			
 		</div>
 		<div class="board_mainbtns">
 			<a href="main.do" class="board_bigorderbtn left">메인으로</a>
 		</div>
+</div>
 </body>
 </html>

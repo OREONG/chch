@@ -16,6 +16,8 @@
 @import url("${path}/resources/css/list.css");
 @import url("${path}/resources/css/gallery.css");
 </style>
+<style type="text/css">@import url("/chch/resources/css/paging.css");</style>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#like_usedBook').hide();
@@ -32,6 +34,7 @@
 </script>
 </head>
 <body>
+<div id="board_wrap">
 	<div class="board_name">찜목록</div>
 	<div class="select_view">
 		<!-- 리스트 갤러리 버튼 -->
@@ -60,6 +63,54 @@
 			<c:if test="${empty Booklike_list }">
 				<div id="show">새책도서 찜목록이 비었습니다.</div>
 			</c:if>
+		<!-- 페이징 -->
+		<div class="paging-div">
+ 				<c:if test="${empty Booklike_list }">
+				</c:if> 
+				<c:if test="${not empty Booklike_list }">
+					
+					<ul class="pagination-ul">
+						<c:if test="${pb.startPage > pb.pagePerBlock }">
+							<li class="pre-btn">
+								<a href="like_list.do&pageNum=1">
+									<span class="glyphicon glyphicon-chevron-left"></span>
+								</a>
+							</li>
+							<li class="pre-btn">
+								<a href="like_list.do&pageNum=${pb.startPage-1 }">
+									<span class="glyphicon glyphicon-chevron-left"></span>
+								</a>
+							</li>							
+						</c:if>
+						<c:forEach var="i" begin="${pb.startPage }" end="${pb.endPage }">
+							<c:if test="${pb.currentPage == i }">
+								<li class="active-btn">
+									<a href="like_list.do&pageNum=${i }">${i }</a>
+								</li>
+							</c:if>
+							<c:if test="${pb.currentPage != i }">
+								<li class="non-active-btn">
+									<a href="like_list.do&pageNum=${i }">${i }</a>
+								</li>
+							</c:if>
+						</c:forEach>
+						<c:if test="${pb.endPage < pb.totalPage }">
+							<li class="next-btn">
+								<a href="like_list.do&pageNum=${pb.endPage }">
+									<span class="glyphicon glyphicon-chevron-right"></span>
+								</a>
+							</li>
+							<li class="next-btn">
+								<a href="like_list.do&pageNum=${pb.endPage+1 }">
+									<span class="glyphicon glyphicon-chevron-right"></span>
+								</a>
+							</li>
+						</c:if>
+					</ul>
+					
+				</c:if>
+		</div>
+		<!-- 페이징 끝 -->
 		</div>
 	</div>
 	<!-- 중고책 찜목록 -->
@@ -84,14 +135,64 @@
 			<c:if test="${empty Usedlike_list }">
 				<div id="show">중고도서 찜목록이 비었습니다.</div>
 			</c:if>
+			<!-- 페이징 -->
+		<div class="paging-div">
+ 				<c:if test="${empty Usedlike_list }">
+				</c:if> 
+				<c:if test="${not empty Usedlike_list }">
+					
+					<ul class="pagination-ul">
+						<c:if test="${pb.startPage > pb.pagePerBlock }">
+							<li class="pre-btn">
+								<a href="like_list.do&pageNum=1">
+									<span class="glyphicon glyphicon-chevron-left"></span>
+								</a>
+							</li>
+							<li class="pre-btn">
+								<a href="like_list.do&pageNum=${pb.startPage-1 }">
+									<span class="glyphicon glyphicon-chevron-left"></span>
+								</a>
+							</li>							
+						</c:if>
+						<c:forEach var="i" begin="${pb.startPage }" end="${pb.endPage }">
+							<c:if test="${pb.currentPage == i }">
+								<li class="active-btn">
+									<a href="like_list.do&pageNum=${i }">${i }</a>
+								</li>
+							</c:if>
+							<c:if test="${pb.currentPage != i }">
+								<li class="non-active-btn">
+									<a href="like_list.do&pageNum=${i }">${i }</a>
+								</li>
+							</c:if>
+						</c:forEach>
+						<c:if test="${pb.endPage < pb.totalPage }">
+							<li class="next-btn">
+								<a href="like_list.do&pageNum=${pb.endPage }">
+									<span class="glyphicon glyphicon-chevron-right"></span>
+								</a>
+							</li>
+							<li class="next-btn">
+								<a href="like_list.do&pageNum=${pb.endPage+1 }">
+									<span class="glyphicon glyphicon-chevron-right"></span>
+								</a>
+							</li>
+						</c:if>
+					</ul>
+					
+				</c:if>
+		</div>
+		<!-- 페이징 끝 -->
 		</div>
 	</div>
+	
+	
 	<div class="board_mainbtns">
 		<a href="cart.do"
 			class="board_bigorderbtn left">장바구니 가기</a> 
 			<a href="${path }/main.do" class="board_bigorderbtn right">메인으로</a>
 	</div>
 
-
+</div>
 </body>
 </html>

@@ -1,0 +1,77 @@
+@charset "UTF-8";
+
+.paging-div{
+	margin-top: 28px;
+}
+
+/* 페이징 부분 가운데 정렬 */
+.pagination-ul{
+	justify-content: center;
+}
+.pagination-ul>li{
+	margin-right:5px;
+}
+/* 현재 눌려있는 페이지 버튼 */
+.active-btn{
+	border: 1px solid #5055b1;
+    border-radius: 6px;
+    width: 35px;
+    height: 35px;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.active-btn>a{
+	font-size:16px;
+	color: #5055b1;
+	text-decoration: none;
+    font-weight: 700;
+}
+
+/* 눌려있지 않은 페이지 버튼 */
+.non-active-btn{
+	/* border: 1px solid #c8c8c8; */
+    border-radius: 6px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.non-active-btn>a{
+	font-size:16px;
+	color: #b1b1b1;
+	text-decoration: none;
+}
+/* 한 row 이전으로 가는 <버튼 */
+.pre-btn{
+	border-radius: 6px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;	
+}
+.pre-btn>a{
+		font-size: 16px;
+	color: #5055b1;
+    text-decoration: none;
+}
+
+/* 한 row 다음으로 가는 >버튼 */
+.next-btn{
+	border-radius: 6px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.next-btn>a{
+	font-size: 16px;
+	color: #5055b1;
+    text-decoration: none;
+}

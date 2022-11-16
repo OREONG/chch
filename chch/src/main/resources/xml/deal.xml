@@ -37,5 +37,8 @@
 	<update id="purchase_DelAll" parameterType="map">
 	 	update deal set purchase_list_del ='y' where purchase_id=#{id} and deal_no=#{deal_no}
 	 </update>
-	
+	<!--페이징 -->
+	<select id="getTotal" parameterType="deal" resultType="integer">
+		select count(*) from deal
+	</select>
 </mapper>

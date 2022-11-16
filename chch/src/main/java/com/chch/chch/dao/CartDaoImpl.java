@@ -71,4 +71,9 @@ public class CartDaoImpl implements CartDao{
 		return sst.update("cartns.update_cart",cart);
 	}
 
+	@Override
+	public int getTotal(Cart cart) {
+		return sst.selectOne("cartns.getTotal",cart);
+	}
+
 }

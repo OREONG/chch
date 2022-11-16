@@ -56,5 +56,11 @@ public class DealDaoImpl implements DealDao{
 		return sst.update("dealns.purchase_DelAll",map);
 	}
 
+	@Override
+	public int getTotal(Deal deal) {
+		return sst.selectOne("dealns.getTotal",deal);
+		
+	}
+
 	
 }

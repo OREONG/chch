@@ -43,5 +43,10 @@ public class DealServiceImpl implements DealService{
 		return dd.purchase_DelAll(deal_no,id);
 	}
 
+	@Override
+	public int getTotal(Deal deal) {
+		return dd.getTotal(deal);
+	}
+
 	
 }

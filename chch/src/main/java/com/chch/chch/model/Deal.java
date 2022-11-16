@@ -16,6 +16,7 @@ public class Deal {
 	private String book_publisher;
 	private int book_count;
 	private String used_no;
-	
+	private int startRow;
+	private int endRow;
 	
 }

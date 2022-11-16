@@ -44,4 +44,9 @@ public class CartServiceImpl implements CartService {
 		return cd.update_cart(cart);
 	}
 
+	@Override
+	public int getTotal(Cart cart) {
+		return cd.getTotal(cart);
+	}
+
 }

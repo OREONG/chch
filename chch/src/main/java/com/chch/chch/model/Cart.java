@@ -17,4 +17,7 @@ public class Cart {
 	private int book_price;
 	private String book_kind;
 	private int book_count;
+	
+	private int startRow;
+	private int endRow;
 }

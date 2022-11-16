@@ -9,7 +9,7 @@
 </head>
 <body>
 <div align="center">
- 메인<p>
+
  <a href="member/joinForm.do" class="btn btn-info">회원가입</a><p>
  <a href="member/loginForm.do" class="btn btn-success">로그인</a><p>
  <a href="mypage/cart.do" class="btn btn-success">장바구니</a>

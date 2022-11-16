@@ -1,5 +1,11 @@
 @charset "UTF-8";
 
+#board_wrap{
+  width: 80%;
+  margin: auto;
+	
+}  
+
 
 button{
  background-color: white;

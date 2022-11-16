@@ -22,6 +22,8 @@ public interface DealService {
 	/* 판매목록 전체삭제n => y */
 	int purchase_DelAll(int deal_no, String id);
 
+	int getTotal(Deal deal);
+
 
 
 

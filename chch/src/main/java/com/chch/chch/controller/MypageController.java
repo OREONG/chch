@@ -1,7 +1,6 @@
 package com.chch.chch.controller;
 
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 
 import java.util.List;
 
@@ -19,6 +18,7 @@ import com.chch.chch.model.Like_list;
 import com.chch.chch.service.CartService;
 import com.chch.chch.service.DealService;
 import com.chch.chch.service.Like_listService;
+import com.chch.chch.service.PagingBean;
 
 @Controller
 public class MypageController {
@@ -31,18 +31,32 @@ public class MypageController {
 	
 	
 	
-//	                   ¿©±â¼­ºÎÅÍ´Â Àå¹Ù±¸´Ï
+//	                   ì—¬ê¸°ì„œë¶€í„°ëŠ” ì¥ë°”êµ¬ë‹ˆ
 	 
-	//Àå¹Ù±¸´Ï ¸ñ·Ï 
+	//ì¥ë°”êµ¬ë‹ˆ ëª©ë¡ 
 	@RequestMapping("/mypage/cart")
-	public String cart(HttpSession session,Cart cart, Model model) {
+	public String cart(HttpSession session,Cart cart, Model model,String pageNum) {
 		String id = (String)session.getAttribute("id");
+		int rowPerPage = 10; // ï¿½ë¸³ ï¿½ì†•ï§ëŒë¿‰ è¹‚ëŒë¿¬äºŒì‡°ë’— åª›ï¿½ï¿½ë‹”
+		if (pageNum == null || pageNum.equals("")) pageNum = "1";
+		int currentPage = Integer.parseInt(pageNum);
+		int total = cs.getTotal(cart);		
+		int startRow = (currentPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		int num = total - startRow + 1;
+		cart.setStartRow(startRow);
+		cart.setEndRow(endRow);
 		List<Cart> cart_list = cs.list(id);
+		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
+
+		model.addAttribute("cart", cart);
+		model.addAttribute("num", num);
+		model.addAttribute("pb", pb);
 		model.addAttribute("cart_list",cart_list);
 		model.addAttribute("id",id);
 		return "/mypage/cart";
 	}
-	//Àå¹Ù±¸´Ï ¼ö·® ¼öÁ¤
+	//ì¥ë°”êµ¬ë‹ˆ ìˆ˜ëŸ‰ ìˆ˜ì •
 	@RequestMapping("/mypage/cartUpdate")
 	public String cartUpdate(Cart cart,int cart_no,Model model) {
 		int result = cs.update(cart);
@@ -50,7 +64,7 @@ public class MypageController {
 		model.addAttribute("cart_no",cart_no);
 		return "/mypage/cartUpdate";
 	}
-	//Àå¹Ù±¸´Ï »èÁ¦
+	//ì¥ë°”êµ¬ë‹ˆ ì‚­ì œ
 	@RequestMapping("/mypage/cartDelete")
 	public String cartDelete(HttpSession session,int cart_no,Model model) {
 		String id = (String)session.getAttribute("id");
@@ -62,15 +76,15 @@ public class MypageController {
 	}
 	
 	
-	//newDetail.jsp¿¡¼­ addcart´©¸£¸é cartInsert(¹Ù·Î¾Æ·¡) ¿©±â·Î µé¾î¿É´Ï´Ù
-	//Àå¹Ù±¸´Ï¿¡ »óÇ° Ãß°¡
+	//newDetail.jspì—ì„œ addcartëˆ„ë¥´ë©´ cartInsert(ë°”ë¡œì•„ë˜) ì—¬ê¸°ë¡œ ë“¤ì–´ì˜µë‹ˆë‹¤
+	//ì¥ë°”êµ¬ë‹ˆì— ìƒí’ˆ ì¶”ê°€
 	@RequestMapping("/newBook/cartInsert")
 	public String cartInsert (Cart cart,HttpSession session,Model model,int book_no) {
 //		String id = (String)session.getAttribute("id");
 		int result = 0;
 		Cart cart2 = cs.select(cart);
 		//String book_no1 = (String) session.getAttribute("book_no");
-		//°°Àº »óÇ°ÀÌ ÀÖÀ¸¸é ¼ö·®À» update
+		//ê°™ì€ ìƒí’ˆì´ ìˆìœ¼ë©´ ìˆ˜ëŸ‰ì„ update
 		if(cart2==null){
 			result = cs.insert(cart);
 		}
@@ -83,7 +97,7 @@ public class MypageController {
 		model.addAttribute("book_no",book_no);
 		return "/mypage/cartInsert";
 	}
-	//Àå¹Ù±¸´Ï ¼±ÅÃ»óÇ° ÀüÃ¼»èÁ¦
+	//ì¥ë°”êµ¬ë‹ˆ ì„ íƒìƒí’ˆ ì „ì²´ì‚­ì œ
 	 @RequestMapping("/mypage/delAll")
 	 public String delAll(HttpSession session,Model model, @RequestParam(value = "cart_nos" ,required = false) String cart_no) {
 		 int result = 0;
@@ -98,19 +112,32 @@ public class MypageController {
 	 }
 	 
 	
-//	               ¿©±â¼­ºÎÅÍ´Â ±¸¸Å¸ñ·Ï
+//	               ì—¬ê¸°ì„œë¶€í„°ëŠ” êµ¬ë§¤ëª©ë¡
 		
-	//±¸¸Å¸ñ·Ï ºÒ·¯¿À±â
+	//êµ¬ë§¤ëª©ë¡ ë¶ˆëŸ¬ì˜¤ê¸°
 	@RequestMapping("/mypage/purchase_list")
-	public String purchase_list(HttpSession session,Deal deal,Model model) {
+	public String purchase_list(HttpSession session,Deal deal,Model model,String pageNum) {
 		String id = (String)session.getAttribute("id");
-		System.out.println("deal id="+id);
+		int rowPerPage = 10; // ï¿½ë¸³ ï¿½ì†•ï§ëŒë¿‰ è¹‚ëŒë¿¬äºŒì‡°ë’— åª›ï¿½ï¿½ë‹”
+		if (pageNum == null || pageNum.equals("")) pageNum = "1";
+		int currentPage = Integer.parseInt(pageNum);
+		int total = ds.getTotal(deal);		
+		int startRow = (currentPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		int num = total - startRow + 1;
+		deal.setStartRow(startRow);
+		deal.setEndRow(endRow);
 		List<Deal> purchase_list = ds.list(id);
+		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
+		model.addAttribute("deal", deal);
+		model.addAttribute("num", num);
+		model.addAttribute("pb", pb);
+		model.addAttribute("id",id);
 		model.addAttribute("purchase_list",purchase_list);
 		return "/mypage/purchase_list";
 	}
 	
-	//±¸¸Å¸ñ·Ï ¼±ÅÃ»óÇ° ÀüÃ¼»èÁ¦
+	//êµ¬ë§¤ëª©ë¡ ì„ íƒìƒí’ˆ ì „ì²´ì‚­ì œ
 	@RequestMapping("/mypage/purchase_DelAll")
 	public String purchase_DelAll(HttpSession session,Model model,@RequestParam(value="purchase_Select", required = false)String deal_no) {
 		int result = 0;
@@ -124,7 +151,7 @@ public class MypageController {
 		return "mypage/purchase_DelAll";
 	}
 	
-	//±¸¸Å¸ñ·Ï »èÁ¦
+	//êµ¬ë§¤ëª©ë¡ ì‚­ì œ
 	@RequestMapping("/mypage/purchase_list_Update")
 	public String purchase_list_Update(HttpSession session,int deal_no,Model model) {
 		String id = (String)session.getAttribute("id");
@@ -137,19 +164,34 @@ public class MypageController {
 	
 	
 	
-//                          ¿©±â¼­ºÎÅÍ´Â ÆÇ¸Å¸ñ·Ï
+//                          ì—¬ê¸°ì„œë¶€í„°ëŠ” íŒë§¤ëª©ë¡
 
 	
-	//ÆÇ¸Å¸ñ·Ï ºÒ·¯¿À±â
+	//íŒë§¤ëª©ë¡ ë¶ˆëŸ¬ì˜¤ê¸°
 	@RequestMapping("/mypage/sales_list")
-	public String sales_list (HttpSession session,Deal deal,Model model) {
+	public String sales_list (HttpSession session,Deal deal,Model model,String pageNum) {
 		String id = (String)session.getAttribute("id");
+		int rowPerPage = 10; // ï¿½ë¸³ ï¿½ì†•ï§ëŒë¿‰ è¹‚ëŒë¿¬äºŒì‡°ë’— åª›ï¿½ï¿½ë‹”
+		if (pageNum == null || pageNum.equals("")) pageNum = "1";
+		int currentPage = Integer.parseInt(pageNum);
+		int total = ds.getTotal(deal);		
+		int startRow = (currentPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		int num = total - startRow + 1;
+		deal.setStartRow(startRow);
+		deal.setEndRow(endRow);
 		List<Deal> sales_list = ds.sales_list(id);
+		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
+		
+		model.addAttribute("deal", deal);
+		model.addAttribute("num", num);
+		model.addAttribute("pb", pb);
+		model.addAttribute("id",id);
 		model.addAttribute("sales_list",sales_list);
 		return "/mypage/sales_list";
 	}
 	
-	//ÆÇ¸Å¸ñ·Ï »èÁ¦
+	//íŒë§¤ëª©ë¡ ì‚­ì œ
 	@RequestMapping("/mypage/sales_list_Update")
 	public String sales_list_Update(HttpSession session,int deal_no,Model model) {
 		String id = (String)session.getAttribute("id");
@@ -161,7 +203,7 @@ public class MypageController {
 	}
 	
 	
-	 //ÆÇ¸Å¸ñ·Ï ¼±ÅÃ»óÇ° ÀüÃ¼»èÁ¦
+	 //íŒë§¤ëª©ë¡ ì„ íƒìƒí’ˆ ì „ì²´ì‚­ì œ
 	 @RequestMapping("/mypage/sales_DelAll")
 	 public String sales_DelAll(HttpSession session,Model model,@RequestParam(value="sales_Select", required = false)String deal_no) {
 		int result = 0;
@@ -176,22 +218,37 @@ public class MypageController {
 	 }
 	 
 	 
-//                         ¿©±â¼­ºÎÅÍ´Â Âò¸ñ·Ï
+//                         ì—¬ê¸°ì„œë¶€í„°ëŠ” ì°œëª©ë¡
  
 	
-	//Âò¸ñ·Ï ºÒ·¯¿À±â
+	//ì°œëª©ë¡ ë¶ˆëŸ¬ì˜¤ê¸°
 	@RequestMapping("/mypage/like_list")
-	   public String like_list(HttpSession session,Like_list like_list,Model model) {
+	   public String like_list(HttpSession session,Like_list like_list,Model model,String pageNum) {
 		String id = (String)session.getAttribute("id");
+		int rowPerPage = 10; // ï¿½ë¸³ ï¿½ì†•ï§ëŒë¿‰ è¹‚ëŒë¿¬äºŒì‡°ë’— åª›ï¿½ï¿½ë‹”
+		if (pageNum == null || pageNum.equals("")) pageNum = "1";
+		int currentPage = Integer.parseInt(pageNum);
+		int total = ls.getTotal(like_list);		
+		int startRow = (currentPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		int num = total - startRow + 1;
+		like_list.setStartRow(startRow);
+		like_list.setEndRow(endRow);
 		List<Like_list> Booklike_list = ls.Booklike_list(id);
 		List<Like_list> Usedlike_list = ls.Usedlike_list(id);
+		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
+		
+		model.addAttribute("like_list", like_list);
+		model.addAttribute("num", num);
+		model.addAttribute("pb", pb);
 		model.addAttribute("Usedlike_list",Usedlike_list);
 		model.addAttribute("Booklike_list",Booklike_list);
+		model.addAttribute("id",id);
 		return "/mypage/like_list";
 		
 	}
 	
-	//Âò¸ñ·Ï »èÁ¦
+	//ì°œëª©ë¡ ì‚­ì œ
 	@RequestMapping("/mypage/like_listDelete")
 	public String like_listDelete(HttpSession session,int like_no,Model model) {
 		String id = (String)session.getAttribute("id");
@@ -201,8 +258,8 @@ public class MypageController {
 		model.addAttribute("id",id);
 		return "/mypage/like_listDelete";
 	}
-	//Âò¸ñ·Ï¿¡ »óÇ°Ãß°¡
-	//newDetail.jsp¿¡¼­ likeInsert´©¸£¸é likeInsert(¹Ù·Î¾Æ·¡) ¿©±â·Î µé¾î¿É´Ï´Ù
+	//ì°œëª©ë¡ì— ìƒí’ˆì¶”ê°€
+	//newDetail.jspì—ì„œ likeInsertëˆ„ë¥´ë©´ likeInsert(ë°”ë¡œì•„ë˜) ì—¬ê¸°ë¡œ ë“¤ì–´ì˜µë‹ˆë‹¤
 	@RequestMapping("/newBook/likeInsert")
 	public String likeInsert(HttpSession session,int book_no,Model model) {
 		String id = (String)session.getAttribute("id");
@@ -219,8 +276,8 @@ public class MypageController {
 		return "/mypage/likeInsert";
 	}
 
-	//Âò¸ñ·Ï¿¡ Áß°í »óÇ° Ãß°¡
-	//usedDetail.jsp¿¡¼­ likeInsert_used´©¸£¸é likeInsert_used(¹Ù·Î¾Æ·¡) ¿©±â·Î µé¾î¿É´Ï´Ù
+	//ì°œëª©ë¡ì— ì¤‘ê³  ìƒí’ˆ ì¶”ê°€
+	//usedDetail.jspì—ì„œ likeInsert_usedëˆ„ë¥´ë©´ likeInsert_used(ë°”ë¡œì•„ë˜) ì—¬ê¸°ë¡œ ë“¤ì–´ì˜µë‹ˆë‹¤
 	@RequestMapping("/usedBook/likeInsert_used")
 	public String likeInsert_used(HttpSession session,int used_no,Like_list like_list,Model model) {
 		String id = (String)session.getAttribute("id");
@@ -240,7 +297,7 @@ public class MypageController {
 }
 	
 	/*
-	 * //newDetailÆäÀÌÁö¿¡¼­ ÇÏÆ® ´©¸£¸é Âò¸ñ·Ï »èÁ¦
+	 * //newDetailí˜ì´ì§€ì—ì„œ í•˜íŠ¸ ëˆ„ë¥´ë©´ ì°œëª©ë¡ ì‚­ì œ
 	 * 
 	 * @RequestMapping("likeDelete") public String likeDelete(HttpSession
 	 * session,int book_no,Model model) { String id =
@@ -252,6 +309,6 @@ public class MypageController {
 	 * model.addAttribute("like_table",like_table); model.addAttribute("id",id);
 	 * return "likeDelete"; }
 	 * 
-	 * //usedDetailÆäÀÌÁö¿¡¼­ ÇÏÆ® ´©¸£¸é Âò¸ñ·Ï »èÁ¦
+	 * //usedDetailí˜ì´ì§€ì—ì„œ í•˜íŠ¸ ëˆ„ë¥´ë©´ ì°œëª©ë¡ ì‚­ì œ
 	 */
 	

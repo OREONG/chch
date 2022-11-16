@@ -20,5 +20,7 @@ public interface CartService {
 
 	Cart select(Cart cart);
 
+	int getTotal(Cart cart);
+
 
 }

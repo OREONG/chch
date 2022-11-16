@@ -18,6 +18,8 @@ public interface DealDao {
 
 	int purchase_DelAll(int deal_no, String id);
 
+	int getTotal(Deal deal);
+
 	
 
 

@@ -48,5 +48,10 @@ public class Like_listServiceImpl implements Like_listService{
 		return ld.newBookLike(id,book_no,like_list);
 	}
 
+	@Override
+	public int getTotal(Like_list like_list) {
+		return ld.getTotal(like_list);
+	}
+
 	
 }

@@ -31,4 +31,9 @@
 	<update id="update_cart" parameterType="cart">
 		update cart set  cart_count=#{cart_count} where book_no = #{book_no} and id=#{id}
 	</update>
+	
+	<!-- 페이징 -->
+	<select id="getTotal" parameterType="cart" resultType="integer">
+		select count(*) from cart
+	</select>
 </mapper>

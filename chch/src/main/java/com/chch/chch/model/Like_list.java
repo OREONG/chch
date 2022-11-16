@@ -16,4 +16,7 @@ public class Like_list {
 	private String used_subject;
 	private int used_price;
 	
+	
+	private int startRow;
+	private int endRow;
 }

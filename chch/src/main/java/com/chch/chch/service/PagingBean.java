@@ -1,7 +1,5 @@
 package com.chch.chch.service;
-
 import lombok.Data;
-
 @Data
 public class PagingBean {
 	private int currentPage;
@@ -13,10 +11,7 @@ public class PagingBean {
 	private int endPage;
 	
 	public PagingBean(int currentPage, int rowPerPage, int total) {
-		this.currentPage = currentPage;
-		this.rowPerPage = rowPerPage;
-		this.total = total;
-		
+		this.currentPage = currentPage; this.rowPerPage = rowPerPage; this.total = total;
 		totalPage = (int)(Math.ceil((double)total/rowPerPage));
 		startPage = currentPage - (currentPage - 1) % pagePerBlock;
 		endPage = startPage + pagePerBlock - 1;
