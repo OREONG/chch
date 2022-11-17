@@ -12,6 +12,8 @@ CREATE TABLE chat (
 	send_time DATE NOT NULL						--발신일시
 );
 
+
+
 SELECT * FROM chat;
 
 SELECT * FROM member;
@@ -675,4 +677,25 @@ CREATE TABLE community (
 
 SELECT * FROM inquiry;
 UPDATE inquiry SET reply='n' WHERE inquiry_no=15;
+
+SELECT * FROM room;
+
+
+SELECT lastsender FROM room WHERE room_no=6 AND lastsender IS NOT NULL GROUP BY lastsender;
+UPDATE room SET lastsender='b' WHERE room_no=6;
+
+SELECT * FROM room WHERE id='a';
+
+
+
+
+
+
+
+
+
+
+
+
+
 

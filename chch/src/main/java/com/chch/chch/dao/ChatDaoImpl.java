@@ -95,4 +95,21 @@ public class ChatDaoImpl implements ChatDao {
 		map.put("id", id);
 		return sst.selectOne("chatns.loadUnreadChat", map);
 	}
+
+	@Override
+	public String selectLastSender(int room_no, String id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("room_no", room_no);
+		map.put("id", id);
+		return sst.selectOne("chatns.selectLastSender", map);
+	}
+
+	@Override
+	public void updateLastSender(int room_no, String id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("room_no", room_no);
+		map.put("id", id);
+		sst.update("chatns.updateLastSender", map);
+		
+	}
 }

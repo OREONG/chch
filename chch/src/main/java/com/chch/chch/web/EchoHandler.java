@@ -59,7 +59,11 @@ public class EchoHandler extends TextWebSocketHandler {
 					recieverWriterSession.sendMessage(new TextMessage(msg));
 					
 				} else if (strs !=null && "chat".equals(cmd)) {						// chat으로 분류될 때
+					String id = strs[1];
 					int room_no = Integer.parseInt(strs[2]);
+					String lastSender = cs.selectLastSender(room_no, id);
+					
+					System.out.println("lastSender 메세지 받았을 때: "+lastSender);
 					
 					List<Chat> roomMember = cs.selectRoomMember(room_no);	// 메세지를 보내려는 방에 포함된 멤버 구하기
 					
@@ -87,11 +91,17 @@ public class EchoHandler extends TextWebSocketHandler {
 							
 							int unread = cs.loadUnreadChat(roomMember.get(i).getId(), room_no);
 							
-							recieverWriterSession.sendMessage(new TextMessage(msg+","+sum+","+unread));	// 세션에 접속해 있을 때만 해당 유저에게 채팅 전달
+							recieverWriterSession.sendMessage(new TextMessage(msg+","+sum+","+unread+","+lastSender));	// 세션에 접속해 있을 때만 해당 유저에게 채팅 전달
 						}
 					}
+					
+					cs.updateLastSender(room_no, id);
+					System.out.println("lastSender 메세지 받았을 때: "+id);
+					
 				} else if (strs !=null && "status".equals(cmd)) {
+					
 					String sender = strs[1];
+					
 					System.out.println("접속자 확인 메세지 받음");
 					
 					String key = userSessionsMap.keySet().toString().substring(1);

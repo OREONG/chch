@@ -22,6 +22,7 @@ public class ChatController {
 	private ChatService cs;
 	
 //	SB 대화방 목록
+	
 	@RequestMapping("chatMemberList")
 	public String chatList(Model model, HttpSession session) {
 		String id = (String) session.getAttribute("id");

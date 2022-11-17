@@ -32,4 +32,8 @@ public interface ChatDao {
 
 	int loadUnreadChat(String id, int room_no);
 
+	String selectLastSender(int room_no, String id);
+
+	void updateLastSender(int room_no, String id);
+
 }

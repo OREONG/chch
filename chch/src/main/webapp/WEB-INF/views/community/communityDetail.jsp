@@ -33,7 +33,7 @@
 			var chat = "chat,${id},${community.room_no},"+chatMsg+","+date;
 			sock.send(chat);
 			
-			location.href='joinRoom.do?room_no=${community.room_no}';
+			location.href='joinRoom.do?room_no=${community.room_no}&room_name=${room_name}';
 		};
 	};
 	
@@ -132,7 +132,7 @@
 	
 	<c:if test="${community.participation > 0 }">
 	<div>
-		<button  onclick="location.href='chat.do?room_no=${community.room_no}&room_name=${community.room_name }'" class="btn btn-info">대화방으로</button>
+		<button  onclick="location.href='chat.do?room_no=${community.room_no}&room_name=${community.community_subject }'" class="btn btn-info">대화방으로</button>
 	</div>
 		<c:if test="${community.host_id == id }">
 			<div>

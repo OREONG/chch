@@ -1,0 +1,123 @@
+
+/* inquiry 전체 컨테이너 */
+.main-container{
+	margin-top: 50px;
+	display: flex;
+    justify-content: center;
+}
+
+/* 중간 컨테이너 */
+.content{
+	position: relative;
+    overflow: visible;
+    width: 1020px;
+    margin: 0 auto;
+    padding: 0 52px 1px;
+}
+
+/* 채팅 내용 컨테이너 */
+#chat-container {
+	overflow-y:scroll;
+	height: 450px;
+}
+
+/* 채팅방으로 가기 버튼 */
+.chat-back-btn {
+	color: #fff;
+	width : 130px;
+    background: #5055b1;
+    border: 1px solid #5055b1;
+    border-radius: 6px;
+    height: 49px;
+	
+	color: #fff;
+	font-size: 15px;
+    font-weight: 600;
+}
+
+/* 채팅 보내기 버튼 */
+.chat-send-btn {
+	color: #fff;
+	width : 130px;
+    background: #5055b1;
+    border: 1px solid #5055b1;
+    border-radius: 6px;
+    height: 49px;
+	
+	color: #fff;
+	font-size: 15px;
+    font-weight: 600;
+}
+
+/* chat 상단바 */
+.chat-top {
+	margin-bottom: 10px;
+}
+
+.from {
+	display: flex;
+	margin-right: auto;
+	flex-wrap: wrap;
+}
+
+.to {
+	display: flex;
+	margin-left: auto;
+	flex-wrap: wrap;
+}
+
+.content1 {
+	max-width: 200px;
+	border-radius: 10px;
+	border: 1px solid;
+	padding: 7px;
+	margin: 4px;
+	text-align: left;
+}
+
+.content2 {
+	max-width: 200px;
+	border-radius: 10px;
+	border: 1px solid;
+	padding: 7px;
+	margin: 4px;
+	text-align: left;
+	background-color: #f5f5f5;
+}
+
+.sendTime {
+	font-size: 4pt;
+	align-self: flex-end;
+}
+
+.changeDate {
+	font-size: 10pt;
+}
+
+#chatMessage {
+	display: flex;
+	flex-flow: column;
+}
+
+.chatcontent {
+	width: 100%;
+}
+
+#chatMessage {
+	height: 600px;
+	overflow-y: scroll;
+}
+
+#alertK {
+	display: none;
+}
+
+.chat-input-area {
+	margin-bottom: 10px;
+}
+
+
+.flex-row {
+	display: flex;
+	flex-direction: row;
+}

@@ -12,7 +12,7 @@
 <style type="text/css">@import url("/chch/resources/css/header.css");</style>
 
 <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
-<c:set var="ipAdd" value="//172.30.1.78:8080"></c:set>
+<c:set var="ipAdd" value="//172.30.1.10:8080"></c:set>
 <c:set var="ip" value="http:${ipAdd}/chch"></c:set>
 <link rel="stylesheet" type="text/css"href="${path }/resources/bootstrap/css/bootstrap.min.css">
 <script type="text/javascript" src="${path}/resources/bootstrap/js/jquery.js"></script>
@@ -51,29 +51,6 @@
 	    
 	});
 	    
-	$(function() {
-	    /* $('#loadStatus').click(function() { loadStatus(); }); */
-	   /*  $('#sendBtn1').click(function() { sendNotice(); }); */
-	    $('#sendBtn2').click(function() { sendChat(); });
-	    /* $('#sendBtn3').click(function() { inquiryReply(); }); */
-	    
-	    
-	    /* $('#notice').keypress(function() { // enter키를 누르면 메세지 전송
-			//  누른 key값(asscii)  IE ?      IE의 값         IE아닌 모든 web값
-			var keycode = event.keyCode ? event.keyCode : event.which;
-			if (keycode == 13) { // 13이 enter(assii값)
-				sendNotice();
-			}
-		}); */
-	    $('#message').keypress(function() { // enter키를 누르면 메세지 전송
-			//  누른 key값(asscii)  IE ?      IE의 값         IE아닌 모든 web값
-			var keycode = event.keyCode ? event.keyCode : event.which;
-			if (keycode == 13) { // 13이 enter(assii값)
-				sendChat();
-			}
-		});
-	}); 
-		
 	function onMessage(evt){
 		
 		var msg = evt.data;
@@ -109,11 +86,6 @@
 				check22=0;;
 			}
 			
-			console.log("check11 : "+check11);
-			console.log('check22 : '+check22);
-			console.log('room_no : ${room_no}');
-			console.log('room_no=${room_no}');
-			
 			var check3 = document.location.href.split("/");
 			console.log(check3[4]);
 			
@@ -124,6 +96,7 @@
 				var room_no = split1[2];
 				var msg = split1[3]
 				var send_time = split1[4];
+				var lastSender = split1[7];
 				
 				checkRoom(id, room_no);
 				
@@ -131,6 +104,7 @@
 				var s_time = timeChange(send_time);
 				
 				if (split1[0] == "chat" && room_no == "${room_no}") {
+					
 					if (sender == "${id}") {
 						$('#chatMessage').append(
 								"<div class='to'>"
@@ -141,12 +115,30 @@
 						objDiv.scrollTop = objDiv.scrollHeight;
 						
 					} else {
-						$('#chatMessage').append(
-								"<div class='from'>"
-									+ "<div class='sendTime'>" + sender + "</div><br>"
-									+ "<div class='content1'>" + msg + "</div>"
-									+ "<div class='sendTime'>" + s_time + "</div><br>"
+						if (lastSender != sender) {
+							$('#chatMessage').append(
+									"<div class='from'>"
+										+ "<div>"
+											+ "<div class='sender'>" + sender + "</div>"
+											+ "<div class='flex-row'>"
+												+ "<div class='content1'>" + msg + "</div>"
+												+ "<div class='sendTime'>" + s_time + "</div>"
+											+ "</div>"
+										+ "</div>"
+									+ "</div>");
+						} else if (lastSender == sender) {
+							$('#chatMessage').append(
+									"<div class='from'>"
+									+ "<div>"
+										+ "<div class='flex-row'>"
+											+ "<div class='content1'>" + msg + "</div>"
+											+ "<div class='sendTime'>" + s_time + "</div>"
+										+ "</div>"
+									+ "</div>"
 								+ "</div>");
+						}
+						
+						document.querySelector('#lastSender').value = sender;
 					}
 				}
 			} else if (check11 == 'chat.do' && check22 != 'room_no='+room_no) {
@@ -162,14 +154,14 @@
 			    
 				var view =sender+"님의 메세지 : "+msg;
 			    				
-				$("#noticePopUp").children().remove();
-			    $("#noticePopUp").val(view);
 				
-				/* $("#unreadNotice").children().remove();
-				$("#unreadNotice").val(loadUnread); */
 				
-			    loadUnreadFn();
-				
+			    setTimeout(function() {
+			    	$("#noticePopUp").children().remove();
+				    $("#noticePopUp").val(view);
+				    loadUnreadFn();
+			    }, 300);
+			    
 			} else if (check3[4] == 'noticeMain.do') {
 				
 				console.log("noticeMain 화면에 있을 때");
@@ -183,16 +175,13 @@
 			    
 				var view =sender+"님의 메세지 : "+msg;
 			    				
-				$("#noticePopUp").children().remove();
-			    $("#noticePopUp").val(view);
-				
-				/* $("#unreadNotice").children().remove();
-				$("#unreadNotice").val(loadUnread); */
-				
-				$("#unreadChat").children().remove();
-				$("#unreadChat").val(loadUnreadChat);
-
-				loadUnreadFn();
+				setTimeout(function() {
+			    	$("#noticePopUp").children().remove();
+				    $("#noticePopUp").val(view);
+				    $("#unreadChat").children().remove();
+					$("#unreadChat").val(loadUnreadChat);
+				    loadUnreadFn();
+			    }, 300);
 				
 			} else {						// 해당 채팅방 안에 있지 않을 때는 notice에 알림
 				
@@ -206,24 +195,23 @@
 			    
 				var view =sender+"님의 메세지 : "+msg;
 			    				
-				$("#noticePopUp").children().remove();
-			    $("#noticePopUp").val(view);
-				
-				/* $("#unreadNotice").children().remove();
-				$("#unreadNotice").val(loadUnread); */
-				
-				
 				if (check3[4] == 'chatMemberList.do') {
-					document.querySelector('#room_no'+room_no).innerText=roomUnread;
-					document.querySelector('#msgRoom_no'+room_no).innerText=msg;
-					
 					var content = document.querySelector('#room'+room_no);
 					var parent = content.parentNode;
-					parent.insertBefore(content, parent.firstChild);
+					
+					setTimeout(function() {
+						document.querySelector('#room_no'+room_no).innerText=roomUnread;
+						document.querySelector('#msgRoom_no'+room_no).innerText=msg;
+						parent.insertBefore(content, parent.firstChild);
+					}, 300);
+					
 				}
+				
 				setTimeout(function() {
+					$("#noticePopUp").children().remove();
+				    $("#noticePopUp").val(view);
 				    loadUnreadFn();
-			    }, 500);
+			    }, 300);
 				
 			}
 			
@@ -245,7 +233,7 @@
 		    	$("#noticePopUp").children().remove();
 			    $("#noticePopUp").val(view);
 			    loadUnreadFn();
-		    }, 500);
+		    }, 300);
 		    
 	    	
 	    } else if (msg != null && msg.trim() != '' && split1[0] == 'joinRoom'){
@@ -253,8 +241,13 @@
 			console.log("header141 joinRoom으로 시작하는 메세지 : "+msg);
 			
 		    var view = split1[1]+"님이 "+split1[3]+" 대화방에 참여하였습니다.";
-	    	$("#noticePopUp").children().remove();
-		    $("#noticePopUp").val(view);
+		    
+		    setTimeout(function() {
+				$("#noticePopUp").children().remove();
+			    $("#noticePopUp").val(view);
+			    loadUnreadFn();
+		    }, 300);
+		    
 	    	
 	    } else if (msg != null && msg.trim() != '' && split1[0] == 'status') {
 	    	
@@ -277,28 +270,6 @@
 		
 	};
 		
-	/* function loadStatus() {
-		var status = "status,${id}";
-		sock.send(status);
-	} */
-	
-	/* function sendNotice() {
-		var userId = $('#userId').val();
-		var notice = $('#notice').val();
-		
-		var notice = "notice,"+userId+","+notice;
-		sock.send(notice);
-		$('#notice').val("");
-	} */
-			
-	/* function inquiryReply() {
-		var userId = $('#userId').val();
-		var inquirySubject = $('#inquiry_subject').val();
-		
-		var inquiryReply = "inquiryReply,"+userId+","+inquirySubject;
-		sock.send(inquiryReply);
-	} */
-	
 	function sendChat() {
 		var msg = $('#message').val(); // 입력한 메세지 글 읽기
 		
@@ -354,7 +325,6 @@
 		
 	}
 	
-	
 	function checkRoom(id, room_no) {
 		$(function() {
 			$.ajax({
@@ -377,7 +347,6 @@
 		
 		<div class="header-container">
 			<div class="header-content">
-						
 				<!-- 로고, 검색, 알림 wrap -->
 				<div class="top-container">
 						<!-- 로고, 검색 -->

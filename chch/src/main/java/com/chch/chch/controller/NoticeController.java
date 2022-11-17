@@ -77,4 +77,5 @@ public class NoticeController {
 		model.addAttribute(id);
 		return "/notice/noticeMain";
 	}
+	
 }

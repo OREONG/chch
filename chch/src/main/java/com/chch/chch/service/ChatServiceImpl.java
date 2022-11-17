@@ -73,4 +73,15 @@ public class ChatServiceImpl implements ChatService {
 	public int loadUnreadChat(String id, int room_no) {
 		return cd.loadUnreadChat(id, room_no);
 	}
+
+	@Override
+	public String selectLastSender(int room_no, String id) {
+		return cd.selectLastSender(room_no, id);
+	}
+
+	@Override
+	public void updateLastSender(int room_no, String id) {
+		cd.updateLastSender(room_no, id);
+		
+	}
 }

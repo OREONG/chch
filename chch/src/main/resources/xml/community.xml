@@ -41,7 +41,7 @@
 	</select>
 	
 	<insert id="joinRoom" parameterType="map">
-		INSERT INTO room VALUES (#{room_no}, #{id}, #{room_name}, sysdate, sysdate, 'n', 0)
+		INSERT INTO room VALUES (#{room_no}, #{id}, #{room_name}, sysdate, sysdate, 'n', 0, #{id})
 	</insert>
 	
 	<update id="leaveRoom" parameterType="map">
@@ -53,7 +53,7 @@
 	</select>
 	
 	<update id="rejoinRoom" parameterType="map">
-		UPDATE room SET leave='n', join_date=sysdate WHERE room_no=#{room_no} AND id=#{id}
+		UPDATE room SET leave='n', lastsender=#{id}, join_date=sysdate WHERE room_no=#{room_no} AND id=#{id}
 	</update>
 	
 	<update id="communityDelete" parameterType="map">

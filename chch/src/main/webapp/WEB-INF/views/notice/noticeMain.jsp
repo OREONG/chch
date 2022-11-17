@@ -4,6 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8"><title>Insert title here</title>
+
+<style type="text/css">
+@import url("/chch/resources/css/notice.css");
+</style>
+
 <script type="text/javascript">
 
 	$(document).ready(function(){
@@ -32,22 +37,28 @@ function loadUnreadInquiry() {
 </script>
 </head>
 <body>
-	<div style="cursor: pointer;" OnClick="location.href ='chatMemberList.do'">
-		<div>대화방에</div>
-		<div>
-			<input type="text" name="unreadChat" id="unreadChat" style="resize: none; border: none; width: 50px; background-color: #ffffff; color: #808080;" readonly="readonly">
+	<div class="main-container">
+		<div class="content">
+			<div id="showPage">
+
+				<div style="cursor: pointer;" OnClick="location.href ='chatMemberList.do'">
+					<div>대화방에</div>
+					<div>
+						<input type="text" name="unreadChat" id="unreadChat" style="resize: none; border: none; width: 50px; background-color: #ffffff; color: #808080;" readonly="readonly">
+					</div>
+					<div>개의 새로운 메세지가 있습니다</div>
+					<hr>
+				</div>
+				
+				<div style="cursor: pointer;" OnClick="location.href ='inquiryList.do?inquiryNumber=2'">
+					<div>
+						<input type="text" name="unreadInquiry" id="unreadInquiry" style="resize: none; border: none; width: 50px; background-color: #ffffff; color: #808080;" readonly="readonly">
+					</div>
+					<div>개의 읽지 않은 문의 답변이 있습니다</div>
+					<hr>
+				</div>
+			</div>
 		</div>
-		<div>개의 새로운 메세지가 있습니다</div>
-		<hr>
 	</div>
-	
-	<div style="cursor: pointer;" OnClick="location.href ='inquiryList.do?inquiryNumber=2'">
-		<div>
-			<input type="text" name="unreadInquiry" id="unreadInquiry" style="resize: none; border: none; width: 50px; background-color: #ffffff; color: #808080;" readonly="readonly">
-		</div>
-		<div>개의 읽지 않은 문의 답변이 있습니다</div>
-		<hr>
-	</div>
-	
 </body>
 </html>

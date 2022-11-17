@@ -55,7 +55,7 @@
 	 
 	 <!-- SB 대화방 생성 -->
 	<insert id="insertRoom" parameterType="chat">
-	 	INSERT INTO room VALUES(#{room_no}, #{id}, #{room_name}, sysdate, sysdate, 'n', 0)
+	 	INSERT INTO room VALUES(#{room_no}, #{id}, #{room_name}, sysdate, sysdate, 'n', 0, #{id})
 	 </insert>
 	 
 	 <!-- SB 로그인한 대상자중에 지정된 room_no에 참석중인 인원 -->
@@ -80,6 +80,17 @@
 	 		WHERE c.room_no = r.room_no AND id=#{id} AND sender!=#{id} AND r.room_no=#{room_no}
 	 			AND c.send_time > (SELECT check_time FROM room WHERE id=#{id} AND room_no=#{room_no})
 	 </select>
+	
+	 <!-- SB 지정 room의 마지막 sender 조회 -->
+	 <select id="selectLastSender" parameterType="map" resultType="String">
+	 	SELECT lastsender FROM room WHERE room_no=#{room_no} AND id=#{id}
+	 </select>
+	 
+	
+	<!-- SB 지정 room의 마지막 sender update -->
+	 <update id="updateLastSender" parameterType="map">
+		UPDATE room SET lastsender=#{id} WHERE room_no=#{room_no}
+	</update>
 	
 	
 	 

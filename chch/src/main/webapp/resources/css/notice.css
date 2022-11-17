@@ -1,0 +1,16 @@
+
+/* inquiry 전체 컨테이너 */
+.main-container{
+	margin-top: 50px;
+	display: flex;
+    justify-content: center;
+}
+
+.content{
+	position: relative;
+    overflow: visible;
+    width: 1020px;
+    margin: 0 auto;
+    padding: 0 52px 1px;
+}
+
