@@ -51,6 +51,9 @@ public class EchoHandler extends TextWebSocketHandler {
 					recieverWriterSession.sendMessage(new TextMessage(msg));
 					
 				} else if (strs !=null && "inquiryReply".equals(cmd)) {				// notice로 분류될 때
+					
+					System.out.println("문의답변옴");
+					
 					String userId = strs[1];
 					WebSocketSession recieverWriterSession = userSessionsMap.get(userId);
 					recieverWriterSession.sendMessage(new TextMessage(msg));

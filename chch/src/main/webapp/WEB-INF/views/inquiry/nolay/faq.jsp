@@ -74,30 +74,7 @@ input[class='toggle'] {
 	margin-bottom: 0;
 }
 
-.flex-container {
-	display: flex;
-}
-.flex-item {
-	margin: 5px;
-	padding: 10px;
-	border: 10px;
-	
-}
-.flex-item.one {
-	display: flex;
-	background-color: #2bc5c1;
-	flex-direction: row;
-	justify-content: space-between;
-	border-radius: 10px;
-}
-.flex-item.a1 {
-	padding-left: 40px;
-	color: white;
-	border-radius: 10px;
-}
-.flex-item.a2 {
-	padding-right: 40px;
-}
+
 
 .flex-container.column{flex-direction: column;}
 </style>
@@ -105,31 +82,32 @@ input[class='toggle'] {
 </head>
 <body>
 
-	<div>
-		<div>
-			<div>
-				<a href="faq.do">FAQ</a>
-			</div>
-			<div>
-				<a href="inquirySelect.do?inquiryNumber=1">1:1 문의</a>
-			</div>
-		</div>
-		<hr>
+	<div class="inquiry-top">
+		<c:if test="${inquiryNumber==1 }">
+			<button class="inquiryMenuBtn1" style="background-color: ##5055b1" onclick="showPage('faq.do?inquiryNumber=1')">FAQ</button>
+			<button class="inquiryMenuBtn2"  onclick="showPage('inquirySelect.do?inquiryNumber=2')">1:1 문의하기</button>
+			<button class="inquiryMenuBtn2"  onclick="showPage('inquiryList.do?inquiryNumber=3')">문의답변 확인</button>
+		</c:if>
+		<c:if test="${inquiryNumber==2 }">
+			<button class="inquiryMenuBtn2" style="background-color: ##5055b1" onclick="showPage('faq.do?inquiryNumber=1')">FAQ</button>
+			<button class="inquiryMenuBtn1"  onclick="showPage('inquirySelect.do?inquiryNumber=2')">1:1 문의하기</button>
+			<button class="inquiryMenuBtn2"  onclick="showPage('inquiryList.do?inquiryNumber=3')">문의답변 확인</button>
+		</c:if>
+		<c:if test="${inquiryNumber==3 }">
+			<button class="inquiryMenuBtn2" style="background-color: ##5055b1" onclick="showPage('faq.do?inquiryNumber=1')">FAQ</button>
+			<button class="inquiryMenuBtn2"  onclick="showPage('inquirySelect.do?inquiryNumber=2')">1:1 문의하기</button>
+			<button class="inquiryMenuBtn1"  onclick="showPage('inquiryList.do?inquiryNumber=3')">문의답변 확인</button>
+		</c:if>
 	</div>
-	
 
 	<div style="display: flex; height: 100%;  ">
 		<div class="main1" style="flex-grow: 5;">
 			<div class="flex-container column">
 				<div class="flex-item one">
-					<div class="flex-item a1">
+					<div class="flex-item-a1">
 						<br>
 						<h3>무엇을 도와드릴까요?</h3>
 						환불은 100% 확실하고,<br> 문의는 신속하게 답변드리겠습니다. <br> <br>
-					</div>
-					<div class="flex-item a2">
-						<p> </p>
-						<p> </p>
 					</div>
 				</div>
 				
@@ -244,7 +222,7 @@ input[class='toggle'] {
 							</p>
 						</div>
 					</div>
-					<div class="flex-item three">
+					<div class="flex-item-a3">
 						고객센터 070-0770-7007<br>
 						평일 10:00 ~ 18:00<br>
 						점심시간 13:00 ~ 14:00<br>

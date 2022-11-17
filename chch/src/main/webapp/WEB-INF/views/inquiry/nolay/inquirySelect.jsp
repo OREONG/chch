@@ -18,45 +18,23 @@
 </head>
 <body>
 
-	<div>
-		<div>
-			<div>
-				<a href="faq.do">FAQ</a>
-			</div>
-			<div>
-				<a href="inquirySelect.do?inquiryNumber=1">1:1 문의</a>
-			</div>
-		</div>
-		<hr>
-	</div>
 
-
-	<div class="inquiry-container">
+	<div class="inquiry-top">
 		<c:if test="${inquiryNumber==1 }">
-			<div class="inquiry-item" style="background-color: #2bc5c1"
-				onclick="location.href='inquirySelect.do?inquiryNumber=1'">
-				<a style="color: white">문의하기</a>
-			</div>
+			<button class="inquiryMenuBtn1" style="background-color: ##5055b1" onclick="showPage('faq.do?inquiryNumber=1')">FAQ</button>
+			<button class="inquiryMenuBtn2"  onclick="showPage('inquirySelect.do?inquiryNumber=2')">1:1 문의하기</button>
+			<button class="inquiryMenuBtn2"  onclick="showPage('inquiryList.do?inquiryNumber=3')">문의답변 확인</button>
 		</c:if>
 		<c:if test="${inquiryNumber==2 }">
-			<div class="inquiry-item"
-				onclick="location.href='inquirySelect.do?inquiryNumber=1'">
-				<a>문의하기</a>
-			</div>
+			<button class="inquiryMenuBtn2" style="background-color: ##5055b1" onclick="showPage('faq.do?inquiryNumber=1')">FAQ</button>
+			<button class="inquiryMenuBtn1"  onclick="showPage('inquirySelect.do?inquiryNumber=2')">1:1 문의하기</button>
+			<button class="inquiryMenuBtn2"  onclick="showPage('inquiryList.do?inquiryNumber=3')">문의답변 확인</button>
 		</c:if>
-		<c:if test="${inquiryNumber==2 }">
-			<div class="inquiry-item" style="background-color: #2bc5c1"
-				onclick="location.href='inquiryList.do?inquiryNumber=2'">
-				<a style="color: white">문의내역확인</a>
-			</div>
+		<c:if test="${inquiryNumber==3 }">
+			<button class="inquiryMenuBtn2" style="background-color: ##5055b1" onclick="showPage('faq.do?inquiryNumber=1')">FAQ</button>
+			<button class="inquiryMenuBtn2"  onclick="showPage('inquirySelect.do?inquiryNumber=2')">1:1 문의하기</button>
+			<button class="inquiryMenuBtn1"  onclick="showPage('inquiryList.do?inquiryNumber=3')">문의답변 확인</button>
 		</c:if>
-		<c:if test="${inquiryNumber==1 }">
-			<div class="inquiry-item"
-				onclick="location.href='inquiryList.do?inquiryNumber=2'">
-				<a>문의내역확인</a>
-			</div>
-		</c:if>
-		<hr>
 	</div>
 
 	<div class="inquiry-main">
@@ -65,8 +43,7 @@
 				<label for="inquiry-menu">문의유형을 선택해주세요</label>
 			</div>
 			<div>
-				<select id="inquiry-menu" name="inquiry-menu"
-					onchange="selectPage()">
+				<select id="inquiry-menu" class="input-select" name="inquiry-menu" onchange="selectPage()">
 					<option value="" selected disabled hidden="">문의유형 선택</option>
 					<option value="1">환불 신청</option>
 					<option value="2">회원 정보 문의</option>

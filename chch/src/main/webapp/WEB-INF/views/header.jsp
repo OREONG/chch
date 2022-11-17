@@ -47,24 +47,24 @@
 	    // 데이터를 전달 받았을때 
 	    sock.onmessage = onMessage; // toast 생성
 	    
-	    loadUnread();
+	    loadUnreadFn();
 	    
 	});
 	    
 	$(function() {
-	    $('#loadStatus').click(function() { loadStatus(); });
-	    $('#sendBtn1').click(function() { sendNotice(); });
+	    /* $('#loadStatus').click(function() { loadStatus(); }); */
+	   /*  $('#sendBtn1').click(function() { sendNotice(); }); */
 	    $('#sendBtn2').click(function() { sendChat(); });
-	    $('#sendBtn3').click(function() { inquiryReply(); });
+	    /* $('#sendBtn3').click(function() { inquiryReply(); }); */
 	    
 	    
-	    $('#notice').keypress(function() { // enter키를 누르면 메세지 전송
+	    /* $('#notice').keypress(function() { // enter키를 누르면 메세지 전송
 			//  누른 key값(asscii)  IE ?      IE의 값         IE아닌 모든 web값
 			var keycode = event.keyCode ? event.keyCode : event.which;
 			if (keycode == 13) { // 13이 enter(assii값)
 				sendNotice();
 			}
-		});
+		}); */
 	    $('#message').keypress(function() { // enter키를 누르면 메세지 전송
 			//  누른 key값(asscii)  IE ?      IE의 값         IE아닌 모든 web값
 			var keycode = event.keyCode ? event.keyCode : event.which;
@@ -165,8 +165,10 @@
 				$("#noticePopUp").children().remove();
 			    $("#noticePopUp").val(view);
 				
-				$("#unreadNotice").children().remove();
-				$("#unreadNotice").val(loadUnread);
+				/* $("#unreadNotice").children().remove();
+				$("#unreadNotice").val(loadUnread); */
+				
+			    loadUnreadFn();
 				
 			} else if (check3[4] == 'noticeMain.do') {
 				
@@ -184,11 +186,13 @@
 				$("#noticePopUp").children().remove();
 			    $("#noticePopUp").val(view);
 				
-				$("#unreadNotice").children().remove();
-				$("#unreadNotice").val(loadUnread);
+				/* $("#unreadNotice").children().remove();
+				$("#unreadNotice").val(loadUnread); */
 				
 				$("#unreadChat").children().remove();
 				$("#unreadChat").val(loadUnreadChat);
+
+				loadUnreadFn();
 				
 			} else {						// 해당 채팅방 안에 있지 않을 때는 notice에 알림
 				
@@ -205,8 +209,9 @@
 				$("#noticePopUp").children().remove();
 			    $("#noticePopUp").val(view);
 				
-				$("#unreadNotice").children().remove();
-				$("#unreadNotice").val(loadUnread);
+				/* $("#unreadNotice").children().remove();
+				$("#unreadNotice").val(loadUnread); */
+				
 				
 				if (check3[4] == 'chatMemberList.do') {
 					document.querySelector('#room_no'+room_no).innerText=roomUnread;
@@ -216,7 +221,9 @@
 					var parent = content.parentNode;
 					parent.insertBefore(content, parent.firstChild);
 				}
-				
+				setTimeout(function() {
+				    loadUnreadFn();
+			    }, 500);
 				
 			}
 			
@@ -233,8 +240,13 @@
 			console.log("header133 inquiryReply으로 시작하는 메세지 : "+msg);
 			
 		    var view = "문의 "+split1[2]+"에 대한 답변이 완료되었습니다.";
-	    	$("#noticePopUp").children().remove();
-		    $("#noticePopUp").val(view);
+		    
+		    setTimeout(function() {
+		    	$("#noticePopUp").children().remove();
+			    $("#noticePopUp").val(view);
+			    loadUnreadFn();
+		    }, 500);
+		    
 	    	
 	    } else if (msg != null && msg.trim() != '' && split1[0] == 'joinRoom'){
 			
@@ -261,29 +273,31 @@
 		    $("#PopUp").children().remove();
 		    $("#PopUp").append(view);
 	    }
+		
+		
 	};
 		
-	function loadStatus() {
+	/* function loadStatus() {
 		var status = "status,${id}";
 		sock.send(status);
-	}
+	} */
 	
-	function sendNotice() {
+	/* function sendNotice() {
 		var userId = $('#userId').val();
 		var notice = $('#notice').val();
 		
 		var notice = "notice,"+userId+","+notice;
 		sock.send(notice);
 		$('#notice').val("");
-	}
+	} */
 			
-	function inquiryReply() {
+	/* function inquiryReply() {
 		var userId = $('#userId').val();
 		var inquirySubject = $('#inquiry_subject').val();
 		
 		var inquiryReply = "inquiryReply,"+userId+","+inquirySubject;
 		sock.send(inquiryReply);
-	}
+	} */
 	
 	function sendChat() {
 		var msg = $('#message').val(); // 입력한 메세지 글 읽기
@@ -330,7 +344,7 @@
 		return changedTime;
 	}
 	
-	function loadUnread() {
+	function loadUnreadFn() {
 		
 		var id = '${id}';
 		
@@ -421,10 +435,12 @@
 						<a class="cate-c" href="writing.do">나도 작가</a>
 						<a class="cate-c" href="communityMain.do">커뮤니티</a>
 						<a class="cate-c" href="mypageMain.do">마이페이지</a>
-						<a class="cate-c" href="faq.do">고객센터</a>
+						<a class="cate-c" href="inquiryMain.do">고객센터</a>
 						<!-- <a class="cate-c" href="communityMain.do">모임</a>
-						<a class="cate-c" href="chatMemberList.do">채팅방</a>
-						<a class="cate-c" href="adminMain.do">관리자</a> -->
+						<a class="cate-c" href="chatMemberList.do">채팅방</a> -->
+						<c:if test="${id == 'a' }">
+							<a class="cate-c" href="adminMain.do">관리자</a>
+						</c:if>
 						
 						<div class="cate-c-sub">
 							<c:if test="${empty id }">
@@ -434,7 +450,7 @@
 								
 							</c:if>
 							<c:if test="${not empty id }">
-								<a href="logout.do" class="top-t" >장바구니</a>
+								<a href="" class="top-t" >장바구니</a>
 								<a class="top-t">|</a>
 								<a href="logout.do" class="top-t" >로그아웃</a>
 								

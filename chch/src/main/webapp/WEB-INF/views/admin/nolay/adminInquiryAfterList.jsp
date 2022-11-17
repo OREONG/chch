@@ -11,20 +11,15 @@
 </head>
 <body>
 
-<div class="inquiry-container">
-	
-<c:if test="${inquiryNumber==1 }">
-		<div class="inquiry-item" style="background-color: #2bc5c1" onclick="location.href='adminInquiryBeforeList.do?inquiryNumber=1'"><a style="color: white">답변 이전</a></div>
-</c:if>
-<c:if test="${inquiryNumber==2 }">
-		<div class="inquiry-item" onclick="location.href='adminInquiryBeforeList.do?inquiryNumber=1'"><a >답변 이전</a></div>
-</c:if>
-<c:if test="${inquiryNumber==2 }">
-		<div class="inquiry-item" style="background-color: #2bc5c1"  onclick="location.href='adminInquiryAfterList.do?inquiryNumber=2'"><a style="color: white">답변 완료</a></div>
-</c:if>
-<c:if test="${inquiryNumber==1 }">
-		<div class="inquiry-item"  onclick="location.href='adminInquiryAfterList.do?inquiryNumber=2'"><a >답변 완료</a></div>
-</c:if>
+	<div class="inquiry-top">
+		<c:if test="${inquiryNumber==1 }">
+				<button class="adminInquiryMenuBtn1" style="background-color: ##5055b1" onclick="showPage('adminInquiryBeforeList.do?inquiryNumber=1')">답변 이전</button>
+				<button class="adminInquiryMenuBtn2"  onclick="showPage('adminInquiryAfterList.do?inquiryNumber=2')">답변 완료</button>
+		</c:if>
+		<c:if test="${inquiryNumber==2 }">
+				<button class="adminInquiryMenuBtn2" onclick="showPage('adminInquiryBeforeList.do?inquiryNumber=1')">답변 이전</button>
+				<button class="adminInquiryMenuBtn1" style="background-color: ##5055b1"  onclick="showPage('adminInquiryAfterList.do?inquiryNumber=2')">답변 완료</button>
+		</c:if>
 	</div>
 
 	<div>
@@ -107,10 +102,6 @@
 	
 	<div>
 		<br><br>
-	</div>
-	<div>
-		<br>
-		<button type="button" onclick="location.href='adminMain.so'">관리자 메뉴</button>
 	</div>
 </body>
 </html>

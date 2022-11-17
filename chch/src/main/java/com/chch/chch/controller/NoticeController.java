@@ -27,7 +27,7 @@ public class NoticeController {
 	public String notice (HttpSession session, Model model) {
 		String id = (String) session.getAttribute("id");
 		model.addAttribute(id);
-		return "/notice/notice";
+		return "/notice/nolay/notice";
 	}
 	
 	@RequestMapping(value = "loadUnreadChat", produces = "text/html;charset=utf-8")

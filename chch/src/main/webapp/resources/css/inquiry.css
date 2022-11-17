@@ -1,0 +1,145 @@
+
+/* inquiry 전체 컨테이너 */
+.main-container{
+	margin-top: 50px;
+	display: flex;
+    justify-content: center;
+}
+
+.content{
+	position: relative;
+    overflow: visible;
+    width: 1020px;
+    margin: 0 auto;
+    padding: 0 52px 1px;
+}
+
+/* inquiry 서브 메뉴버튼 */
+.inquiryMenuBtn1 {
+	
+	color: #fff;
+	width : 130px;
+    background: #5055b1;
+    border: 1px solid #5055b1;
+    border-radius: 6px;
+    height: 49px;
+	
+	color: #fff;
+	font-size: 15px;
+    font-weight: 600;
+}
+
+.inquiryMenuBtn2 {
+	
+	color: #5055b1;
+	width : 130px;
+    background: #fff;
+    border: 1px solid #5055b1;
+    border-radius: 6px;
+    height: 49px;
+	
+	font-size: 15px;
+    font-weight: 600;
+}
+
+ /* InquirySelect & List top */
+.inquiry-top {
+	margin-bottom: 20px;
+}
+
+
+	/* 안내 배너 */
+.flex-container {
+	display: flex;
+}
+.flex-item {
+	margin: 5px;
+	padding: 10px;
+	border: 1px solid #5055b1;
+	border-color : #5055b1;
+}
+.flex-item.one {
+	display: flex;
+	/* background-color: #2bc5c1; */
+	flex-direction: row;
+	justify-content: space-between;
+	border-radius: 10px;
+}
+.flex-item-a1 {
+	padding-left: 40px;
+	border-radius: 10px;
+}
+.flex-item-a2 {
+	padding-right: 40px;
+}
+	/* 안내 배너 끝 */
+
+
+
+/* inquirySelect select input */
+.input-select {
+	width: 116px;
+	height: 40px;
+	border-radius: 6px;
+	margin-left: 5px;
+}
+
+
+/* inquirySelect text input */
+.input-text {
+	width: 600px;
+	height: 40px;
+	border-radius: 6px;
+	margin-left: 5px;
+}
+
+/* inquiryForm textArea input */
+.input-textArea {
+	width: 95%;
+	height: 300px;
+	border-radius: 6px;
+	resize: none;
+}
+
+/* inquiryForm 제목 칸 */
+.inquiry-subject {
+	margin-bottom: 10px;
+}
+
+/* 개인정보 수집 및 이용 동의 칸 */
+.small {
+	margin-bottom: 10px;
+}
+
+/* 확인 버튼 */
+.action-btn{
+    color: #fff;
+	width : 130px;
+    background: #5055b1;
+    border: 1px solid #5055b1;
+    border-radius: 6px;
+    height: 49px;
+	
+	color: #fff;
+	font-size: 15px;
+    font-weight: 600;
+}
+
+
+/* 공용 버튼 */
+.reply-done {
+    width : 50px;
+    border: 1px solid #666666;
+    border-radius: 6px;
+    height: 30px;
+	/* transition: background-color 0.2s ease-out, border-color 0.2s ease-out; */
+	
+	background: #fff;
+	color: #616161;
+	font-size: 14px;
+    font-weight: 600;
+}
+
+.wrap-collabsible-inquiryList {
+	font-weight: 600px;
+}

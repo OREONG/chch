@@ -20,9 +20,17 @@ public class InquiryController {
 	@Autowired
 	private InquiryService ins;
 	
+	@RequestMapping("inquiryMain")
+	public String inquiryMain () {
+		return "/inquiry/inquiryMain";
+	}
+	
+	
 	@RequestMapping("faq")
-	public String faq () {
-		return "/inquiry/faq";
+	public String faq (Model model, int inquiryNumber) {
+		System.out.println("inquiryNumber : "+inquiryNumber);
+		model.addAttribute("inquiryNumber", inquiryNumber);
+		return "/inquiry/nolay/faq";
 	}
 	
 	@RequestMapping("inquirySelect")
@@ -30,7 +38,7 @@ public class InquiryController {
 		
 		model.addAttribute("inquiryNumber", inquiryNumber);
 		
-		return "/inquiry/inquirySelect";
+		return "/inquiry/nolay/inquirySelect";
 	}
 	
 	@RequestMapping("inquiryForm")
@@ -82,7 +90,7 @@ public class InquiryController {
 		model.addAttribute("PAGE_PER_BLOCK", PAGE_PER_BLOCK);
 		model.addAttribute("inquiryNumber", inquiryNumber);
 		
-		return "/inquiry/inquiryList";
+		return "/inquiry/nolay/inquiryList";
 	}
 	
 	@RequestMapping(value = "replyCheck", produces = "text/html;charset=utf-8")

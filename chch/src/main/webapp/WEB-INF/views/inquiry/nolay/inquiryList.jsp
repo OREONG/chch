@@ -60,6 +60,7 @@ input[class='toggle'] {
 .collapsible-content-inquiryList .content-inner-inquiryList {
 	background: #ececec;
 	padding: 10px;
+	border-radius: 6px;
 }
 
 .collapsible-content-inquiryList p {
@@ -77,8 +78,8 @@ input[class='toggle'] {
 				dataType : "html",
 				cache : false
 			});
+			loadUnreadFn();
 		});
-		
 		// sock.send(); <--- 실시간으로 읽은 것 알림에서 뻬야함
 	}
 </script>
@@ -87,46 +88,22 @@ input[class='toggle'] {
 </head>
 <body>
 
-	<div>
-		<div>
-			<div>
-				<a href="faq.do">FAQ</a>
-			</div>
-			<div>
-				<a href="inquirySelect.do?inquiryNumber=1">1:1 문의</a>
-			</div>
-		</div>
-		<hr>
-	</div>
-
-
-	<div class="inquiry-container">
-
+	<div class="inquiry-top">
 		<c:if test="${inquiryNumber==1 }">
-			<div class="inquiry-item" style="background-color: #2bc5c1"
-				onclick="location.href='inquirySelect.do?inquiryNumber=1'">
-				<a style="color: white">문의하기</a>
-			</div>
+			<button class="inquiryMenuBtn1" style="background-color: ##5055b1" onclick="showPage('faq.do?inquiryNumber=1')">FAQ</button>
+			<button class="inquiryMenuBtn2"  onclick="showPage('inquirySelect.do?inquiryNumber=2')">1:1 문의하기</button>
+			<button class="inquiryMenuBtn2"  onclick="showPage('inquiryList.do?inquiryNumber=3')">문의답변 확인</button>
 		</c:if>
 		<c:if test="${inquiryNumber==2 }">
-			<div class="inquiry-item"
-				onclick="location.href='inquirySelect.do?inquiryNumber=1'">
-				<a>문의하기</a>
-			</div>
+			<button class="inquiryMenuBtn2" style="background-color: ##5055b1" onclick="showPage('faq.do?inquiryNumber=1')">FAQ</button>
+			<button class="inquiryMenuBtn1"  onclick="showPage('inquirySelect.do?inquiryNumber=2')">1:1 문의하기</button>
+			<button class="inquiryMenuBtn2"  onclick="showPage('inquiryList.do?inquiryNumber=3')">문의답변 확인</button>
 		</c:if>
-		<c:if test="${inquiryNumber==2 }">
-			<div class="inquiry-item" style="background-color: #2bc5c1"
-				onclick="location.href='inquiryList.do?inquiryNumber=2'">
-				<a style="color: white">문의내역확인</a>
-			</div>
+		<c:if test="${inquiryNumber==3 }">
+			<button class="inquiryMenuBtn2" style="background-color: ##5055b1" onclick="showPage('faq.do?inquiryNumber=1')">FAQ</button>
+			<button class="inquiryMenuBtn2"  onclick="showPage('inquirySelect.do?inquiryNumber=2')">1:1 문의하기</button>
+			<button class="inquiryMenuBtn1"  onclick="showPage('inquiryList.do?inquiryNumber=3')">문의답변 확인</button>
 		</c:if>
-		<c:if test="${inquiryNumber==1 }">
-			<div class="inquiry-item"
-				onclick="location.href='inquiryList.do?inquiryNumber=2'">
-				<a>문의내역확인</a>
-			</div>
-		</c:if>
-		<hr>
 	</div>
 
 	<div>
@@ -144,8 +121,7 @@ input[class='toggle'] {
 							<div class="wrap-collabsible-inquiryList">
 								<input id="collapsible${i }" class="toggle" type="checkbox">
 								<label for="collapsible${i }" class="lbl-toggle-inquiryList" onclick="replyCheck('${inquiry.inquiry_no}')">
-
-									<c:if test="${inquiry.reply=='y'}">답변완료 </c:if> <c:choose>
+									<c:choose>
 										<c:when test="${inquiry.category_no == 1}">환불 신청</c:when>
 										<c:when test="${inquiry.category_no == 2}">회원 정보 문의</c:when>
 										<c:when test="${inquiry.category_no == 3}">결제 관련 문의</c:when>
@@ -154,7 +130,10 @@ input[class='toggle'] {
 										<c:when test="${inquiry.category_no == 6}">도서관련 문의</c:when>
 										<c:when test="${inquiry.category_no == 7}">배송 문의</c:when>
 										<c:otherwise>해당되는 분류가 없음</c:otherwise>
-									</c:choose> <br>${inquiry.inquiry_subject }<br>${inquiry.reg_time }</label>
+									</c:choose> 
+									<c:if test="${inquiry.reply=='y'}"><span class="reply-done">답변완료</span> </c:if>
+									
+									<br>${inquiry.inquiry_subject }<br>${inquiry.reg_time }</label>
 								<div class="collapsible-content-inquiryList">
 									<div class="content-inner-inquiryList">
 										<p>${inquiry.inquiry_content }</p>

@@ -30,7 +30,7 @@
 				제목
 			</div>
 			<div class="inquiry-inputArea">
-				<input type="text" name="inquiry_subject" class="inquiry-subject-input" placeholder="입력해주세요.">
+				<input type="text" name="inquiry_subject" class="input-text" placeholder="입력해주세요." required="required">
 			</div>
 		</div>
 		<div class="inquiry-content">
@@ -38,9 +38,9 @@
 				내용	
 			</div>
 			<div class="inquiry-inputArea">
-				<textarea name="inquiry_content" class="inquiry-content-input" placeholder=
+				<textarea name="inquiry_content" class="input-textArea" placeholder=
 				"어떤 문제가 있으신가요? 아래 내용을 자세히 적어주시면 문제를 더욱 빨리 확인할 수 있습니다.&#13;&#10;&#13;&#10;• 이용 중인 기기 :&#13;&#10;&#13;&#10;• 인터넷 환경 (모바일데이터/와이파이) :&#13;&#10;&#13;&#10;• 문의 내용 :&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;*문제가 발생하는 화면 또는 영상을 첨부해주시면 문제 해결에 큰 도움이 됩니다.&#13;&#10;&#13;&#10;"
-				maxlength="100"></textarea>
+				maxlength="100" required="required"></textarea>
 			</div>
 		</div>
 	</div>
@@ -52,7 +52,7 @@
 				제목
 			</div>
 			<div class="inquiry-inputArea">
-				<input type="text" name="inquiry_subject" class="inquiry-subject-input" placeholder="입력해주세요.">
+				<input type="text" name="inquiry_subject" class="input-text" placeholder="입력해주세요." required="required">
 			</div>
 		</div>
 		<div class="inquiry-content">
@@ -60,9 +60,9 @@
 				내용	
 			</div>
 			<div class="inquiry-inputArea">
-				<textarea name="inquiry_content" class="inquiry-content-input" placeholder=
+				<textarea name="inquiry_content" class="input-textArea" placeholder=
 				"어떤 문제가 있으신가요? 아래 내용을 자세히 적어주시면 문제를 더욱 빨리 확인할 수 있습니다.&#13;&#10;&#13;&#10;• 이용 중인 기기 :&#13;&#10;&#13;&#10;• 인터넷 환경 (모바일데이터/와이파이) :&#13;&#10;&#13;&#10;• 문의 내용 :&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;*문제가 발생하는 화면 또는 영상을 첨부해주시면 문제 해결에 큰 도움이 됩니다.&#13;&#10;&#13;&#10;"
-				maxlength="100"></textarea>
+				maxlength="100" required="required"></textarea>
 			</div>
 		</div>
 	</div>
@@ -74,7 +74,7 @@
 				제목
 			</div>
 			<div class="inquiry-inputArea">
-				<input type="text" name="inquiry_subject" class="inquiry-subject-input" placeholder="입력해주세요.">
+				<input type="text" name="inquiry_subject" class="input-text" placeholder="입력해주세요." required="required">
 			</div>
 		</div>
 		<div class="inquiry-content">
@@ -82,9 +82,9 @@
 				내용	
 			</div>
 			<div class="inquiry-inputArea">
-				<textarea name="inquiry_content" class="inquiry-content-input" placeholder=
+				<textarea name="inquiry_content" class="input-textArea" placeholder=
 				"어떤 문제가 있으신가요? 아래 내용을 자세히 적어주시면 문제를 더욱 빨리 확인할 수 있습니다.&#13;&#10;&#13;&#10;• 이용 중인 기기 :&#13;&#10;&#13;&#10;• 인터넷 환경 (모바일데이터/와이파이) :&#13;&#10;&#13;&#10;• 문의 내용 :&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;*문제가 발생하는 화면 또는 영상을 첨부해주시면 문제 해결에 큰 도움이 됩니다.&#13;&#10;&#13;&#10;"
-				maxlength="100"></textarea>
+				maxlength="100" required="required"></textarea>
 			</div>
 		</div>
 	</div>
@@ -96,7 +96,7 @@
 				제목
 			</div>
 			<div class="inquiry-inputArea">
-				<input type="text" name="inquiry_subject" class="inquiry-subject-input" placeholder="입력해주세요.">
+				<input type="text" name="inquiry_subject" class="input-text" placeholder="입력해주세요." required="required">
 			</div>
 		</div>
 		<div class="inquiry-content">
@@ -104,9 +104,9 @@
 				내용	
 			</div>
 			<div class="inquiry-inputArea">
-				<textarea name="inquiry_content" class="inquiry-content-input" placeholder=
+				<textarea name="inquiry_content" class="input-textArea" placeholder=
 				"어떤 문제가 있으신가요? 아래 내용을 자세히 적어주시면 문제를 더욱 빨리 확인할 수 있습니다.&#13;&#10;&#13;&#10;• 이용 중인 기기 :&#13;&#10;&#13;&#10;• 인터넷 환경 (모바일데이터/와이파이) :&#13;&#10;&#13;&#10;• 문의 내용 :&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;*문제가 발생하는 화면 또는 영상을 첨부해주시면 문제 해결에 큰 도움이 됩니다.&#13;&#10;&#13;&#10;"
-				maxlength="100"></textarea>
+				maxlength="100" required="required"></textarea>
 			</div>
 		</div>
 	</div>
@@ -118,7 +118,7 @@
 				제목
 			</div>
 			<div class="inquiry-inputArea">
-				<input type="text" name="inquiry_subject" class="inquiry-subject-input" placeholder="입력해주세요.">
+				<input type="text" name="inquiry_subject" class="input-text" placeholder="입력해주세요." required="required">
 			</div>
 		</div>
 		<div class="inquiry-content">
@@ -126,9 +126,9 @@
 				내용	
 			</div>
 			<div class="inquiry-inputArea">
-				<textarea name="inquiry_content" class="inquiry-content-input" placeholder=
+				<textarea name="inquiry_content" class="input-textArea" placeholder=
 				"어떤 문제가 있으신가요? 아래 내용을 자세히 적어주시면 문제를 더욱 빨리 확인할 수 있습니다.&#13;&#10;&#13;&#10;• 이용 중인 기기 :&#13;&#10;&#13;&#10;• 인터넷 환경 (모바일데이터/와이파이) :&#13;&#10;&#13;&#10;• 문의 내용 :&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;*문제가 발생하는 화면 또는 영상을 첨부해주시면 문제 해결에 큰 도움이 됩니다.&#13;&#10;&#13;&#10;"
-				maxlength="100"></textarea>
+				maxlength="100" required="required"></textarea>
 			</div>
 		</div>
 	</div>
@@ -140,7 +140,7 @@
 				제목
 			</div>
 			<div class="inquiry-inputArea">
-				<input type="text" name="inquiry_subject" class="inquiry-subject-input" placeholder="입력해주세요.">
+				<input type="text" name="inquiry_subject" class="input-text" placeholder="입력해주세요." required="required">
 			</div>
 		</div>
 		<div class="inquiry-content">
@@ -148,9 +148,9 @@
 				내용	
 			</div>
 			<div class="inquiry-inputArea">
-				<textarea name="inquiry_content" class="inquiry-content-input" placeholder=
+				<textarea name="inquiry_content" class="input-textArea" placeholder=
 				"어떤 문제가 있으신가요? 아래 내용을 자세히 적어주시면 문제를 더욱 빨리 확인할 수 있습니다.&#13;&#10;&#13;&#10;• 이용 중인 기기 :&#13;&#10;&#13;&#10;• 인터넷 환경 (모바일데이터/와이파이) :&#13;&#10;&#13;&#10;• 문의 내용 :&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;*문제가 발생하는 화면 또는 영상을 첨부해주시면 문제 해결에 큰 도움이 됩니다.&#13;&#10;&#13;&#10;"
-				maxlength="100"></textarea>
+				maxlength="100" required="required"></textarea>
 			</div>
 		</div>
 	</div>
@@ -162,7 +162,7 @@
 				제목
 			</div>
 			<div class="inquiry-inputArea">
-				<input type="text" name="inquiry_subject" class="inquiry-subject-input" placeholder="입력해주세요.">
+				<input type="text" name="inquiry_subject" class="input-text" placeholder="입력해주세요." required="required">
 			</div>
 		</div>
 		<div class="inquiry-content">
@@ -170,9 +170,9 @@
 				내용	
 			</div>
 			<div class="inquiry-inputArea">
-				<textarea name="inquiry_content" class="inquiry-content-input" placeholder=
+				<textarea name="inquiry_content" class="input-textArea" placeholder=
 				"어떤 문제가 있으신가요? 아래 내용을 자세히 적어주시면 문제를 더욱 빨리 확인할 수 있습니다.&#13;&#10;&#13;&#10;• 이용 중인 기기 :&#13;&#10;&#13;&#10;• 인터넷 환경 (모바일데이터/와이파이) :&#13;&#10;&#13;&#10;• 문의 내용 :&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;*문제가 발생하는 화면 또는 영상을 첨부해주시면 문제 해결에 큰 도움이 됩니다.&#13;&#10;&#13;&#10;"
-				maxlength="100"></textarea>
+				maxlength="100" required="required"></textarea>
 			</div>
 		</div>
 	</div>
@@ -189,7 +189,7 @@
 				포함된 내용은 상담이 제한될 수 있습니다.
 			</div>
 			<div class="submit2">
-				<input type="submit" value="등록하기" id="submit1" disabled="disabled">
+				<input type="submit" class="action-btn" value="등록하기" id="submit1" disabled="disabled">
 			</div>
 			<div></div>
 		</div>

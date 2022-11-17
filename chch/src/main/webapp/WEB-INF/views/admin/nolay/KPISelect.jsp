@@ -90,48 +90,50 @@
 
 </head>
 <body>
-	<div>
-		<button type="button" id="exportExcel">export as xlsx</button>
+	<div id="xlsx">
+		<button type="button" id="exportExcel" class="cms-xlsx-btn">export as xlsx</button>
 	</div>
 	<div>
 	<table id="tableData">
-		<tr>
-			<td colspan="3">${book_kind }</td>
+		<tr class="subject-container">
+			<td colspan="3" id="subject-text">${book_kind }</td>
 		</tr>
 		<tr>
-			<td>검색 범위</td>
-			<td>${dateFrom }</td>
-			<td>${dateTo }</td>
+			<td class="sub-subject-text" colspan="3">${dateFrom } ~ ${dateTo }</td>
+			
 		</tr>
 		<tr>
 			<c:choose>
-				<c:when test="${cycle == 1 }"><td colspan="3">일별</td></c:when>
-				<c:when test="${cycle == 2 }"><td colspan="3">주별</td></c:when>
-				<c:when test="${cycle == 3 }"><td colspan="3">월별</td></c:when>
+				<c:when test="${cycle == 1 }"><td colspan="3" class="sub-subject-text">일별</td></c:when>
+				<c:when test="${cycle == 2 }"><td colspan="3" class="sub-subject-text">주별</td></c:when>
+				<c:when test="${cycle == 3 }"><td colspan="3" class="sub-subject-text">월별</td></c:when>
 			</c:choose>
 		</tr>
-		<tr>
-			<td>번호</td>
-			<td>날짜</td>
-			<td>판매액</td>
+		<tr class="title-table-row">
+			<td class="table-kpi-col1 center">번호</td>
+			<td class="table-kpi-col2 center">날짜</td>
+			<td class="table-kpi-col3 center">판매액</td>
 		</tr>
 		<c:if test="${empty KPI }">
-		<tr>
+		<tr class="table-row">
 			<td colspan="3">데이터가 없습니다</td>
 		</tr>
 		</c:if>
 		<c:if test="${not empty KPI }">
 			<c:forEach var="list" items="${KPI }">
 			
-		<tr>
-			<td>${list.rn }</td>
+		<tr class="table-row">
+			<td class="table-kpi-col1">${list.rn }</td>
 			<c:choose>
-				<c:when test="${cycle == 1 || cycle == 3}"><td>${list.s_date }</td></c:when>
+				<c:when test="${cycle == 1 || cycle == 3}"><td class="table-kpi-col2 center">${list.s_date }</td></c:when>
 				<c:when test="${cycle == 2}">
-					<td>${list.s_date } ~ ${list.w_date }</td>
+					<td class="table-kpi-col2 center">
+						${list.s_date } ~ ${list.w_date }
+					</td>
 				</c:when>
 			</c:choose>
-			<td>${list.total_sales }</td>
+			<fmt:formatNumber var="total_sales" value="${list.total_sales }" pattern="#,###"></fmt:formatNumber>
+			<td class="table-kpi-col3 right">${total_sales }</td>
 		</tr>
 			</c:forEach>
 			</c:if>

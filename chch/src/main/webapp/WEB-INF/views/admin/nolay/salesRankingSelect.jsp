@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -85,19 +86,16 @@
 
 </head>
 <body>
-	<div>
-		<button type="button" id="exportExcel">export as xlsx</button>
+	<div id="xlsx">
+		<button type="button" id="exportExcel" class="cms-xlsx-btn">export as xlsx</button>
 	</div>
 	<div>
 		<table id="tableData">
-			<tr>
-				<td colspan="9">${book_kind }</td>
+			<tr class="subject-container">
+				<td id="subject-text" colspan="9">${book_kind }</td>
 			</tr>
 			<tr>
-				<td>검색 범위</td>
-				<td>${dateFrom }</td>
-				<td>${dateTo }</td>
-				<td colspan="6"></td>
+				<td class="sub-subject-text" colspan="9">${dateFrom } ~ ${dateTo }</td>
 			</tr>
 			<tr>
 				<c:choose>
@@ -105,16 +103,16 @@
 					<c:when test="${sort == 2 }"><td colspan="9">판매금액 기준 순위</td></c:when>
 				</c:choose>
 			</tr>
-			<tr>
-				<td>순위</td>
-				<td>책번호</td>
-				<td>제목</td>
-				<td>분야</td>
-				<td>작가</td>
-				<td>출판사</td>
-				<td>출간일</td>
-				<td>판매량</td>
-				<td>판매금액</td>
+			<tr class="title-table-row">
+				<td class="table-salesRanking-col1 center">순위</td>
+				<td class="table-salesRanking-col2 center">책번호</td>
+				<td class="table-salesRanking-col3 center">제목</td>
+				<td class="table-salesRanking-col4 center">분야</td>
+				<td class="table-salesRanking-col5 center">작가</td>
+				<td class="table-salesRanking-col6 center">출판사</td>
+				<td class="table-salesRanking-col7 center">출간일</td>
+				<td class="table-salesRanking-col8 center">판매량</td>
+				<td class="table-salesRanking-col9 center">판매금액</td>
 			</tr>
 			<c:if test="${empty salesRanking }">
 			<tr>
@@ -123,16 +121,17 @@
 			</c:if>
 			<c:if test="${not empty salesRanking }">
 				<c:forEach var="list" items="${salesRanking }">
-			<tr>
-				<td>${list.rn }</td>
-				<td>${list.book_no }</td>
-				<td>${list.book_title }</td>
-				<td>${list.book_kind }</td>
-				<td>${list.book_author }</td>
-				<td>${list.book_publisher }</td>
-				<td>${list.book_publish_date }</td>
-				<td>${list.deal_count }</td>
-				<td>${list.deal_price }</td>
+			<tr class="table-row">
+				<td class="table-salesRanking-col1 center">${list.rn }</td>
+				<td class="table-salesRanking-col2 center">${list.book_no }</td>
+				<td class="table-salesRanking-col3 left">${list.book_title }</td>
+				<td class="table-salesRanking-col4 center">${list.book_kind }</td>
+				<td class="table-salesRanking-col5 center">${list.book_author }</td>
+				<td class="table-salesRanking-col6 center">${list.book_publisher }</td>
+				<td class="table-salesRanking-col7 center">${list.book_publish_date }</td>
+				<td class="table-salesRanking-col8 right">${list.deal_count }</td>
+				<fmt:formatNumber var="deal_price" value="${list.deal_price }" pattern="#,###"></fmt:formatNumber>
+				<td class="table-salesRanking-col9 right">${deal_price }</td>
 			</tr>
 				</c:forEach>
 			</c:if>

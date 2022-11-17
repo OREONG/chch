@@ -7,23 +7,76 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+<script type="text/javascript">
+	function showPage(data) {
+		var addr = data;
+		
+		console.log(addr);
+	
+		var ajaxOption = {
+			url : addr,
+			async : true,
+			type : "POST",
+			dataType : "html",
+			cache : false
+		};
+	
+		$.ajax(ajaxOption).done(function(data) {
+			$('#showPage').children().remove();
+			$('#showPage').html(data);
+		});
+	};
+	
+	function sendInquiry(num) {
+		
+		var msg = $('#reply_content'+num).val(); // 입력한 메세지 글 읽기
+		var category_no = $('#category_no'+num).val();
+		var inquiry_no = $('#inquiry_no'+num).val();
+		var inquiry_subject = $('#inquiry_subject'+num).val();
+		var userId = $('#userId'+num).val();
+		
+		
+		if (msg==null || msg=="") {
+			alert("메세지를 입력하세요!");
+			return false;
+		}
+		
+		console.log("adminInquiryReply.do?category_no="+category_no+"&inquiry_no="+inquiry_no+"&inquiry_subject="+inquiry_subject+"&id="+userId+"&reply_content="+msg);
+		
+		// ajax로 채팅 내용 저장
+		$(function() {
+			$.ajax({
+				url : "adminInquiryReply.do?category_no="+category_no+"&inquiry_no="+inquiry_no+"&inquiry_subject="+inquiry_subject+"&id="+userId+"&reply_content="+msg,
+				async : true,
+				type : "POST",
+				dataType : "html",
+				cache : false
+			});
+		});
+		
+		var inquiryReply = "inquiryReply,"+userId+","+inquiry_subject;
+		sock.send(inquiryReply);
+		
+		showPage('adminInquiryBeforeList.do?inquiryNumber=2');
+	}
+	
+	
+</script>
+
+
+
 </head>
 <body>
 
-<div class="inquiry-container">
-	
-<c:if test="${inquiryNumber==1 }">
-		<div class="inquiry-item" style="background-color: #2bc5c1" onclick="location.href='adminInquiryBeforeList.do?inquiryNumber=1'"><a style="color: white">답변 이전</a></div>
-</c:if>
-<c:if test="${inquiryNumber==2 }">
-		<div class="inquiry-item" onclick="location.href='adminInquiryBeforeList.do?inquiryNumber=1'"><a >답변 이전</a></div>
-</c:if>
-<c:if test="${inquiryNumber==2 }">
-		<div class="inquiry-item" style="background-color: #2bc5c1"  onclick="location.href='adminInquiryAfterList.do?inquiryNumber=2'"><a style="color: white">답변 완료</a></div>
-</c:if>
-<c:if test="${inquiryNumber==1 }">
-		<div class="inquiry-item"  onclick="location.href='adminInquiryAfterList.do?inquiryNumber=2'"><a >답변 완료</a></div>
-</c:if>
+	<div class="inquiry-top">
+		<c:if test="${inquiryNumber==1 }">
+				<button class="adminInquiryMenuBtn1" style="background-color: ##5055b1" onclick="showPage('adminInquiryBeforeList.do?inquiryNumber=1')">답변 이전</button>
+				<button class="adminInquiryMenuBtn2"  onclick="showPage('adminInquiryAfterList.do?inquiryNumber=2')">답변 완료</button>
+		</c:if>
+		<c:if test="${inquiryNumber==2 }">
+				<button class="adminInquiryMenuBtn2" onclick="showPage('adminInquiryBeforeList.do?inquiryNumber=1')">답변 이전</button>
+				<button class="adminInquiryMenuBtn1" style="background-color: ##5055b1"  onclick="showPage('adminInquiryAfterList.do?inquiryNumber=2')">답변 완료</button>
+		</c:if>
 	</div>
 
 	<div>
@@ -59,24 +112,21 @@
 										<div>
 											<p>${inquiry.inquiry_content }</p><hr>
 										</div>
-										<form action="adminInquiryReply.do" method="post">
 											<input type="hidden" name="inquiryNumber" value="1">
-											<input type="hidden" name="category_no" value="${inquiry.category_no }">
-											<input type="hidden" name="inquiry_no" value="${inquiry.inquiry_no}">
-											<input type="hidden" name="inquiry_subject" id="inquiry_subject" value="${inquiry.inquiry_subject}">
-											<input type="hidden" name="id" id="userId" value="${inquiry.id}">
+											<input type="hidden" name="category_no" id="category_no${i}" value="${inquiry.category_no }">
+											<input type="hidden" name="inquiry_no" id="inquiry_no${i}" value="${inquiry.inquiry_no}">
+											<input type="hidden" name="inquiry_subject" id="inquiry_subject${i}" value="${inquiry.inquiry_subject}">
+											<input type="hidden" name="id" id="userId${i}" value="${inquiry.id}">
 											<div class="adminInquiryReply-content">
 												<div class="adminInquiryReply-labelArea">
 													답변	
 												</div>
 												<div class="adminInquiryReply-inputArea">
-													<textarea name="reply_content" class="adminInquiryReply-content-input" maxlength="100"></textarea>
+													<textarea name="reply_content" id="reply_content${i}" class="adminInquiryReply-content-input" maxlength="100"></textarea>
 												</div>
 												<div class="adminInquiryReply-submitArea">
-													<input type="submit" id="sendBtn3" value="확인" class="adminInquiryReply-submit">
-												</div>
+													<button type="button" id="sendBtn3" onclick="sendInquiry('${i}')" class="adminInquiryReply-submit">확인</button>												</div>
 											</div>	
-										</form>
 									</div>
 								</div>
 							</div>
@@ -123,10 +173,6 @@
 	
 	<div>
 		<br><br>
-	</div>
-	<div>
-		<br>
-		<button type="button" onclick="location.href='adminMain.so'">관리자 메뉴</button>
 	</div>
 </body>
 </html>

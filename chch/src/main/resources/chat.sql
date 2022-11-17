@@ -14,6 +14,8 @@ CREATE TABLE chat (
 
 SELECT * FROM chat;
 
+SELECT * FROM member;
+
 
 INSERT INTO chat values (1, 1, 'a', '안녕하세요~', sysdate);
 INSERT INTO chat values (2, 1, 'b', '반갑습니다!!', sysdate);
@@ -666,3 +668,11 @@ CREATE TABLE community (
 	CONSTRAINT community_room_fk FOREIGN KEY (room_no) REFERENCES room(room_no),
 	CONSTRAINT community_member_fk FOREIGN KEY (host_id) REFERENCES member(id)
 );
+
+
+
+
+
+SELECT * FROM inquiry;
+UPDATE inquiry SET reply='n' WHERE inquiry_no=15;
+

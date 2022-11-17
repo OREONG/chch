@@ -83,31 +83,27 @@
 
 </head>
 <body>
-	<div>
-		<button type="button" id="exportExcel">export as xlsx</button>
+	<div id="xlsx">
+		<button type="button" id="exportExcel" class="cms-xlsx-btn">export as xlsx</button>
 	</div>
 	<div>
 		<table id="tableData">
-			<tr>
-				<td>책 번호</td>
-				<td colspan="8">${book_no }</td>
+			<tr class="subject-container">
+				<td id="subject-text" colspan="9">책 번호 : ${book_no }</td>
 			</tr>
 			<tr>
-				<td>검색 범위</td>
-				<td>${dateFrom }</td>
-				<td>${dateTo }</td>
-				<td colspan="6"></td>
+				<td class="sub-subject-text" colspan="9">${dateFrom } ~ ${dateTo }</td>
 			</tr>
-			<tr>
-				<td>번호</td>
-				<td>아이디</td>
-				<td>책번호</td>
-				<td>제목</td>
-				<td>주문번호</td>
-				<td>주문일자</td>
-				<td>가격</td>
-				<td>수량</td>
-				<td>분류</td>
+			<tr class="title-table-row">
+				<td class="table-salesHistory-col1 center">번호</td>
+				<td class="table-salesHistory-col2 center">아이디</td>
+				<td class="table-salesHistory-col3 center">책번호</td>
+				<td class="table-salesHistory-col4 center">제목</td>
+				<td class="table-salesHistory-col5 center">주문번호</td>
+				<td class="table-salesHistory-col6 center">주문일자</td>
+				<td class="table-salesHistory-col7 center">가격</td>
+				<td class="table-salesHistory-col8 center">수량</td>
+				<td class="table-salesHistory-col9 center">분류</td>
 			</tr>
 			<c:if test="${empty salesHistory }">
 			<tr>
@@ -116,16 +112,16 @@
 			</c:if>
 			<c:if test="${not empty salesHistory }">
 				<c:forEach var="list" items="${salesHistory }">
-			<tr>
-				<td>${list.rn }</td>
-				<td>${list.purchase_id }</td>
-				<td>${list.book_no }</td>
-				<td>${list.book_title }</td>
-				<td>${list.deal_no }</td>
-				<td>${list.deal_date }</td>
-				<td>${list.deal_price }</td>
-				<td>${list.deal_count }</td>
-				<td>${list.book_kind }</td>
+			<tr class="table-row">
+				<td class="table-salesHistory-col1 center">${list.rn }</td>
+				<td class="table-salesHistory-col2 center">${list.purchase_id }</td>
+				<td class="table-salesHistory-col3 center">${list.book_no }</td>
+				<td class="table-salesHistory-col4 center">${list.book_title }</td>
+				<td class="table-salesHistory-col5 center">${list.deal_no }</td>
+				<td class="table-salesHistory-col6 center">${list.deal_date }</td>
+				<td class="table-salesHistory-col7 center">${list.deal_price }</td>
+				<td class="table-salesHistory-col8 center">${list.deal_count }</td>
+				<td class="table-salesHistory-col9 center">${list.book_kind }</td>
 			</tr>
 				</c:forEach>
 			</c:if>

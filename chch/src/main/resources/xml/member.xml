@@ -53,12 +53,12 @@
 	
 	<!--  회원 페이징 -->
 	<select id="memberList" parameterType="map" resultType="member">
-		select * from (select rowNum rn, a.* from (select * from member order by email)a) where rn between #{startRow} and #{endRow}
+		select * from (select rowNum rn, a.* from (select * from member order by id)a) where rn between #{startRow} and #{endRow}
 	</select>
 	
 	<!-- 회원 삭제 -->
 	<update id="adminDelete" parameterType="map">
-		update member set del=#{del} where email=#{email}
+		update member set del=#{del} where id=#{id}
 	</update>
 	
 	

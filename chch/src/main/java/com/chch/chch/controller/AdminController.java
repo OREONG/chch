@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.chch.chch.model.Admin;
 import com.chch.chch.model.Book;
+import com.chch.chch.model.Chat;
 import com.chch.chch.model.Inquiry;
 import com.chch.chch.model.Member;
 import com.chch.chch.service.AdminService;
@@ -75,7 +76,7 @@ public class AdminController {
 		model.addAttribute("PAGE_PER_BLOCK", PAGE_PER_BLOCK);
 		model.addAttribute("id", id);
 		
-		return "/admin/adminMemberList";
+		return "/admin/nolay/adminMemberList";
 	}
 	
 //	SB 유저 아이디 삭제 및 복구 ( del n->y, y->n 변경 가능 )
@@ -119,12 +120,14 @@ public class AdminController {
 		model.addAttribute("totalPage", totalPage);
 		model.addAttribute("PAGE_PER_BLOCK", PAGE_PER_BLOCK);
 		
-		return "/admin/adminBookList";
+		return "/admin/nolay/adminBookList";
 	}
 	
 //	SB 책 노출 여부 변경 ( del n->y, y->n 변경 가능 )
-	@RequestMapping("adminBookDelete")
-	public String adminBookDelete (Model model, String[] selectChk) {
+	@RequestMapping(value = "adminBookDelete", produces = "text/html;charset=utf-8")
+	public String adminBookDelete (Model model, @RequestParam("selectChk") String[] selectChk) {
+		
+		System.out.println(selectChk);
 		
 		String[] selectDelete =selectChk;
 		String[] delList= new String[selectDelete.length];
@@ -161,7 +164,9 @@ public class AdminController {
 		
 		model.addAttribute("result", result);
 		
-		return "/admin/adminBookDelete";
+		System.out.println("result"+result);
+		
+		return "/admin/nolay/adminBookList";
 	}
 	
 //	SB 책 상세 정보 확인
@@ -206,7 +211,7 @@ public class AdminController {
 	@RequestMapping("adminBookAddForm")
 	public String adminBookAddForm (Model model, HttpSession session) {
 		
-		return "/admin/adminBookAddForm";
+		return "/admin/nolay/adminBookAddForm";
 	}
 	
 //	SB 신규 책 등록 실행
@@ -261,21 +266,45 @@ public class AdminController {
 		model.addAttribute("PAGE_PER_BLOCK", PAGE_PER_BLOCK);
 		model.addAttribute("inquiryNumber", inquiryNumber);
 		
+		return "/admin/nolay/adminInquiryBeforeList";
+	}
+	
+//	@RequestMapping("adminInquiryReply")
+//	public String adminInquiryReply (Model model, HttpSession session, Inquiry inquiry) {
+//		
+//		inquiry.setReply_content(inquiry.getReply_content().replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
+//		
+//		int result = ins.replySubmit(inquiry);
+//		
+//		model.addAttribute("inquiryNumber", inquiry.getInquiryNumber());
+//		model.addAttribute("result", result);
+//		
+//		return "/admin/adminInquiryReply";
+//	}
+	
+	@RequestMapping(value = "adminInquiryReply", produces = "text/html;charset=utf-8")
+	public String saveMessage(@RequestParam("category_no") int category_no,
+			@RequestParam("inquiry_no") int inquiry_no, @RequestParam("inquiry_subject") String inquiry_subject,
+			@RequestParam("id") String id, @RequestParam("reply_content") String reply_content,
+			HttpSession session, Inquiry inquiry, Model model) {
+
+		
+		inquiry.setReply_content(reply_content.replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
+		inquiry.setCategory_no(category_no);
+		inquiry.setId(id);
+		inquiry.setReply_content(reply_content);
+		inquiry.setInquiry_subject(inquiry_subject);
+		
+
+		int result = ins.replySubmit(inquiry);
+
+		model.addAttribute("result", result);
+
 		return "/admin/adminInquiryBeforeList";
 	}
 	
-	@RequestMapping("adminInquiryReply")
-	public String adminInquiryReply (Model model, HttpSession session, Inquiry inquiry) {
-		
-		inquiry.setReply_content(inquiry.getReply_content().replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
-		
-		int result = ins.replySubmit(inquiry);
-		
-		model.addAttribute("inquiryNumber", inquiry.getInquiryNumber());
-		model.addAttribute("result", result);
-		
-		return "/admin/adminInquiryReply";
-	}
+	
+	
 	
 	@RequestMapping("adminInquiryAfterList")
 	public String adminInquiryAfterList (Model model, HttpSession session, String pageNum, int inquiryNumber) {
@@ -304,17 +333,19 @@ public class AdminController {
 		model.addAttribute("PAGE_PER_BLOCK", PAGE_PER_BLOCK);
 		model.addAttribute("inquiryNumber", inquiryNumber);
 		
-		return "/admin/adminInquiryAfterList";
+		return "/admin/nolay/adminInquiryAfterList";
 	}
 	
 	@RequestMapping("CMS")
-	public String CMS() {
-		return "/admin/CMS";
+	public String CMS(Model model, int cms) {
+		model.addAttribute("cms", cms);
+		return "/admin/nolay/CMS";
 	}
 	
 	@RequestMapping("KPI")
-	public String KPI() {
-		return "/admin/KPI";
+	public String KPI(Model model, int cms) {
+		model.addAttribute("cms", cms);
+		return "/admin/nolay/KPI";
 	}
 	
 	@RequestMapping("KPISelect")
@@ -361,8 +392,9 @@ public class AdminController {
 	}
 	
 	@RequestMapping("salesRanking")
-	public String salesRanking () {
-		return "/admin/salesRanking";
+	public String salesRanking (Model model, int cms) {
+		model.addAttribute("cms", cms);
+		return "/admin/nolay/salesRanking";
 	}
 	
 	@RequestMapping("salesRankingSelect")
@@ -414,8 +446,9 @@ public class AdminController {
 	}
 	
 	@RequestMapping("salesHistory")
-	public String salesHistory () {
-		return "/admin/salesHistory";
+	public String salesHistory (Model model, int cms) {
+		model.addAttribute("cms", cms);
+		return "/admin/nolay/salesHistory";
 	}
 	
 	@RequestMapping("salesHistorySelect")
@@ -460,10 +493,10 @@ public class AdminController {
 		model.addAttribute("totalPage", totalPage);
 		model.addAttribute("PAGE_PER_BLOCK", PAGE_PER_BLOCK);
 		model.addAttribute("book_no", book_no);
+		model.addAttribute("dateFrom", dateFrom);
+		model.addAttribute("dateTo", dateTo);
 		
 		return "/admin/nolay/salesHistorySelect";
 	}
-	
-	
 	
 }
