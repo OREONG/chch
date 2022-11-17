@@ -12,7 +12,7 @@
 
 <style type="text/css">@import url("/chch/resources/css/header.css");</style>
 <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
-<c:set var="ipAdd" value="//192.168.200.101:8080"></c:set>
+<c:set var="ipAdd" value="//172.30.1.39:8080"></c:set>
 <c:set var="ip" value="http:${ipAdd}/chch"></c:set>
 <link rel="stylesheet" type="text/css"href="${path }/resources/bootstrap/css/bootstrap.min.css">
 <script type="text/javascript" src="${path}/resources/bootstrap/js/jquery.js"></script>
@@ -440,7 +440,7 @@
 								
 							</c:if>
 							<c:if test="${not empty id }">
-								<a href="logout.do" class="top-t" >장바구니</a>
+								<a href="cart.do" class="top-t" >장바구니</a>
 								<a class="top-t">|</a>
 								<a href="logout.do" class="top-t" >로그아웃</a>
 								

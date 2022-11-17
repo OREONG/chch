@@ -38,7 +38,7 @@
 						<c:if test="${used.used_status=='n' && used.id!=id }">
 								<a href=""><button class="button1" id="button1-2">채팅하기</button></a>
 								<a href=""><button class="button1" id="button1-2">구매확정</button></a>
-								<a href=""><button class="button1" id="button1-1">❤</button></a>
+								<a href="likeInsert_used.do?used_no=${used.used_no }"><button class="button1" id="button1-1">❤</button></a>
 						</c:if>
 						<c:if test="${used.id==id }">
 							<form action="changeStatus.do">

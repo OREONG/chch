@@ -56,7 +56,7 @@ $(function() {
 
 
 
-리뷰 페이징 스크롤 높이
+//리뷰 페이징 스크롤 높이
 document.addEventListener("DOMContentLoaded", function() { // html load 이후
 	if (${num} > 1) {			
 		window.scrollTo(0, $('.scrollTop').position().top);
@@ -64,8 +64,11 @@ document.addEventListener("DOMContentLoaded", function() { // html load 이후
 });
 
 	
-	function addcart() {
+	function addcart(book_no) {
+		var cart_count = $('#cart_count_'+book_no).val() + cc;
+		var book_no =  $('#book_no_'+book_no).val();
 		location.href="cartInsert.do?book_no=${book.book_no }&id=${id}&cart_count=" + cc;	
+		
 	}
 	
 	function purchase() {
@@ -285,12 +288,13 @@ $(document).ready(function(){
 
 
 				<ul class="btn-wrap">
-					<li><a onclick="addcart()"><button class="button1"
+					<li><a onclick="addcart(${book.book_no})"><button class="button1"
 								id="button1-2">장바구니</button></a></li>
 					<li><a onclick="purchase()"><button class="button1"
 								id="button1-2">구매하기</button></a></li>
-					<li><a href=""><button class="button1" id="button1-1">❤</button></a></li>
-				</ul>
+					<li><a href="likeInsert.do?book_no=${book.book_no }"><button class="button1" id="button1-1">❤</button></a></li>
+			   </ul>
+
 
 
 				<div class="sales-link">

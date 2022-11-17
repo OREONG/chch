@@ -4,6 +4,9 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="book" type="com.chch.chch.model.Book" />
+		<typeAlias type="com.chch.chch.model.Like_list" alias="like" />
+		<typeAlias type="com.chch.chch.model.Deal" alias="deal" />
+		<typeAlias type="com.chch.chch.model.Cart" alias="cart" />
 		<typeAlias alias="member" type="com.chch.chch.model.Member" />
 		<typeAlias alias="used" type="com.chch.chch.model.Used" />
 		<typeAlias alias="community" type="com.chch.chch.model.Community" />
@@ -13,12 +16,14 @@
 		<typeAlias alias="author" type="com.chch.chch.model.Author" />
 		<typeAlias alias="author_work" type="com.chch.chch.model.Author_work" />
 		<typeAlias alias="report" type="com.chch.chch.model.Report" />
-		<typeAlias alias="book" type="com.chch.chch.model.Book" />
 		<typeAlias alias="like_table" type="com.chch.chch.model.Like_table" />
 		<typeAlias alias="review" type="com.chch.chch.model.Review" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="xml/book.xml" />
+		<mapper resource="xml/like.xml" />
+		<mapper resource="xml/deal.xml" />
+		<mapper resource="xml/cart.xml" />
 		<mapper resource="xml/member.xml" />
 		<mapper resource="xml/used.xml" />
 		<mapper resource="xml/review.xml" />

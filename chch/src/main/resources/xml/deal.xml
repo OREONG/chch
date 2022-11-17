@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dealns">
+
+	<select id="list" resultType="deal" parameterType="string">
+	<!-- 구매목록 불러오기-->
+		select distinct deal_no,b.book_no,b.book_image,b.book_title,
+		b.book_author,d.deal_count,d.deal_Date,u.used_subject,d.deal_price,d.used_no,d.book_no
+		from deal d,book b,used u
+	    where d.book_no = b.book_no 
+		and d.purchase_id =#{id} and d.purchase_list_del ='n' 
+		order by deal_date desc
+	 </select>
+	 	<!--  구매목록에서 삭제 눌렀을때 update시키기 //2개 이상일때는 map으로 받는다-->
+	 <update id="purchase_update" parameterType="map">
+	 	update deal set purchase_list_del ='y' where purchase_id=#{id} and deal_no=#{deal_no}
+	 </update>
+	 <!-- 판매목록 불러오기 -->
+	 <select id="sales_list" resultType="deal" parameterType="string">
+		select d.deal_no,b.book_image,b.book_title,d.deal_price,d.deal_count,d.used_no,
+		d.deal_date,b.book_author,u.used_subject
+		from deal d,book b,used u
+		where d.book_no = b.book_no and d.used_no = u.used_no
+		and d.seller_id = #{id} and d.used_no is not null and d.sales_list_del ='n'
+		order by deal_date desc
+	 </select>
+	  <!--  판매목록에서 삭제 눌렀을때 update시키기 -->
+	 <update id="sales_update" parameterType="map">
+	 	update deal set sales_list_del ='y' where seller_id=#{id} and deal_no=#{deal_no}
+	 </update>
+	 	 <!-- 판매목록에서 선택삭제 눌렀을 때 n => y로 update -->
+	<update id="sales_DelAll" parameterType="map">
+	 	update deal set sales_list_del ='y' where seller_id=#{id} and deal_no=#{deal_no}
+	 </update>
+	 <!-- 구매목록에서 선택삭제 눌렀을 때 n => y로 update -->
+	<update id="purchase_DelAll" parameterType="map">
+	 	update deal set purchase_list_del ='y' where purchase_id=#{id} and deal_no=#{deal_no}
+	 </update>
+	<!--페이징 -->
+	<select id="getTotal" parameterType="deal" resultType="integer">
+		select count(*) from deal
+	</select>
+</mapper>
