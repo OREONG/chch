@@ -13,7 +13,13 @@
 <main>
 	<div class="main-container">
 		<div class="sub-container">
-			<div id="back_click" onclick="location.href='communityMain.do'"><span id="back">&lt; 돌아가기</span></div>
+			
+			<div class="community-top">
+					<button onclick="location.href='communityInsertForm.do'" class="communityMenuBtn1">모임 만들기</button>
+					<button onclick="location.href='communityAllList.do'" class="communityMenuBtn1">전체 모임 보기</button>
+					<button onclick="location.href='communityMyList.do'" class="communityMenuBtn1">가입한 모임 보기</button>
+			</div>
+			<!-- <div id="back_click" onclick="location.href='communityMain.do'"><span id="back">&lt; 돌아가기</span></div> -->
 			
 			<div class="main-text-div">
 			<span id="main-text">내 모임 리스트</span>

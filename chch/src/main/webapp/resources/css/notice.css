@@ -14,3 +14,11 @@
     padding: 0 52px 1px;
 }
 
+.unreadInput {
+	resize: none;
+	border: none;
+	width: 30px;
+	background-color: #ffffff;
+	color: #808080;
+	text-align: center;
+}

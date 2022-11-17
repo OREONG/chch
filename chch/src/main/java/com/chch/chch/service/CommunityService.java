@@ -36,4 +36,6 @@ public interface CommunityService {
 
 	void banRoom(int room_no);
 
+	int communityCheck(int room_no);
+
 }

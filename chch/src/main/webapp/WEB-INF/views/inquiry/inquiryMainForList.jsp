@@ -13,7 +13,7 @@
 <script type="text/javascript">
 	
 	$(document).ready(function() {
-		showPage('faq.do?inquiryNumber=1');
+		showPage('inquiryList.do');
 	});
 		
 	function showPage(data) {

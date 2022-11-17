@@ -16,8 +16,16 @@
 
 	<div class="main-container">
 		<div class="content">
+					<div class="main-text-div">
+						<span id="main-text">내 대화방 리스트</span>
+					</div>
 			<div id="showPage">
 				<div id="chat-container">
+				
+					<div>
+						<c:if test="${empty selectMyRoom}"> 참여한 대화방이 존재하지 않습니다</c:if>
+					</div>
+				
 					<c:forEach var="list" items="${selectMyRoom }">
 						<fmt:formatDate var="sendDate" value="${list.send_time }" pattern="yyyyMMdd" />
 						<div id="room${list.room_no}" onclick="location.href='chat.do?room_no=${list.room_no}&room_name=${list.room_name }'" style="cursor: pointer;">

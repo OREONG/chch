@@ -648,6 +648,7 @@ CREATE TABLE room (
 	check_time DATE,
 	leave CHAR(1),
 	unread NUMBER(10) DEFAULT 0,
+	lastsender VARCHAR2(100),
 	CONSTRAINT room_pk PRIMARY KEY(room_no, id),
 	CONSTRAINT room_id_fk FOREIGN KEY (id) REFERENCES member(id)
 );
@@ -669,7 +670,7 @@ CREATE TABLE community (
 	CONSTRAINT community_member_fk FOREIGN KEY (host_id) REFERENCES member(id)
 );
 
-
+SELECT * FROM community;
 
 
 
@@ -684,11 +685,11 @@ UPDATE room SET lastsender='b' WHERE room_no=6;
 
 SELECT * FROM room WHERE id='a';
 
+UPDATE room SET lastsender=' b' WHERE room_no=4;
 
+SELECT community_no FROM community WHERE room_no=1;
 
-
-
-
+SELECT COUNT(community_no) FROM community WHERE room_no=5;
 
 
 

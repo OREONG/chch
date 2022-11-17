@@ -17,7 +17,10 @@
 	$(document).ready(function() {
 		$("#chatMessage").scrollTop($("#chatMessage")[0].scrollHeight);
 	});
-
+	
+	
+	
+	
 	$(function() {
 
 		$('#sendBtn2').click(function() {
@@ -31,7 +34,62 @@
 				sendChat();
 			}
 		});
+		
+		$("#chatMessage").scroll(function () {
+			var scrT = $("#chatMessage").scrollTop();
+			if ($("#chatMessage")[0].scrollHeight - scrT <= 605 ) {
+				$('#alert').css('display','none');
+			}
+		});
+		
 	});
+	
+	function sendChat() {
+		var msg = $('#message').val(); // 입력한 메세지 글 읽기
+		
+		var encodeMsg = encodeURIComponent(msg);
+		
+		if (msg==null || msg=="") {
+			alert("메세지를 입력하세요!");
+			return false;
+		}
+		
+		var date = new Date();
+	
+		// ajax로 채팅 내용 저장
+		$(function() {
+			$.ajax({
+				url : "saveMessage.do?id=${id}&msg="+encodeMsg+"&room_no=${room_no}",
+				async : true,
+				type : "POST",
+				dataType : "html",
+				cache : false
+			});
+		});
+		
+		var chatMsg = $('#message').val();
+		var chat = "chat,${id},${room_no},"+encodeMsg+","+date;
+		sock.send(chat);
+		
+		$('#message').val(""); // 메세지로 입력한 글 지우기
+	}
+	
+	function moveDown(){
+		$("#chatMessage").scrollTop($("#chatMessage")[0].scrollHeight);
+		$('#alert').css('display','none');
+		
+	}
+	
+	function openCloseChatMenu(){
+	    let status = $('.hideChatMenu').css('display');
+	    if (status =='block') {
+	        $('.hideChatMenu').hide();
+	    } else {
+	        $('.hideChatMenu').show();
+	    }
+	}
+	
+	
 </script>
 </head>
 <body>
@@ -39,13 +97,34 @@
 	<div class="main-container">
 		<div class="content">
 		<input type="hidden" id="lastSender" value="">
-			<div class="chat-top">
-				<button class="chat-back-btn" onclick="location.href='chatMemberList.do'">채팅 목록</button>
+			<div class="chat-top2">
+				<div id="back_click"><span id="back" onclick="location.href='chatMemberList.do'">&lt; 돌아가기</span></div>
 			</div>
 		
 			<div id="showPage">
-				<div>${room_name }</div>
-				<div class="content chatcontent">
+				<div class="chat-top">
+					<div class="room-name">${room_name }</div>
+					<div>
+						<button class="chatMenuBtn" onclick="openCloseChatMenu()"><img id="hamburger" alt="" src="/chch/resources/images/hamburger.png"> </button>
+					</div>
+				</div>
+				<div class="hideChatMenu">
+							<!-- 신작도서 bookMenu -->
+							<div class="chatMenu">
+									<!-- IT -->
+											<ul class="submenu">
+												<c:if test="${roomType == 'community' }">
+													<li class="li-c"><a href="communityDetail.do?community_no=${community_no}" class="a">모임으로 이동</a></li>
+												</c:if>
+												<c:if test="${roomType == 'used' }">
+													<li class="li-c"><a href="" class="a">중고 거래로 이동</a></li>
+												</c:if>
+												<li class="li-c"><a href="" class="a">채팅방 별칭 설정</a></li>
+											</ul>
+							</div>
+				</div>
+					
+				<div class="chatcontent">
 					<div id="chatMessage">
 						<c:if test="${empty firstChatList }"></c:if>
 						<c:set var="preDate"></c:set>
@@ -106,19 +185,20 @@
 							</c:forEach>
 						</c:if>
 					</div>
-					<div class="alert-popup">
-						<div id="alertK" onclick="moveDown();" class="alert alert-success" role="alert">
-							<strong></strong>
-						</div>
-					</div>
+					
 					<div>
-						<div class="send-container">
+						<div class="send-container" align="center">
 							<div class="chat-input-area">
 								<input type="text" name="msg" id="message" class="form-control col-sm-8" style="resize: none;">
 							</div>
 							<div>
 								<button type="button" id="sendBtn2" class="chat-send-btn">보내기</button>
 							</div>
+						</div>
+					</div>
+					<div class="alert-popup">
+						<div id="alert" onclick="moveDown();" class="alert alert-success" role="alert">
+							<strong></strong>
 						</div>
 					</div>
 				</div>

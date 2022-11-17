@@ -38,7 +38,7 @@
 	</div>
 
 	<div class="inquiry-main">
-		<div>
+		<div class="margin-bottom">
 			<div>
 				<label for="inquiry-menu">문의유형을 선택해주세요</label>
 			</div>
@@ -56,13 +56,11 @@
 			</div>
 		</div>
 		<div>
-			<hr>
 		</div>
 
 		<div id="inquiry-view">
 			<div id="inquiry-submit">
 				<div>
-					<hr>
 					<input type="checkbox" id="check1" onclick="toggleCheck1(this)">
 					[필수] 개인정보 수집 및 이용 동의
 				</div>

@@ -23,8 +23,10 @@
 
 <form action="inquiry.do" method="post">
 <input type="hidden" name="category_no" value="${page }">
+
 <c:if test="${page==1 }">
 	<div id="page_1">
+	<hr>
 		<div class="inquiry-subject">
 			<div class="inquiry-labelArea">
 				제목
@@ -43,10 +45,12 @@
 				maxlength="100" required="required"></textarea>
 			</div>
 		</div>
+	<hr>
 	</div>
 </c:if>
 <c:if test="${page==2 }">
 	<div id="page_2">
+	<hr>
 		<div class="inquiry-subject">
 			<div class="inquiry-labelArea">
 				제목
@@ -65,10 +69,12 @@
 				maxlength="100" required="required"></textarea>
 			</div>
 		</div>
+	<hr>
 	</div>
 </c:if>
 <c:if test="${page==3 }">
 	<div id="page_3">
+	<hr>
 		<div class="inquiry-subject">
 			<div class="inquiry-labelArea">
 				제목
@@ -87,10 +93,12 @@
 				maxlength="100" required="required"></textarea>
 			</div>
 		</div>
+	<hr>
 	</div>
 </c:if>
 <c:if test="${page==4 }">
 	<div id="page_4">
+	<hr>
 		<div class="inquiry-subject">
 			<div class="inquiry-labelArea">
 				제목
@@ -109,10 +117,12 @@
 				maxlength="100" required="required"></textarea>
 			</div>
 		</div>
+	<hr>
 	</div>
 </c:if>
 <c:if test="${page==5 }">
 	<div id="page_5">
+	<hr>
 		<div class="inquiry-subject">
 			<div class="inquiry-labelArea">
 				제목
@@ -131,10 +141,12 @@
 				maxlength="100" required="required"></textarea>
 			</div>
 		</div>
+	<hr>
 	</div>
 </c:if>
 <c:if test="${page==6 }">
 	<div id="page_6">
+	<hr>
 		<div class="inquiry-subject">
 			<div class="inquiry-labelArea">
 				제목
@@ -153,10 +165,12 @@
 				maxlength="100" required="required"></textarea>
 			</div>
 		</div>
+	<hr>
 	</div>
 </c:if>
 <c:if test="${page==7 }">
 	<div id="page_7">
+	<hr>
 		<div class="inquiry-subject">
 			<div class="inquiry-labelArea">
 				제목
@@ -175,12 +189,12 @@
 				maxlength="100" required="required"></textarea>
 			</div>
 		</div>
+	<hr>
 	</div>
 </c:if>
 
 		<div id="inquiry-submit">
 			<div>
-				<hr>
 				<input type="checkbox" id="check1" onclick="toggleCheck1(this)">
 				[필수] 개인정보 수집 및 이용 동의
 			</div>

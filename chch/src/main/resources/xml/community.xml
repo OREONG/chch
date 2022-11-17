@@ -16,6 +16,10 @@
 		SELECT community_no FROM community WHERE room_no=#{room_no}
 	</select>
 	
+	<select id="communityCheck" parameterType="int" resultType="int">
+		SELECT COUNT(community_no) FROM community WHERE room_no=#{room_no}
+	</select>
+	
 	<select id="communityMyList" parameterType="String" resultType="community">
 		SELECT * FROM community c, room r WHERE c.room_no=r.room_no AND id=#{id} AND leave='n' ORDER BY community_no DESC
 	</select>

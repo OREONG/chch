@@ -14,12 +14,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.chch.chch.model.Chat;
 import com.chch.chch.service.ChatService;
+import com.chch.chch.service.CommunityService;
 
 @Controller
 public class ChatController {
 
 	@Autowired
 	private ChatService cs;
+	
+	@Autowired
+	private CommunityService coms;
 	
 //	SB 대화방 목록
 	
@@ -35,7 +39,6 @@ public class ChatController {
 		for (int i = 0; i < selectMyRoom.size(); i++) {
 			room_no = selectMyRoom.get(i).getRoom_no();
 			lastMessage = cs.lastMessage(room_no, id);
-			System.out.println("lastMessage : "+lastMessage);
 			String lastMessageText = lastMessage.getChat_content();
 			List<Chat> roomList = cs.roomList(room_no, id);
 			room_name = cs.selectRoomName(room_no, id);
@@ -82,12 +85,20 @@ public class ChatController {
 			chat.setId(id);
 			chat.setChat_content(id+"님이 입장하였습니다");
 			
-			System.out.println(chat);
-			
 			cs.insertChat(chat);
 		}
 		
 		cs.checkRoom(room_no, id);
+		
+		int communityCheck = coms.communityCheck(room_no);
+		int community_no=0;
+		String roomType="";
+		if (communityCheck > 0) {
+			community_no = coms.selectByRoomNo(room_no);
+			roomType="community";
+		} else {
+			roomType="used";
+		}
 		
 		
 		List<Chat> firstChatList = cs.firstChatList(room_no, id);
@@ -97,6 +108,8 @@ public class ChatController {
 		model.addAttribute("room_no", room_no);
 		model.addAttribute("id", id);
 		model.addAttribute("date", date);
+		model.addAttribute("community_no", community_no);
+		model.addAttribute("roomType", roomType);
 		
 		return "/chat/chat";
 	}
@@ -125,7 +138,6 @@ public class ChatController {
 		
 		return "/header";
 	}
-	
 	
 	
 //	SB 한글 string을 cutlen 길이만큼 2byte 단위로 끊고 뒤에 '...' 붙이기

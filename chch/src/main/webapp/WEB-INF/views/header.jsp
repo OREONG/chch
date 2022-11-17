@@ -12,7 +12,7 @@
 <style type="text/css">@import url("/chch/resources/css/header.css");</style>
 
 <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
-<c:set var="ipAdd" value="//172.30.1.10:8080"></c:set>
+<c:set var="ipAdd" value="//172.30.1.39:8080"></c:set>
 <c:set var="ip" value="http:${ipAdd}/chch"></c:set>
 <link rel="stylesheet" type="text/css"href="${path }/resources/bootstrap/css/bootstrap.min.css">
 <script type="text/javascript" src="${path}/resources/bootstrap/js/jquery.js"></script>
@@ -55,8 +55,6 @@
 		
 		var msg = evt.data;
 	
-		console.log("header47 메세지 받음 : "+msg);
-		
 		appendMessage(msg);
 	}	
 		
@@ -65,10 +63,10 @@
 		var cmd = split1[0];
 		var room_no = split1[2];
 		
-		console.log("header55 : "+msg);
-		console.log("header56 : "+split1);
-		
 		if (msg != null && msg.trim() != '' && cmd == 'chat') {
+			
+			console.log(msg);
+			
 			var check1;
 			var check2;
 			if (document.location.href.includes('?')) {
@@ -90,13 +88,14 @@
 			console.log(check3[4]);
 			
 			if (check11=='chat.do' && check22=='room_no='+room_no) {	//'chat.do'에 해당하는 주소이고 room_no가 동일할 때 메세지를 append
-				console.log("header60 chat으로 시작하는 메세지 : "+msg);
 				
 				var sender = split1[1];
 				var room_no = split1[2];
-				var msg = split1[3]
+				var message = split1[3]
 				var send_time = split1[4];
 				var lastSender = split1[7];
+				
+				var decodeMsg = decodeURIComponent(message);
 				
 				checkRoom(id, room_no);
 				
@@ -109,53 +108,67 @@
 						$('#chatMessage').append(
 								"<div class='to'>"
 									+ "<div class='sendTime'>" + s_time + "</div>"
-									+ "<div class='content2'>" + msg + "</div>"
+									+ "<div class='content2'>" + decodeMsg + "</div>"
 								+ "</div>");
 						var objDiv = document.getElementById("chatMessage");
 						objDiv.scrollTop = objDiv.scrollHeight;
 						
 					} else {
+						
+						var scrT = $("#chatMessage").scrollTop();
+						
+						if ($("#chatMessage")[0].scrollHeight - scrT >=605 ) {
+							var a = 0;
+							$('#alert').css('display','block');
+							$('#alert').children().remove();
+							$('#alert').append("<strong>"+sender+" : "+decodeMsg+"</strong>");
+						} else {
+							var a = 1;
+						}
+						
 						if (lastSender != sender) {
 							$('#chatMessage').append(
 									"<div class='from'>"
 										+ "<div>"
 											+ "<div class='sender'>" + sender + "</div>"
 											+ "<div class='flex-row'>"
-												+ "<div class='content1'>" + msg + "</div>"
+												+ "<div class='content1'>" + decodeMsg  + "</div>"
 												+ "<div class='sendTime'>" + s_time + "</div>"
 											+ "</div>"
 										+ "</div>"
 									+ "</div>");
+							
 						} else if (lastSender == sender) {
 							$('#chatMessage').append(
 									"<div class='from'>"
 									+ "<div>"
 										+ "<div class='flex-row'>"
-											+ "<div class='content1'>" + msg + "</div>"
+											+ "<div class='content1'>" + decodeMsg + "</div>"
 											+ "<div class='sendTime'>" + s_time + "</div>"
 										+ "</div>"
 									+ "</div>"
 								+ "</div>");
 						}
 						
-						document.querySelector('#lastSender').value = sender;
+						if (a==1) {
+							$("#chatMessage").scrollTop($("#chatMessage")[0].scrollHeight);
+						}
+						
+						
 					}
 				}
 			} else if (check11 == 'chat.do' && check22 != 'room_no='+room_no) {
 				
-				console.log("chat.do는 맞지만 방번호가 다를 때");
-				
 				var sender = split1[1];
 				var room_no = split1[2];
-				var msg = split1[3]
+				var message = split1[3]
 				// var send_time = split1[4];
 			    var loadUnread = split1[5];
-
+				
+			    var decodeMsg = decodeURIComponent(message);
 			    
-				var view =sender+"님의 메세지 : "+msg;
+				var view =sender+"님의 메세지 : "+decodeMsg;
 			    				
-				
-				
 			    setTimeout(function() {
 			    	$("#noticePopUp").children().remove();
 				    $("#noticePopUp").val(view);
@@ -164,16 +177,15 @@
 			    
 			} else if (check3[4] == 'noticeMain.do') {
 				
-				console.log("noticeMain 화면에 있을 때");
-				
 				var sender = split1[1];
 				var room_no = split1[2];
-				var msg = split1[3]
+				var message = split1[3]
 				// var send_time = split1[4];
 			    var loadUnread = split1[5];
-
+				
+			    var decodeMsg = decodeURIComponent(message);
 			    
-				var view =sender+"님의 메세지 : "+msg;
+				var view =sender+"님의 메세지 : "+decodeMsg;
 			    				
 				setTimeout(function() {
 			    	$("#noticePopUp").children().remove();
@@ -187,13 +199,15 @@
 				
 				var sender = split1[1];
 				var room_no = split1[2];
-				var msg = split1[3]
+				var message = split1[3]
 				// var send_time = split1[4];
 			    var loadUnread = split1[5];
 
 			    var roomUnread = split1[6];
+				
+			    var decodeMsg = decodeURIComponent(message);
 			    
-				var view =sender+"님의 메세지 : "+msg;
+				var view =sender+"님의 메세지 : "+decodeMsg;
 			    				
 				if (check3[4] == 'chatMemberList.do') {
 					var content = document.querySelector('#room'+room_no);
@@ -201,7 +215,7 @@
 					
 					setTimeout(function() {
 						document.querySelector('#room_no'+room_no).innerText=roomUnread;
-						document.querySelector('#msgRoom_no'+room_no).innerText=msg;
+						document.querySelector('#msgRoom_no'+room_no).innerText=decodeMsg;
 						parent.insertBefore(content, parent.firstChild);
 					}, 300);
 					
@@ -217,15 +231,11 @@
 			
 		} else if (msg != null && msg.trim() != '' && split1[0] == 'notice'){
 			
-			console.log("header122 notice으로 시작하는 메세지 : "+msg);
-			
 		    var view = split1[2];
 	    	$("#noticePopUp").children().remove();
 		    $("#noticePopUp").val(view);
 	    	
 	    } else if (msg != null && msg.trim() != '' && split1[0] == 'inquiryReply'){
-			
-			console.log("header133 inquiryReply으로 시작하는 메세지 : "+msg);
 			
 		    var view = "문의 "+split1[2]+"에 대한 답변이 완료되었습니다.";
 		    
@@ -234,11 +244,8 @@
 			    $("#noticePopUp").val(view);
 			    loadUnreadFn();
 		    }, 300);
-		    
 	    	
 	    } else if (msg != null && msg.trim() != '' && split1[0] == 'joinRoom'){
-			
-			console.log("header141 joinRoom으로 시작하는 메세지 : "+msg);
 			
 		    var view = split1[1]+"님이 "+split1[3]+" 대화방에 참여하였습니다.";
 		    
@@ -251,10 +258,7 @@
 	    	
 	    } else if (msg != null && msg.trim() != '' && split1[0] == 'status') {
 	    	
-	    	console.log("header149 notice으로 시작하는 메세지 : "+msg);
-	    	
 	    	var view="";
-	    	console.log(split1.length);
 	    	
 			for (var i = 1; i < split1.length; i++) {
 				view = view+"<div>"+split1[i]+"</div>";
@@ -262,41 +266,11 @@
 		    
 			view = "<div>현재 접속자</div>"+view;
 			
-			
 		    $("#PopUp").children().remove();
 		    $("#PopUp").append(view);
 	    }
 		
-		
 	};
-		
-	function sendChat() {
-		var msg = $('#message').val(); // 입력한 메세지 글 읽기
-		
-		if (msg==null || msg=="") {
-			alert("메세지를 입력하세요!");
-			return false;
-		}
-		
-		var date = new Date();
-	
-		// ajax로 채팅 내용 저장
-		$(function() {
-			$.ajax({
-				url : "saveMessage.do?id=${id}&msg="+msg+"&room_no=${room_no}",
-				async : true,
-				type : "POST",
-				dataType : "html",
-				cache : false
-			});
-		});
-		
-		var chatMsg = $('#message').val();
-		var chat = "chat,${id},${room_no},"+chatMsg+","+date;
-		sock.send(chat);
-		
-		$('#message').val(""); // 메세지로 입력한 글 지우기
-	}
 	
 	function timeChange(time) {
 		
@@ -305,12 +279,13 @@
 		var ampm;
 		if (hour1 <12) {
 			ampm = '오전';
+			var changedTime = ampm+" "+hour1+" "+minutes;
 		} else {
 			ampm = '오후'
 			hour2 = String(hour1 -12);
+			var changedTime = ampm+" "+hour2+" "+minutes;
 		}
 		
-		var changedTime = ampm+" "+hour2+" "+minutes;
 		
 		return changedTime;
 	}
@@ -320,7 +295,11 @@
 		var id = '${id}';
 		
 		$.post('loadUnread.do', 'id='+id, function(data) {
-			$("#unreadNotice").val(data);
+			if (data == 0) {
+				$("#unreadNotice").val("");
+			} else {
+				$("#unreadNotice").val(data);
+			}
 		});
 		
 	}
@@ -368,9 +347,11 @@
 								<c:if test="${not empty id }">
 								<li>
 									<ul>
+									
 									<li>
 										<input type="text" name="unreadNotice" id="unreadNotice" style="resize: none; border: none; width: 25px; background-color: #ffffff; color: #808080; " readonly="readonly">
-									</li>							
+									</li>
+																
 									<li>
 											<a href="noticeMain.do">
 												<img id="bell" src="/chch/resources/images/bell.png">
@@ -402,7 +383,7 @@
 						<a class="cate-c" href="usedList.do">중고도서</a>
 						<a class="cate-c" href="usedAddForm.do">판매하기</a>
 						<a class="cate-c" href="writing.do">나도 작가</a>
-						<a class="cate-c" href="communityMain.do">커뮤니티</a>
+						<a class="cate-c" href="communityAllList.do">커뮤니티</a>
 						<a class="cate-c" href="mypageMain.do">마이페이지</a>
 						<a class="cate-c" href="inquiryMain.do">고객센터</a>
 						<!-- <a class="cate-c" href="communityMain.do">모임</a>

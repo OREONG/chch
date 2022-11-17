@@ -81,4 +81,9 @@ public class CommunityServiceImpl implements CommunityService {
 		comd.banRoom(room_no);
 	}
 
+	@Override
+	public int communityCheck(int room_no) {
+		return comd.communityCheck(room_no);
+	}
+
 }

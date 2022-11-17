@@ -127,8 +127,6 @@ public class AdminController {
 	@RequestMapping(value = "adminBookDelete", produces = "text/html;charset=utf-8")
 	public String adminBookDelete (Model model, @RequestParam("selectChk") String[] selectChk) {
 		
-		System.out.println(selectChk);
-		
 		String[] selectDelete =selectChk;
 		String[] delList= new String[selectDelete.length];
 		
@@ -163,8 +161,6 @@ public class AdminController {
 		}
 		
 		model.addAttribute("result", result);
-		
-		System.out.println("result"+result);
 		
 		return "/admin/nolay/adminBookList";
 	}
@@ -240,7 +236,7 @@ public class AdminController {
 	}
 	
 	@RequestMapping("adminInquiryBeforeList")
-	public String adminInquiryBeforeList(Model model, HttpSession session, String pageNum, int inquiryNumber) {
+	public String adminInquiryBeforeList(Model model, HttpSession session, String pageNum, String inquiryNumber) {
 		
 		final int ROW_PER_PAGE = 10;
 		final int PAGE_PER_BLOCK = 10;
@@ -269,19 +265,6 @@ public class AdminController {
 		return "/admin/nolay/adminInquiryBeforeList";
 	}
 	
-//	@RequestMapping("adminInquiryReply")
-//	public String adminInquiryReply (Model model, HttpSession session, Inquiry inquiry) {
-//		
-//		inquiry.setReply_content(inquiry.getReply_content().replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
-//		
-//		int result = ins.replySubmit(inquiry);
-//		
-//		model.addAttribute("inquiryNumber", inquiry.getInquiryNumber());
-//		model.addAttribute("result", result);
-//		
-//		return "/admin/adminInquiryReply";
-//	}
-	
 	@RequestMapping(value = "adminInquiryReply", produces = "text/html;charset=utf-8")
 	public String saveMessage(@RequestParam("category_no") int category_no,
 			@RequestParam("inquiry_no") int inquiry_no, @RequestParam("inquiry_subject") String inquiry_subject,
@@ -307,7 +290,7 @@ public class AdminController {
 	
 	
 	@RequestMapping("adminInquiryAfterList")
-	public String adminInquiryAfterList (Model model, HttpSession session, String pageNum, int inquiryNumber) {
+	public String adminInquiryAfterList (Model model, HttpSession session, String pageNum, String inquiryNumber) {
 		
 		final int ROW_PER_PAGE = 10;
 		final int PAGE_PER_BLOCK = 10;
@@ -425,11 +408,7 @@ public class AdminController {
 		salesInfo.setEndRow(endRow);
 		salesInfo.setSort(sort);
 		
-		System.out.println(salesInfo);
-		
 		List<Admin> salesRanking = as.salesRanking(salesInfo);
-		
-		System.out.println(salesRanking);
 		
 		model.addAttribute("salesRanking", salesRanking);
 		model.addAttribute("currentPage", currentPage);
@@ -459,7 +438,6 @@ public class AdminController {
 		if (pageNum == null || pageNum.equals("")) {
 			pageNum = "1";
 		}
-		System.out.println(book_no);
 		
 		int currentPage = Integer.parseInt(pageNum);
 		int startRow = (currentPage - 1) * ROW_PER_PAGE + 1;
@@ -480,11 +458,7 @@ public class AdminController {
 		salesInfo.setStartRow(startRow);
 		salesInfo.setEndRow(endRow);
 		
-		System.out.println(salesInfo);
-		
 		List<Admin> salesHistory = as.salesHistory(salesInfo);
-		
-		System.out.println(salesHistory);
 		
 		model.addAttribute("salesHistory", salesHistory);
 		model.addAttribute("currentPage", currentPage);

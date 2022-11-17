@@ -104,4 +104,9 @@ public class CommunityDaoImpl implements CommunityDao {
 		sst.update("communityns.banRoom", room_no);
 	}
 
+	@Override
+	public int communityCheck(int room_no) {
+		return sst.selectOne("communityns.communityCheck", room_no);
+	}
+
 }

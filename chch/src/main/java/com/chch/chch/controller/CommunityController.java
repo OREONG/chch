@@ -23,12 +23,6 @@ public class CommunityController {
 	@Autowired
 	private ChatService cs;
 	
-//	SB 관리자 메인 화면
-	@RequestMapping("communityMain")
-	public String communityMain() {
-		return "/community/communityMain";
-	}
-	
 //	SB 커뮤니티 글 등록 화면
 	@RequestMapping("communityInsertForm")
 	public String communityInsertForm() {
@@ -69,8 +63,6 @@ public class CommunityController {
 		community.setParticipation(participation);
 		
 		String room_name = coms.selectRoomName(community.getRoom_no());
-		
-		System.out.println("room_name : "+room_name);
 		
 		int currentMember = coms.currentMember(community.getRoom_no());
 		

@@ -52,8 +52,6 @@ public class EchoHandler extends TextWebSocketHandler {
 					
 				} else if (strs !=null && "inquiryReply".equals(cmd)) {				// notice로 분류될 때
 					
-					System.out.println("문의답변옴");
-					
 					String userId = strs[1];
 					WebSocketSession recieverWriterSession = userSessionsMap.get(userId);
 					recieverWriterSession.sendMessage(new TextMessage(msg));
@@ -63,13 +61,9 @@ public class EchoHandler extends TextWebSocketHandler {
 					int room_no = Integer.parseInt(strs[2]);
 					String lastSender = cs.selectLastSender(room_no, id);
 					
-					System.out.println("lastSender 메세지 받았을 때: "+lastSender);
-					
 					List<Chat> roomMember = cs.selectRoomMember(room_no);	// 메세지를 보내려는 방에 포함된 멤버 구하기
 					
 					WebSocketSession recieverWriterSession;					// 메세지 받을 사람들의 세션 선언
-					
-					System.out.println("chat으로 시작하는 메세지인 것으로 확인"+msg);
 					
 					for (int i = 0; i < roomMember.size(); i++) {
 						recieverWriterSession = userSessionsMap.get(roomMember.get(i).getId());		// roomMember에서 구한 유저들의 세션정보 가져오기
@@ -80,12 +74,9 @@ public class EchoHandler extends TextWebSocketHandler {
 							int sum1 = 0;
 							for (int j = 0; j < myRoom.size(); j++) {
 								sum1 += cs.loadUnreadChat(roomMember.get(i).getId(), myRoom.get(j).getRoom_no());
-								System.out.println("id : "+roomMember.get(i).getId()+", room_no : "+myRoom.get(j).getRoom_no()+", sum1 : "+sum1);
 							}
 							
 							sum1 += 1;
-							
-							System.out.println(roomMember.get(i).getId()+"의 sum1 : "+sum1);
 							
 							String sum = String.valueOf(sum1);
 							
@@ -96,22 +87,16 @@ public class EchoHandler extends TextWebSocketHandler {
 					}
 					
 					cs.updateLastSender(room_no, id);
-					System.out.println("lastSender 메세지 받았을 때: "+id);
 					
 				} else if (strs !=null && "status".equals(cmd)) {
 					
 					String sender = strs[1];
 					
-					System.out.println("접속자 확인 메세지 받음");
-					
 					String key = userSessionsMap.keySet().toString().substring(1);
 					
 					String key1 = "status,"+key.substring(0,key.length()-1);
-					System.out.println(key1);
 					
 					WebSocketSession senderWriterSession = userSessionsMap.get(sender);
-					
-					System.out.println("접속인원 확인");
 					
 					TextMessage statusMsg = new TextMessage(key1);
 					senderWriterSession.sendMessage(statusMsg);

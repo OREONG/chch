@@ -27,14 +27,13 @@ public class InquiryController {
 	
 	
 	@RequestMapping("faq")
-	public String faq (Model model, int inquiryNumber) {
-		System.out.println("inquiryNumber : "+inquiryNumber);
+	public String faq (Model model, String inquiryNumber) {
 		model.addAttribute("inquiryNumber", inquiryNumber);
 		return "/inquiry/nolay/faq";
 	}
 	
 	@RequestMapping("inquirySelect")
-	public String inquirySelect (Model model, int inquiryNumber) {
+	public String inquirySelect (Model model, String inquiryNumber) {
 		
 		model.addAttribute("inquiryNumber", inquiryNumber);
 		
@@ -65,7 +64,7 @@ public class InquiryController {
 	}
 	
 	@RequestMapping("inquiryList")
-	public String inquiryList (Model model, HttpSession session, int inquiryNumber, String pageNum) {
+	public String inquiryList (Model model, HttpSession session, String inquiryNumber, String pageNum) {
 		String id = (String)session.getAttribute("id");
 		
 		final int ROW_PER_PAGE = 10;
@@ -94,13 +93,14 @@ public class InquiryController {
 	}
 	
 	@RequestMapping(value = "replyCheck", produces = "text/html;charset=utf-8")
-	public String replyCheck (@RequestParam("inquiry_no") int inquiry_no, Model model) {
+	public String replyCheck (@RequestParam("inquiry_no") String inquiry_no, Model model) {
 		
-		int result = ins.replyCheck(inquiry_no);
+		int inquiry_no2=Integer.parseInt(inquiry_no);
+		int result = ins.replyCheck(inquiry_no2);
 		
 		model.addAttribute("result", result);
 		
-		return "/inquiry/inquiryList";
+		return "/inquiry/nolay/inquiryList";
 	}
 	
 	@RequestMapping(value = "loadUnreadInquiry", produces = "text/html;charset=utf-8")
