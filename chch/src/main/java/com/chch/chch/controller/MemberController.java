@@ -43,7 +43,7 @@ public class MemberController {
 	//초기 회원가입 화면
 	@RequestMapping("joinForm")
 	public String joinForm() {
-		return "/member/nolayout/joinForm";
+		return "/member/nolay/joinForm";
 	}
 	
 	//아이디 중복검사
@@ -108,7 +108,6 @@ public class MemberController {
 	public String loginForm(Model model, HttpSession session, String targetPage) {
 		
 		// 기존에 가려던 페이지 주소 전달
-		
 		targetPage = (String) session.getAttribute("targetPage");
 		System.out.println("targetPage(로그인폼) : "+targetPage);
 		
@@ -155,6 +154,7 @@ public class MemberController {
 	public String updateForm(Model model,HttpSession session) {
 		String id= (String)session.getAttribute("id");
 		Member member = ms.select(id);
+		System.out.println("생일 = "+member.getBirth());
 		model.addAttribute("member", member);
 		return "/member/updateForm";
 	}

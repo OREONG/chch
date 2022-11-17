@@ -30,7 +30,7 @@
 				</div>
 				<div><textarea rows="10" id="author_introTextArea" name="author_introduce" placeholder="작품 소개를 입력해주세요"></textarea></div>
 				
-				<input type="submit" id="input-btn" value="작품 등록">
+				<input type="submit" id="input-btn2" value="작품 등록">
 			</form>
 		</div>
 	</div>

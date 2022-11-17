@@ -15,7 +15,7 @@ public class Member {
 	private String name; //이름
 	private String address; //주소
 	private String address_detail; //상세주소
-	private String birth; //생년월일
+	private Date birth; //생년월일
 	private String gender; //성별
 	private String phone; //휴대전화(01011112222)
 	private Date reg_date; //가입일

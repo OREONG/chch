@@ -26,7 +26,7 @@
 			<div>
 				<textarea id="author_work_commentText" rows="10" cols="" name="author_work_comment" placeholder="작가의 말을 입력하세요 *생략가능"></textarea>
 			</div>
-			<input type="submit" id="input-btn" value="등록하기">
+			<input type="submit" id="input-btn2" value="등록하기">
 		</form>
 	</div>
 

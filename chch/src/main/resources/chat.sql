@@ -9,7 +9,7 @@ CREATE TABLE chat (
 	room_no NUMBER(10) NOT NULL,					--대화방번호
 	sender VARCHAR2 (200) NOT NULL,					--발신자
 	chat_content VARCHAR2 (200) NOT NULL,			--내용
-	send_time DATE NOT NULL,						--발신일시
+	send_time DATE NOT NULL						--발신일시
 );
 
 SELECT * FROM chat;
@@ -100,7 +100,7 @@ CREATE TABLE community (
 	min_age NUMBER(3),
 	max_age NUMBER(3),
 	community_location VARCHAR2(100),
-	community_del CHAR(1)--,
+	community_del CHAR(1),
 	CONSTRAINT community_room_fk FOREIGN KEY (room_no) REFERENCES room(room_no),
 	CONSTRAINT community_member_fk FOREIGN KEY (host_id) REFERENCES member(id)
 )
@@ -108,7 +108,7 @@ CREATE TABLE community (
 SELECT * FROM community;
 
 
-
+drop table inquiry CASCADE CONSTRAINTS;
 CREATE TABLE inquiry(
 	inquiry_no NUMBER(10) PRIMARY KEY,			--문의번호
 	id VARCHAR2(20) NOT NULL,					--아이디
@@ -662,7 +662,7 @@ CREATE TABLE community (
 	min_age NUMBER(3),
 	max_age NUMBER(3),
 	community_location VARCHAR2(100),
-	community_del CHAR(1)--,
+	community_del CHAR(1),
 	CONSTRAINT community_room_fk FOREIGN KEY (room_no) REFERENCES room(room_no),
 	CONSTRAINT community_member_fk FOREIGN KEY (host_id) REFERENCES member(id)
 );

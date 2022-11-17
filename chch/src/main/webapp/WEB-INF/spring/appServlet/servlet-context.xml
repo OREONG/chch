@@ -37,6 +37,7 @@
 			<mapping path="/deleteForm.do"/>
 			<mapping path="/delete.do"/>
 			<mapping path="/logout.do"/>
+			<mapping path="/writing.do"/>
 			<mapping path="/authorEach.do"/>
 			<mapping path="/authorMain.do"/>
 			<mapping path="/authorIntro.do"/>
