@@ -76,13 +76,13 @@ ALTER TABLE room MODIFY leave VISIBLE;
 
 SELECT * from room;
 
-INSERT INTO room VALUES (1, 'a', '', sysdate, sysdate, 'n');
-INSERT INTO room VALUES (1, 'b', '', sysdate, sysdate, 'n');
-INSERT INTO room VALUES (2, 'a', '', sysdate, sysdate, 'n');
-INSERT INTO room VALUES (2, 'c', '', sysdate, sysdate, 'n');
-INSERT INTO room VALUES (3, 'a', '', sysdate, sysdate, 'n');
-INSERT INTO room VALUES (3, 'b', '', sysdate, sysdate, 'n');
-INSERT INTO room VALUES (3, 'c', '', sysdate, sysdate, 'n');
+INSERT INTO room VALUES (1, 'a', '', sysdate, sysdate, 'n', 0);
+INSERT INTO room VALUES (1, 'b', '', sysdate, sysdate, 'n', 0);
+INSERT INTO room VALUES (2, 'a', '', sysdate, sysdate, 'n', 0);
+INSERT INTO room VALUES (2, 'c', '', sysdate, sysdate, 'n', 0);
+INSERT INTO room VALUES (3, 'a', '', sysdate, sysdate, 'n', 0);
+INSERT INTO room VALUES (3, 'b', '', sysdate, sysdate, 'n', 0);
+INSERT INTO room VALUES (3, 'c', '', sysdate, sysdate, 'n', 0);
 
 
 SELECT * FROM chat;
@@ -104,9 +104,8 @@ CREATE TABLE community (
 	min_age NUMBER(3),
 	max_age NUMBER(3),
 	community_location VARCHAR2(100),
-	community_del CHAR(1),
-	CONSTRAINT community_room_fk FOREIGN KEY (room_no) REFERENCES room(room_no),
-	CONSTRAINT community_member_fk FOREIGN KEY (host_id) REFERENCES member(id)
+	community_del CHAR(1)
+	
 )
 
 SELECT * FROM community;
@@ -126,7 +125,6 @@ CREATE TABLE inquiry(
 	reply_check CHAR(1) DEFAULT 'n',			--답변확인
 	CONSTRAINT inquiry_id_fk FOREIGN KEY (id) REFERENCES member(id)
 );
-
 
 
 
