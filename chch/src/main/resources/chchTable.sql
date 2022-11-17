@@ -42,7 +42,6 @@ CREATE TABLE book (
 
 SELECT * FROM book;
 
-
 select count(*) from book;
 
 

@@ -212,7 +212,6 @@
 						<input type="date" class="input2" name="birth" value="${member.birth }">
 		            	</div>
 					</div>
-					
 					<!-- 성별 -->
 					<div class="row-div">
 		            	<span class="item-text">성별</span>

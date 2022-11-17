@@ -106,21 +106,9 @@ function reviewDelete(review_no) {
 			
 				<br>
 				<div class="review-textarea-div">
-					<span>${author_work.id }</span>
+					<span>${id }</span>
 					<hr id="textarea-hr">
 					<textarea rows="5" cols="105" name="review_content" placeholder="타인의 기분을 불쾌하게 하는 댓글은 삭제될 수 있습니다"></textarea>
-<!-- 					<fieldset>
-						<input type="radio" name="reviewStar" value="5" id="rate1">
-						<label for="rate1">★</label>
-						<input type="radio" name="reviewStar" value="4" id="rate2">
-						<label for="rate2">★</label>
-						<input type="radio" name="reviewStar" value="3" id="rate3">
-						<label for="rate3">★</label>
-						<input type="radio" name="reviewStar" value="2" id="rate4">
-						<label for="rate4">★</label>
-						<input type="radio" name="reviewStar" value="1" id="rate5">
-						<label for="rate5">★</label>
-					</fieldset> -->
 					<input id="input-btn" type="submit" value="등록">
 					<input type="hidden" value="${author_work.author_work_no }" name="author_work_no">
 					

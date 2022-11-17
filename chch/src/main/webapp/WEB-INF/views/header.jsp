@@ -12,7 +12,7 @@
 <style type="text/css">@import url("/chch/resources/css/header.css");</style>
 
 <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
-<c:set var="ipAdd" value="//172.30.1.10:8080"></c:set>
+<c:set var="ipAdd" value="//172.30.1.78:8080"></c:set>
 <c:set var="ip" value="http:${ipAdd}/chch"></c:set>
 <link rel="stylesheet" type="text/css"href="${path }/resources/bootstrap/css/bootstrap.min.css">
 <script type="text/javascript" src="${path}/resources/bootstrap/js/jquery.js"></script>
@@ -400,7 +400,7 @@
 								<li>
 									<ul>
 									<li>
-										<input type="text" name="unreadNotice" id="unreadNotice" style="resize: none; border: none; width: 50px; background-color: #ffffff; color: #808080; margin-left: 185px;" readonly="readonly">
+										<input type="text" name="unreadNotice" id="unreadNotice" style="resize: none; border: none; width: 25px; background-color: #ffffff; color: #808080; " readonly="readonly">
 									</li>							
 									<li>
 											<a href="noticeMain.do">
