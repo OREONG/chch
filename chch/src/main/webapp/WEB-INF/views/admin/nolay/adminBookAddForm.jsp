@@ -10,7 +10,7 @@
 	
 	<form action="adminBookAdd.do" method="post" enctype="multipart/form-data">
 	<div id="book-add-box">
-		<div>
+		<div class="margin-top">
 			<div id="report-Img-box">
 				<input type="file" name="file" id="file" style="display: none;" class="real-upload"
 					accept="image/*" required>
@@ -23,8 +23,8 @@
 		
 		
 		<div class="input-container">
-			<div>
-					<select class="report-sub-box2" id="report-class-box"
+			<div class="margin-bottom2">
+					<select class="adminBookAdd-sub-box input-select" id="report-class-box"
 						name="book_kind" required="required">
 						<option value="" hidden="true">분류</option>
 						<option value="IT">IT</option>
