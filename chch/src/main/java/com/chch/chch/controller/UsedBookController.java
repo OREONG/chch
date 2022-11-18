@@ -15,7 +15,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.chch.chch.model.Book;
+import com.chch.chch.model.Deal;
 import com.chch.chch.model.Used;
+import com.chch.chch.service.DealService;
+import com.chch.chch.service.MoneyService;
 import com.chch.chch.service.PagingBean;
 import com.chch.chch.service.UsedBookService;
 
@@ -23,6 +26,10 @@ import com.chch.chch.service.UsedBookService;
 public class UsedBookController {
 	@Autowired
 	private UsedBookService us;
+	@Autowired
+	private DealService ds;
+	@Autowired
+	private MoneyService ms;
 	
 	@RequestMapping("usedList")
 	public String usedList(Model model, Used used, String pageNum, String status) {
@@ -48,9 +55,12 @@ public class UsedBookController {
 	}
 	
 	@RequestMapping("usedDetail")
-	public String usedBook(int used_no, Model model, Used used) {
+	public String usedBook(int used_no, String purchase_id, Deal deal, Model model, Used used, HttpSession session) {
+		String id = (String)session.getAttribute("id");
 		used = us.selectUsed(used_no);
+		deal = ds.selectUsed(used_no);
 		model.addAttribute("used", used);
+		model.addAttribute("deal", deal);
 		return "/usedBook/usedDetail";
 	}
 	
@@ -103,6 +113,46 @@ public class UsedBookController {
 		model.addAttribute("result", result);
 		model.addAttribute("used_no", used_no);
 		return "/usedBook/changeStatus";
+	}
+	
+	/* HYC */
+	/*중고 판매 확정*/
+	@RequestMapping("usedSell")
+	public String usedSell(int used_price, int used_no, int book_no, Used used, Book book, Deal deal, Model model, HttpSession session) {
+		String id = (String)session.getAttribute("id");
+		int result = us.update2(used_no);
+		model.addAttribute("result", result);
+		return "/usedBook/usedSell";
+	}
+
+	/* 중고 예약하기  */
+	@RequestMapping("usedBuy")
+	public String usedBuy(int used_price, String seller_id, String purchase_id, int used_no, int book_no, Used used, Book book, Deal deal, Model model, HttpSession session) {
+		String id = (String)session.getAttribute("id");
+		int maxDealGroup3 = ds.max3()+1;
+		us.update(used_no);
+		deal.setDeal_group(maxDealGroup3);
+		deal.setPurchase_id(purchase_id);
+		deal.setSeller_id(seller_id);
+		deal.setBook_no(book_no);
+		deal.setUsed_no(used_no);
+		deal.setReal_price(used_price);
+		int result = ds.insert3(deal);
+		ms.update3(used_price , id);
+		model.addAttribute("id", id);
+		model.addAttribute("result", result);
+		return "/usedBook/usedBuy";
+	}
+	
+	@RequestMapping("usedFinalBuy")
+	public String usedFinalBuy(int used_price, int used_no, String seller_id, Model model, HttpSession session) {
+		String id = (String)session.getAttribute("id");
+		int used_price2 = (int) (Math.floor(((used_price / 10) * 9)/10) * 10);
+		int result = ms.update4(used_price2, seller_id);
+		us.update3(used_no);
+		model.addAttribute("id", id);
+		model.addAttribute("result",result);
+		return "/usedBook/usedFinalBuy";
 	}
 
 }

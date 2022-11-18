@@ -7,18 +7,21 @@
 <head>
 <title>책첵!</title>
 <meta charset="utf-8" />
-<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="/chch/resources/js/jquery.js"></script>
 <style type="text/css">@import url("/chch/resources/css/usedList.css");</style>
 </head>
-
 <body>
 
 	<div>
 		<h1>중고 도서</h1>
 	</div>
 	<div id="line"></div>
-		<a href="usedList.do?status=n">거래가능만 보기</a><p>
+	
+	<div class="selectBox">
+		<a href="usedList.do?status=n">거래가능만 보기</a>&nbsp;|
 		<a href="usedList.do">모두 보기</a>
+	</div>
+	
 	<div class="products">
 		<c:if test="${empty list}">
 		등록된 책이 없습니다
@@ -36,6 +39,7 @@
 							<c:if test="${ list.used_status=='n'}">[판매중]</c:if>
 							<c:if test="${ list.used_status=='r'}">[예약중]</c:if>
 							<c:if test="${ list.used_status=='y'}">[판매완료]</c:if>
+							<c:if test="${ list.used_status=='f'}">[판매완료]</c:if>
 						</p>
 					</a>
 				</div>

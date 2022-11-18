@@ -8,9 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">@import url("/chch/resources/css/newDetail.css");</style>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script type="text/javascript">
 
 $(function() {
@@ -56,7 +54,7 @@ $(function() {
 
 
 
-리뷰 페이징 스크롤 높이
+/* 리뷰 페이징 스크롤 높이 */
 document.addEventListener("DOMContentLoaded", function() { // html load 이후
 	if (${num} > 1) {			
 		window.scrollTo(0, $('.scrollTop').position().top);
@@ -69,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function() { // html load 이후
 	}
 	
 	function purchase() {
-		location.href="purchaseStep11.do?book_no=${book.book_no }&count=" + cc;	
+		location.href="purchaseStepForm2.do?book_no=${book.book_no }&count=" + cc;	
 	}
 	
 	
@@ -238,11 +236,10 @@ $(document).ready(function(){
 				<div class="detailtext-wrap">
 					<div class="info-txt-div">
 						<div class="info-txt">정가</div>
-						<fmt:formatNumber value="${book.book_price }" pattern="#,###" />
-						원
+						<fmt:formatNumber value="${book.finalprice }" pattern="#,###" />원
 					</div>
 					<div class="info-txt-div">
-						<div class="info-txt">판매가</div>${finalprice}원
+						<div class="info-txt">판매가</div><fmt:formatNumber value="${book.book_price }" pattern="#,###" />원
 						(10%, ${disprice}원 할인)
 					</div>
 					<div class="info-txt-div">
@@ -285,12 +282,12 @@ $(document).ready(function(){
 
 
 				<ul class="btn-wrap">
-					<li><a onclick="addcart()"><button class="button1"
+					<li><a onclick="addcart(${book.book_no})"><button class="button1"
 								id="button1-2">장바구니</button></a></li>
-					<li><a onclick="purchase()"><button class="button1"
+					<li><a onclick="purchase()"><button class="button1" 
 								id="button1-2">구매하기</button></a></li>
-					<li><a href=""><button class="button1" id="button1-1">❤</button></a></li>
-				</ul>
+					<li><a href="likeInsert.do?book_no=${book.book_no }"><button class="button1" id="button1-1">❤</button></a></li>
+			   </ul>
 
 
 				<div class="sales-link">
@@ -305,7 +302,7 @@ $(document).ready(function(){
 	<!-- 디테일 이미지, 책 소개보기 -->
 	<div class="detail2">
 		<div class="detailimg">
-			<img src="" alt="">
+			<img src="/chch/resources/images/${book.book_imagedetail}" alt="">
 		</div>
 		<div class="detailmore">
 			<details id="box">

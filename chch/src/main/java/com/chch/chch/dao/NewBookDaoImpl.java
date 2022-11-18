@@ -80,5 +80,15 @@ public class NewBookDaoImpl implements NewBookDao {
 		return sst.selectOne("reportns.getTotal1", report);
 	}
 
+	// HYC
+		// 책 번호로 책 리스트 불러오기
+		public Book list(int book_no) {
+			return sst.selectOne("bookns.list", book_no);
+		}
+
+		// 책 구매시 수량 변경
+		public int update2(Book book) {
+			return sst.update("bookns.update2", book);
+		}
 	
 }

@@ -1,10 +1,31 @@
 body h1 {
 	text-align: center;
 	margin-top: 50px;
-	margin-bottom: 60px;
+	margin-bottom: 30px;
 	font-size: 24px;
 	font-style: bold;
 	color: #545454;
+	font-family: 'Jalnan';
+}
+
+.book_list {
+    height: 360px;
+    margin: 0 115px 0 0;
+}
+
+.title {
+	width: 150px;
+    margin: auto;
+    margin-top: 5px;
+}
+
+#product_order_list {
+	text-align: center;
+	margin-bottom: 50px;
+}
+
+#product_order_list a {
+	color: black;	
 }
 
 #line {
@@ -21,21 +42,20 @@ body h1 {
 
 .products {
 	display: table;
-	margin-left: auto;
-	margin-right: auto;
+    margin: 0 auto 0 25%;
 	padding: 0;
-	width: 840px;
+    width: 70%;
 	text-align: center;
 	font-family: 'AppleSDGothicNeo';
 }
 
+.img-div{
+	width: 155px;
+    height: 210px;
+}
 .products img {
-	width: 160px;
-	height: 240px;
-	margin-right: 20px;
-	margin-left: 20px;
-	margin-bottom: 10px;
-	margin-top: 50px;
+	width: 100%;
+
 }
 
 .products a {

@@ -20,25 +20,26 @@
 	
 	<div id="product_order_list">
 			<p>
-			<a href="newList.do?book_kind=${book_kind}&order=publish">출간순</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-			<a href="newList.do?book_kind=${book_kind}&order=best">베스트셀러</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-			<a href="newList.do?book_kind=${book_kind}&order=review">리뷰많은순</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-			<a href="newList.do?book_kind=${book_kind}&order=lowPrice">낮은가격순</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-			<a href="newList.do?book_kind=${book_kind}&order=highPrice">높은가격순</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+			<a href="newList.do?book_kind=${book_kind}&order=publish">출간순</a>&nbsp;|
+			<a href="newList.do?book_kind=${book_kind}&order=best">베스트셀러</a>&nbsp;|
+			<a href="newList.do?book_kind=${book_kind}&order=review">리뷰많은순</a>&nbsp;|
+			<a href="newList.do?book_kind=${book_kind}&order=lowPrice">낮은가격순</a>&nbsp;|
+			<a href="newList.do?book_kind=${book_kind}&order=highPrice">높은가격순</a>&nbsp;|
 			<a href="newList.do?book_kind=${book_kind}&order=title">제목순</a> </p>
 		</div>
 	
-	<div align="center">
+	<div class="products">
 		<c:if test="${empty bookList}">
 		등록된 책이 없습니다
 		</c:if>
 		<c:if test="${not empty bookList}">
 			<c:forEach var="book" items="${bookList }">
-				<div class="btn" style="width: 45%; margin-top: 5px">
-					<a href="newDetail.do?book_no=${book.book_no }">
-					<img src="/chch/resources/images/${book.book_image}">
-						<p>${book.book_title }</p>
-						<p><fmt:formatNumber value="${book.book_price }" pattern="#,###" />원</p>
+			<a href="newDetail.do?book_no=${book.book_no }">
+				<div class="book_list">
+					<div class="img-div"><img src="/chch/resources/images/${book.book_image}"></div>
+					<div class="title">${book.book_title }</div>
+					<div><fmt:formatNumber value="${book.book_price }" pattern="#,###" />원</div>
+					
 						<div class="star_avg">
 							<c:if test="${book.star_avg <= 0.4}">☆☆☆☆☆</c:if>
 							<c:if test="${book.star_avg >= 0.5 && book.star_avg < 1.4}">★☆☆☆☆</c:if>
@@ -48,43 +49,14 @@
 							<c:if test="${book.star_avg >= 4.5}">★★★★★</c:if>
 							 &nbsp;(${book.review_cnt })
 						</div>
-					</a>
-				</div>
+					
+					</div>
+				</a>
 			</c:forEach>
 		</c:if>
 	</div>
 
 	<div id="line2"></div>
-	
-	<!-- 페이징 시작 -->
-	<%-- <div align="center">
-		<ul class="pagination">
-			<c:if test="${pb.startPage > pb.pagePerBlock}">
-				<li><a href="newList.do?pageNum=1&book_kind=${book_kind }&order=${order}">
-						<span class="glyphicon glyphicon-fast-backward"></span>
-				</a></li>
-				<li><a href="newList.do?pageNum=${pb.startPage-1 }&book_kind=${book_kind }&order=${order}">
-						<span class="glyphicon glyphicon-triangle-left"></span>
-				</a></li>
-			</c:if>
-			<c:forEach var="i" begin="${pb.startPage }" end="${pb.endPage }">
-				<c:if test="${pb.currentPage == i }">
-					<li class="active"><a href="newList.do?pageNum=${i }&book_kind=${book_kind }&order=${order}">${i }</a></li>
-				</c:if>
-				<c:if test="${pb.currentPage != i }">
-					<li><a href="newList.do?pageNum=${i }&book_kind=${book_kind }&order=${order}">${i }</a></li>
-				</c:if>
-			</c:forEach>
-			<c:if test="${pb.endPage < pb.totalPage}">
-				<li><a href="newList.do?pageNum=${pb.endPage+1 }&book_kind=${book_kind }&order=${order}">
-						<span class="glyphicon glyphicon-triangle-right"></span>
-				</a></li>
-				<li><a href="newlist.do?pageNum=${pb.totalPage }&book_kind=${book_kind }&order=${order}">
-						<span class="glyphicon glyphicon-fast-forward"></span>
-				</a></li>
-			</c:if>
-		</ul>
-	</div> --%>
 	
 	<!-- 페이징 -->
 		<div class="paging-div">

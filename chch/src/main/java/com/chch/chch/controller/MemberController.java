@@ -3,6 +3,8 @@ package com.chch.chch.controller;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -15,9 +17,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.chch.chch.model.Book;
 import com.chch.chch.model.Member;
+import com.chch.chch.model.Review;
 import com.chch.chch.service.MailSendService;
 import com.chch.chch.service.MemberService;
+import com.chch.chch.service.NewBookService;
+import com.chch.chch.service.PagingBean;
 
 @Controller
 public class MemberController {
@@ -27,6 +33,8 @@ public class MemberController {
 	//서비스
 	@Autowired
 	private MemberService ms;
+	@Autowired
+	private NewBookService ns;
 	//비밀번호 암호화
 	@Autowired
 	private BCryptPasswordEncoder bpe; 
@@ -34,9 +42,44 @@ public class MemberController {
 	private String emailChk;
 	
 	@RequestMapping("main")
-	public String main(HttpSession session, Model model) {
+	public String main(HttpSession session, Model model, Book book, String pageNum) {
 		String id = (String)session.getAttribute("id");
+		
+		//신작도서 페이징
+		int rowPerPage = 12; // 페이지 당 게시글 갯수
+		if (pageNum == null || pageNum.equals("")) pageNum = "1";
+		int currentPage = Integer.parseInt(pageNum);
+		int total = ns.getTotal(book);
+		int startRow = (currentPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage -1;
+		int num = total - startRow + 1;
+		book.setStartRow(startRow);
+		book.setEndRow(endRow);
+		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
+		
+		//신작도서 리스트
+		String order = "publish";
+		book.setOrder(order);
+		List<Book> bookList = new ArrayList<Book>();
+		bookList = ns.bookListAll(book);
+		
+		//리스트 책마다 리뷰갯수 평균별점 표시
+		int review_cnt = 0;
+		double star_avg = 0;
+		Review review = new Review();
+		
+		for (Book book1 : bookList) { // 주소를 복사하기때문에 bookList에도 들어감
+			review_cnt = ns.review_cnt(book1.getBook_no());
+			review.setBook_no(book1.getBook_no());
+			star_avg = ns.star_avg(review);
+			book1.setReview_cnt(review_cnt);
+			book1.setStar_avg(star_avg);
+		}
+		
 		model.addAttribute("id", id);
+		model.addAttribute("bookList", bookList);
+		model.addAttribute("pb", pb);
+		model.addAttribute("num", num);
 		return "/main/main";
 	}
 	

@@ -51,4 +51,20 @@ public class UsedBookDaoImpl implements UsedBookDao {
 	public int updateStatus(Map<String, Object> map) {
 		return sst.update("usedns.updateStatus", map);
 	}
+	
+	// HYC
+		//	중고 도서 예약시 예약중으로 상태 변경
+		public int update(int used_no) {
+			return sst.update("usedns.update", used_no);
+		}
+
+		// 중고 도서 판매확정시 판매 완료로 상태 변경
+		public int update2(int used_no) {
+			return sst.update("usedns.update2", used_no);
+		}
+
+		// 거래 완료시 f로 상태 변경
+		public int update3(int used_no) {
+			return sst.update("usedns.update3", used_no);
+		}
 }

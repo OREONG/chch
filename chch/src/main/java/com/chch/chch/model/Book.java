@@ -43,6 +43,11 @@ public class Book implements Comparable<Book> {
 	private String order;
 //	검색 키워드
 	private String keyword;
+//	할인 전 가격
+	private int finalprice;
+	
+//	hyc
+	private int count;
 
 	
 	@Override

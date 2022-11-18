@@ -16,6 +16,12 @@
 		<typeAlias alias="book" type="com.chch.chch.model.Book" />
 		<typeAlias alias="like_table" type="com.chch.chch.model.Like_table" />
 		<typeAlias alias="review" type="com.chch.chch.model.Review" />
+		
+		<typeAlias alias="cart" type="com.chch.chch.model.Cart" />
+		<typeAlias alias="coupon" type="com.chch.chch.model.Coupon" />
+		<typeAlias alias="deal" type="com.chch.chch.model.Deal" />
+		<typeAlias alias="delivery" type="com.chch.chch.model.Delivery" />
+		<typeAlias alias="money" type="com.chch.chch.model.Money" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="xml/book.xml" />
@@ -29,6 +35,12 @@
 		<mapper resource="xml/author.xml" />
 		<mapper resource="xml/report.xml" />
 		<mapper resource="xml/like_table.xml" />
+		
+		<mapper resource="xml/cart.xml" />
+		<mapper resource="xml/coupon.xml" />
+		<mapper resource="xml/deal.xml" />
+		<mapper resource="xml/delivery.xml" />
+		<mapper resource="xml/money.xml" />
 	</mappers>
 </configuration>
 

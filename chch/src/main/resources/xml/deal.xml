@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dealns">
+	<!-- 구매목록 불러오기 -->
+	<select id="list" resultType="deal" parameterType="string">
+		select
+		distinct deal_no,b.book_no,b.book_image,b.book_title,
+		b.book_author,d.deal_count,d.deal_Date,u.used_subject,d.deal_price,d.used_no,d.book_no
+		from deal d,book b,used u
+		where d.book_no = b.book_no
+		and d.purchase_id
+		=#{id} and d.purchase_list_del ='n'
+		order by deal_date desc
+	</select>
+	<!-- 구매목록에서 삭제 눌렀을때 update시키기 //2개 이상일때는 map으로 받는다 -->
+	<update id="purchase_update" parameterType="map">
+		update deal set
+		purchase_list_del ='y' where purchase_id=#{id} and
+		deal_no=#{deal_no}
+	</update>
+	<!-- 판매목록 불러오기 -->
+	<select id="sales_list" resultType="deal" parameterType="string">
+		select
+		d.deal_no,b.book_image,b.book_title,d.deal_price,d.deal_count,d.used_no,
+		d.deal_date,b.book_author,u.used_subject
+		from deal d,book b,used u
+		where d.book_no = b.book_no and d.used_no = u.used_no
+		and d.seller_id =
+		#{id} and d.used_no is not null and d.sales_list_del ='n'
+		order by
+		deal_date desc
+	</select>
+	<!-- 판매목록에서 삭제 눌렀을때 update시키기 -->
+	<update id="sales_update" parameterType="map">
+		update deal set
+		sales_list_del ='y' where seller_id=#{id} and
+		deal_no=#{deal_no}
+	</update>
+	<!-- 판매목록에서 선택삭제 눌렀을 때 n => y로 update -->
+	<update id="sales_DelAll" parameterType="map">
+		update deal set
+		sales_list_del ='y' where seller_id=#{id} and
+		deal_no=#{deal_no}
+	</update>
+	<!-- 구매목록에서 선택삭제 눌렀을 때 n => y로 update -->
+	<update id="purchase_DelAll" parameterType="map">
+		update deal set
+		purchase_list_del ='y' where purchase_id=#{id} and
+		deal_no=#{deal_no}
+	</update>
+	<!--페이징 -->
+	<select id="getTotal" parameterType="deal" resultType="integer">
+		select
+		count(*) from deal
+	</select>
+
+	<!-- HYC -->
+	<!-- 신규 도서 구매 완료 -->
+	<insert id="insert" parameterType="deal">
+		<selectKey keyProperty="deal_no" resultType="int"
+			order="BEFORE">
+			select deal_no.nextval from dual
+		</selectKey>
+		INSERT INTO deal (deal_no, deal_group, purchase_id, book_no,
+		delivery_no, coupon_no, deal_date, total_price, real_price,
+		book_price, deal_count)
+		values (#{deal_no}, #{deal_group},
+		#{purchase_id}, #{book_no},
+		#{delivery_no}, #{coupon_no}, sysdate,
+		#{total_price}, #{real_price},
+		#{book_price}, #{deal_count})
+	</insert>
+	<insert id="insert2" parameterType="deal">
+		<selectKey keyProperty="deal_no" resultType="int"
+			order="BEFORE">
+			select deal_no.nextval from dual
+		</selectKey>
+		INSERT INTO deal (deal_no, deal_group, purchase_id, book_no,
+		delivery_no, coupon_no, deal_date, total_price, real_price,
+		book_price, deal_count)
+		values (#{deal_no}, #{deal_group},
+		#{purchase_id}, #{book_no},
+		#{delivery_no}, #{coupon_no}, sysdate,
+		#{total_price}, #{real_price},
+		#{book_price}, '1')
+	</insert>
+	<!-- group 번호 -->
+	<select id="max" resultType="int">
+		select nvl(max(deal_no), 0)+1 from
+		deal
+	</select>
+	<select id="max2" resultType="int">
+		select nvl(max(deal_no), 0)+1 from
+		deal
+	</select>
+	<select id="max3" resultType="int">
+		select nvl(max(deal_no), 0)+1 from
+		deal
+	</select>
+	<!-- 중고 도서 예약시 테이블등록 -->
+	<insert id="insert3" parameterType="deal">
+		<selectKey keyProperty="deal_no" resultType="int"
+			order="BEFORE">
+			select deal_no.nextval from dual
+		</selectKey>
+		INSERT INTO deal (deal_no, deal_group, used_no, purchase_id, seller_id, book_no, deal_date, book_price) values (#{deal_no}, #{deal_group}, #{used_no}, #{purchase_id}, #{seller_id}, #{book_no}, sysdate, #{real_price})
+	</insert>
+	<!-- 중고 도서 구매시 판매자 아이디 등록 -->
+	<update id="update2" parameterType="deal">
+		update deal set	purchase_id=${id}
+	</update>
+	<!-- 중고 구매자 확인 -->
+	<select id="selectUsed" parameterType="integer" resultType="deal">
+		select * from deal where used_no=#{used_no}
+	</select>
+</mapper>

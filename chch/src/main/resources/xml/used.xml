@@ -40,4 +40,18 @@
 		update used set used_status = #{status} where used_no=#{used_no}
 	</update>
 	
+	<!-- HYC -->
+	<!-- 중고 도서 예약시 예약중으로 상태 변경 -->
+	<update id="update" parameterType="integer">
+		update used set used_status='r' where used_no=${used_no}
+	</update>
+	<!-- 중고 도서 판매확정시 판매 완료로 상태 변경 -->
+	<update id="update2" parameterType="integer">
+		update used set used_status='y' where used_no=${used_no}
+	</update>
+	<!-- 거래 완료시 f로 상태 변경 -->
+	<update id="update3" parameterType="integer">
+		update used set used_status='f' where used_no=${used_no}
+	</update>
+	
 </mapper>

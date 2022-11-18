@@ -49,5 +49,21 @@ public class UsedBookServiceImpl implements UsedBookService {
 	public int updateStatus(Map<String, Object> map) {
 		return ud.updateStatus(map);
 	}
+	
+	// HYC
+		//	중고 도서 예약시 예약중으로 상태 변경
+		public int update(int used_no) {
+			return ud.update(used_no);
+		}
+
+		// 중고 도서 판매확정시 판매 완료로 상태 변경
+		public int update2(int used_no) {
+			return ud.update2(used_no);
+		}
+
+		// 거래 완료시 f로 상태 변경
+		public int update3(int used_no) {
+			return ud.update3(used_no);
+		}
 
 }

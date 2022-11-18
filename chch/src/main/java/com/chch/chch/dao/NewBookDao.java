@@ -32,5 +32,12 @@ public interface NewBookDao {
 
 	int getTotal1(Report report);
 
+	// HYC
+		// 책 번호로 책 리스트 불러오기
+		Book list(int book_no);
+
+		// 책 구매시 수량 변경
+		int update2(Book book);
+
 
 }

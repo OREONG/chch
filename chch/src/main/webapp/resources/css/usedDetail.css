@@ -61,15 +61,15 @@ width: 800px;
 #button1-1 {
 	width: 68px;
 	background: white;
-	border: #2bc5c1 solid 2px;
+	border: #6c71ce solid 2px;
 	border-radius: 5px;
 	font-size: 21px;
-	color: #26aca9;
+	color: #6c71ce;
 }
 
 #button1-2 {
 	width: 130px;
-	background: #2bc5c1;
+	background: #6c71ce;
 	border: none;
 	border-radius: 5px;
 	color: white;

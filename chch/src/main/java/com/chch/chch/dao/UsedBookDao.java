@@ -21,5 +21,15 @@ public interface UsedBookDao {
 	List<Used> searchList(String keyword);
 
 	int updateStatus(Map<String, Object> map);
+	
+	// HYC
+		//	중고 도서 예약시 예약중으로 상태 변경
+		int update(int used_no);
+
+		// 중고 도서 판매확정시 판매 완료로 상태 변경
+		int update2(int used_no);
+
+		// 거래 완료시 f로 상태 변경
+		int update3(int used_no);
 
 }

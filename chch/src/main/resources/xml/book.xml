@@ -103,4 +103,14 @@
 			book_publisher like '%' || #{keyword} || '%'
 		order by book_publish_date
 	</select>
+	
+	<!-- HYC -->
+	<!-- 책 번호로 책 리스트 불러오기 -->
+	<select id="list" parameterType="integer" resultType="book">
+		select * from book where book_no=#{book_no}
+	</select>
+	<update id="update2" parameterType="integer">
+		update book set
+		book_count=book_count - #{book_count}
+	</update>
 </mapper>

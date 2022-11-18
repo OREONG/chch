@@ -93,6 +93,7 @@ public class NewBookController {
 		review.setEndRow(endRow);
 		review.setBook_no(book_no);
 		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
+		
 		//책정보 불러오기
 		book = ns.selectbook(book_no);
 		//리뷰리스트 불러오기
@@ -101,6 +102,10 @@ public class NewBookController {
 		int review_cnt = ns.review_cnt(book_no);
 		//별점 평균
 		double star_avg = ns.star_avg(review);
+		//할인 전 가격
+		
+		int finalprice = (int)(book.getBook_price() * 1.1);
+		book.setFinalprice(finalprice);
 		
 		// 감상문 페이징
 		int rowPerPage1 = 5; // 페이지 당 게시글 갯수
@@ -123,6 +128,7 @@ public class NewBookController {
 		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("reportList", reportList);
 		model.addAttribute("review", review);
+//		model.addAttribute("finalprice", finalprice);
 		model.addAttribute("book", book);
 		model.addAttribute("pb", pb);
 		model.addAttribute("num", num);

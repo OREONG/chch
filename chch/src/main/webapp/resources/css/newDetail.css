@@ -78,7 +78,7 @@
 .count-div {
 	display: flex;
 	margin-bottom: 41px;
-	margin-top: 70px;
+	margin-top: 35px;
 	font-family: 'AppleSDGothicNeo';
 	font-size: 19px;
 }
@@ -111,7 +111,7 @@
 /* 찜 구매하기 장바구니 버튼 */
 .btn-wrap {
 	display: flex;
-	margin-top: 80px;
+	margin-top: 50px;
 }
 
 .button1 {

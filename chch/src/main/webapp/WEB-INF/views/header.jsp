@@ -380,7 +380,7 @@
 							<li>
 							<form action="searchBook.do">
 							<p>
-							<input id="searchInput" name="keyword" type="text" placeholder="검색 이걸로 쓰세욤~~">
+							<input id="searchInput" name="keyword" type="text" placeholder="검색어를 입력하세요">
 							<button id="searchimg"><img id="search" src="/chch/resources/images/search.png"></button>
 							</p>
 							</form>
@@ -428,9 +428,9 @@
 						<a class="cate-c" href="communityMain.do">커뮤니티</a>
 						<a class="cate-c" href="mypageMain.do">마이페이지</a>
 						<a class="cate-c" href="faq.do">고객센터</a>
-						<!-- <a class="cate-c" href="communityMain.do">모임</a>
+						<a class="cate-c" href="communityMain.do">모임</a>
 						<a class="cate-c" href="chatMemberList.do">채팅방</a>
-						<a class="cate-c" href="adminMain.do">관리자</a> -->
+						<a class="cate-c" href="adminMain.do">관리자</a> 
 						
 						<div class="cate-c-sub">
 							<c:if test="${empty id }">
