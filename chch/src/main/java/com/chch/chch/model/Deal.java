@@ -6,6 +6,7 @@ import lombok.Data;
 
 @Data
 public class Deal {
+	private String book_title;
 	private int deal_no;
     private int deal_group;
     private String purchase_id;
