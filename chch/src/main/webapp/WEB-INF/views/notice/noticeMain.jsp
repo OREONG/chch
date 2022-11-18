@@ -40,21 +40,25 @@ function loadUnreadInquiry() {
 	<div class="main-container">
 		<div class="content">
 			<div id="showPage">
-
-				<div style="cursor: pointer;" OnClick="location.href ='chatMemberList.do'">
-					<div>대화방에 
-						<input type="text" name="unreadChat" id="unreadChat" class="unreadInput" readonly="readonly">
-					 개의 새로운 메세지가 있습니다
-					<hr>
+				<div id="notice-box">
+					<div class="notice-title">
+						알림
 					</div>
-				</div>
-				
-				<div style="cursor: pointer;" OnClick="location.href ='inquiryList.do?inquiryNumber=2'">
-					<div>
-						<input type="text" name="unreadInquiry" id="unreadInquiry" class="unreadInput" readonly="readonly">
-						개의 읽지 않은 문의 답변이 있습니다
+					<div style="cursor: pointer;" OnClick="location.href ='chatMemberList.do'">
+						<div>대화방에 
+							<input type="text" name="unreadChat" id="unreadChat" class="unreadInput" readonly="readonly">
+						 개의 새로운 메세지가 있습니다
+						<hr>
+						</div>
 					</div>
-					<hr>
+					
+					<div style="cursor: pointer;" OnClick="location.href ='inquiryMainForList.do'">
+						<div>
+							<input type="text" name="unreadInquiry" id="unreadInquiry" class="unreadInput" readonly="readonly">
+							개의 읽지 않은 문의 답변이 있습니다
+						</div>
+						<hr>
+					</div>
 				</div>
 			</div>
 		</div>

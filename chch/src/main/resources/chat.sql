@@ -692,9 +692,113 @@ SELECT community_no FROM community WHERE room_no=1;
 SELECT COUNT(community_no) FROM community WHERE room_no=5;
 
 
+SELECT * FROM deal;
+
+create sequence coupon_no start with 1 increment by 1;
+create sequence delivery_no start with 1 increment by 1;
+create sequence cart_no start with 1 increment by 1;
+create sequence money_no start with 1 increment by 1;
+create sequence deal_no start with 1 increment by 1;
+
+Create table coupon(
+	coupon_no	    NUMBER(10) primary key, -- 쿠폰 번호
+	id              VARCHAR2(20) NOT NULL,  -- 아이디
+    coupon_image    VARCHAR2(100) NOT NULL, -- 쿠폰이미지
+	coupon_kind	    VARCHAR2(50) NOT NULL,  -- 쿠폰 종류
+	coupon_discount NUMBER(10) NOT NULL,    -- 할인율
+	coupon_situation CHAR(1) DEFAULT 'n',   -- 쿠폰 사용 예정 상태 사용x=n, 사용예정=y
+    del              CHAR(1) DEFAULT 'n',   -- 쿠폰 삭제 여부 삭제x=n, 삭제o=y
+    FOREIGN key (id) REFERENCES member (id)
+);
+
+SELECT * FROM delivery;
+
+DELETE delivery;
+
+DROP TABLE delivery;
+
+DELETE deal;
+
+DROP TABLE deal;
+
+SELECT * FROM tabs;
+
+SELECT * FROM used;
+
+SELECT * FROM deal;
+
+DELETE used;
+
+DROP TABLE 
+
+create table delivery(
+    delivery_no         	NUMBER(10) primary key, -- 배송 번호
+    id                      VARCHAR2(20),   -- 아이디
+    delivery_name		    VARCHAR2(30),   -- 수취인 이름
+    delivery_phone		    CHAR(13),   -- 받을 전화번호
+    delivery_phone_sub		CHAR(13),   -- 받을 예비 전화번호
+    delivery_postcode       VARCHAR2(50),   -- 우편번호
+    delivery_address		VARCHAR2(50),   -- 주소
+    delivery_address_detail	VARCHAR2(50),   -- 상세 주소
+    delivery_address_detail_extra	VARCHAR2(50),   -- 상세 여분 주소
+    delivery_kind		    VARCHAR2(30),   -- 택배 종류
+    delivery_request		VARCHAR2(50),   -- 배송 요청사항
+    delivery_date		    VARCHAR2(30),   -- 원하는 배송날짜
+    delivery_basic          CHAR(1) DEFAULT 'n',    -- 기본배송지 선택 기본배송지=y, 여분 배송지=n
+    del                     CHAR(1) DEFAULT 'n',    -- 배송지 삭제 여부 n,y
+    FOREIGN key (id) REFERENCES member (id)
+);
+
+SELECT * FROM cart;
+
+CREATE TABLE cart(
+	cart_no NUMBER(10) PRIMARY KEY,		--카트번호
+	book_no   NUMBER(10),				--책번호
+	id   VARCHAR2(12),					--아이디
+	cart_count   NUMBER(10), 			--수량
+	CONSTRAINT cart_book_no_fk FOREIGN KEY (book_no) REFERENCES book(book_no),
+	CONSTRAINT cart_id_fk FOREIGN KEY (id) REFERENCES member(id)
+);
+
+CREATE TABLE money (
+    money_no    NUMBER(10) PRIMARY KEY, -- 머니테이블번호
+    id          VARCHAR(20),    -- 아이디
+    total_money NUMBER(10) default '0', -- 총 보유금
+    used_money  NUMBER(10) default '0', -- 사용한 보유금
+    total_mileage   NUMBER(10) default '0', -- 총 마일리지
+    used_mileage    NUMBER(10) default '0', -- 사용한 마일리지
+    FOREIGN KEY (id) REFERENCES member(id)
+);
 
 
+CREATE TABLE deal (
+    deal_no 	NUMBER	(10) primary key,   -- 매매번호(한건당)
+    deal_group	NUMBER	(10),   -- 번호 (한회당)
+    purchase_id VARCHAR2(20),   -- 구매 아이디
+    seller_id	VARCHAR2(20),   -- 판매 아이디
+    book_no 	NUMBER	(10),   -- 책 번호
+    used_no 	NUMBER	(10),	-- 중고글번호
+    delivery_no	NUMBER	(10),   -- 배송번호
+    coupon_no   NUMBER  (10),   -- 쿠폰번호
+    deal_date	DATE,   -- 매매 날짜
+    total_price NUMBER  (10),   -- 총 매매금
+    real_price  NUMBER  (10),   -- 실제 결제 금액
+    book_price	NUMBER	(10),   -- 책 가격
+    deal_count	NUMBER	(10),   -- 매매수량
+    purchase_list_del	CHAR	(1) default 'n',    -- 구매목록 노출 여부
+    sales_list_del	CHAR	(1) default 'n',    -- 판매목록 노출 여부
+    deal_situation	CHAR	(1) default 'n',    -- 배송 상태 선택 배송전 n, 배송중 d, 배송후 f
+    FOREIGN KEY (book_no) REFERENCES book(book_no),
+    FOREIGN KEY (purchase_id) REFERENCES member(id),
+    FOREIGN KEY (delivery_no) REFERENCES delivery(delivery_no)
+);
 
+SELECT * FROM coupon;
+SELECT * FROM delivery;
+SELECT * FROM cart;
+SELECT * FROM money;
+SELECT * FROM deal;
+SELECT * FROM used;
 
 
 

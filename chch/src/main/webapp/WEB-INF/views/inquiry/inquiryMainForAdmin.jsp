@@ -13,7 +13,7 @@
 <script type="text/javascript">
 	
 	$(document).ready(function() {
-		showPage('inquiryList.do?inquiryNumber=3');
+		showPage('inquiryListForAdmin.do?inquiryNumber=3&id=${id}');
 	});
 		
 	function showPage(data) {

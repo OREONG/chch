@@ -49,7 +49,7 @@
 		        	<div class="flex-item "><a class="a" href="reportList.do"><i class="bi bi-journals"></i><br>독서록</a></div>
 
 		        	<div class="flex-item "><a class="a" href="chatMemberList.do"><i class="bi bi-chat-dots"></i><br>채팅목록</a></div>
-		        	<div class="flex-item "><a class="a" href="inquiryList.do?inquiryNumber=2"><i class="bi bi-megaphone"></i><br>내 문의함</a></div>
+		        	<div class="flex-item "><a class="a" href="inquiryMainForList.do"><i class="bi bi-megaphone"></i><br>내 문의함</a></div>
 		        </div>
 		      </div>
 		 </div>

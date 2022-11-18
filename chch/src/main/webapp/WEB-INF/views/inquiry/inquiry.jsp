@@ -12,7 +12,7 @@
 <c:if test="${result > 0 }">
 	<script type="text/javascript">
 		alert("문의 입력 완료");
-		location.href="inquiryList.do?inquiryNumber=2";
+		location.href="inquiryMainForList.do";
 	</script>
 </c:if>
 <c:if test="${!(result > 0) }">

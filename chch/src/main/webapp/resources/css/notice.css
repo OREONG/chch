@@ -22,3 +22,26 @@
 	color: #808080;
 	text-align: center;
 }
+
+
+#notice-box {
+	border: 1px solid #a3a3a3;
+    display: flex;
+    flex-direction: column;
+    margin: 40px auto 0 auto;
+    width: 80%;
+    padding-left: 25px;
+    padding-bottom: 25px;
+}
+
+.notice-title {
+	margin-top: 25px;
+    align-self: start;
+    margin-left: 5%;
+    margin-bottom: 30px;
+    font-size: 18px;
+    color: #1c1c1c;
+    font-family: 'Jalnan';	
+}
+
+

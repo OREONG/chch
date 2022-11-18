@@ -173,8 +173,8 @@
 	</div>
 
 		<div>
-			<button type="button" onclick="showPage('adminBookAddForm.do')" >책등록</button>
-			<button type="button" id="submit1" onclick="check()">책공개</button>
+			<button type="button" class="action-btn" onclick="showPage('adminBookAddForm.do')" >책등록</button>
+			<button type="button" class="action-btn" id="submit1" onclick="check()">책공개</button>
 		</div>
 	<!-- </form> -->
 

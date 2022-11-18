@@ -36,7 +36,8 @@ public class CommunityController {
 		int new_room_no = cs.currentLastRoom()+1;
 		
 		Chat chat = new Chat();
-		int room_no = new_room_no;
+		int intRoom_no = new_room_no;
+		String room_no = String.valueOf(intRoom_no);
 		chat.setRoom_no(room_no);
 		chat.setId(id);
 		chat.setRoom_name(community.getCommunity_subject());
@@ -47,7 +48,7 @@ public class CommunityController {
 		community.setHost_id(id);
 		int result = coms.insert(community);
 		
-		int community_no = coms.selectByRoomNo(room_no);
+		int community_no = coms.selectByRoomNo(intRoom_no);
 		
 		model.addAttribute("result", result);
 		model.addAttribute("community_no", community_no);
@@ -59,12 +60,14 @@ public class CommunityController {
 	public String communityDetail(Model model, HttpSession session, int community_no) {
 		String id = (String)session.getAttribute("id");
 		Community community = coms.select(community_no);
-		int participation = coms.participation(community.getRoom_no(), id);
+		String room_no = community.getRoom_no();
+		int intRoom_no = Integer.parseInt(room_no);
+		int participation = coms.participation(intRoom_no, id);
 		community.setParticipation(participation);
 		
-		String room_name = coms.selectRoomName(community.getRoom_no());
+		String room_name = coms.selectRoomName(intRoom_no);
 		
-		int currentMember = coms.currentMember(community.getRoom_no());
+		int currentMember = coms.currentMember(intRoom_no);
 		
 		model.addAttribute("id", id);
 		model.addAttribute("community", community);
@@ -78,8 +81,9 @@ public class CommunityController {
 		String id = (String)session.getAttribute("id");
 		List<Community> communityMyList = coms.communityMyList(id);
 		
+		
 		for (int i=0; i < communityMyList.size(); i++) {
-			communityMyList.get(i).setCurrentMember(coms.currentMember(communityMyList.get(i).getRoom_no()));
+			communityMyList.get(i).setCurrentMember(coms.currentMember(Integer.parseInt(communityMyList.get(i).getRoom_no())));
 		}
 		
 		model.addAttribute("communityMyList", communityMyList);
@@ -92,7 +96,7 @@ public class CommunityController {
 		List<Community> communityAllList = coms.communityAllList();
 		
 		for (int i=0; i < communityAllList.size(); i++) {
-			communityAllList.get(i).setCurrentMember(coms.currentMember(communityAllList.get(i).getRoom_no()));
+			communityAllList.get(i).setCurrentMember(coms.currentMember(Integer.parseInt(communityAllList.get(i).getRoom_no())));
 		}
 		
 		model.addAttribute("communityAllList", communityAllList);
@@ -101,10 +105,11 @@ public class CommunityController {
 	}
 	
 	@RequestMapping("joinRoom")
-	public String joinChat(Model model, HttpSession session, int room_no) {
+	public String joinChat(Model model, HttpSession session, String room_no) {
 		String id = (String)session.getAttribute("id");
 		
-		String room_name = coms.selectRoomName(room_no);
+		int intRoom_no = Integer.parseInt(room_no);
+		String room_name = coms.selectRoomName(intRoom_no);
 		
 		Community community = new Community();
 		community.setRoom_no(room_no);
@@ -112,12 +117,12 @@ public class CommunityController {
 		community.setRoom_name(room_name);
 		
 //		기존에 가입했던 방인지 확인
-		int leaveHistory = coms.leaveHistoryChk(room_no, id);
+		int leaveHistory = coms.leaveHistoryChk(intRoom_no, id);
 		int result = 0;
 		if (leaveHistory > 0) {
-			result = coms.rejoinRoom(room_no, id);
+			result = coms.rejoinRoom(intRoom_no, id);
 		} else {
-			result = coms.joinRoom(room_no, id, room_name);
+			result = coms.joinRoom(intRoom_no, id, room_name);
 		}
 		
 		model.addAttribute("result", result);
@@ -132,7 +137,9 @@ public class CommunityController {
 		
 		Community community = coms.select(community_no);
 		
-		int result = coms.leaveRoom(id, community.getRoom_no());
+		int intRoom_no = Integer.parseInt(community.getRoom_no());
+		
+		int result = coms.leaveRoom(id, intRoom_no);
 		
 		if (result > 0) {
 		Chat chat = new Chat();
@@ -152,7 +159,10 @@ public class CommunityController {
 		
 		Community community = coms.select(community_no);
 		
-		coms.banRoom(community.getRoom_no());
+		String room_no = community.getRoom_no();
+		int intRoom_no = Integer.parseInt(room_no);
+		
+		coms.banRoom(intRoom_no);
 		
 		int result = coms.communityDelete(id, community_no);
 		

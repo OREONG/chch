@@ -42,7 +42,7 @@ public class NoticeController {
 		int sum1 = 0;
 		
 		for (int i = 0; i < myRoom.size(); i++) {
-			sum1 += cs.loadUnreadChat(id, myRoom.get(i).getRoom_no());
+			sum1 += cs.loadUnreadChat(id, Integer.parseInt(myRoom.get(i).getRoom_no()));
 		}
 		
 		String sum = String.valueOf(sum1);
@@ -58,7 +58,7 @@ public class NoticeController {
 		
 		int unreadChatCount = 0;
 		for (int i = 0; i < myRoom.size(); i++) {
-			unreadChatCount += cs.loadUnreadChat(id, myRoom.get(i).getRoom_no());
+			unreadChatCount += cs.loadUnreadChat(id, Integer.parseInt(myRoom.get(i).getRoom_no()));
 		}
 		
 		int unreadInquiryCount = ins.unreadInquiryCount(id);

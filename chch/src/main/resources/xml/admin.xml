@@ -45,7 +45,7 @@
 			<![CDATA[
 				SELECT *
 				FROM (SELECT rowNum rn, a.* FROM
-					(SELECT TO_CHAR(deal_date, 'YYYYMMDD') AS s_date, SUM(deal_price * deal_count) AS total_sales
+					(SELECT TO_CHAR(deal_date, 'YYYYMMDD') AS s_date, SUM(d.book_price * deal_count) AS total_sales
 					FROM deal d, book b
 					WHERE deal_date >= TO_CHAR(#{dateFrom}, 'YYYYMMDD')
 						AND deal_date < TO_CHAR(#{dateTo}+1, 'YYYYMMDD')
@@ -61,7 +61,7 @@
 			<![CDATA[
 				SELECT *
 				FROM (SELECT rowNum rn, a.*
-					FROM (SELECT TO_CHAR(TRUNC(deal_date, 'IW'), 'YYYYMMDD') AS s_date, TO_CHAR(TRUNC(deal_date, 'IW') + 6, 'YYYYMMDD') AS w_date, SUM(deal_price * deal_count) AS total_sales
+					FROM (SELECT TO_CHAR(TRUNC(deal_date, 'IW'), 'YYYYMMDD') AS s_date, TO_CHAR(TRUNC(deal_date, 'IW') + 6, 'YYYYMMDD') AS w_date, SUM(d.book_price * deal_count) AS total_sales
 							FROM deal d, book b
 							WHERE deal_date >= TO_CHAR(#{dateFrom}, 'YYYYMMDD')
 								AND deal_date < TO_CHAR(#{dateTo}+1, 'YYYYMMDD')
@@ -77,7 +77,7 @@
 			<![CDATA[
 				SELECT *
 				FROM (SELECT rowNum rn, a.* FROM
-						(SELECT TO_CHAR(deal_date, 'YYYYMM') AS s_date, SUM(deal_price * deal_count) AS total_sales
+						(SELECT TO_CHAR(deal_date, 'YYYYMM') AS s_date, SUM(d.book_price * deal_count) AS total_sales
 						FROM deal d, book b
 						WHERE deal_date >= TO_CHAR(#{dateFrom}, 'YYYYMMDD')
 							AND deal_date < TO_CHAR(#{dateTo}+1, 'YYYYMMDD')
@@ -113,7 +113,7 @@
 		<![CDATA[
 			SELECT *
 			FROM (SELECT rowNum rn, a.*
-				FROM (SELECT b.book_no, book_title, book_kind, book_author, book_publisher, book_publish_date, sum(deal_count) deal_count, sum(deal_price) deal_price
+				FROM (SELECT b.book_no, book_title, book_kind, book_author, book_publisher, book_publish_date, sum(deal_count) deal_count, sum(d.book_price) book_price
 					FROM book b, deal d
 					WHERE b.book_no=d.book_no
 						AND used_no is null
@@ -133,7 +133,7 @@
 			<![CDATA[
 				SELECT *
 				FROM (SELECT rowNum rn, a.*
-					FROM (SELECT b.book_no, book_title, book_kind, book_author, book_publisher, book_publish_date, sum(deal_count) deal_count, sum(deal_price) deal_price
+					FROM (SELECT b.book_no, book_title, book_kind, book_author, book_publisher, book_publish_date, sum(deal_count) deal_count, sum(d.book_price) book_price
 						FROM book b, deal d
 						WHERE b.book_no=d.book_no
 							AND used_no is null
@@ -145,7 +145,7 @@
 						</if> 
 			<![CDATA[
 						GROUP BY b.book_no, book_title, book_kind, book_author, book_publisher, book_publish_date
-						ORDER BY deal_price DESC)a)
+						ORDER BY d.book_price DESC)a)
 				WHERE rn BETWEEN #{startRow} and #{endRow}
 			]]>
 		</if>
@@ -168,7 +168,7 @@
 		<![CDATA[
 			SELECT *
 			FROM (SELECT rowNum rn, a.* 
-					FROM (SELECT purchase_id, b.book_no, book_title, deal_no, deal_date, deal_price, deal_count, book_kind
+					FROM (SELECT purchase_id, b.book_no, book_title, deal_no, deal_date, d.book_price, deal_count, book_kind
 						FROM book b, deal d
 						WHERE b.book_no=d.book_no
 							AND used_no is null

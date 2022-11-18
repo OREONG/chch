@@ -12,7 +12,7 @@
 <c:if test="${result > 0 }">
 	<script type="text/javascript">
 		alert("책 추가 완료")
-		location.href="adminBookList.do";
+		location.href="adminMainForBook.do";
 	</script>
 </c:if>
 <c:if test="${!(result > 0) }">

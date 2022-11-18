@@ -110,10 +110,10 @@
 
 /* 공용 버튼 */
 .action-btn{
-    width : 50px;
+    width : 70px;
     border: 1px solid #666666;
     border-radius: 6px;
-    height: 30px;
+    height: 40px;
 	/* transition: background-color 0.2s ease-out, border-color 0.2s ease-out; */
 	
 	background: #fff;
@@ -474,8 +474,43 @@ input[class="toggle"] {
 .table-salesHistory-col9 { width: 100px; }
 
 
+#book-add-box{
+    border: 1px solid #a3a3a3;
+    display: flex;
+    flex-direction: column;
+    margin: 40px auto 0 auto;
+    align-items: center;
+    width: 80%;
+}
 
+.input{
+    border: 1px dotted #bcb6b2;
+    height: 44.5px;
+    margin-bottom: 10px;
+    font-family: AppleSDGothicNeo;
+    display: flex;
+    align-self: self-start;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
 
+.inputTextArea{
+    border: 1px dotted #bcb6b2;
+    height: 260px;
+    margin-bottom: 10px;
+    font-family: AppleSDGothicNeo;
+    width: 100%;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    resize: none;
+}
 
+.input-container {
+	width: 80%;
+}
 
-
+.margin-bottom {
+	margin-bottom: 40px;
+}

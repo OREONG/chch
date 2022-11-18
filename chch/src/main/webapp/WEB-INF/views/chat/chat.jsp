@@ -94,7 +94,7 @@
 </head>
 <body>
 
-	<div class="main-container">
+	<div class="chat-container">
 		<div class="content">
 		<input type="hidden" id="lastSender" value="">
 			<div class="chat-top2">
@@ -105,7 +105,7 @@
 				<div class="chat-top">
 					<div class="room-name">${room_name }</div>
 					<div>
-						<button class="chatMenuBtn" onclick="openCloseChatMenu()"><img id="hamburger" alt="" src="/chch/resources/images/hamburger.png"> </button>
+						<button class="chatMenuBtn" onclick="openCloseChatMenu()"><img class="hamburger" alt="" src="/chch/resources/images/hamburger.png"> </button>
 					</div>
 				</div>
 				<div class="hideChatMenu">
@@ -119,7 +119,8 @@
 												<c:if test="${roomType == 'used' }">
 													<li class="li-c"><a href="" class="a">중고 거래로 이동</a></li>
 												</c:if>
-												<li class="li-c"><a href="" class="a">채팅방 별칭 설정</a></li>
+												<li class="li-c"><a href="" class="a">거래 예약하기</a></li>
+												<li class="li-c"><a href="" class="a">거래 확정</a></li>
 											</ul>
 							</div>
 				</div>
@@ -196,11 +197,20 @@
 							</div>
 						</div>
 					</div>
-					<div class="alert-popup">
+					<!-- <div class="alert-popup">
 						<div id="alert" onclick="moveDown();" class="alert alert-success" role="alert">
 							<strong></strong>
 						</div>
-					</div>
+					</div> -->
+				</div>
+			</div>
+		</div>
+		<div class="hide-content">
+			<div class="chatcontent">
+				<div class="alert-popup">
+						<div id="alert" onclick="moveDown();" class="alert alert-success" role="alert">
+							<strong></strong>
+						</div>
 				</div>
 			</div>
 		</div>

@@ -46,8 +46,12 @@ public class Admin {
 	private Date deal_date;
 	private int deal_price;
 	private int deal_count;
+	private int  coupon_no;
+	private int total_price;
+	private int real_price;
 	private String purchase_list_del;
 	private String sales_list_del;
+	private String deal_situation;
 	
 	private int rn;
 	private int total_sales;

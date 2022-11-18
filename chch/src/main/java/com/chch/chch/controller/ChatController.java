@@ -32,16 +32,16 @@ public class ChatController {
 		String id = (String) session.getAttribute("id");
 		List<Chat> selectMyRoom = cs.selectMyRoom(id);
 
-		int room_no = 0;
+		int intRoom_no = 0;
 		Chat lastMessage = new Chat();
 		String room_name = "";
 		
 		for (int i = 0; i < selectMyRoom.size(); i++) {
-			room_no = selectMyRoom.get(i).getRoom_no();
-			lastMessage = cs.lastMessage(room_no, id);
+			intRoom_no = Integer.parseInt(selectMyRoom.get(i).getRoom_no());
+			lastMessage = cs.lastMessage(intRoom_no, id);
 			String lastMessageText = lastMessage.getChat_content();
-			List<Chat> roomList = cs.roomList(room_no, id);
-			room_name = cs.selectRoomName(room_no, id);
+			List<Chat> roomList = cs.roomList(intRoom_no, id);
+			room_name = cs.selectRoomName(intRoom_no, id);
 			
 			if (room_name == null || room_name == "") {
 				room_name = roomList.get(0).getId();
@@ -64,7 +64,7 @@ public class ChatController {
 			int diffDays = calToday.get(Calendar.DAY_OF_YEAR)-calSendDay.get(Calendar.DAY_OF_YEAR);
 			selectMyRoom.get(i).setDiffDays(diffDays);
 			
-			selectMyRoom.get(i).setUnread(cs.loadUnreadChat(id, room_no));
+			selectMyRoom.get(i).setUnread(cs.loadUnreadChat(id, intRoom_no));
 			
 		}
 		
@@ -74,11 +74,14 @@ public class ChatController {
 	
 //	SB 대화 화면
 	@RequestMapping("chat")
-	public String chat(Model model, HttpSession session, int room_no, String room_name) {
+	public String chat(Model model, HttpSession session, String room_no, String room_name) {
 		String id = (String) session.getAttribute("id");
 		session.setAttribute("room_no", room_no);
 		
-		int chatCount = cs.chatCount(room_no, id);
+		int intRoom_no = Integer.parseInt(room_no);
+		
+		
+		int chatCount = cs.chatCount(intRoom_no, id);
 		if (chatCount==0) {
 			Chat chat = new Chat();
 			chat.setRoom_no(room_no);
@@ -88,20 +91,20 @@ public class ChatController {
 			cs.insertChat(chat);
 		}
 		
-		cs.checkRoom(room_no, id);
+		cs.checkRoom(intRoom_no, id);
 		
-		int communityCheck = coms.communityCheck(room_no);
+		int communityCheck = coms.communityCheck(intRoom_no);
 		int community_no=0;
 		String roomType="";
 		if (communityCheck > 0) {
-			community_no = coms.selectByRoomNo(room_no);
+			community_no = coms.selectByRoomNo(intRoom_no);
 			roomType="community";
 		} else {
 			roomType="used";
 		}
 		
 		
-		List<Chat> firstChatList = cs.firstChatList(room_no, id);
+		List<Chat> firstChatList = cs.firstChatList(intRoom_no, id);
 		Date date = new Date();
 		model.addAttribute("room_name", room_name);
 		model.addAttribute("firstChatList", firstChatList);
@@ -121,7 +124,7 @@ public class ChatController {
 
 		chat.setId(id);
 		chat.setChat_content(msg);
-		chat.setRoom_no(Integer.parseInt(room_no));
+		chat.setRoom_no(room_no);
 
 		int result = cs.insertChat(chat);
 
@@ -133,8 +136,8 @@ public class ChatController {
 	@RequestMapping(value = "checkRoom", produces = "text/html;charset=utf-8")
 	public String checkRoom(@RequestParam("id") String id, @RequestParam("room_no") String room_no,
 			HttpSession session, Chat chat, Model model) {
-		int room_no1 = Integer.parseInt(room_no); 
-		cs.checkRoom(room_no1, id);
+		int intRoom_no = Integer.parseInt(room_no); 
+		cs.checkRoom(intRoom_no, id);
 		
 		return "/header";
 	}

@@ -12,7 +12,7 @@
 <style type="text/css">@import url("/chch/resources/css/header.css");</style>
 
 <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
-<c:set var="ipAdd" value="//172.30.1.39:8080"></c:set>
+<c:set var="ipAdd" value="//172.30.1.10:8080"></c:set>
 <c:set var="ip" value="http:${ipAdd}/chch"></c:set>
 <link rel="stylesheet" type="text/css"href="${path }/resources/bootstrap/css/bootstrap.min.css">
 <script type="text/javascript" src="${path}/resources/bootstrap/js/jquery.js"></script>
@@ -361,7 +361,7 @@
 								</li>
 								</c:if>
 							<li>
-								<input type="text" name="noticePopUp" id="noticePopUp" class="form-control col-sm-8" style="resize: none; border: none; width: 300px; background-color: #ffffff; color: #808080;" readonly="readonly">
+								<textarea name="noticePopUp" id="noticePopUp" readonly="readonly"></textarea>
 							</li>
 						</ul>
 					
@@ -383,7 +383,7 @@
 						<a class="cate-c" href="usedList.do">중고도서</a>
 						<a class="cate-c" href="usedAddForm.do">판매하기</a>
 						<a class="cate-c" href="writing.do">나도 작가</a>
-						<a class="cate-c" href="communityAllList.do">커뮤니티</a>
+						<a class="cate-c" href="communityAllList.do">모임</a>
 						<a class="cate-c" href="mypageMain.do">마이페이지</a>
 						<a class="cate-c" href="inquiryMain.do">고객센터</a>
 						<!-- <a class="cate-c" href="communityMain.do">모임</a>

@@ -54,11 +54,13 @@ header{
 	width: 35px;
 }
 #noticePopUp{
-	height: 47px;
+	height: 60px;
 	resize: none; 
-	border: none; 
+	border: 1px solid #fff; 
 	background: white;
     padding: 0 10px 0 10px;
+    resize: none;
+    overflow: hidden
 	
 }
 #noticePopUp:focus{
@@ -308,3 +310,4 @@ header{
 		left: 13px;
 	}
 }
+

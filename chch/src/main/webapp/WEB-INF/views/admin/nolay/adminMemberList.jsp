@@ -87,7 +87,7 @@
 						<button class="action-btn" onclick="del('${member.id}', '${member.del }')">탈퇴</button> 
 					</span>
 					<span class="cell table-col8 center">
-						<button class="action-btn" onclick="location.href='adminInquiryList.so?member=${member.id}'">문의</button> 
+						<button class="action-btn" onclick="location.href='inquiryMainForAdmin?id=${member.id}'">문의</button> 
 					</span>
 					<span class="cell table-col9 center">
 						<button class="action-btn" onclick="location.href=''">구매</button>

@@ -58,10 +58,10 @@ public class EchoHandler extends TextWebSocketHandler {
 					
 				} else if (strs !=null && "chat".equals(cmd)) {						// chat으로 분류될 때
 					String id = strs[1];
-					int room_no = Integer.parseInt(strs[2]);
-					String lastSender = cs.selectLastSender(room_no, id);
+					int intRoom_no = Integer.parseInt(strs[2]);
+					String lastSender = cs.selectLastSender(intRoom_no, id);
 					
-					List<Chat> roomMember = cs.selectRoomMember(room_no);	// 메세지를 보내려는 방에 포함된 멤버 구하기
+					List<Chat> roomMember = cs.selectRoomMember(intRoom_no);	// 메세지를 보내려는 방에 포함된 멤버 구하기
 					
 					WebSocketSession recieverWriterSession;					// 메세지 받을 사람들의 세션 선언
 					
@@ -73,20 +73,20 @@ public class EchoHandler extends TextWebSocketHandler {
 							List<Chat> myRoom = cs.selectMyRoom(roomMember.get(i).getId());
 							int sum1 = 0;
 							for (int j = 0; j < myRoom.size(); j++) {
-								sum1 += cs.loadUnreadChat(roomMember.get(i).getId(), myRoom.get(j).getRoom_no());
+								sum1 += cs.loadUnreadChat(roomMember.get(i).getId(), Integer.parseInt(myRoom.get(j).getRoom_no()));
 							}
 							
 							sum1 += 1;
 							
 							String sum = String.valueOf(sum1);
 							
-							int unread = cs.loadUnreadChat(roomMember.get(i).getId(), room_no);
+							int unread = cs.loadUnreadChat(roomMember.get(i).getId(), intRoom_no);
 							
 							recieverWriterSession.sendMessage(new TextMessage(msg+","+sum+","+unread+","+lastSender));	// 세션에 접속해 있을 때만 해당 유저에게 채팅 전달
 						}
 					}
 					
-					cs.updateLastSender(room_no, id);
+					cs.updateLastSender(intRoom_no, id);
 					
 				} else if (strs !=null && "status".equals(cmd)) {
 					

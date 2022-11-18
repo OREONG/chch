@@ -17,7 +17,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.chch.chch.model.Admin;
 import com.chch.chch.model.Book;
-import com.chch.chch.model.Chat;
 import com.chch.chch.model.Inquiry;
 import com.chch.chch.model.Member;
 import com.chch.chch.service.AdminService;
@@ -45,6 +44,11 @@ public class AdminController {
 	@RequestMapping("adminMain")
 	public String adminMain() {
 		return "/admin/adminMain";
+	}
+	
+	@RequestMapping("adminMainForBook")
+	public String adminMainForBook() {
+		return "/admin/adminMainForBook";
 	}
 	
 //	SB 전체 고객 목록 (관리자 열람용, 페이징 포함)
