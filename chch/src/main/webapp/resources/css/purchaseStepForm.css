@@ -18,8 +18,8 @@ td {
 
 #input-btn {
 	width : 100px;
-    background: #5055b1;;
-    border: 1px solid #5055b1;;
+    background: #5055b1;
+    border: 1px solid #5055b1;
     border-radius: 6px;
     height: 39px;
 	transition: background-color 0.2s ease-out, border-color 0.2s ease-out;

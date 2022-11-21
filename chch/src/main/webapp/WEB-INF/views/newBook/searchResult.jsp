@@ -18,17 +18,19 @@
 	</div>
 	<div id="line"></div>
 	
-	<div align="center">
+	
+	<div class="products">
 		<c:if test="${empty searchList}">
-		검색 결과가 없습니다
+		등록된 책이 없습니다
 		</c:if>
 		<c:if test="${not empty searchList}">
 			<c:forEach var="book" items="${searchList }">
-				<div class="btn" style="width: 45%; margin-top: 5px">
-					<a href="newDetail.do?book_no=${book.book_no }">
-					<img src="/chch/resources/images/${book.book_image}">
-						<p>${book.book_title }</p>
-						<p><fmt:formatNumber value="${book.book_price }" pattern="#,###" />원</p>
+			<a href="newDetail.do?book_no=${book.book_no }">
+				<div class="book_list">
+					<div class="img-div"><img src="/chch/resources/images/${book.book_image}"></div>
+					<div class="title">${book.book_title }</div>
+					<div><fmt:formatNumber value="${book.book_price }" pattern="#,###" />원</div>
+					
 						<div class="star_avg">
 							<c:if test="${book.star_avg <= 0.4}">☆☆☆☆☆</c:if>
 							<c:if test="${book.star_avg >= 0.5 && book.star_avg < 1.4}">★☆☆☆☆</c:if>
@@ -38,8 +40,9 @@
 							<c:if test="${book.star_avg >= 4.5}">★★★★★</c:if>
 							 &nbsp;(${book.review_cnt })
 						</div>
-					</a>
-				</div>
+					
+					</div>
+				</a>
 			</c:forEach>
 		</c:if>
 	</div>

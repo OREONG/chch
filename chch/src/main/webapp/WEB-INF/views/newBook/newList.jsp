@@ -21,7 +21,6 @@
 	<div id="product_order_list">
 			<p>
 			<a href="newList.do?book_kind=${book_kind}&order=publish">출간순</a>&nbsp;|
-			<a href="newList.do?book_kind=${book_kind}&order=best">베스트셀러</a>&nbsp;|
 			<a href="newList.do?book_kind=${book_kind}&order=review">리뷰많은순</a>&nbsp;|
 			<a href="newList.do?book_kind=${book_kind}&order=lowPrice">낮은가격순</a>&nbsp;|
 			<a href="newList.do?book_kind=${book_kind}&order=highPrice">높은가격순</a>&nbsp;|

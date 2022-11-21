@@ -206,10 +206,11 @@ public class DeliveryController {
 	// 책화면에서 바로 구매하기
 	@SuppressWarnings({ "unchecked", "unused" })
 	@RequestMapping("purchaseStep2")
-	public String purchaseStep2( int delivery_no, int finalMoney, int finalPoint, Member member, Book book, Delivery delivery, Coupon coupon, Money money, Cart cart, Deal deal, Model model, HttpSession session) {
+	public String purchaseStep2(int count, int delivery_no, int finalMoney, int finalPoint, Member member, Book book, Delivery delivery, Coupon coupon, Money money, Cart cart, Deal deal, Model model, HttpSession session) {
 		String id = (String) session.getAttribute("id");
 		List<Coupon> couponList3 = (List<Coupon>) session.getAttribute("couponList2");
 		int maxDealGroup2 = ds.max2()+1;
+		deal.setDeal_count(count);
 		int result3 = ds.insert2(deal);
 		int result = dls.insert(delivery);
 //		cps.update4(coupon);

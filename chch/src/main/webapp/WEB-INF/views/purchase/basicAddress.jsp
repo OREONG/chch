@@ -5,14 +5,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<style type="text/css">
+hr {
+	border:1px solid #5055b1;
+}
+
+
+</style>
 <script type="text/javascript">
 // radio 선택시 div 색 변경 이벤트
 	$(function() {
 		$("input[name='delivery_no']").click(function(){
 			for(var i = 0; i < frm1.delivery_no.length; i++) {
 				if(frm1.delivery_no[i].checked) {
-					$('.r_'+i).css('background','gray');
+					$('.r_'+i).css('background','white');
 				} else $('.r_'+i).css('background','white');
 			}
 		});
@@ -45,18 +51,16 @@
 				<div class="r_${status.index}" id="box">
 					<c:if test="${delivery.delivery_basic == 'y'}">
 						<input type="radio" id="l_${status.index}" name="delivery_no" checked="checked" value="${delivery.delivery_no}" >
+						<p>기본배송지</p>
 					</c:if>
 					<c:if test="${delivery.delivery_basic != 'y'}">
 						<input type="radio" id="l_${status.index}" name="delivery_no" value="${delivery.delivery_no}">
 					</c:if>
 					<label for="l_${status.index}">
-					${delivery.delivery_no}<br>
 					${delivery.delivery_name}<br>
 					${delivery.delivery_phone}<br>
 					${delivery.delivery_address} ${delivery.delivery_address_detail}
 					${delivery.delivery_address_detail_extra}<br>
-					기본배송지${delivery.delivery_basic}<br>
-					삭제여부${delivery.del}
 					</label>
 					<script type="text/javascript">
 					// 삭제 버튼 이벤트

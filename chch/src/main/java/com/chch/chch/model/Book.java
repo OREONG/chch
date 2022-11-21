@@ -48,6 +48,7 @@ public class Book implements Comparable<Book> {
 	
 //	hyc
 	private int count;
+	private int deal_count;
 
 	
 	@Override

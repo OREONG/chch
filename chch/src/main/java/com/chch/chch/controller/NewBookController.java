@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.chch.chch.model.Book;
+import com.chch.chch.model.Deal;
 import com.chch.chch.model.Report;
 import com.chch.chch.model.Review;
 import com.chch.chch.model.Used;
@@ -27,7 +28,7 @@ public class NewBookController {
 	private UsedBookService us;
 	
 	@RequestMapping("newList")
-	public String newList(String order, String book_kind, Model model, Book book, String pageNum) {
+	public String newList(String order, String book_kind, Model model, Book book, String pageNum, Deal deal) {
 		
 		//신작도서 페이징
 		int rowPerPage = 12; // 페이지 당 게시글 갯수
@@ -45,6 +46,8 @@ public class NewBookController {
 		List<Book> bookList = new ArrayList<Book>();
 		//정렬순서 저장
 		book.setOrder(order);
+		book.setDeal_count(deal.getDeal_count());
+		book.setBook_no(deal.getBook_no());
 		if(book_kind.equals("all")) { //신작도서 눌렀을 때
 			bookList = ns.bookListAll(book);
 		}

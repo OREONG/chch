@@ -251,7 +251,7 @@
 		
 			<!-- 베스트 셀러 -->
 				<div align="center" class="bestSeller">
-					<h1>베스트 셀러</h1>
+					<h2>따끈따끈 신작</h2>
 				</div>
 				<div id="line"></div>
 					<div class="products">

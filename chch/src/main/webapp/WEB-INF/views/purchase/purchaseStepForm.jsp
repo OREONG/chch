@@ -164,7 +164,7 @@ function pay() {
 							<th>배송지 주소</th>
 							<td>
 								<input type="text" id="sample6_postcode" name="delivery_postcode" size="10" placeholder="검색">
-								<input type="button" id="input-btn" onclick="sample6_execDaumPostcode()" value="주소 찾기"><br>
+								<input type="button" id="input-btn2" onclick="sample6_execDaumPostcode()" value="주소 찾기"><br>
 								<input type="text" id="sample6_address" name="delivery_address" value="" required="required" placeholder="서울시 강남구 역삼동">
 								<input type="text" id="sample6_detailAddress" name="delivery_address_detail" value="" required="required" size="9" placeholder="123번길 45">
 								<input type="text" id="sample6_extraAddress" name="delivery_address_detail_extra" value="" size="35" placeholder="추가사항">
@@ -276,7 +276,7 @@ function pay() {
 				<c:forEach var="cart" items="${selectedCart}" varStatus="status">
 				<div>
 					<div>${cart.book_publisher}</div>
-					<div style="display: flex;">
+					<div style="display: flex; margin-left: 10px; border: solid 1px #5055b1; padding: 5px; text-align: center;">
 						<div>
 							<a href="#"><img alt="책 이미지" src="${cart.book_image}" style="width: 50%"></a>
 						</div>
@@ -329,27 +329,23 @@ function pay() {
 			<c:if test="${not empty couponList2}">
 				<c:forEach var="coupon" items="${couponList2}">
 				<div style="display: flex;">
-					<div>${coupon.coupon_no}</div>
-					<div>${coupon.coupon_image}</div>
 					<div>${coupon.coupon_kind}</div>
 					<div>${coupon.coupon_discount}</div>
-					<div>쿠폰 사용상태${coupon.coupon_situation}</div>
-					<div>삭제여부${coupon.del}</div>
 				</div>
 				</c:forEach>
 			</c:if>
 			</div>
 			<br>
 			<hr>
-			<a>*보유금 및 포인트는 100원 단위 이상부터 사용가능합니다</a>
+			<p>*보유금 및 포인트는 100원 단위 이상부터 사용가능합니다</p>
 			<p>보유금</p>
 				<div>
-					<p>보유금<input type="text" id="used_money" name="used_money" value="" max="${moneySelect2}" maxlength="5" onchange='printName()' oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+					<p>보유금<input type="text" id="used_money" name="used_money" value="0" max="${moneySelect2}" maxlength="5" onchange='printName()' oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
 					<p>사용가능 ${moneySelect} 원</p>
 				</div>
 			<p>포인트</p>
 				<div>
-					<p>Chack point<input type="text" id="used_mileage" name="used_mileage" value="" max="10000" maxlength="5" onchange='printName2()' oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+					<p>Chack point<input type="text" id="used_mileage" name="used_mileage" value="0" max="10000" maxlength="5" onchange='printName2()' oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
 					<p>사용가능 ${mileageSelect} p</p>
 				</div>
 			<hr>
@@ -358,7 +354,7 @@ function pay() {
 			<br>
 			<br>
 		</div>
-		<div style="float: right; margin-left: 330px;">
+		<div style="float: right; margin-left: 330px; width: 300px;">
 			<h2>결제 예정 금액</h2>
 			<p>상품금액</p><p>${total_price}원</p>
 			<p>배송비(선결제)</p><p>0원</p>
@@ -396,15 +392,60 @@ function pay() {
 			<br>
 			<p>개인정보 판매자 제공 동의</p>
 			<div style="overflow:scroll; height:200px;">
-				<p>어쩌구 저쩌구</p>
+						<p>개인정보 제3자 제공 동의 토스페이먼츠(이하 회사라 함)는 링크페이를 통해 상품을 구매한 고객 정보를
+							판매자에게 아래와 같이 제공합니다. 1. 개인정보를 제공받는 자 링크페이 판매 상점 (구매화면 상단 노출) 2.
+							제공하는 목적 링크페이를 이용한 상품 구매에 따른 요금 결제 및 배송 민원 처리, 고지사항 전달 3. 제공하는 항목
+							이름, 휴대폰번호 배송 필요 시 주소 4. 개인정보의 보유 및 이용기간 개인정보는 원칙적으로 개인정보의 수집·이용
+							목적이 달성되면 지체없이 파기합니다. 단, 다른 법령에 특별한 규정이 있는 경우 관련 법령에서 정하는 기간동안
+							보유합니다. 5. 이용자는 회사의 개인정보 제3자 제공에 대한 동의를 거부할 권리가 있습니다. 다만, 개인정보의
+							제3자 제공 동의를 거부할 경우 링크페이 서비스의 이용이 제한될 수 있음을 알려드립니다.</p>
 			</div>
+			<br>
 			<p>개인정보 수집 및 이용 동의</p>
 			<div style="overflow:scroll; height:200px;">
-				<p>어쩌구 저쩌구</p>
+						<p>Ⅰ. 개인정보의 수집 및 이용 동의서 - 이용자가 제공한 모든 정보는 다음의 목적을 위해 활용하며, 하기
+							목적 이외의 용도로는 사용되지 않습니다. ① 개인정보 수집 항목 및 수집·이용 목적 가) 수집 항목 (필수항목) -
+							성명(국문), 주민등록번호, 주소, 전화번호(자택, 휴대전화), 사진, 이메일, 나이, 재학정보, 병역사항, 외국어
+							점수, 가족관계, 재산정도, 수상내역, 사회활동, 타 장학금 수혜현황, 요식업 종사 현황 등 지원 신청서에 기재된
+							정보 또는 신청자가 제공한 정보 나) 수집 및 이용 목적 - 하이트진로 장학생 선발 전형 진행 - 하이트진로
+							장학생과의 연락 및 자격확인 - 하이트진로 장학생 자원관리 ② 개인정보 보유 및 이용기간 - 수집·이용 동의일로부터
+							개인정보의 수집·이용목적을 달성할 때까지 ③ 동의거부관리 - 귀하께서는 본 안내에 따른 개인정보 수집, 이용에 대하여
+							동의를 거부하실 권리가 있습니다. 다만, 귀하가 개인정보의 수집/이용에 동의를 거부하시는 경우에 장학생 선발 과정에
+							있어 불이익이 발생할 수 있음을 알려드립니다. 본인은 위의 동의서 내용을 충분히 숙지하였으며, 개인정보 수집, 이용,
+							제공하는 것에 동의합니다. 년 월 일 성명: (서명 또는 인</p>
 			</div>
+			<br>
 			<p>주문 상품정보 동의</p>
 			<div style="overflow:scroll; height:200px;">
-				<p>어쩌구 저쩌구</p>
+						<p>개인정보 처리방침 1(총칙) ① 개인정보란 생존하는 개인에 관한 정보로서 당해 정보에 포함되어 있는 성명,
+							주소 등의 사항에 의하여 당해 개인을 알아볼 수 있는 부호, 문자, 음성, 음향 및 영상 등의 정보(당해 정보만으로는
+							특정 개인을 식별할 수 없더라도 다른 정보와 용이하게 결합하여 식별할 수 있는 것을 포함합니다)를 말합니다. ②
+							유한책임회사 브이에프코리아(이하 '회사')는 이용자의 개인정보보호를 매우 중요시하며, 「개인정보보호법」,「정보통신망
+							이용 촉진 및 정보보호에 관한 법률」 등 개인정보보호 관련 법률 및 하위 법령들을 준수하고 있습니다. ③ 회사는
+							개인정보취급방침을 통하여 이용자가 제공하는 개인정보가 어떠한 용도와 방식으로 이용되고 있으며 개인정보보호를 위해
+							어떠한 조치가 취해지고 있는지 알려드립니다. 회사는 개인정보취급방침을 홈페이지 첫 화면에 공개함으로써 언제나 용이하게
+							보실 수 있습니다. ④ 회사는 개인정보취급방침의 지속적인 개선을 위하여 개정하는데 필요한 절차를 정하고 있으며,
+							개인정보취급방침을 회사의 필요와 사회적 변화에 맞게 변경할 수 있습니다. 2(개인정보 수집에 대한 동의) ① 회사는
+							귀하께서 회사의 개인정보 수집, 이용과 이용약관의 내용에 대해 「동의함」버튼 또는 「동의안함」버튼을 클릭할 수 있는
+							절차를 마련하여, 「동의함」버튼을 클릭하면 개인정보 수집에 대해 동의한 것으로 봅니다. 「동의안함」을 선택하실 경우,
+							회사가 제공하는 기본서비스 제공이 제한됩니다. ② 인터넷을 통한 동의절차를 마련하기 어려운 경우에, 브이에프코리아는
+							동의 받아야 할 사항을 전화,서면 등의 방법으로 법적 절차를 거쳐 동의를 받을 수 있습니다. 3(개인정보 수집항목 및
+							이용목적) ① 회사는 회원가입 또는 물품을 주문하는 경우 아래의 개인정보 항목을 다음과 같은 목적으로 수집하고
+							있습니다. 단, 이용자의 개인정보를 수집하는 경우에는 그 목적에 필요한 최소한의 개인정보를 수집하고 있습니다. 1.
+							회원가입시 수집정보 및 수집목적 (필수항목) -. 수집항목 : 이름, 아이디, 비밀번호, 이메일주소, 휴대폰번호 -.
+							수집목적 : 회원특정 및 고지사항 전달, 본인의사 확인 및 불만처리 등 원활한 의사소통 경로의 확보 -. 이용기간 :
+							회원 탈퇴 시까지 2. 물품구매 시 수집정보 및 수집목적 (필수항목) -. 수집항목 : 주문 고객명, 수신인,
+							배송주소, 배송연락처, 결제수단 -. 수집목적 : 구매한 물품의 배송/설치 등 고객과 체결한 계약의 이행 -.
+							이용기간 : 위 수집목적 달성 시까지 3. 마케팅 목적 수집정보 및 수집목적 (선택 항목) -. 수집항목 : 이메일
+							주소, 휴대폰번호 -. 수집목적 : 고객이 동의한 경우에 한하여 신상품 홍보 및 판매권유 등 마케팅 목적 활용 -.
+							이용기간 : 동의 철회 시까지 ② 수집된 이용자의 개인정보는 해외에 위치한 아마존의 서버(AWS)에 저장, 관리되고
+							있습니다. 저장, 관리된 모든 개인정보의 관리 책임은 회사가 가지고 있습니다. ③ 단, 이용자의 기본적 인권 침해의
+							우려가 있는 민감한 개인정보(인종 및 민족, 사상 및 신조, 출신지 및 본적지, 정치적 성향 및 범죄기록, 건강상태
+							및 성생활 등)는 수집하지 않습니다. ④ 회사는 고객에게 재화나 서비스를 홍보하거나 판매를 권유하기 위하여 개인정보의
+							처리에 대한 동의를 받으려는 때에는 고객이 이를 명확하게 인지할 수 있도록 알리고 동의를 받습니다. ⑤ 회사는
+							불법카드거래 예방을 위해 필요한 조치를 취할 수 있습니다. ⑥ 회사는 메일 서비스를 제공하기 위해 고객명, 고객
+							아이디, 고객 메일주소를 해외 소재 업체인 메일침프(Mail Chimp)에 제공할 수 있습니다. 4(개인정보의 보유
+							및 이용기간) ① 귀하의 개인정보는 다음과 같이 개인정보의 수집목적 또는 제공받은 목적이 달성되면 파기됩니다.</p>
 			</div>
 		</div>
 	</div>

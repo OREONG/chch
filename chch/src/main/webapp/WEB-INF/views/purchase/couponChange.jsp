@@ -12,7 +12,7 @@
 		$("input[name='coupon_no']").click(function(){
 			for(var i = 0; i < frm1.coupon_no.length; i++) {
 				if(frm1.coupon_no[i].checked) {
-					$('.r_'+i).css('background','gray');
+					$('.r_'+i).css('background','white');
 				} else $('.r_'+i).css('background','white');
 			}
 		});
@@ -43,17 +43,14 @@
 				<div class="r_${status.index}" id="box">
 					<c:if test="${coupon.coupon_situation == 'y'}">
 						<input type="radio" id="l_${status.index}" name="coupon_no" checked="checked" value="${coupon.coupon_no}" >
+						<p>사용 예정 쿠폰</p>
 					</c:if>
 					<c:if test="${coupon.coupon_situation == 'n'}">
 						<input type="radio" id="l_${status.index}" name="coupon_no" value="${coupon.coupon_no}">
 					</c:if>
 					<label for="l_${status.index}">
-					${coupon.coupon_no}<br>
-					${coupon.coupon_image}<br>
 					${coupon.coupon_kind}<br>
 					<span class="a_${coupon.coupon_no}">${coupon.coupon_discount}</span><br>
-					쿠폰 사용예정${coupon.coupon_situation}<br>
-					삭제여부${coupon.del}
 					</label>
 				</div>
 				<hr>

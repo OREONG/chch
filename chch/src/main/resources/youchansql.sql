@@ -2,7 +2,11 @@ create sequence coupon_no start with 1 increment by 1;
 create sequence delivery_no start with 1 increment by 1;
 create sequence cart_no start with 1 increment by 1;
 create sequence money_no start with 1 increment by 1;
-create sequence deal_no start with 1 increment by 1;
+create sequence deal_no start with 1 increment by 1;\
+
+
+select * from deal;
+
 
 select * from user_sequences;
 
@@ -77,6 +81,11 @@ CREATE TABLE deal (
     FOREIGN KEY (purchase_id) REFERENCES member(id),
     FOREIGN KEY (delivery_no) REFERENCES delivery(delivery_no)
 );
+select * from deal;
+
+select book.*, sum(deal.deal_count) s from book inner join deal on book.book_no = deal.book_no group by deal.book_no order by sum(deal.deal_count);
+
+
 
 CREATE TABLE used (
    used_no   NUMBER(10) PRIMARY KEY,         --중고거래번호

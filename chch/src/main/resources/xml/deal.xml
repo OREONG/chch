@@ -83,7 +83,7 @@
 		#{purchase_id}, #{book_no},
 		#{delivery_no}, #{coupon_no}, sysdate,
 		#{total_price}, #{real_price},
-		#{book_price}, '1')
+		#{book_price}, #{deal_count})
 	</insert>
 	<!-- group 번호 -->
 	<select id="max" resultType="int">

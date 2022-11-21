@@ -11,7 +11,7 @@
 	<c:if test="${result > 0 }">
 		<script type="text/javascript">
 			alert("구매 성공");
-			location.href="purchaseFinish.do";
+			location.href="main.do";
 		</script>
 	</c:if>
 	<c:if test="${result == 0 }">

@@ -7,26 +7,28 @@
 		select * from (select a.*, rowNum rn from
 			<if test="order == 'recent' or order == null">
 			(select * from book order by book_reg_date desc)a) 
+			where rn between #{startRow} and #{endRow} and book_del='n'
 			</if>
 			<if test="order == 'publish'">
 			(select * from book order by book_publish_date desc)a) 
-			</if>
-			<if test="order == 'best'">
-			(select * from book order by              )a) 
+			where rn between #{startRow} and #{endRow} and book_del='n'
 			</if>
 			<if test="order == 'review'">
 			(select * from book)a) 
+			where rn between #{startRow} and #{endRow} and book_del='n'
 			</if>
 			<if test="order == 'lowPrice'">
 			(select * from book order by book_price)a) 
+			where rn between #{startRow} and #{endRow} and book_del='n'
 			</if>
 			<if test="order == 'highPrice'">
 			(select * from book order by book_price desc)a) 
+			where rn between #{startRow} and #{endRow} and book_del='n'
 			</if>
 			<if test="order == 'title'">
-			(select * from book order by book_title)a) 
+			(select * from book order by book_title)a)
+			where rn between #{startRow} and #{endRow} and book_del='n'
 			</if>
-		where rn between #{startRow} and #{endRow} and book_del='n'
 	</select>
 	
 	<select id="bookListSelect" parameterType="book" resultType="book">
