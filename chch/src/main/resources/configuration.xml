@@ -5,6 +5,7 @@
 	<typeAliases>
 		<typeAlias alias="book" type="com.chch.chch.model.Book" />
 		<typeAlias alias="member" type="com.chch.chch.model.Member" />
+		<typeAlias alias="like" type="com.chch.chch.model.Like_list" />
 		<typeAlias alias="used" type="com.chch.chch.model.Used" />
 		<typeAlias alias="community" type="com.chch.chch.model.Community" />
 		<typeAlias alias="inquiry" type="com.chch.chch.model.Inquiry" />
@@ -26,6 +27,7 @@
 	<mappers>
 		<mapper resource="xml/book.xml" />
 		<mapper resource="xml/member.xml" />
+		<mapper resource="xml/like.xml"/>
 		<mapper resource="xml/used.xml" />
 		<mapper resource="xml/review.xml" />
 		<mapper resource="xml/community.xml" />
