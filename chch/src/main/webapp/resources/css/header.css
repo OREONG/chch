@@ -54,13 +54,11 @@ header{
 	width: 35px;
 }
 #noticePopUp{
-	height: 60px;
+	height: 47px;
 	resize: none; 
-	border: 1px solid #fff; 
+	border: none; 
 	background: white;
     padding: 0 10px 0 10px;
-    resize: none;
-    overflow: hidden
 	
 }
 #noticePopUp:focus{
@@ -113,6 +111,16 @@ header{
     border: 1px solid #ddd;
     background: #fafafa;
 }
+
+
+/* 검색 아이콘 */
+#search {
+	width: 40px;
+}
+
+#searchimg {
+	background-color: rgba(0,0,0,0);
+	border:none;
 }
 
 /* 알림 아이콘 */
@@ -196,6 +204,7 @@ header{
 
 .submenu{
 	flex-direction: column;
+/* 	display: none; */
 	
 }
 
@@ -310,4 +319,3 @@ header{
 		left: 13px;
 	}
 }
-

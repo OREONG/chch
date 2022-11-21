@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="deliveryns">
+	<!-- 배송지 단건 조회 -->
+	<select id="list" parameterType="string" resultType="delivery">
+		select * from delivery where id=#{id} and delivery_basic='y' and del='n'
+	</select>
+	<!-- 배송지 여러건 조회 -->
+	<select id="list2" parameterType="string" resultType="delivery">
+		select * from delivery where id=#{id} and del='n'
+	</select>
+	<!-- 배송지 입력 -->
+	<insert id="insert" parameterType="delivery">
+	<selectKey keyProperty="delivery_no" resultType="int" order="BEFORE" >
+		select delivery_no.nextval from dual
+	</selectKey>
+		insert into Delivery values (#{delivery_no}, #{id}, #{delivery_name}, #{delivery_phone}, #{delivery_phone_sub},
+		#{delivery_postcode}, #{delivery_address}, #{delivery_address_detail}, #{delivery_address_detail_extra},
+		#{delivery_kind}, #{delivery_request}, #{delivery_date}, 'n', 'n')
+	</insert>
+	<!-- 배송지 중복 체크(delivery_address 체크) -->
+	<select id="select" parameterType="string" resultType="delivery">
+		select * from delivery where delivery_address=#{delivery_address}
+	</select>
+	<!-- 기본 배송지 변경 -->
+	<update id="update" parameterType="delivery">
+		update delivery set delivery_basic='n' where delivery_basic='y' and id=#{id}
+	</update>
+	<update id="update2" parameterType="delivery">
+		update delivery set delivery_basic='y' where delivery_no=#{delivery_no} and id=#{id}
+	</update>
+	<!-- 배송지 삭제 -->
+	<delete id="delete" parameterType="delivery">
+		update delivery set del='y' where delivery_no=#{delivery_no} and id=#{id}
+	</delete>
+</mapper>

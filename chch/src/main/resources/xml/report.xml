@@ -39,4 +39,13 @@
 	<select id="getTotal" resultType="integer" parameterType="report">
 		select count(*) from report where del='n' and id=#{id}
 	</select>
+	<select id="getTotal1" resultType="integer" parameterType="report">
+		select count(*) from report where del='n' and expose='y' and book_no=#{book_no}
+	</select>
+	
+	<select id="reportList" parameterType="report" resultType="report">
+		select * from (select a.*, rowNum rn from (select * from report 
+		where expose='y' and del='n' and book_no=#{book_no} order by report_date desc)a)
+		where rn between #{startRow} and #{endRow}
+	</select>
 </mapper>

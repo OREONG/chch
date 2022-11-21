@@ -3,12 +3,14 @@
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias alias="member" type="com.chch.chch.model.Member"/>
-		<typeAlias alias="chat" type="com.chch.chch.model.Chat" />
 		<typeAlias alias="book" type="com.chch.chch.model.Book" />
+		<typeAlias alias="member" type="com.chch.chch.model.Member" />
+		<typeAlias alias="like" type="com.chch.chch.model.Like_list" />
+		<typeAlias alias="used" type="com.chch.chch.model.Used" />
 		<typeAlias alias="community" type="com.chch.chch.model.Community" />
 		<typeAlias alias="inquiry" type="com.chch.chch.model.Inquiry" />
 		<typeAlias alias="admin" type="com.chch.chch.model.Admin" />
+		<typeAlias alias="chat" type="com.chch.chch.model.Chat" />
 		
 		<typeAlias alias="author" type="com.chch.chch.model.Author" />
 		<typeAlias alias="author_work" type="com.chch.chch.model.Author_work" />
@@ -16,18 +18,33 @@
 		<typeAlias alias="book" type="com.chch.chch.model.Book" />
 		<typeAlias alias="like_table" type="com.chch.chch.model.Like_table" />
 		<typeAlias alias="review" type="com.chch.chch.model.Review" />
+		
+		<typeAlias alias="cart" type="com.chch.chch.model.Cart" />
+		<typeAlias alias="coupon" type="com.chch.chch.model.Coupon" />
+		<typeAlias alias="deal" type="com.chch.chch.model.Deal" />
+		<typeAlias alias="delivery" type="com.chch.chch.model.Delivery" />
+		<typeAlias alias="money" type="com.chch.chch.model.Money" />
 	</typeAliases>
 	<mappers>
-		<mapper resource="xml/member.xml"/>
-		<mapper resource="xml/chat.xml" />
 		<mapper resource="xml/book.xml" />
+		<mapper resource="xml/member.xml" />
+		<mapper resource="xml/like.xml"/>
+		<mapper resource="xml/used.xml" />
+		<mapper resource="xml/review.xml" />
 		<mapper resource="xml/community.xml" />
 		<mapper resource="xml/inquiry.xml" />
 		<mapper resource="xml/admin.xml" />
+		<mapper resource="xml/chat.xml" />
 		
 		<mapper resource="xml/author.xml" />
 		<mapper resource="xml/report.xml" />
 		<mapper resource="xml/like_table.xml" />
+		
+		<mapper resource="xml/cart.xml" />
+		<mapper resource="xml/coupon.xml" />
+		<mapper resource="xml/deal.xml" />
+		<mapper resource="xml/delivery.xml" />
+		<mapper resource="xml/money.xml" />
 	</mappers>
 </configuration>
 

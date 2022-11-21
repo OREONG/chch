@@ -1,7 +1,9 @@
 package com.chch.chch.service;
 
 import java.util.Random;
+
 import javax.mail.internet.MimeMessage;
+
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
@@ -52,5 +54,4 @@ public class MailSendService {
 			System.out.println(e.getMessage());
 		}
 	}
-
 }

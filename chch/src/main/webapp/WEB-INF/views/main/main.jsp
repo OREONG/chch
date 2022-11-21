@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,6 +61,91 @@
 	.prev:hover, .next:hover {
 	  background-color: rgba(0,0,0,0.8);
 	}
+	
+	
+/* 	베스트셀러 시작 */
+.bestSeller {
+	text-align: center;
+	margin-top: 50px;
+	margin-bottom: 30px;
+	font-size: 24px;
+	font-style: bold;
+	color: #545454;
+	font-family: 'Jalnan';
+}
+
+.book_list {
+    height: 360px;
+    margin: 0 115px 0 0;
+}
+
+.title {
+	width: 150px;
+    margin: auto;
+    margin-top: 5px;
+}
+
+#product_order_list {
+	text-align: center;
+	margin-bottom: 50px;
+}
+
+#product_order_list a {
+	color: black;	
+}
+
+#line {
+	margin: 10px 15% 50px;
+	padding: 0;
+	border-top: 2px solid #6c71ce;
+}
+
+#line2 {
+	margin: 10px 15% 18px;
+	padding: 0;
+	border-top: 2px solid #e7e7e7;
+}
+
+.products {
+	display: table;
+    margin: 0 auto 0 25%;
+	padding: 0;
+    width: 70%;
+	text-align: center;
+	font-family: 'AppleSDGothicNeo';
+}
+
+.img-div{
+	width: 155px;
+    height: 210px;
+}
+.products img {
+	width: 100%;
+
+}
+
+.products a {
+	text-decoration: none;
+	color: black;
+	float: left;
+	font-size: 16px;
+}
+
+.products p {
+	margin-top: 4px;
+	margin-bottom: 10px;
+	font-family: 'AppleSDGothicNeo';
+}
+
+.star_avg {
+	color: red;
+}
+
+
+.paging-div{
+	margin-top: 28px;
+}
+/* 	베스트셀러 끝 */
 </style>
 </head>
 <body>
@@ -162,12 +249,45 @@
 			
 			</script>
 		
-			<!-- 베스트 셀러 --> 
-			<div class="bestSeller"> 
+			<!-- 베스트 셀러 -->
+				<div align="center" class="bestSeller">
+					<h2>따끈따끈 신작</h2>
+				</div>
+				<div id="line"></div>
+					<div class="products">
+						<c:if test="${empty bookList}">
+						등록된 책이 없습니다
+						</c:if>
+						<c:if test="${not empty bookList}">
+							<c:forEach var="book" items="${bookList }">
+								<a href="newDetail.do?book_no=${book.book_no }">
+									<div class="book_list">
+										<div class="img-div">
+											<img src="/chch/resources/images/${book.book_image}">
+										</div>
+										<div class="title">${book.book_title }</div>
+										<div>
+											<fmt:formatNumber value="${book.book_price }" pattern="#,###" />
+											원
+										</div>
+
+										<div class="star_avg">
+											<c:if test="${book.star_avg <= 0.4}">☆☆☆☆☆</c:if>
+											<c:if test="${book.star_avg >= 0.5 && book.star_avg < 1.4}">★☆☆☆☆</c:if>
+											<c:if test="${book.star_avg >= 1.5 && book.star_avg < 2.4}">★★☆☆☆</c:if>
+											<c:if test="${book.star_avg >= 2.5 && book.star_avg < 3.4}">★★★☆☆</c:if>
+											<c:if test="${book.star_avg >= 3.5 && book.star_avg < 4.4}">★★★★☆</c:if>
+											<c:if test="${book.star_avg >= 4.5}">★★★★★</c:if>
+											&nbsp;(${book.review_cnt })
+										</div>
+
+									</div>
+								</a>
+							</c:forEach>
+						</c:if>
+					</div>
+					<div id="line2"></div>
 			
-			
-			</div> 
-		
 		
 			<!-- 커뮤니티 -->
 			<div class="community">

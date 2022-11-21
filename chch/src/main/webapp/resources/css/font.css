@@ -6,7 +6,7 @@
     font-family : "Jalnan"; 
     font-style : "normal"; 
     font-weight : 400; 
-    src:url(/chch/resources/fonts/JALNAN.TTF);
+    src:url(/chackcheck/fonts/JALNAN.TTF);
 }
 /* apple gothic neo */
 
@@ -14,33 +14,33 @@
 	font-family : "AppleSDGothicNeo";
 	font-style : "normal";
 	font-weight : 400;
-	src:url(/chch/resources/fonts/AppleSDGothicNeoR.ttf)
+	src:url(/chackcheck/fonts/AppleSDGothicNeoR.ttf)
 }
 
 @font-face {
 	font-family : "AppleSDGothicNeo";
 	font-style : "normal";
 	font-weight : 500;
-	src:url(/chch/resources/fonts/AppleSDGothicNeoM.ttf)
+	src:url(/chackcheck/fonts/AppleSDGothicNeoM.ttf)
 }
 
 @font-face {
 	font-family : "AppleSDGothicNeo";
 	font-style : "normal";
 	font-weight : 600;
-	src:url(/chch/fonts/AppleSDGothicNeoSB.ttf)
+	src:url(/chackcheck/fonts/AppleSDGothicNeoSB.ttf)
 }
 
 @font-face {
 	font-family : "AppleSDGothicNeo";
 	font-style : "normal";
 	font-weight : 700;
-	src:url(/chch/resources/fonts/AppleSDGothicNeoB.ttf)
+	src:url(/chackcheck/fonts/AppleSDGothicNeoB.ttf)
 }
 
 @font-face {
 	font-family : "AppleSDGothicNeo";
 	font-style : "normal";
 	font-weight : 800;
-	src:url(/chch/resources/fonts/AppleSDGothicNeoH.ttf)
+	src:url(/chackcheck/fonts/AppleSDGothicNeoH.ttf)
 }

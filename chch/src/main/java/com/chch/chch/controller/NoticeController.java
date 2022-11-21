@@ -32,7 +32,9 @@ public class NoticeController {
 	
 	@RequestMapping(value = "loadUnreadChat", produces = "text/html;charset=utf-8")
 	@ResponseBody
-	public String loadUnreadChat(String id, HttpSession session, Model model) {
+	public String loadUnreadChat(HttpSession session, Model model) {
+		
+		String id = (String)session.getAttribute("id");
 		
 //		unread 카운트 가져오기
 		List<Chat> myRoom = cs.selectMyRoom(id);
@@ -52,9 +54,14 @@ public class NoticeController {
 	
 	@RequestMapping(value = "loadUnread", produces = "text/html;charset=utf-8")
 	@ResponseBody
-	public String loadUnread(String id, HttpSession session, Model model) {
+	public String loadUnread(HttpSession session, Model model) {
 		
+		String id = (String)session.getAttribute("id");
+		System.out.println(id);
 		List<Chat> myRoom = cs.selectMyRoom(id);
+		
+		System.out.println(myRoom);
+		
 		
 		int unreadChatCount = 0;
 		for (int i = 0; i < myRoom.size(); i++) {

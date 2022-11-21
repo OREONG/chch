@@ -61,8 +61,8 @@
 			<li>
 				<select id="book_kind" class="input-select" required="required" onfocus="onfocus">
 					<option value="" selected disabled hidden="">카테고리</option>
-					<option value="문학">문학</option>
-					<option value="경제">경제</option>
+					<option value="문학-한국소설">문학-한국소설</option>
+					<option value="경제-경제">경제-경제</option>
 					<option value="역사">역사</option>
 					<option value="과학">과학</option>
 				</select>

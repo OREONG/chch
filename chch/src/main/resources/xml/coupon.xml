@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="couponns">
+	<!-- 쿠폰 조회 -->
+	<select id="list" parameterType="string" resultType="coupon">
+		select * from coupon where id=#{id} and del='n'
+	</select>
+	<!-- 구매창 사용전 쿠폰 조회 -->
+	<select id="list2" parameterType="string" resultType="coupon">
+		select * from coupon where id=#{id} and coupon_situation='y' and del='n'
+	</select>
+	<!-- 쿠폰 사용예정상태 변경 -->
+	<update id="update" parameterType="coupon">
+		update coupon set coupon_situation='n' where coupon_situation='y' and id=#{id}
+	</update>
+	<!-- 쿠폰 사용예정상태 선택 -->
+	<update id="update2" parameterType="coupon">
+		update coupon set coupon_situation='y' where coupon_no=#{coupon_no} and id=#{id}
+	</update>
+	<!-- 쿠폰 사용 취소 -->
+	<update id="update3" parameterType="coupon">
+		update coupon set coupon_situation='n' where id=#{id}
+	</update>
+	<!-- 쿠폰 사용 완료 -->
+	<update id="update4" parameterType="coupon">
+		update coupon set del='y'and coupon_situation='n' where del='n' and coupon_situation='y' and id=#{id}
+	</update>
+	<!-- 사용할 쿠폰 할인값 -->
+	<select id="selectOne" parameterType="string" resultType="string">
+	 	select coupon_discount from coupon where coupon_situation='y' and id=#{id}
+	 </select>
+</mapper>

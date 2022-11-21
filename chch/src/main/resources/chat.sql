@@ -398,6 +398,9 @@ DELETE FROM deal;
 DELETE FROM delivery;
 
 
+insert into delivery values (delivery_no.nextval, 'a', '김철수', '010-6203-8888', '', '', '서울시 홍천읍 이리디', '21아3', '', '로젠택배', '부재 시, 경비실에 맡겨주세요', '2022-09-13', 'y', 'n');
+insert into delivery values (delivery_no.nextval, 'a', '이하늘', '010-6203-8888', '', '', '서울시 강남구 역삼로', '2', '', '경동택배', '부재 시, 경비실에 맡겨주세요', '2022-09-30', 'n', 'n');
+
 
 
 -- 일별 전체 행 수 확인 (mybatis)
@@ -799,6 +802,26 @@ SELECT * FROM cart;
 SELECT * FROM money;
 SELECT * FROM deal;
 SELECT * FROM used;
+
+SELECT * FROM book;
+
+DELETE FROM book WHERE book_no=51;
+
+SELECT * FROM tabs;
+
+SELECT * FROM like_list;
+
+DELETE book;
+
+DELETE like_list;
+
+SELECT * FROM like_list
+SELECT * FROM cart;
+SELECT * FROM review;
+DELETE review;
+DELETE used;
+DELETE report;
+
 
 
 

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="moneyns">
+	<!-- 보유금 조회 -->
+	<select id="moneySelect" parameterType="string" resultType="integer">
+		select total_money from money where id=#{id}
+	</select>
+	<!-- 보유 마일리지 조회 -->
+	<select id="mileageSelect" parameterType="string" resultType="integer">
+		select total_mileage from money where id=#{id}
+	</select>
+	<!-- 사용한 보유금 및 마일리지 저장 -->
+	<insert id="insert" parameterType="money">
+		update money set used_money='${used_money}' , used_mileage='${used_mileage}'
+	</insert>
+	<!-- 총 보유금 및 마일리지 - 사용한 보유금 및 마일리지 계산 -->
+	<update id="update" parameterType="money">
+		update money set total_money=total_money - ${used_money} , total_mileage=total_mileage - ${used_mileage}
+	</update>
+	<!-- 마일리지 적립 -->
+	<update id="update2" parameterType="money">
+		update money set total_mileage=total_mileage + ${saveMileage}
+	</update>
+	<!-- 중고 도서 구매시 총 보유금 감소 및 사용한 보유금 증가 -->
+	<update id="update3" parameterType="map">
+		update money set total_money=total_money - ${used_price} , used_money=used_money + ${used_price} where id=#{id}
+	</update>
+	<!-- 구매자가 중고 도서 구매확정시 판매자 보유금 증가 -->
+	<update id="update4" parameterType="map">
+		update money set total_money=total_money + ${used_price} where id=#{id}
+	</update>
+	
+	<insert id="init" parameterType="String">
+		INSERT INTO money (money_no, id, total_money, total_mileage)VALUES ((SELECT NVL(MAX(money_no), 0) + 1 FROM money), #{id}, 0, 0)
+	</insert>
+	
+</mapper>

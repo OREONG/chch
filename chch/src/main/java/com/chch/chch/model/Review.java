@@ -3,9 +3,9 @@ package com.chch.chch.model;
 import java.sql.Date;
 
 import lombok.Data;
-
 @Data
 public class Review {
+	
 	private int review_no;//댓글번호PK
 	private int star_rate;//별점		
 	private String review_content;//내용		
@@ -16,6 +16,13 @@ public class Review {
 	private int author_work_no;//글 번호
 	private int review_like_count;//좋아요 개수
 	
+//	리뷰 갯수 세기용
+	private int review_cnt;
+//	평균별점
+	private double star_avg;
+//	페이징용
+	private int startRow;
+	private int endRow;
 	
 	//join용
 	private int like_no;// 찜번호
@@ -24,7 +31,4 @@ public class Review {
 	private int author_no;		//작가되기 번호fk
 	private String del; //좋아요 여부
 	
-	//paging용
-	private int startRow;
-	private int endRow;
 }

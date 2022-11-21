@@ -1,0 +1,54 @@
+hr {
+	border:1px solid #5055b1;
+}
+
+table {
+	width : 500px;
+	height : 340px;
+	border: 2px solid #ddd;
+}
+th {
+	text-align : center;
+	border: 2px solid #ddd;
+}
+td {
+	padding : 10px;
+	border: 2px solid #ddd;
+}
+
+#input-btn {
+	width : 100px;
+    background: #5055b1;;
+    border: 1px solid #5055b1;;
+    border-radius: 6px;
+    height: 39px;
+	transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+	
+	color: #fff;
+	font-size: 15px;
+    font-weight: 600;
+    
+    position: relative;
+}
+
+#input-btn:hover{
+	cursor:pointer;
+	background: #30347f;
+}
+
+#input-btn2 {
+	width : 80px;
+    background: #5055b1;;
+    border: 1px solid #5055b1;;
+    border-radius: 6px;
+    height: 23px;
+	transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+	
+	color: #fff;
+	font-size: 15px;
+    font-weight: 600;
+    
+    position: relative;
+}
+
+

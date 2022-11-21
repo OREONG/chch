@@ -7,7 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 import lombok.Data;
 
 @Data
-public class Book {
+public class Book implements Comparable<Book> {
 	private int book_no;//				--책번호
 	private String book_title;//		--제목
 	private String book_image;//		--이미지
@@ -32,4 +32,32 @@ public class Book {
 	private MultipartFile file;
 	private MultipartFile file2;
 	
+//	페이징용
+	private int startRow;
+	private int endRow;
+//	리뷰 갯수 세기용
+	private int review_cnt;
+//	평균별점
+	private double star_avg;
+//	도서리스트 정렬
+	private String order;
+//	검색 키워드
+	private String keyword;
+//	할인 전 가격
+	private int finalprice;
+	
+//	hyc
+	private int count;
+
+	
+	@Override
+	public int compareTo(Book book) {
+
+		if (book.review_cnt > review_cnt) {
+			return 1;
+		} else if (book.review_cnt < review_cnt) {
+			return -1;
+		}
+		return 0;
+	}
 }
