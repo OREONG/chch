@@ -1,0 +1,332 @@
+
+.myReport-detail-wrap{
+	margin-top : 50px;
+}
+#report-write-box{
+    display: flex;
+    flex-direction: column;
+    margin: 40px auto 0 auto;
+    align-items: center;
+    width: 50%;
+}
+
+#back_click {
+	width: 100%;
+    margin-left: 11%;
+    cursor: pointer;
+}
+
+#back{
+	font-size: 14px;
+    font-family: 'AppleSDGothicNeo';
+    color: #5055b1;
+    font-weight: 900;
+}
+#book-input{
+margin-top: 25px;
+    align-self: start;
+    margin-left: 5%;
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #1c1c1c;
+    font-family: 'Jalnan';
+}    
+
+hr{
+	    width: 93%;
+		color:black;
+}
+.report-sub-box{
+    /* border-radius: 3px; */
+    border: 1px dotted #bcb6b2;
+    height: 20px;
+    margin-bottom: 10px;
+    font-family: AppleSDGothicNeo;
+    display: flex;
+    align-self: self-start;
+}
+.report-sub-box2{
+    border: 1px dotted #bcb6b2;
+    height: 44.5px;
+    margin: 0 0 10px 0;
+    font-family: AppleSDGothicNeo;
+    display: flex;
+    align-self: self-start;
+    width: 100%;
+}
+
+.input1{
+	border: 1px dotted #bcb6b2;
+    height: 44.5px;
+    margin: 0 0 10px 0;
+    font-family: AppleSDGothicNeo;
+    display: flex;
+    align-self: self-start;
+    width: 100%;
+    padding-left: 7px;
+    font-size: 13px;
+}
+.input1-1{
+	border: 1px dotted #bcb6b2;
+    height: 44.5px;
+    margin: 10px 0 10px 0;
+    font-family: AppleSDGothicNeo;
+    display: flex;
+    align-self: self-start;
+    width: 100%;
+    padding-left: 7px;
+	font-size: 13px;
+}
+
+.input2 {
+	border: 1px dotted #bcb6b2;
+	height: 350px;
+	margin: 0 0 10px 0;
+	font-family: AppleSDGothicNeo;
+	display: flex;
+	align-self: self-start;
+	width: 100%;
+	padding-left: 7px;
+	font-size: 14px;
+	resize: none;
+	/* word-break: normal; */
+}
+
+/* .input3 {
+	border: 1px dotted #bcb6b2;
+	height: 40px;
+	margin: 0 0 10px 0;
+    font-family: AppleSDGothicNeo;
+    display: flex;
+    align-self: self-start;
+    width: 100%;
+    padding-left: 7px;
+    font-size: 13px;
+} */
+
+.input1-3{
+	border: 1px dotted #bcb6b2;
+    height: 44.5px;
+    margin: 0 0 10px 0;
+    font-family: AppleSDGothicNeo;
+    display: flex;
+    align-self: self-start;
+    width: 100%;
+    padding-left: 7px;
+    
+    background: #ededed;
+}
+
+.input1:focus, .input1-1:focus, .input2:focus, .input3:focus{
+	outline: none;
+}
+
+#report-class-box{
+	width: 39%;
+}
+
+
+input{
+	padding-left: 8px;
+}
+textarea{
+	padding-left: 8px;
+	padding-top : 9px;
+}
+
+/* 책 정보 wrap */
+#report-Img-report-wrap{
+	width: 90%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 4px;
+    margin-top: 20px;
+    justify-content: space-between;
+}
+
+
+/* 책 정보 이미지 */
+
+#report-Img-box{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	height: 214px;
+    width: 220px;
+
+    overflow:hidden;
+    margin:0 auto;
+
+}
+
+#myReport_img{
+    width:100%;
+    height:100%;
+	object-fit:cover;
+}
+.report-Infoimage-box{
+	display: flex;
+    
+}
+
+/* 책 정보 텍스트(제목, 저자, 분류) */
+#report-Infotext-box{
+	margin: 3px 0 0 10px;
+    width: 100%;
+}
+
+#report-report-box{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	width: 90%;
+	margin-top: 10px;
+       margin-bottom: 20px;
+}
+
+#report-title{
+    border: 1px dotted #bcb6b2;
+        height: 44.5px;
+    margin-bottom: 10px;
+    font-family: AppleSDGothicNeo;
+    display: flex;
+    align-self: self-start;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#report-content{
+    border: 1px dotted #bcb6b2;
+    height: 200px;
+    margin-bottom: 10px;
+    font-family: AppleSDGothicNeo;
+    display: flex;
+    align-self: self-start;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#input-btn{
+	width : 40%;
+    background: #5055b1;;
+    border: 1px solid #5055b1;;
+    border-radius: 6px;
+    height: 49px;
+	transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+	margin: 40px auto auto auto;
+	
+	color: #fff;
+	font-size: 15px;
+    font-weight: 600;
+}   
+
+#input-btn:hover{
+	cursor:pointer;
+	background: #30347f;	
+}
+
+#myReport_content{
+	height:40px;
+}
+
+#report-date{
+	font-size : 13px;
+}
+
+#row-div{
+	display: flex;
+	flex-direction: row;
+	font-size: 13px;
+	margin-top: 10px;
+}
+
+#expose-text{
+	font-size : 13px;
+}
+
+#expose-y{
+	color: #21257e;
+}
+#expose-n{
+	color: #c30a0a;
+}
+
+#expose-warn{
+	color: red;
+	font-size: 11px;
+	margin-top: 3px;
+}
+
+.btn-wrap{
+	width: 102%;
+	height: 25px;
+	display: flex;
+	justify-content: space-between;
+	margin-top: 10px;
+	position: relative;
+}
+
+#update-btn{
+
+    width : 47%;
+    background: #5055b1;;
+    border: 1px solid #5055b1;;
+    border-radius: 6px;
+    height: 49px;
+	margin-top:30px;
+	transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+	
+	color: #fff;
+	font-size: 15px;
+    font-weight: 600;
+}
+#update-btn:hover{
+	cursor:pointer;
+	background: #30347f;
+}
+
+#delete-btn{
+    position: relative;
+    top: -45px;
+    left: 51%;
+    
+    width: 21.3%;
+    border: 1px solid #5055b1;
+    border-radius: 6px;
+    height: 49px;
+	margin-top: 46px;
+	transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+	
+	color: #5055b1;
+	font-size: 15px;
+    font-weight: 600;
+}
+#delete-btn:hover{
+	cursor:pointer;
+	background: #30347f;
+	color: #fff;
+}
+
+
+/* 반응형 */
+@media screen and (max-width:630px) {
+	.myReport-detail-wrap{
+	width:560px;
+	}
+}
+@media screen and (max-width:1307px) {
+	#report-write-box{
+	width:645px;
+	}
+
+}
+
+@media screen and (max-width:1307px) {
+	#delete-btn{
+	width:278px;
+	}
+}

@@ -1,0 +1,534 @@
+
+/* admin 전체 컨테이너 */
+.main-container {
+	display: flex;
+	flex-direction: row;
+	margin-top: 50px;
+	display: flex;
+    justify-content: center;
+}
+
+/* admin 좌우 공백 준 매인 공간 */
+.content {
+	display: flex;
+	flex-direction: row;
+	position: relative;
+    overflow: visible;
+    width: 1400px;
+    margin-left: auto;
+    margin-bottom: auto;
+    margin-right: auto;
+    margin-top: auto;
+    padding: 0 52px 1px;
+}
+
+/* 내용이 나오는 메인 창 */
+#showPage {
+	margin-right: 130px;
+	width: 1020px;
+}
+
+/* 메뉴 */
+.side-menu {
+	width: 140px;
+	margin-right:80px;
+	display: flex;
+	flex-direction: column;
+}
+
+/* 메뉴버튼 */
+.menuBtn {
+	width : 130px;
+    background: #5055b1;;
+    border: 1px solid #5055b1;;
+    border-radius: 6px;
+    height: 49px;
+	
+	color: #fff;
+	font-size: 15px;
+    font-weight: 600;
+    
+    margin-bottom: 5px;
+}
+
+/* 공용 제목 칸 */
+.subject-container {
+	margin-bottom: 20px;
+}
+
+/* 공용 제목 텍스트 */
+#subject-text{
+	max-width: 482px;
+    font-size: 28px;
+    line-height: 34px;
+    font-weight: normal;
+    word-wrap: break-word;
+    word-break: break-word;
+    
+}
+
+/* 하위 제목 텍스트 */
+.sub-subject-text{
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: normal;
+    word-wrap: break-word;
+    word-break: break-word;
+}
+
+/* 공용 row */
+.table-row { height: 50px; border-bottom: 1px solid #DDD; }
+
+/* title row */
+.title-table-row { height: 40px; border-bottom: 1px solid #5055b1; }
+
+/* adminMemberList용 칸 간격 */
+.table-col1 { width: 180px; }
+.table-col2 { width: 250px; }
+.table-col3 { width: 120px; }
+.table-col4 { width: 100px; }
+.table-col5 { width: 60px; }
+.table-col6 { width: 60px; }
+.table-col7 { width: 60px; }
+.table-col8 { width: 60px; }
+.table-col9 { width: 60px; }
+
+/* title부분 셀 설정 */
+.title-cell { display: table-cell; padding: 3px;  }
+
+/* 일반 셀 설정 */
+.cell { display: table-cell; padding: 3px; }
+
+/* 텍스트 중앙정렬 */
+.center { text-align: center; }
+
+/* 텍스트 좌측정렬 */
+.left { text-align: left; }
+
+/* 텍스트 우측정렬 */
+.right { text-align: right; }
+
+/* 공용 버튼 */
+.action-btn{
+    width : 70px;
+    border: 1px solid #666666;
+    border-radius: 6px;
+    height: 40px;
+	/* transition: background-color 0.2s ease-out, border-color 0.2s ease-out; */
+	
+	background: #fff;
+	color: #616161;
+	font-size: 14px;
+    font-weight: 600;
+}
+
+/* adminMemberList용 칸 간격 */
+.table-book-col1 { width: 40px; }
+.table-book-col2 { width: 50px; }
+.table-book-col3 { width: 250px; }
+.table-book-col4 { width: 120px; }
+.table-book-col5 { width: 120px; }
+.table-book-col6 { width: 60px; }
+.table-book-col7 { width: 60px; }
+.table-book-col8 { width: 80px; }
+.table-book-col9 { width: 80px; }
+.table-book-col10 { width: 60px; }
+
+
+
+/* 문의사항 서브 메뉴버튼 */
+.adminInquiryMenuBtn1 {
+	
+	color: #fff;
+	width : 130px;
+    background: #5055b1;
+    border: 1px solid #5055b1;
+    border-radius: 6px;
+    height: 49px;
+	
+	color: #fff;
+	font-size: 15px;
+    font-weight: 600;
+}
+
+.adminInquiryMenuBtn2 {
+	
+	color: #5055b1;
+	width : 130px;
+    background: #fff;
+    border: 1px solid #5055b1;
+    border-radius: 6px;
+    height: 49px;
+	
+	font-size: 15px;
+    font-weight: 600;
+}
+
+
+/* adminInquiryBefore */
+
+input[class="toggle"] {
+	display: none;
+}
+
+.csInquiry-container {
+            display: flex;
+            padding: 10px;
+            margin:5px;
+            height: 40px;
+            justify-content: center;
+}
+
+.csInquiry-item {
+	padding: 7px;
+	cursor: pointer;
+	font-family: Jalnan;
+	font-size: 21px;
+	color: black;
+	min-width: 300px;
+	border: 1px solid lightgray;
+	border-radius: 10px;
+	text-align: center;
+}
+
+.csInquiry-item a {
+	text-align: center;
+	text-decoration: none;
+	color: #3d3d3d;
+}
+
+
+.adminInquiryReply-content-input {
+	width: 97%;
+	height: 150px; 
+	resize: none;
+}
+
+.adminInquiryReply-content {
+	display: flex;
+	flex-direction: row;
+}
+
+.adminInquiryReply-labelArea {
+	margin: 5px;
+	width: 40px;
+}
+
+.adminInquiryReply-inputArea {
+	margin: 5px;
+	width: 85%;
+}
+
+.adminInquiryReply-submitArea {
+	display: flex;
+	flex-direction: column-reverse;
+	padding-bottom: 10px;
+}
+	
+.adminInquiryReply-submit {
+	height: 40px;	
+}
+/* adminInquiryBefore end*/
+
+
+
+/* adminInquiryAfterList */
+.csInquiry-container {
+            display: flex;
+            padding: 10px;
+            margin:5px;
+            height: 40px;
+            justify-content: center;
+}
+
+.csInquiry-item {
+	padding: 7px;
+	cursor: pointer;
+	font-family: Jalnan;
+	font-size: 21px;
+	color: black;
+	min-width: 300px;
+	border: 1px solid lightgray;
+	border-radius: 10px;
+	text-align: center;
+}
+
+.csInquiry-item a {
+	text-align: center;
+	text-decoration: none;
+	color: #3d3d3d;
+}
+
+input[class="toggle"] {
+	display: none;
+}
+
+.wrap-collabsible {
+	margin: 1px;
+}
+
+.lbl-toggle {
+	display: block;
+	font-size: 16px;
+	text-align: left;
+	padding: 1rem;
+	cursor: pointer;
+	border-radius: 7px;
+}
+
+.lbl-toggle::before {
+	content: ' ';
+	display: inline-block;
+	border-top: 5px solid transparent;
+	border-bottom: 5px solid transparent;
+	border-left: 5px solid currentColor;
+	vertical-align: middle;
+	margin-right: .7rem;
+	transform: translateY(-2px);
+	transition: transform .2s ease-out;
+}
+
+.toggle:checked+.lbl-toggle::before {
+	transform: rotate(90deg) translateX(-3px);
+}
+
+.collapsible-content {
+	max-height: 0px;
+	overflow: hidden;
+	transition: max-height .25s ease-in-out;
+}
+
+.toggle:checked+.lbl-toggle+.collapsible-content {
+	max-height: 700px;
+}
+
+.toggle:checked+.lbl-toggle {
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+.collapsible-content .content-inner {
+	background: #ececec;
+	padding: 10px;
+	border-radius: 6px;
+	
+}
+
+.collapsible-content p {
+	margin-bottom: 0;
+}
+
+.flex-container {
+	display: flex;
+}
+.flex-item {
+	margin: 5px;
+	padding: 10px;
+	border: 10px;
+}
+.flex-item.one {
+	display: flex;
+	background-color: gainsboro;
+	flex-direction: row;
+	justify-content: space-between
+}
+.flex-item.a1 {
+	padding-left: 40px;
+}
+.flex-item.a2 {
+	padding-right: 40px;
+}
+
+.flex-container.column{flex-direction: column;}
+/* adminInquiryAfterList end*/
+
+
+/* CMS 서브 메뉴버튼 */
+.cmsMenuBtn1 {
+	
+	color: #fff;
+	width : 130px;
+    background: #5055b1;
+    border: 1px solid #5055b1;
+    border-radius: 6px;
+    height: 49px;
+	
+	color: #fff;
+	font-size: 15px;
+    font-weight: 600;
+}
+
+.cmsMenuBtn2 {
+	
+	color: #5055b1;
+	width : 130px;
+    background: #fff;
+    border: 1px solid #5055b1;
+    border-radius: 6px;
+    height: 49px;
+	
+	font-size: 15px;
+    font-weight: 600;
+}
+
+/* adminInquiryBefore & After top */
+.inquiry-top {
+	margin-bottom: 25px;
+}
+
+/* cms top */
+.cms-top {
+	margin-bottom: 25px;
+}
+
+/* CMS select input */
+.input-select {
+	width: 116px;
+	height: 40px;
+	border-radius: 6px;
+	margin-left: 5px;
+}
+
+/* CMS Date input */
+.input-date {
+	width: 116px;
+	height: 40px;
+	border-radius: 6px;
+	margin-left: 5px;
+}
+
+/* CMS text input */
+.input-text {
+	width: 200px;
+	height: 40px;
+	border-radius: 6px;
+	margin-left: 5px;
+}
+
+
+
+/* cms 조회 버튼 */
+.cms-action-btn{
+    width : 70px;
+    border: 1px solid #666666;
+    border-radius: 6px;
+    height: 40px;
+	
+	background: #fff;
+	color: #616161;
+	font-size: 14px;
+    font-weight: 600;
+    margin-left: 5px;
+}
+
+/* kpi input 부분 */
+.kpi-sub-top {
+	margin-bottom: 20px;	
+}
+
+/* excel export 버튼 */
+.cms-xlsx-btn {
+	width : 150px;
+    border: 1px solid #666666;
+    border-radius: 6px;
+    height: 40px;
+	
+	background: #fff;
+	color: #616161;
+	font-size: 14px;
+    font-weight: 600;
+    margin-left: 5px;
+}
+
+#xlsx {
+	margin-bottom: 20px;
+}
+
+
+
+/* KPI용 칸 간격 */
+.table-kpi-col1 { width: 100px; }
+.table-kpi-col2 { width: 200px; }
+.table-kpi-col3 { width: 200px; }
+
+/* salesRanking용 칸 간격 */
+.table-salesRanking-col1 { width: 50px; }
+.table-salesRanking-col2 { width: 100px; }
+.table-salesRanking-col3 { width: 250px; }
+.table-salesRanking-col4 { width: 80px; }
+.table-salesRanking-col5 { width: 120px; }
+.table-salesRanking-col6 { width: 120px; }
+.table-salesRanking-col7 { width: 100px; }
+.table-salesRanking-col8 { width: 100px; }
+.table-salesRanking-col9 { width: 100px; }
+
+/* salesHistory용 칸 간격 */
+.table-salesHistory-col1 { width: 50px; }
+.table-salesHistory-col2 { width: 180px; }
+.table-salesHistory-col3 { width: 100px; }
+.table-salesHistory-col4 { width: 250px; }
+.table-salesHistory-col5 { width: 100px; }
+.table-salesHistory-col6 { width: 120px; }
+.table-salesHistory-col7 { width: 100px; }
+.table-salesHistory-col8 { width: 100px; }
+.table-salesHistory-col9 { width: 100px; }
+
+
+#book-add-box{
+    border: 1px solid #a3a3a3;
+    display: flex;
+    flex-direction: column;
+    margin: 40px auto 0 auto;
+    align-items: center;
+    width: 80%;
+}
+
+.input{
+    border: 1px dotted #bcb6b2;
+    height: 44.5px;
+    margin-bottom: 10px;
+    font-family: AppleSDGothicNeo;
+    display: flex;
+    align-self: self-start;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.inputTextArea{
+    border: 1px dotted #bcb6b2;
+    height: 260px;
+    margin-bottom: 10px;
+    font-family: AppleSDGothicNeo;
+    width: 100%;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    resize: none;
+}
+
+.input-container {
+	width: 80%;
+}
+
+.margin-bottom {
+	margin-bottom: 40px;
+}
+
+.margin-bottom2 {
+	margin-bottom: 10px;
+}
+
+.margin-top {
+	margin-top: 40px;
+}
+
+.adminBookAdd-sub-box {
+	border: 1px dotted #bcb6b2;
+	width: 116px;
+	height: 40px;
+	border-radius: 6px;
+	margin-left: 5px;
+}
+
+

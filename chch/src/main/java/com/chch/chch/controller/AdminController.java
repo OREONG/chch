@@ -3,6 +3,7 @@ package com.chch.chch.controller;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -14,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.chch.chch.model.Admin;
 import com.chch.chch.model.Book;
 import com.chch.chch.model.Inquiry;
 import com.chch.chch.model.Member;
+import com.chch.chch.service.AdminService;
 import com.chch.chch.service.BookService;
 import com.chch.chch.service.InquiryService;
 import com.chch.chch.service.MemberService;
@@ -34,10 +37,18 @@ public class AdminController {
 	@Autowired
 	private InquiryService ins;
 	
+	@Autowired
+	private AdminService as;
+	
 //	SB 관리자 메인 화면
 	@RequestMapping("adminMain")
 	public String adminMain() {
 		return "/admin/adminMain";
+	}
+	
+	@RequestMapping("adminMainForBook")
+	public String adminMainForBook() {
+		return "/admin/adminMainForBook";
 	}
 	
 //	SB 전체 고객 목록 (관리자 열람용, 페이징 포함)
@@ -47,7 +58,9 @@ public class AdminController {
 		
 		final int ROW_PER_PAGE = 10;
 		final int PAGE_PER_BLOCK = 10;
-		if (pageNum == null || pageNum.equals("")) pageNum = "1";
+		if (pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		}
 		int currentPage = Integer.parseInt(pageNum);
 		int startRow = (currentPage - 1) * ROW_PER_PAGE + 1;
 		int endRow = startRow + ROW_PER_PAGE - 1;
@@ -67,7 +80,7 @@ public class AdminController {
 		model.addAttribute("PAGE_PER_BLOCK", PAGE_PER_BLOCK);
 		model.addAttribute("id", id);
 		
-		return "/admin/adminMemberList";
+		return "/admin/nolay/adminMemberList";
 	}
 	
 //	SB 유저 아이디 삭제 및 복구 ( del n->y, y->n 변경 가능 )
@@ -111,12 +124,12 @@ public class AdminController {
 		model.addAttribute("totalPage", totalPage);
 		model.addAttribute("PAGE_PER_BLOCK", PAGE_PER_BLOCK);
 		
-		return "/admin/adminBookList";
+		return "/admin/nolay/adminBookList";
 	}
 	
 //	SB 책 노출 여부 변경 ( del n->y, y->n 변경 가능 )
-	@RequestMapping("adminBookDelete")
-	public String adminBookDelete (Model model, String[] selectChk) {
+	@RequestMapping(value = "adminBookDelete", produces = "text/html;charset=utf-8")
+	public String adminBookDelete (Model model, @RequestParam("selectChk") String[] selectChk) {
 		
 		String[] selectDelete =selectChk;
 		String[] delList= new String[selectDelete.length];
@@ -153,7 +166,7 @@ public class AdminController {
 		
 		model.addAttribute("result", result);
 		
-		return "/admin/adminBookDelete";
+		return "/admin/nolay/adminBookList";
 	}
 	
 //	SB 책 상세 정보 확인
@@ -198,7 +211,7 @@ public class AdminController {
 	@RequestMapping("adminBookAddForm")
 	public String adminBookAddForm (Model model, HttpSession session) {
 		
-		return "/admin/adminBookAddForm";
+		return "/admin/nolay/adminBookAddForm";
 	}
 	
 //	SB 신규 책 등록 실행
@@ -227,7 +240,7 @@ public class AdminController {
 	}
 	
 	@RequestMapping("adminInquiryBeforeList")
-	public String adminInquiryBeforeList(Model model, HttpSession session, String pageNum, int inquiryNumber) {
+	public String adminInquiryBeforeList(Model model, HttpSession session, String pageNum, String inquiryNumber) {
 		
 		final int ROW_PER_PAGE = 10;
 		final int PAGE_PER_BLOCK = 10;
@@ -253,24 +266,35 @@ public class AdminController {
 		model.addAttribute("PAGE_PER_BLOCK", PAGE_PER_BLOCK);
 		model.addAttribute("inquiryNumber", inquiryNumber);
 		
+		return "/admin/nolay/adminInquiryBeforeList";
+	}
+	
+	@RequestMapping(value = "adminInquiryReply", produces = "text/html;charset=utf-8")
+	public String saveMessage(@RequestParam("category_no") int category_no,
+			@RequestParam("inquiry_no") int inquiry_no, @RequestParam("inquiry_subject") String inquiry_subject,
+			@RequestParam("id") String id, @RequestParam("reply_content") String reply_content,
+			HttpSession session, Inquiry inquiry, Model model) {
+
+		
+		inquiry.setReply_content(reply_content.replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
+		inquiry.setCategory_no(category_no);
+		inquiry.setId(id);
+		inquiry.setReply_content(reply_content);
+		inquiry.setInquiry_subject(inquiry_subject);
+		
+
+		int result = ins.replySubmit(inquiry);
+
+		model.addAttribute("result", result);
+
 		return "/admin/adminInquiryBeforeList";
 	}
 	
-	@RequestMapping("adminInquiryReply")
-	public String adminInquiryReply (Model model, HttpSession session, Inquiry inquiry) {
-		
-		inquiry.setReply_content(inquiry.getReply_content().replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
-		
-		int result = ins.replySubmit(inquiry);
-		
-		model.addAttribute("inquiryNumber", inquiry.getInquiryNumber());
-		model.addAttribute("result", result);
-		
-		return "/admin/adminInquiryReply";
-	}
+	
+	
 	
 	@RequestMapping("adminInquiryAfterList")
-	public String adminInquiryAfterList (Model model, HttpSession session, String pageNum, int inquiryNumber) {
+	public String adminInquiryAfterList (Model model, HttpSession session, String pageNum, String inquiryNumber) {
 		
 		final int ROW_PER_PAGE = 10;
 		final int PAGE_PER_BLOCK = 10;
@@ -296,8 +320,161 @@ public class AdminController {
 		model.addAttribute("PAGE_PER_BLOCK", PAGE_PER_BLOCK);
 		model.addAttribute("inquiryNumber", inquiryNumber);
 		
-		return "/admin/adminInquiryAfterList";
+		return "/admin/nolay/adminInquiryAfterList";
 	}
 	
+	@RequestMapping("CMS")
+	public String CMS(Model model, int cms) {
+		model.addAttribute("cms", cms);
+		return "/admin/nolay/CMS";
+	}
+	
+	@RequestMapping("KPI")
+	public String KPI(Model model, int cms) {
+		model.addAttribute("cms", cms);
+		return "/admin/nolay/KPI";
+	}
+	
+	@RequestMapping("KPISelect")
+	public String KPISelect(Model model, String pageNum, String book_kind, Date dateFrom, Date dateTo, int cycle) {
+		final int ROW_PER_PAGE = 10;
+		final int PAGE_PER_BLOCK = 10;
+		if (pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		}
+		
+		int currentPage = Integer.parseInt(pageNum);
+		int startRow = (currentPage - 1) * ROW_PER_PAGE + 1;
+		int endRow = startRow + ROW_PER_PAGE - 1;
+		Admin kpiInfo = new Admin();
+		kpiInfo.setBook_kind(book_kind);
+		kpiInfo.setDateFrom(dateFrom);
+		kpiInfo.setDateTo(dateTo);
+		kpiInfo.setCycle(cycle);
+		int total = as.getKPITotal(kpiInfo);
+		int totalPage = (int) Math.ceil((double)total/ROW_PER_PAGE);
+		int startPage = currentPage - (currentPage - 1) % PAGE_PER_BLOCK;
+		int endPage = startPage + PAGE_PER_BLOCK - 1;
+		
+		if (endPage > totalPage) endPage = totalPage;
+		
+		kpiInfo.setStartRow(startRow);
+		kpiInfo.setEndRow(endRow);
+		
+		List<Admin> KPI = as.KPI(kpiInfo);
+		
+		model.addAttribute("KPI", KPI);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("totalPage", totalPage);
+		model.addAttribute("PAGE_PER_BLOCK", PAGE_PER_BLOCK);
+		model.addAttribute("cycle", cycle);
+		model.addAttribute("book_kind", book_kind);
+		model.addAttribute("dateFrom", dateFrom);
+		model.addAttribute("dateTo", dateTo);
+		
+		
+		return "/admin/nolay/KPISelect";
+	}
+	
+	@RequestMapping("salesRanking")
+	public String salesRanking (Model model, int cms) {
+		model.addAttribute("cms", cms);
+		return "/admin/nolay/salesRanking";
+	}
+	
+	@RequestMapping("salesRankingSelect")
+	public String salesRankingSelect (Model model, String pageNum, String book_kind, Date dateFrom, Date dateTo, int sort) {
+		
+		final int ROW_PER_PAGE = 10;
+		final int PAGE_PER_BLOCK = 10;
+		if (pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		}
+		
+		int currentPage = Integer.parseInt(pageNum);
+		int startRow = (currentPage - 1) * ROW_PER_PAGE + 1;
+		int endRow = startRow + ROW_PER_PAGE - 1;
+		Admin salesInfo = new Admin();
+		salesInfo.setBook_kind(book_kind);
+		salesInfo.setDateFrom(dateFrom);
+		salesInfo.setDateTo(dateTo);
+		int total = as.getRankingTotal(salesInfo);
+		
+		int totalPage = (int) Math.ceil((double)total/ROW_PER_PAGE);
+		int startPage = currentPage - (currentPage - 1) % PAGE_PER_BLOCK;
+		int endPage = startPage + PAGE_PER_BLOCK - 1;
+		
+		if (endPage > totalPage) endPage = totalPage;
+		
+		salesInfo.setStartRow(startRow);
+		salesInfo.setEndRow(endRow);
+		salesInfo.setSort(sort);
+		
+		List<Admin> salesRanking = as.salesRanking(salesInfo);
+		
+		model.addAttribute("salesRanking", salesRanking);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("totalPage", totalPage);
+		model.addAttribute("PAGE_PER_BLOCK", PAGE_PER_BLOCK);
+		model.addAttribute("sort", sort);
+		model.addAttribute("book_kind", book_kind);
+		model.addAttribute("dateFrom", dateFrom);
+		model.addAttribute("dateTo", dateTo);
+		
+		return "/admin/nolay/salesRankingSelect";
+	}
+	
+	@RequestMapping("salesHistory")
+	public String salesHistory (Model model, int cms) {
+		model.addAttribute("cms", cms);
+		return "/admin/nolay/salesHistory";
+	}
+	
+	@RequestMapping("salesHistorySelect")
+	public String salesHistorySelect (Model model, String pageNum, int book_no, Date dateFrom, Date dateTo) {
+		 
+		final int ROW_PER_PAGE = 10;
+		final int PAGE_PER_BLOCK = 10;
+		if (pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		}
+		
+		int currentPage = Integer.parseInt(pageNum);
+		int startRow = (currentPage - 1) * ROW_PER_PAGE + 1;
+		int endRow = startRow + ROW_PER_PAGE - 1;
+		Admin salesInfo = new Admin();
+		salesInfo.setBook_no(book_no);
+		salesInfo.setDateFrom(dateFrom);
+		salesInfo.setDateTo(dateTo);
+		int total = as.salesHistoryTotal(salesInfo);
+		
+		
+		int totalPage = (int) Math.ceil((double)total/ROW_PER_PAGE);
+		int startPage = currentPage - (currentPage - 1) % PAGE_PER_BLOCK;
+		int endPage = startPage + PAGE_PER_BLOCK - 1;
+		
+		if (endPage > totalPage) endPage = totalPage;
+		
+		salesInfo.setStartRow(startRow);
+		salesInfo.setEndRow(endRow);
+		
+		List<Admin> salesHistory = as.salesHistory(salesInfo);
+		
+		model.addAttribute("salesHistory", salesHistory);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("totalPage", totalPage);
+		model.addAttribute("PAGE_PER_BLOCK", PAGE_PER_BLOCK);
+		model.addAttribute("book_no", book_no);
+		model.addAttribute("dateFrom", dateFrom);
+		model.addAttribute("dateTo", dateTo);
+		
+		return "/admin/nolay/salesHistorySelect";
+	}
 	
 }

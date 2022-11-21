@@ -1,0 +1,106 @@
+.main-div{
+width: 800px;
+	margin:auto;
+	margin-top : 150px;
+}
+.detailwrap{
+    width: 1060px;
+    margin: 176px auto 0 auto;
+    padding: 0;
+    position: relative;
+    
+}
+.detail-wrap{
+	display: flex;
+	
+}
+.detail{
+	display: flex;
+	
+}
+.detail-info-wrap{
+    margin-left: 55px;
+}
+#detail_img{
+	width: 420px;
+	filter: drop-shadow(5px 5px 5px lightgray);
+}
+
+.detailtext {
+	font-family: 'AppleSDGothicNeo';
+	font-size: 19px;
+}
+
+.info-txt-div{
+	display: inline-block;
+    width: 400px;
+	margin-bottom: 32px;
+}
+.info-txt{
+	display: inline-block;
+    width: 100px;
+}
+.info-txt1{
+    display: inline-block;
+    width: 500px;
+    font-size: 28px;
+        font-weight: 600;
+}
+
+.btn-wrap{
+	display: flex;
+}
+
+
+.button1 {
+	height: 60px;
+	/* width: 100px; */
+	margin-right: 3px;
+}
+
+#button1-1 {
+	width: 68px;
+	background: white;
+	border: #6c71ce solid 2px;
+	border-radius: 5px;
+	font-size: 21px;
+	color: #6c71ce;
+}
+
+#button1-2 {
+	width: 130px;
+	background: #6c71ce;
+	border: none;
+	border-radius: 5px;
+	color: white;
+	font-family: 'AppleSDGothicNeo';
+	font-size: 18px;
+}
+
+#button1-1:hover {
+	border: black solid 2px;
+	color: black;
+	cursor: pointer;
+}
+
+#button1-2:hover {
+	background: black;
+	cursor: pointer;
+}
+
+
+#info-a {
+	font-family: 'AppleSDGothicNeo';
+	margin: 14px 0 0 5px;
+	text-decoration: none;
+	color: black;
+}
+
+.content{
+    margin-top: 50px;
+    font-family: 'AppleSDGothicNeo';
+    font-size: 19px;
+    border-top: #b1b0b0 solid 1px;
+    padding-top: 20px;
+    width: 399px;
+}

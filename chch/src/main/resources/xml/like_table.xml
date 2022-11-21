@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="like_tablens">
+	<!-- 작품 관심 -->
+	<insert id="insertAuthor" parameterType="like_table">
+		insert into like_table values ((select nvl(max(like_no), 0) + 1 from like_table), '', #{id}, '', #{author_no}, '', '', '')
+	</insert>
+	<!-- 작품 관심 불러오기 -->
+	<select id="selectAuthor" parameterType="map" resultType="like_table">
+		select * from like_table where author_no=#{author_no} and id=#{id}
+	</select>
+	<!-- 작품 관심 삭제 -->
+	<delete id="deleteAuthor" parameterType="map">
+		delete like_table where author_no=#{author_no} and id=#{id}
+	</delete>
+	
+	<!-- 글 좋아요 -->
+	<insert id="insertReview" parameterType="like_table">
+		insert into like_table values ((select nvl(max(like_no), 0) + 1 from like_table), '', #{id}, '', '', '', #{review_no}, 'n')
+	</insert>
+	
+	<!-- 글 좋아요 취소 -->
+	<delete id="deleteReview" parameterType="map">
+		delete like_table where review_no=#{review_no} and id=#{id}
+	</delete>
+	
+	<!-- 댓글 좋아요 불러오기 -->
+	<select id="selectLike_table" parameterType="map" resultType="like_table">
+		select * from like_table where review_no=#{review_no} and id=#{id}
+	</select>
+
+	<!-- 댓글 좋아요 갯수 -->
+	<update id="updateReviewLike" parameterType="integer" >
+		update review set review_like_count =(select count(*) from like_table where review_no=#{review_no}) where review_no=#{review_no}
+	</update>
+</mapper>

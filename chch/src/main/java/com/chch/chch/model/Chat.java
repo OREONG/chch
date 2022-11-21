@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class Chat {
 	private int chat_no;
-	private int room_no;
+	private String room_no;
 	private String sender;
 	private String chat_content;
 	private Date send_time;
@@ -18,6 +18,8 @@ public class Chat {
 	private String id;
 	private String room_name;
 	private String leave;
+	
+	private int unread;
 	
 	private long diffDays;
 }

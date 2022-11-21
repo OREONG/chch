@@ -1,0 +1,46 @@
+
+/* src 부분의 book 부분을 프로젝트 이름으로 변경해주세요 */
+
+/* 잘난체 */
+@font-face {
+    font-family : "Jalnan"; 
+    font-style : "normal"; 
+    font-weight : 400; 
+    src:url(/chackcheck/fonts/JALNAN.TTF);
+}
+/* apple gothic neo */
+
+@font-face {
+	font-family : "AppleSDGothicNeo";
+	font-style : "normal";
+	font-weight : 400;
+	src:url(/chackcheck/fonts/AppleSDGothicNeoR.ttf)
+}
+
+@font-face {
+	font-family : "AppleSDGothicNeo";
+	font-style : "normal";
+	font-weight : 500;
+	src:url(/chackcheck/fonts/AppleSDGothicNeoM.ttf)
+}
+
+@font-face {
+	font-family : "AppleSDGothicNeo";
+	font-style : "normal";
+	font-weight : 600;
+	src:url(/chackcheck/fonts/AppleSDGothicNeoSB.ttf)
+}
+
+@font-face {
+	font-family : "AppleSDGothicNeo";
+	font-style : "normal";
+	font-weight : 700;
+	src:url(/chackcheck/fonts/AppleSDGothicNeoB.ttf)
+}
+
+@font-face {
+	font-family : "AppleSDGothicNeo";
+	font-style : "normal";
+	font-weight : 800;
+	src:url(/chackcheck/fonts/AppleSDGothicNeoH.ttf)
+}

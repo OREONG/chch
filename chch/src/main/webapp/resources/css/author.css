@@ -1,0 +1,357 @@
+
+/* 나도 작가되기 전체 컨테이너 */
+.main-container{
+	margin-top: 50px;
+	display: flex;
+    justify-content: center;
+}
+
+.content{
+	position: relative;
+    overflow: visible;
+    width: 1020px;
+    margin: 0 auto;
+    padding: 0 52px 1px;
+}
+
+/* 나도 글쓰기 버튼 */
+.wrting-div{
+ 	margin-left: 789px;
+    margin-top: -57px;
+}
+
+#writingBtn{
+	width : 150px;
+    border: 1px solid #5055b1;
+    border-radius: 6px;
+    height: 49px;
+	margin-top: 12px;
+	transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+	
+	color: #5055b1;
+	font-size: 15px;
+    font-weight: 600;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto 0 0 10px;
+	padding: 13px 30px 13px 30px;    
+	font-weight: 600;
+}
+#writingBtn:hover{
+	cursor:pointer;
+	background: #30347f;
+	color: #fff;
+}
+
+.top10 {
+    font-size: 22px;
+    font-weight: 800;
+    font-family: 'Jalnan';
+}
+.new-list{
+    font-size: 22px;
+    font-weight: 800;
+    font-family: 'Jalnan';
+}
+.topDiv{
+	margin-top: 15px;
+}
+
+.mid-banner{
+    border: 1px solid #fff;
+    border-radius: 12px;
+    background: linear-gradient( 339deg, #5055b1 23%, #656abf 60%, #5359be );
+    margin-top: 69px;
+    height: 60px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    justify-content: center;
+    display: flex;
+	align-items: center;
+    transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+}
+.mid-banner:hover{
+	cursor:pointer;
+	background: #30347f;
+	color: #fff;
+}
+.textDiv{
+	margin-top: 70px;
+}
+.dateDiv{
+    margin-top: 20px;
+    border: 1px solid #e2e2e2;
+    padding: 0 30px 0 42px;
+}
+
+.likeDesc_content{
+    width: 900px;
+    margin-top: 10px;
+}
+.dateDesc_content{
+    margin-top: 42px;
+}
+
+.row-div{
+	display: flex;
+	flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.like-list-div{
+    margin-right: 15px;
+    width: 165px;
+       height: 146px;
+    margin-top: 35px;
+    border: 1px solid #e7e7e7;
+    padding: 10px 5px 0px 9px;
+}
+
+.like-no{
+	font-size: 19px;
+}
+
+.list-div{
+    margin: 30px 9px 25px 0px;
+}
+
+.a_subject-div{
+	margin-top: 25px;
+}
+.a_sub-div{
+	margin-top:8px;
+	font-weight: 400;
+}
+
+#a_subject{
+    font-size: 16px;
+    line-height: 20px;
+    color: #000;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+
+.a_sub{
+	font-size:13px;
+	color: #909090;
+}
+
+
+/* 작품 등록 페이지 */
+
+.container{
+	width: 1000px;
+	
+}
+
+#back_click {
+	width: 100%;
+    cursor: pointer;
+    margin: 0 0 18px 19px;
+}
+
+#back{
+	font-size: 14px;
+    font-family: 'AppleSDGothicNeo';
+    color: #5055b1;
+    font-weight: 900;
+}
+
+hr{
+	margin: 11px 0 18px 0;
+}
+
+#author-input{
+	margin-top: 25px;
+    align-self: start;
+    margin-left: 2%;
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #1c1c1c;
+    font-family: 'Jalnan';
+}
+
+#authorTitle-input{
+	border: 1px dotted #bcb6b2;
+    height: 44.5px;
+    margin-bottom: 10px;
+    display: flex;
+    align-self: self-start;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+#authorClass-select{
+	border: 1px dotted #bcb6b2;
+    height: 44.5px;
+    margin-bottom: 10px;
+    display: flex;
+    align-self: self-start;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;	
+}
+#author_introTextArea{
+	border: 1px dotted #bcb6b2;
+    height: 260px;
+    margin-bottom: 10px;
+    display: flex;
+    align-self: self-start;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    resize: none;
+}
+
+#input-btn{
+	width : 230px;
+    background: #5055b1;;
+    border: 1px solid #5055b1;;
+    border-radius: 6px;
+    height: 49px;
+    margin: 30px 0 33px 25%;
+	transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+	
+	color: #fff;
+	font-size: 15px;
+    font-weight: 600;
+}
+
+#input-btn:hover{
+	cursor:pointer;
+	background: #30347f;
+}
+
+#input-btn2{
+	width : 230px;
+    background: #5055b1;;
+    border: 1px solid #5055b1;;
+    border-radius: 6px;
+    height: 49px;
+    margin: 30px 0 33px 35%;
+	transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+	
+	color: #fff;
+	font-size: 15px;
+    font-weight: 600;
+}
+
+#input-btn2:hover{
+	cursor:pointer;
+	background: #30347f;
+}
+
+#deleteBtn{
+	width : 230px;
+    border: 1px solid #5055b1;
+    border-radius: 6px;
+    height: 49px;
+	transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+	
+	color: #5055b1;
+	font-size: 15px;
+    font-weight: 600;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	margin: -82px 0 0 51%;
+}
+
+#deleteBtn:hover{
+	cursor:pointer;
+	background: #30347f;
+	color: #fff;
+}
+
+/* 회차 쓰기 */
+#author_work_contentText{
+	border: 1px dotted #bcb6b2;
+    height: 400px;
+    margin-bottom: 10px;
+    display: flex;
+    align-self: self-start;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    resize: none;
+}
+#author_work_commentText{
+	border: 1px dotted #bcb6b2;
+    height: 100px;
+    margin-bottom: 10px;
+    display: flex;
+    align-self: self-start;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    resize: none;
+	
+}
+
+/* 공통속성 */
+ul{
+	display: flex;
+	list-style:none;
+	text-decoration-line: none;
+}
+
+a { 
+	text-decoration: none;
+	color: gray;
+	}
+a:visited { 
+    text-decoration: none; 
+    }
+a:hover { 
+    text-decoration: none; 
+    }
+a:focus { 
+	text-decoration: none; 
+	}
+a:hover, a:active { 
+	text-decoration: none; 
+	}
+	
+hr{
+	width: 100%;
+	color:black;
+}
+
+input{
+	padding-left: 8px;
+}
+textarea{
+	padding-left: 8px;
+	padding-top : 9px;
+}
+select{
+	padding-left: 8px;
+	color : #655c5c;
+}
+
+
+
+/* 반응형 */
+@media screen and (max-width:1100px) {
+	.main-container{
+		width:1000px;
+	}
+	.container{
+		width:1000px;
+	}
+
+}
+@media screen and (max-width:1000px) {
+	#input-btn{
+		width:230px;
+	}
+	#deleteBtn{
+		margin-left:450px;
+	}
+}
+

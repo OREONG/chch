@@ -32,4 +32,14 @@ public class InquiryServiceImpl implements InquiryService {
 	public List<Inquiry> inquiryList(int startRow, int endRow, String id) {
 		return ind.inquiryList(startRow, endRow, id);
 	}
+
+	@Override
+	public int replyCheck(int inquiry_no) {
+		return ind.replyCheck(inquiry_no);
+	}
+
+	@Override
+	public int unreadInquiryCount(String id) {
+		return ind.unreadInquiryCount(id);
+	}
 }

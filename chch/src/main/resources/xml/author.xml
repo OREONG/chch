@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="authorns">
+	<!-- 전체 작품 불러오기(관심 수 정렬) -->
+	<select id="authorAllList" resultType="author">
+		SELECT *
+		FROM (
+		         SELECT author_no
+		         	  , author_subject
+		              , id
+		              , author_class
+					  , like_count
+		              , DENSE_RANK() OVER(ORDER BY like_count DESC) AS rnk
+		           FROM author
+		       )
+		 WHERE rnk  <![CDATA[<]]> 11 and like_count  <![CDATA[>]]> 0
+	</select>
+	<!-- 전체 작품 불러오기(날짜 순 정렬) -->
+	<select id="allList_date" resultType="author" parameterType="author">
+		select * from(select a.*, rowNum rn from(select * from author where del='n' order by reg_date desc) a) where rn between #{startRow} and #{endRow}
+		
+	</select>
+	<!-- 작품 insert -->
+	<insert id="insert" parameterType="author">
+		insert into author values(
+		(SELECT NVL(MAX(author_no), 0) + 1 FROM author)
+		,#{author_subject}
+		,#{author_class}
+		,#{author_introduce}
+		,#{id}
+		,'n'
+		,sysdate
+		,0)
+	</insert>
+	<!-- 내 작품 list -->
+	<select id="authorList" parameterType="author" resultType="author">
+		select * from(select a.*, rowNum rn from(select * from author where id=#{id} and del='n' order by reg_date desc) a) where rn between #{startRow} and #{endRow}
+	</select>
+	<!-- 글쓰기 insert -->
+	<insert id="workInsert" parameterType="author_work">
+		insert into author_work values(
+		(SELECT NVL(MAX(author_work_no), 0) + 1 FROM author_work)
+		,#{author_work_subject}
+		,#{author_work_content}
+		<if test="author_work_comment != null">
+		,#{author_work_comment}		
+		</if>
+		,0
+		,sysdate
+		,#{author_no}
+		,#{id}
+		,0
+		)
+		
+	</insert>
+	<!-- 작품 한개 불러오기 -->
+	<select id="select" parameterType="integer" resultType="author">
+		select * from author where author_no=#{author_no}
+	</select>
+	<!-- 회차 리스트 불러오기 -->
+	<select id="authorWork_list" parameterType="author_work" resultType="author_work">
+		select * from(select a.*, rowNum rn from(select * from author_work where author_no=#{author_no} order by author_work_date desc) a)where rn between #{startRow} and #{endRow}
+	</select>
+	<!-- 글 상세페이지(글 읽는 부분) -->
+	<select id="selectWork" parameterType="integer" resultType="author_work">
+		select * from author_work where author_work_no=#{author_work_no}
+	</select>
+	<!-- 조회수 -->
+	<update id="updateReadCount" parameterType="integer">
+		update author_work set author_work_count = author_work_count + 1 where author_work_no=#{author_work_no}
+	</update>
+	<!-- 전체 관심 수 -->
+	<update id="updateLikeCount" parameterType="integer">
+		update author set like_count=(select count(*) from like_table where author_no=#{author_no}) where author_no=#{author_no}
+	</update>
+	
+	<!-- 작품 댓글 입력 -->
+	<insert id="insertReview" parameterType="review">
+		insert into review values(
+			(SELECT NVL(MAX(review_no), 0) + 1 FROM review)
+			,''
+			,#{review_content}
+			,sysdate
+			,'n'
+			,#{id}
+			,''
+			,#{author_work_no}		
+			,0
+		)
+	</insert>
+	<!-- 댓글 전체 불러오기 -->
+	<select id="selectAllReview" parameterType="review" resultType="review">
+		select * from(select a.*, rowNum rn from(select * from review where author_work_no=#{author_work_no} and review_del='n' order by review_like_count desc) a)where rn between #{startRow} and #{endRow}
+	</select>
+
+	<!-- 작품 정보 수정 -->
+	<update id="authorUpdate" parameterType="author">
+		update author set 
+		<if test="author_subject != null">
+		author_subject=#{author_subject}		
+		</if>
+		<if test="author_class != null">
+		,author_class=#{author_class}		
+		</if>
+		<if test="author_introduce != null">
+		,author_introduce=#{author_introduce}		
+		</if>
+		where author_no=#{author_no}
+	</update>
+	
+	<!-- 작품 정보 삭제 -->
+	<update id="authorDelete" parameterType="integer">
+		update author set del='y' where author_no=#{author_no}
+	</update>
+	
+	<!-- 글(회차) 수정 -->
+	<update id="author_workUpdate" parameterType="author_work">
+		update author_work set
+		<if test="author_work_subject != null">
+		author_work_subject=#{author_work_subject}		
+		</if>
+		<if test="author_work_content != null">
+		,author_work_content=#{author_work_content}		
+		</if>
+		<if test="author_work_comment != null">
+		,author_work_comment=#{author_work_comment}		
+		</if>
+		where author_work_no=#{author_work_no}
+	</update>
+	
+	<!-- 글(회차) 삭제 -->
+	<delete id="author_workDelete" parameterType="integer">
+		delete author_work where author_work_no=#{author_work_no}
+	</delete>
+	
+	<!-- 리뷰 수정 -->
+	<update id="reviewUpdate" parameterType="review">
+		update review set review_content=#{review_content} where review_no=#{review_no}
+	</update>
+	<!-- 리뷰 삭제 -->
+	<update id="reviewDelete" parameterType="integer">
+		update review set review_del='y' where review_no=#{review_no}
+	</update>
+	<!-- 페이징 용 댓글 갯수 -->
+	<select id="getTotalReview" parameterType="integer" resultType="integer">
+		select count(*) from review where author_work_no=#{author_work_no} and review_del='n'
+	</select>
+	<!-- 페이징 없이 댓글 불러오기 -->
+	<select id="selectAllReviewOri" parameterType="integer" resultType="review">
+		select * from review where author_work_no=#{author_work_no} and review_del='n'
+	</select>
+	<!-- 이전화, 다음화 -> author 모델안에 author_work join -->
+	<select id="authorAll" parameterType="author_work" resultType="author">
+		select * from author a, author_work aw where a.author_no(+)=aw.author_no and a.author_no=#{author_no}
+	</select>
+	<!-- 글 리스트 개수 -->
+	<select id="getTotalAuthor" parameterType="integer" resultType="integer">
+		select count(*) from author_work where author_no=#{author_no}
+	</select>
+	<!-- 작품 불러오기 날짜 순 - 개수 -->
+	<select id="getTotalAuthor_date" parameterType="author" resultType="integer">
+		select count(*) from author where del='n'
+	</select>
+	<!-- 내 작품 리스트 페이징 용 갯수 -->
+	<select id="getTotalAuthor_list" parameterType="author" resultType="integer">
+		select count(*) from author where id=#{id} and del='n'
+	</select>
+</mapper>

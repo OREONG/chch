@@ -1,0 +1,419 @@
+.main1 {
+	width: auto;
+}
+
+/* 책 제목, 작가, 출판사, 출판일 */
+.detailwrap {
+	width: 1060px;
+	margin: 176px auto 0 auto;
+	padding: 0;
+	position: relative;
+}
+
+.detail-title-wrap {
+	font-family: 'AppleSDGothicNeo';
+}
+
+#title-txt {
+	font-size: 30px;
+	font-weight: 700;
+}
+
+.title-sub-txt {
+	font-size: 16px;
+	margin-right: 5px;
+}
+
+/* 구분 선 */
+#line {
+	margin: 10px 15% 18px;
+	padding: 0;
+	border-top: 1px solid #ccc;
+}
+
+/* 책 정보 */
+/* 책 이미지, 책 정보 */
+.detail-sub-wrap {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 50px;
+}
+
+/* 책 이미지 */
+.detailimg {
+	display: flex;
+	justify-content: center;
+}
+
+#detail_img {
+	width: 420px;
+	filter: drop-shadow(5px 5px 5px lightgray);
+}
+
+/* 첵 정보 */
+.detailtext {
+	margin-top: 9%;
+	margin-left: 32px;
+}
+
+.detailtext-wrap {
+	display: flex;
+	flex-direction: column;
+	font-family: 'AppleSDGothicNeo';
+	font-size: 19px;
+}
+
+.info-txt-div {
+	display: inline-block;
+	width: 400px;
+	margin-bottom: 32px;
+}
+
+.info-txt {
+	display: inline-block;
+	width: 100px;
+}
+
+/* 수량 */
+.count-div {
+	display: flex;
+	margin-bottom: 41px;
+	margin-top: 35px;
+	font-family: 'AppleSDGothicNeo';
+	font-size: 19px;
+}
+
+#cart_count {
+	margin: 0 10px;
+}
+
+.count-pm {
+	height: 23px;
+	width: 23px;
+	background: content-box;
+	border: black solid 1px;
+	border-radius: 3px;
+	cursor: pointer;
+}
+/* 리뷰 별점 */
+.scroll-moveBox {
+	margin-bottom: 20px;
+	
+}
+
+#scroll_move {
+	text-decoration: none;
+	color: #6c71ce;
+	font-family: 'AppleSDGothicNeo';
+	font-size: 19px;
+}
+
+/* 찜 구매하기 장바구니 버튼 */
+.btn-wrap {
+	display: flex;
+	margin-top: 50px;
+}
+
+.button1 {
+	height: 60px;
+	/* width: 100px; */
+	margin-right: 3px;
+}
+
+/* 찜 버튼 */
+#button1-1 {
+	width: 68px;
+	background: white;
+	border: #6c71ce solid 2px;
+	border-radius: 5px;
+	font-size: 21px;
+	color: #6c71ce;
+}
+
+/* 장바구니, 구매하기 버튼 */
+#button1-2 {
+	width: 130px;
+	background: #6c71ce;
+	border: none;
+	border-radius: 5px;
+	color: white;
+	font-family: 'AppleSDGothicNeo';
+	font-size: 18px;
+}
+
+#button1-1:hover {
+	border: black solid 2px;
+	color: black;
+	cursor: pointer;
+}
+
+#button1-2:hover {
+	background: black;
+	cursor: pointer;
+}
+
+/* 나도 판매하기 */
+.sales-link {
+	font-family: 'AppleSDGothicNeo';
+	margin: 14px 0 0 5px;
+	margin-top: 10px;
+}
+
+#sales-a {
+	text-decoration: none;
+	color: black;
+}
+
+#line2 {
+	margin: 10px 15% 18px;
+	padding: 0;
+	border-top: 2px solid #6c71ce;
+	margin-bottom: 50px;
+}
+
+/* 책 내용 설명 */
+/* 책 설명 이미지와 책 소개보기 */
+.detail2 {
+	margin-top: 100px;
+	width: 700px;
+	margin: 0 auto 0 auto;
+	padding: 0;
+	position: relative;
+}
+
+/* 책 소개보기 detail */
+#more {
+	cursor: pointer;
+	font-family: 'AppleSDGothicNeo';
+	margin: 20px 0 50px 0;
+}
+
+/* 리뷰 */
+/* 리뷰 전체 wrap */
+.review-wrap {
+	width: 800px;
+	margin: 0 auto 0 auto;
+	padding: 0;
+	position: relative;
+	font-family: 'AppleSDGothicNeo';
+}
+
+/* 리뷰 하나하나 div */
+.review-form-div {
+	margin-bottom: 30px;
+}
+
+.reviewbox {
+	display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.star_avg {
+	color: red;
+}
+
+.star {
+	margin-right: 50px;
+	color: red;
+}
+.review_list_box {
+	flex-direction: column;
+}
+
+#update-box {
+	display: none;
+}
+/* 리뷰 수정버튼 */
+#review-update {
+	font-size: 13px;
+	color: #808080;
+	cursor: pointer;
+}
+/* 리뷰 삭제버튼 */
+#review-delete {
+	font-size: 13px;
+	color: #808080;
+	cursor: pointer;
+}
+/* 리뷰 작성 textarea */
+#write_review {
+	width: 800px;
+	height: 70px;
+	border: none;
+    background-color: #ececec;
+    border-radius: 8px;
+    resize: none;
+}
+
+#update-review-content {
+	height: 30px;
+	border: #848484 solid 1px;
+	border-radius: 2px;
+}
+
+.hidden_btn {
+	margin-top: 7px;
+}
+
+#ok-btn {
+	width: 50px;
+	height: 30px;
+	background: #2bc5c1;
+	border: none;
+	border-radius: 5px;
+	color: white;
+	font-family: 'AppleSDGothicNeo';
+	font-size: 14px;
+}
+
+#ok-btn:hover {
+	cursor: pointer;
+	background: black;
+}
+
+.page_btn {
+	padding: 4px;
+    margin-right: 3px;
+    color: #ffffff;
+    font: bold 12px tahoma;
+    border: 1px solid #eee;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 7px;
+    background-color: #2bc5c1;
+}
+.page_btn:hover {
+	color: #ffffff;
+    border: 1px solid #000;
+    background-color: #000;
+}
+
+/* 별점 range */
+.rangeInput {
+	width: 30%;
+	background: linear-gradient(to right, #FFE283 0%, #FFE283 50%, #ececec 50%, #ececec
+		100%);
+	border-radius: 8px;
+	outline: none;
+	transition: background 450ms ease-in;
+	-webkit-appearance: none;
+	accent-color: #ffca1d;
+}
+
+/* 리뷰 등록 버튼 */
+.submit_box {
+	margin-top: 20px;
+}
+
+#review-input-btn {
+	width: 130px;
+	height: 45px;
+	background: #6c71ce;
+	border: none;
+	border-radius: 5px;
+	color: white;
+	font-family: 'AppleSDGothicNeo';
+	font-size: 18px;
+}
+
+#review-input-btn:hover {
+	background: black;
+	cursor: pointer;
+}
+
+/* 반응형 */
+@media ( min-width : 100px) {
+	.detailwrap {
+		width: 800px;
+		margin: 50px auto 0 auto;
+		padding: 0;
+		position: relative;
+	}
+}
+
+/* 페이징 부분 가운데 정렬 */
+.pagination-ul{
+	justify-content: center;
+}
+.pagination-ul>li{
+	margin-right:5px;
+}
+/* 현재 눌려있는 페이지 버튼 */
+.active-btn{
+	border: 1px solid #5055b1;
+    border-radius: 6px;
+    width: 35px;
+    height: 35px;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.active-btn>a{
+	font-size:16px;
+	color: #5055b1;
+	text-decoration: none;
+    font-weight: 700;
+}
+
+/* 눌려있지 않은 페이지 버튼 */
+.non-active-btn{
+	/* border: 1px solid #c8c8c8; */
+    border-radius: 6px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.non-active-btn>a{
+	font-size:16px;
+	color: #b1b1b1;
+	text-decoration: none;
+}
+/* 한 row 이전으로 가는 <버튼 */
+.pre-btn{
+	border-radius: 6px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;	
+}
+.pre-btn>a{
+		font-size: 16px;
+	color: #5055b1;
+    text-decoration: none;
+}
+
+/* 한 row 다음으로 가는 >버튼 */
+.next-btn{
+	border-radius: 6px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.next-btn>a{
+	font-size: 16px;
+	color: #5055b1;
+    text-decoration: none;
+}
+
+.report-wrap {
+	border: thin;
+}
+
+/* 감상문 리스트 */
+.report_list_box {
+	flex-direction: column;
+}
+
+
+#book-img {
+	width: 500px;
+}

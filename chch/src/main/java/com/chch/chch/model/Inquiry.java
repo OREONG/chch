@@ -16,5 +16,5 @@ public class Inquiry {
 	private String reply_content;
 	private Date reply_time;
 	
-	private int inquiryNumber;
+	private String inquiryNumber;
 }

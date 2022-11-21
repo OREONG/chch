@@ -24,4 +24,18 @@ public interface CommunityDao {
 
 	int joinRoom(int room_no, String id, String room_name);
 
+	int leaveRoom(String id, int room_no);
+
+	int leaveHistoryChk(String id, int room_no);
+
+	int rejoinRoom(int room_no, String id);
+
+	int communityLeave(String id, int community_no);
+
+	int communityDelete(String id, int community_no);
+
+	void banRoom(int room_no);
+
+	int communityCheck(int room_no);
+
 }

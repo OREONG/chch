@@ -30,8 +30,11 @@ public class ChatDaoImpl implements ChatDao {
 		return sst.insert("chatns.insertChat", chat);
 	}
 
-	public String lastMessage(int room_no) {
-		return sst.selectOne("chatns.lastMessage", room_no);
+	public Chat lastMessage(int room_no, String id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("room_no", room_no);
+		map.put("id", id);
+		return sst.selectOne("chatns.lastMessage", map);
 	}
 
 	public String selectRoomName(int room_no, String id) {
@@ -56,5 +59,57 @@ public class ChatDaoImpl implements ChatDao {
 	@Override
 	public void insertRoom(Chat chat) {
 		sst.insert("chatns.insertRoom", chat);
+	}
+
+	@Override
+	public List<Chat> selectRoomMember(int room_no) {
+		return sst.selectList("chatns.selectRoomMember", room_no);
+	}
+
+	@Override
+	public List<Chat> selectMyRoom(String id) {
+		return sst.selectList("chatns.selectMyRoom", id);
+	}
+
+	@Override
+	public int chatCount(int room_no, String id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("room_no", room_no);
+		map.put("id", id);
+		return sst.selectOne("chatns.chatCount", map);
+	}
+
+	@Override
+	public void checkRoom(int room_no, String id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("room_no", room_no);
+		map.put("id", id);
+		sst.update("chatns.checkRoom", map);
+		
+	}
+
+	@Override
+	public int loadUnreadChat(String id, int room_no) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("room_no", room_no);
+		map.put("id", id);
+		return sst.selectOne("chatns.loadUnreadChat", map);
+	}
+
+	@Override
+	public String selectLastSender(int room_no, String id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("room_no", room_no);
+		map.put("id", id);
+		return sst.selectOne("chatns.selectLastSender", map);
+	}
+
+	@Override
+	public void updateLastSender(int room_no, String id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("room_no", room_no);
+		map.put("id", id);
+		sst.update("chatns.updateLastSender", map);
+		
 	}
 }

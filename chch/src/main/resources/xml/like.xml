@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="likens">
+<!-- 찜목록 새책 불러오기 -->
+	<select id="Booklike_list" resultType="like">
+		 select * from like_list l left outer join book b on(l.book_no= b.book_no) where id=#{id} and used_no is null
+	 </select>
+	 
+	 <!-- 찜목록  중고 불러오기 -->
+	  <select id="Usedlike_list" resultType="like">
+		select * from like_list l left outer join (select * from used u left outer join book b on(u.book_no= b.book_no)) a  on(l.used_no= a.used_no)
+		where l.id=#{id} and a.used_no is not null
+	 </select>
+	 
+	  <!-- 찜목록 삭제 -->
+	  <delete id="delete" parameterType="map">
+	 	delete from like_list where like_no = #{like_no} and id =#{id}
+	 </delete> 
+	  
+	  <!-- 찜목록 추가 -->
+	  <insert id="insert" parameterType="like">
+		insert into like_list values ((select nvl(max(like_no), 0) + 1 from like_list), #{book_no}, #{id}, '')
+	 </insert>
+		
+		<!-- 중고상품 찜목록 추가 -->
+		<insert id="insert_used" parameterType="map">
+		insert into like_list values ((select nvl(max(like_no), 0) + 1 from like_list), '', #{id}, #{used_no})
+		</insert>
+		
+		<delete id="likeDelete" parameterType="like">
+			delete from like_list where like_no = #{like_no} and id =#{id}
+		</delete>
+		
+		<select id="select"  parameterType="map" resultType="like">
+			select * from like_list where id =#{id} and book_no =#{book_no}
+		</select>
+		<!--페이징 -->
+		<select id="getTotal" parameterType="like" resultType="integer">
+		select count(*) from like_list
+		</select>
+</mapper>

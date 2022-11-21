@@ -1,0 +1,343 @@
+
+/* 공용 메인 컨테이너 */
+.main-container {
+	margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+
+	/* 커뮤니티 메인 */
+.main-content {
+	position: relative;
+    overflow: visible;
+    width: 900px;
+    margin: 0 auto;
+}
+
+ /* community top area */
+.inquiry-top {
+	margin-bottom: 20px;
+}
+
+
+.communityMenuBtn1 {
+	color: #fff;
+	width : 130px;
+    background: #5055b1;
+    border: 1px solid #5055b1;
+    border-radius: 6px;
+    height: 49px;
+	
+	color: #fff;
+	font-size: 15px;
+    font-weight: 600;
+}
+
+
+
+
+
+
+
+
+/* 모임 만들기 */
+.content{
+    width: 900px;
+}
+#form{
+	border: 1px solid #a3a3a3;
+    padding: 39px;
+    margin-top: 25px;
+}
+
+    
+#main-text{
+	margin-top: 25px;
+    align-self: start;
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #1c1c1c;
+    font-family: 'Jalnan';
+}
+
+#text-line{
+	width : 100%;
+	color : #a3a3a3;
+}
+
+
+.member-gender-age{
+	    display: flex;
+}
+
+
+.select{
+	border: 1px dotted #bcb6b2;
+    height: 37px;
+}
+.input{
+	border: 1px dotted #bcb6b2;
+    height: 37px;
+}
+
+#max-member{
+    width: 216px;
+
+}
+
+
+#gender{
+    width: 150px;
+}
+
+#gender-div{
+
+}
+
+#commu-content{
+	height:100px;
+	width:100%;
+}
+
+#place{
+	width:100%;
+}
+
+#commu-subject{
+	width:100%;
+}
+
+#commnu-createBtn{
+	width : 100px;
+    background: #5055b1;;
+    border: 1px solid #5055b1;;
+    border-radius: 6px;
+    height: 49px;
+	transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+	
+	color: #fff;
+	font-size: 15px;
+    font-weight: 600;
+}
+
+#commnu-createBtn:hover{
+	cursor:pointer;
+	background: #30347f;
+}
+
+.commnu-createBtn-div{
+	display: flex;
+    justify-content: center;
+    margin-top: 46px;
+}
+
+#age1, #age2{
+	width: 111px;
+}
+
+.div1{
+	margin-bottom:17px;
+}
+.margin-div{
+	margin-left:15px;
+}
+.warn-text{
+    font-size: 10px;
+    color: #f05c5c;
+}
+
+#cate-select{
+	border: 1px dotted #bcb6b2;
+    height: 40px;
+    width : 280px;
+}
+
+#back_click {
+	width: 100%;
+    cursor: pointer;
+    margin: 0 0 18px 5px;
+}
+
+#back{
+	font-size: 14px;
+    font-family: 'AppleSDGothicNeo';
+    color: #5055b1;
+    font-weight: 900;
+}
+
+/* 내 모임 리스트 */
+.sub-container{
+	width: 900px;
+}
+
+.main-text-div{
+	margin-top: 27px;
+	margin-bottom: 27px;
+}
+
+#cate-text{
+	font-size: 16px;
+	font-weight: 500;
+}
+#subject-text{
+	
+}
+#member-text{
+	font-size: 12px;
+}
+
+#cate-div{
+	margin-bottom: 6px;
+}
+
+/* 모임 상세보기 */
+.detail-container{
+    border: 1px solid #d8d8d8;
+    padding: 33px;	
+}
+
+.div2{
+    padding-left: 12px;
+    height: 38px;
+    border: 1px dotted #e3e3e3;
+    display: flex;
+    align-items: center;
+    margin-bottom: 13px;
+    background: #efefef;
+}
+.detail-Ta{
+    padding: 10px 0 10px 12px;
+    width:100%;
+    border: 1px dotted #e3e3e3;
+    display: flex;
+    align-items: center;
+    margin-bottom: 13px;
+    background: #efefef;
+    resize: none;	
+}
+.detail-Ta:focus{
+	outline: none;
+}
+.btn-wrap{
+	
+}
+#communityDelete{
+    width: 200px;
+    border: 1px solid #5055b1;
+    border-radius: 6px;
+    height: 49px;
+    transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+    color: #5055b1;
+    font-size: 15px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: -82px 0 0 53%;
+}
+#communityDelete:hover{
+	cursor:pointer;
+	background: #30347f;
+	color: #fff;
+}
+#communityLeave{
+	width : 230px;
+    border: 1px solid #5055b1;
+    border-radius: 6px;
+    height: 49px;
+	transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+	
+	color: #5055b1;
+	font-size: 15px;
+    font-weight: 600;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	margin: -82px 0 0 52%;	
+}
+#communityLeave:hover{
+	cursor:pointer;
+	background: #30347f;
+	color: #fff;	
+}
+#goChatBtn{
+    width: 200px;
+    background: #5055b1;
+    border: 1px solid #5055b1;
+    border-radius: 6px;
+    height: 49px;
+    margin: 30px 0 33px 23%;
+    transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;	
+}
+
+#goChatBtn:hover{
+	cursor:pointer;
+	background: #30347f;
+}
+
+#communityJoin{
+    width: 200px;
+    background: #5055b1;
+    border: 1px solid #5055b1;
+    border-radius: 6px;
+    height: 49px;
+    margin: 30px 0 1px 37%;
+    transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;	
+}
+
+#communityJoin:hover{
+	cursor:pointer;
+	background: #30347f;
+}
+.detail-gender-age{
+	display: flex;
+}
+.detail-member{
+    width: 133px;	
+}
+.detail-gender{
+	width: 210px;	
+}
+.detail-age{
+    width: 210px;
+}
+.detail-age-div{
+	margin-left: 14px;
+}
+.detail-member-text{
+	font-size:14px;
+	font-family: 'Jalnan';
+	margin-left: 450px;
+}
+.detail-gen-div{
+	margin-left: 14px;
+}
+.detail-cate{
+	width : 210px;	
+}
+
+@media screen and (max-width:809px) {
+	.main-container{
+		width:900px;
+	}
+	
+	.content{
+		width:750px;
+	}
+
+}
+@media screen and (max-width:1008px) {
+	.sub-container{
+		width:900px;
+	}
+
+
+}

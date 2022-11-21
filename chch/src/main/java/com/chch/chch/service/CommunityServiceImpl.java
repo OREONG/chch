@@ -49,4 +49,41 @@ public class CommunityServiceImpl implements CommunityService {
 	public int joinRoom(int room_no, String id, String room_name) {
 		return comd.joinRoom(room_no,id,room_name);
 	}
+
+	@Override
+	public int leaveRoom(String id, int room_no) {
+		return comd.leaveRoom(id, room_no);
+	}
+
+	@Override
+	public int leaveHistoryChk(int room_no, String id) {
+		return comd.leaveHistoryChk(id, room_no);
+	}
+
+	@Override
+	public int rejoinRoom(int room_no, String id) {
+		return comd.rejoinRoom(room_no, id);
+	}
+
+	@Override
+	public int communityLeave(String id, int community_no) {
+		return comd.communityLeave(id, community_no);
+		
+	}
+
+	@Override
+	public int communityDelete(String id, int community_no) {
+		return comd.communityDelete(id, community_no);
+	}
+
+	@Override
+	public void banRoom(int room_no) {
+		comd.banRoom(room_no);
+	}
+
+	@Override
+	public int communityCheck(int room_no) {
+		return comd.communityCheck(room_no);
+	}
+
 }

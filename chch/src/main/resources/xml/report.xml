@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="reportns">
+	<!-- 책 검색 -->
+	<select id="bookSearch" parameterType="string" resultType="book">
+		select * from (select * from book where book_title like '%'||#{searchText}||'%' order by book_no)
+	</select>
+	<!-- 독후감 등록 -->
+	<insert id="insert" parameterType="report">
+		insert into report values(
+		(SELECT NVL(MAX(report_no), 0) + 1 FROM report)
+		,#{id}
+		,sysdate
+		,#{report_title}
+		,#{report_content}
+		,#{expose}
+		,'n'
+		,#{book_no}
+		)
+	</insert>
+ 	<!-- 독후감 리스트 불러오기 -->
+	<select id="selectList" resultType="report" parameterType="report">
+		select * from(select a.*, rowNum rn from(select * from report r left outer join book b ON r.book_no = b.book_no where r.del='n' order by report_date desc) a) where rn between #{startRow} and #{endRow}
+	</select>
+	<!-- 독후감 상세 페이지 -->
+	<select id="select" parameterType="integer" resultType="report">
+		select * from report r left outer join book b ON r.book_no = b.book_no where report_no=#{report_no}
+	</select>
+	<!-- 독후감 삭제 (del = 'y') -->
+	<update id="delete" parameterType="integer">
+		update report set del='y' where report_no=#{report_no}
+	</update>
+	<!-- 독후감 수정 -->
+	<update id="update" parameterType="report">
+		update report set report_title=#{report_title}, report_content=#{report_content}, expose=#{expose} where report_no=#{report_no}
+	</update>
+	<!-- 페이징 용 독서록 개수 불러오기 -->
+	<select id="getTotal" resultType="integer" parameterType="report">
+		select count(*) from report where del='n' and id=#{id}
+	</select>
+	<select id="getTotal1" resultType="integer" parameterType="report">
+		select count(*) from report where del='n' and expose='y' and book_no=#{book_no}
+	</select>
+	
+	<select id="reportList" parameterType="report" resultType="report">
+		select * from (select a.*, rowNum rn from (select * from report 
+		where expose='y' and del='n' and book_no=#{book_no} order by report_date desc)a)
+		where rn between #{startRow} and #{endRow}
+	</select>
+</mapper>
