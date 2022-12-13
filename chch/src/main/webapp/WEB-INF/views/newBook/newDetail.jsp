@@ -43,12 +43,12 @@ $(function() {
 	
 	
 	// 리뷰 수정 취소
-/* 	$('.hidden_btn a').on('click', function() {
-		$(this).parent().hide(); // .hidden_btn
-		$(this).parent().siblings().show(); // .show_btn
-		$(this).parents('.like_box').siblings('.review').show();
-		$(this).parents('.like_box').siblings('input').hide();
-	}); */
+// 	$('.hidden_btn a').on('click', function() {
+// 		$(this).parent().hide(); // .hidden_btn
+// 		$(this).parent().siblings().show(); // .show_btn
+// 		$(this).parents('.like_box').siblings('.review').show();
+// 		$(this).parents('.like_box').siblings('input').hide();
+// 	});
 }); 
 
 
@@ -373,13 +373,11 @@ $(document).ready(function(){
 								<c:if test="${id == review.id }">
 									<div class="rievew_btn">
 										<div class="show_btn">
-
 											<a id="review-update" onclick="reviewUpdate()"
 												class="btn btn_stroke btn_small review_update">수정</a> <a
 												id="review-delete"
 												onclick="reviewDelete(${review.review_no})"
 												class="btn btn_stroke btn_small">삭제</a>
-
 										</div>
 										<!-- 수정 -->
 										<div id="update-box">
@@ -389,10 +387,11 @@ $(document).ready(function(){
 											<div class="hidden_btn">
 												<input type="submit" id="ok-btn"
 													class="btn btn_stroke btn_small" value="완료">
-												<!-- <a class="btn btn_stroke btn_small">취소</a> -->
+												<a id="ok-btn" onclick="reviewUpdate()"
+												class="btn btn_stroke btn_small review_update">취소</a>
+<!-- 												<a class="btn btn_stroke btn_small">취소</a> -->
 											</div>
 										</div>
-
 									</div>
 								</c:if>
 							</div>
@@ -497,7 +496,7 @@ $(document).ready(function(){
 		<!-- 감상문 리스트  -->
 		<div class="report-wrap">
 			<div id="div1">
-				<h3 class="sub_title pd_bottom">감상문</h3>
+				<h3 class="sub_title pd_bottom">독후감</h3>
 			</div>
 			<div id="line"></div>
 			<ul class="report_list_box">

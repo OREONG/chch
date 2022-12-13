@@ -338,8 +338,12 @@
 							</li>
 							<!-- 검색 -->
 							<li>
-
-								<input id="searchInput" type="text" placeholder="검색 이걸로 쓰세욤~~">
+							<form action="searchBook.do">
+							<p>
+							<input id="searchInput" name="keyword" type="text" placeholder="검색어를 입력하세요">
+							<button id="searchimg"><img id="search" src="/chch/resources/images/search.png"></button>
+							</p>
+							</form>
 							</li>
 							
 							<!-- 알림 종 -->
@@ -379,8 +383,8 @@
 						
 						<button class="bookMenuBtn" onclick="openCloseMenu()"><img id="hamburger" alt="" src="/chch/resources/images/hamburger.png"> </button>
 						
-						<a class="cate-c newBook" href="newList.do?book_kind=all&order=recent">신작도서</a>
-						<a class="cate-c" href="usedList.do">중고도서</a>
+						<a class="cate-c newBook" href="newList.do?book_kind=all&order=recent">신작도서▼</a>
+						<a class="cate-c usedBook" href="usedList.do">중고도서</a>
 						<a class="cate-c" href="usedAddForm.do">판매하기</a>
 						<a class="cate-c" href="writing.do">나도 작가</a>
 						<a class="cate-c" href="communityAllList.do">모임</a>
@@ -418,64 +422,64 @@
 							<div class="bookMenu">
 									<!-- IT -->
 											<ul class="submenu">
-												<li class="li-main-c"><a href="/chch/newBook/newList.do?book_kind=it&order=recent" class="nav-class1">IT</a></li>
+												<li class="li-main-c"><a href="newList.do?book_kind=IT&order=recent" class="nav-class1">IT</a></li>
 												
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=IT-프로그래밍언어&order=recent" class="a">프로그래밍언어</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=IT-컴퓨터공학&order=recent" class="a">컴퓨터공학</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=IT-해킹/보안&order=recent" class="a">해킹/보안</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=IT-그래픽/디자인&order=recent" class="a">그래픽/디자인</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=IT-OS/데이터베이스&order=recent" class="a">OS/데이터베이스</a></li>
+												<li class="li-c"><a href="newList.do?book_kind=IT-프로그래밍언어&order=recent" class="a">프로그래밍언어</a></li>
+												<li class="li-c"><a href="newList.do?book_kind=IT-컴퓨터공학&order=recent" class="a">컴퓨터공학</a></li>
+												<li class="li-c"><a href="newList.do?book_kind=IT-해킹/보안&order=recent" class="a">해킹/보안</a></li>
+												<li class="li-c"><a href="newList.do?book_kind=IT-그래픽/디자인&order=recent" class="a">그래픽/디자인</a></li>
+												<li class="li-c"><a href="newList.do?book_kind=IT-OS/데이터베이스&order=recent" class="a">OS/데이터베이스</a></li>
 											</ul>
 									
 									<!-- 문학 -->
 											<ul class="submenu">
-												<li class="li-main-c"><a href="/chch/newBook/newList.do?book_kind=문학&order=recent" class="nav-class1">문학</a></li>
+												<li class="li-main-c"><a href="newList.do?book_kind=문학&order=recent" class="nav-class1">문학</a></li>
 												
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=문학-한국소설&order=recent" class="a">한국소설</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=문학-해외소설&order=recent" class="a">해외소설</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=문학-시&order=recent" class="a">시</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=문학-에세이&order=recent" class="a">에세이</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=문학-고전문학&order=recent" class="a">고전문학</a></li>
+												<li class="li-c"><a href="newList.do?book_kind=문학-한국소설&order=recent" class="a">한국소설</a></li>
+												<li class="li-c"><a href="newList.do?book_kind=문학-해외소설&order=recent" class="a">해외소설</a></li>
+												<li class="li-c"><a href="newList.do?book_kind=문학-시&order=recent" class="a">시</a></li>
+												<li class="li-c"><a href="newList.do?book_kind=문학-에세이&order=recent" class="a">에세이</a></li>
+												<li class="li-c"><a href="newList.do?book_kind=문학-고전문학&order=recent" class="a">고전문학</a></li>
 											</ul>
 
 									
 									<!-- 역사 -->
 											<ul class="submenu">
-												<li class="li-main-c"><a href="/chch/newBook/newList.do?book_kind=역사&order=recent" class="nav-class1">역사</a></li>
+												<li class="li-main-c"><a href="newList.do?book_kind=역사&order=recent" class="nav-class1">역사</a></li>
 												
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=역사-한국사/한국문화&order=recent" class="a">한국사/한국문화</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=역사-동양사/동양문화&order=recent" class="a">동양사/동양문화</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=역사-서양사/서양문화&order=recent" class="a">서양사/서양문화</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=역사-세계사/세계문화&order=recent" class="a">세계사/세계문화</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=역사-역사학이론/비평&order=recent" class="a">역사학이론/비평</a></li>
+												<li class="li-c"><a href="newList.do?book_kind=역사-한국사/한국문화&order=recent" class="a">한국사/한국문화</a></li>
+												<li class="li-c"><a href="newList.do?book_kind=역사-동양사/동양문화&order=recent" class="a">동양사/동양문화</a></li>
+												<li class="li-c"><a href="newList.do?book_kind=역사-서양사/서양문화&order=recent" class="a">서양사/서양문화</a></li>
+												<li class="li-c"><a href="newList.do?book_kind=역사-세계사/세계문화&order=recent" class="a">세계사/세계문화</a></li>
+												<li class="li-c"><a href="newList.do?book_kind=역사-역사학이론/비평&order=recent" class="a">역사학이론/비평</a></li>
 											</ul>
 
 									
 									<!-- 과학 -->
 											<ul class="submenu">
-												<li class="li-main-c"><a href="/chch/newBook/newList.do?book_kind=과학&order=recent" class="nav-class1">과학</a></li>
+												<li class="li-main-c"><a href="newList.do?book_kind=과학&order=recent" class="nav-class1">과학</a></li>
 												
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=과학-공학&order=recent" class="a">공학</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=과학-물리학&order=recent" class="a">물리학</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=과학-생명과학&order=recent" class="a">생명과학</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=과학-천문학&order=recent" class="a">천문학</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=과학-화학&order=recent" class="a">화학</a></li>
+												<li class="li-c"><a href="newList.do?book_kind=과학-공학&order=recent" class="a">공학</a></li>
+												<li class="li-c"><a href="newList.do?book_kind=과학-물리학&order=recent" class="a">물리학</a></li>
+												<li class="li-c"><a href="newList.do?book_kind=과학-생명과학&order=recent" class="a">생명과학</a></li>
+												<li class="li-c"><a href="newList.do?book_kind=과학-천문학&order=recent" class="a">천문학</a></li>
+												<li class="li-c"><a href="newList.do?book_kind=과학-화학&order=recent" class="a">화학</a></li>
 											</ul>
 									
 									<!-- 경제 -->
 											<ul class="submenu">
-												<li class="li-main-c"><a href="/chch/newBook/newList.do?book_kind=경제&order=recent" class="nav-class1">경제</a></li>
+												<li class="li-main-c"><a href="newList.do?book_kind=경제&order=recent" class="nav-class1">경제</a></li>
 												
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=경제-경제&order=recent" class="a">경제</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=경제-경영&order=recent" class="a">경영</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=경제-투자/재테크&order=recent" class="a">투자/재테크</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=경제-마케팅/세일즈&order=recent" class="a">마케팅/세일즈</a></li>
-												<li class="li-c"><a href="/chch/newBook/newList.do?book_kind=경제-CEO/비즈니스&order=recent" class="a">CEO/비즈니스</a></li>
+												<li class="li-c"><a href="newList.do?book_kind=경제-경제&order=recent" class="a">경제</a></li>
+												<li class="li-c"><a href="newList.do?book_kind=경제-경영&order=recent" class="a">경영</a></li>
+												<li class="li-c"><a href="newList.do?book_kind=경제-투자/재테크&order=recent" class="a">투자/재테크</a></li>
+												<li class="li-c"><a href="newList.do?book_kind=경제-마케팅/세일즈&order=recent" class="a">마케팅/세일즈</a></li>
+												<li class="li-c"><a href="newList.do?book_kind=경제-CEO/비즈니스&order=recent" class="a">CEO/비즈니스</a></li>
 											</ul>
 									
 									
 							</div>
-							<!-- 신작도서 bookMenu끝	 -->		
+							<!-- 신작도서 bookMenu끝	 -->			
 						</div>
 		
 			</div>

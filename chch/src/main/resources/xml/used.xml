@@ -19,7 +19,7 @@
 	</select>
 	
 	<select id="selectUsed" parameterType="integer" resultType="used">
-		select * from used where used_no=#{used_no}
+		select u.*, b.book_title from used u, book b where u.book_no = b.book_no and used_no=#{used_no}
 	</select>
 	
 	<insert id="insertUsed" parameterType="used">

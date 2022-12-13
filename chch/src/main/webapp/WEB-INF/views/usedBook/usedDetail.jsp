@@ -27,8 +27,8 @@
 						<c:if test="${used.used_status=='r' }">[예약중]</c:if>
 						<c:if test="${used.used_status=='y' }">[판매완료]</c:if>
 						${used.used_subject }</div></div>
-					<div class="info-txt-div"><div class="info-txt">책 제목</div>			
-					${book.book_title }</div>			
+<!-- 					<div class="info-txt-div"><div class="info-txt">책 제목</div>			 -->
+<%-- 					${used.book_title }</div>			 --%>
 					<div class="info-txt-div"><div class="info-txt">가격</div><fmt:formatNumber value="${used.used_price }" pattern="#,###"/>원</div>
 					<div class="info-txt-div"><div class="info-txt">판매자</div>${used.id }<br></div>
 				</div>

@@ -200,7 +200,7 @@
 
 /* 리뷰 하나하나 div */
 .review-form-div {
-	margin-bottom: 30px;
+/* 	margin-bottom: 5px; */
 }
 
 .reviewbox {
@@ -258,7 +258,7 @@
 #ok-btn {
 	width: 50px;
 	height: 30px;
-	background: #2bc5c1;
+	background: #6c71ce;
 	border: none;
 	border-radius: 5px;
 	color: white;

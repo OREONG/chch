@@ -2,8 +2,12 @@ SELECT * FROM tabs
 SELECT * FROM member;
 SELECT * FROM book
 SELECT * FROM cart
+SELECT * FROM used
 
 DROP TABLE member;
+
+
+delete from used where used_no=1;
 
 
 --member table create

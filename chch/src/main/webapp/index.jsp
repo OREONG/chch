@@ -10,7 +10,8 @@
 <body>
 <!-- header에 ip주소 변경 후 실행 -->
 <script type="text/javascript">
-	location.href="${ip}/main.do"
+// 	location.href="${ip}/main.do"
+	location.href="main.do"
 </script>
 </body>
 </html>
