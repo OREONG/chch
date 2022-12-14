@@ -66,6 +66,7 @@ CREATE TABLE room (
 	check_time DATE,
 	leave CHAR(1),
 	unread NUMBER(10) DEFAULT 0,
+	usued_no NUMBER(10),
 	CONSTRAINT room_pk PRIMARY KEY(room_no, id)
 );
 
@@ -822,6 +823,41 @@ DELETE review;
 DELETE used;
 DELETE report;
 
+SELECT * FROM used;
+
+
+CREATE TABLE like_list (
+   like_no   NUMBER(10) PRIMARY KEY,      --   ȣ
+   book_no   NUMBER(10),               --å  ȣ
+   id   VARCHAR2(20) NOT NULL,         --   ̵ 
+   used_no NUMBER(10),               -- ߰  ŷ   ȣ
+   CONSTRAINT like_book_no_fk FOREIGN KEY (book_no) REFERENCES book(book_no),
+   CONSTRAINT like_id_fk FOREIGN KEY (id) REFERENCES member(id),
+   CONSTRAINT like_used_no_fk FOREIGN KEY (used_no) REFERENCES used(used_no)
+);
+
+
+CREATE TABLE cart(
+   cart_no NUMBER(10) PRIMARY KEY,      --īƮ  ȣ
+   book_no   NUMBER(10),            --å  ȣ
+   id   VARCHAR2(12) not null,          --   ̵ 
+   cart_count   NUMBER(10) not null,   --    
+   CONSTRAINT cart_book_no_fk FOREIGN KEY (book_no) REFERENCES book(book_no),
+   CONSTRAINT cart_id_fk FOREIGN KEY (id) REFERENCES member(id)
+);
+
+
+
+
+
+
+SELECT * FROM used;
+
+SELECT * FROM room;
+
+ALTER TABLE room ADD used_no NUMBER(10);
+
+SELECT COUNT(*) FROM room WHERE used_no = 2 AND id = 'a'; 
 
 
 

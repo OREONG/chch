@@ -112,4 +112,12 @@ public class ChatDaoImpl implements ChatDao {
 		sst.update("chatns.updateLastSender", map);
 		
 	}
+
+	@Override
+	public int checkExistingChat(int used_no, String id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("used_no", used_no);
+		map.put("id", id);
+		return sst.selectOne("chatns.checkExistingChat", map);
+	}
 }

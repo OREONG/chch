@@ -45,7 +45,7 @@
 	</select>
 	
 	<insert id="joinRoom" parameterType="map">
-		INSERT INTO room VALUES (#{room_no}, #{id}, #{room_name}, sysdate, sysdate, 'n', 0, #{id})
+		INSERT INTO room VALUES (#{room_no}, #{id}, #{room_name}, sysdate, sysdate, 'n', 0, #{id}, '')
 	</insert>
 	
 	<update id="leaveRoom" parameterType="map">

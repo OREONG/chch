@@ -84,4 +84,9 @@ public class ChatServiceImpl implements ChatService {
 		cd.updateLastSender(room_no, id);
 		
 	}
+
+	@Override
+	public int checkExistingChat(int used_no, String id) {
+		return cd.checkExistingChat(used_no, id);
+	}
 }

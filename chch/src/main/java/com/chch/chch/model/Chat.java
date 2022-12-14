@@ -18,6 +18,7 @@ public class Chat {
 	private String id;
 	private String room_name;
 	private String leave;
+	private int used_no;
 	
 	private int unread;
 	

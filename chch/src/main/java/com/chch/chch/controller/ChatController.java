@@ -142,6 +142,25 @@ public class ChatController {
 		return "/header";
 	}
 	
+	@RequestMapping("usedChat")
+	public String usedChat(Model model, HttpSession session, int used_no) {
+		String id = (String) session.getAttribute("id");
+		int checkExistingChat = cs.checkExistingChat(used_no, id);
+		
+		if (checkExistingChat == 0 ) {
+//			새로운 채팅방 생성
+//			생성된 채팅방 번호 확인
+		}
+		
+		return "/chat/usedChat";
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 //	SB 한글 string을 cutlen 길이만큼 2byte 단위로 끊고 뒤에 '...' 붙이기
 	public static String subStrByte(String str, int cutlen) {

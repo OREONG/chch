@@ -224,7 +224,7 @@ create table like_table(
 	like_no	number(10) primary key, --찜번호
 	book_no	number(10), 			--책번호 fk
 	id varchar2(20) not null, 		--아이디fk
-	--used_no number(10), 			--중고거래번호fk
+	used_no number(10), 			--중고거래번호fk
 	author_no number(10), 			--작가되기 번호fk
 	author_work_no number(10), 		--작가되기 컨텐츠 번호fk
 	review_no number(10),			--댓글 번호fk

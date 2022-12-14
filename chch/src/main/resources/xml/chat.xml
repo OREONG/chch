@@ -55,7 +55,7 @@
 	 
 	 <!-- SB 대화방 생성 -->
 	<insert id="insertRoom" parameterType="chat">
-	 	INSERT INTO room VALUES(#{room_no}, #{id}, #{room_name}, sysdate, sysdate, 'n', 0, #{id})
+	 	INSERT INTO room VALUES(#{room_no}, #{id}, #{room_name}, sysdate, sysdate, 'n', 0, #{id}, '')
 	 </insert>
 	 
 	 <!-- SB 로그인한 대상자중에 지정된 room_no에 참석중인 인원 -->
@@ -92,6 +92,12 @@
 		UPDATE room SET lastsender=#{id} WHERE room_no=#{room_no}
 	</update>
 	
+	
+	
+	<!-- SB 특정 used_no와 id 기준 대화방이 존재하는지 확인 -->
+	<select id="checkExistingChat" parameterType="map" resultType="int">
+	 	SELECT COUNT(*) FROM room WHERE used_no = #{used_no} AND id = #{id}
+	 </select>
 	
 	 
 </mapper>

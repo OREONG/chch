@@ -36,4 +36,6 @@ public interface ChatService {
 
 	void updateLastSender(int room_no, String id);
 
+	int checkExistingChat(int used_no, String id);
+
 }
