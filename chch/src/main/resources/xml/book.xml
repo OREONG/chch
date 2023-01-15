@@ -3,6 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bookns">
 
+	<!-- 모든 도서 리스트 & 정렬순서 -->
 	<select id="bookListAll" parameterType="book" resultType="book">
 		select * from (select a.*, rowNum rn from
 			<if test="order == 'recent' or order == null">
@@ -10,9 +11,6 @@
 			</if>
 			<if test="order == 'publish'">
 			(select * from book order by book_publish_date desc)a) 
-			</if>
-			<if test="order == 'best'">
-			(select * from book order by              )a) 
 			</if>
 			<if test="order == 'review'">
 			(select * from book)a) 
@@ -29,16 +27,15 @@
 		where rn between #{startRow} and #{endRow} and book_del='n'
 	</select>
 	
+	<!-- 카테고리별 도서 리스트 & 정렬순서 -->
 	<select id="bookListSelect" parameterType="book" resultType="book">
-<!-- 		select * from (select a.*, rowNum rn from (select * from book where book_kind=#{book_kind} order by book_reg_date desc)a) -->
-<!-- 		where rn between #{startRow} and #{endRow} and book_del='n' -->
-		
 		select * from (select a.*, rowNum rn from (select * from book
 		<if test='book_kind.equalsIgnoreCase("all")'>
 			
 		</if>
-		<if test='book_kind.equalsIgnoreCase("IT") or book_kind.equals("문학") or book_kind.equals("역사") 
-					or book_kind.equals("과학") or book_kind.equals("경제")'>
+		<if test='book_kind.equalsIgnoreCase("IT") 
+				or book_kind.equals("문학") or book_kind.equals("역사") 
+				or book_kind.equals("과학") or book_kind.equals("경제")'>
 			<if test="book_kind == 'IT'">
 				where book_kind like 'IT' || '%'
 			</if>
@@ -55,8 +52,10 @@
 				where book_kind like '경제' || '%'
 			</if>
 		</if>
-		<if test='!book_kind.equalsIgnoreCase("all") and !book_kind.equalsIgnoreCase("IT") and !book_kind.equals("문학") and !book_kind.equals("역사") 
-					and !book_kind.equals("과학") and !book_kind.equals("경제")'>
+		<if test='!book_kind.equalsIgnoreCase("all") 
+				and !book_kind.equalsIgnoreCase("IT") 
+				and !book_kind.equals("문학") and !book_kind.equals("역사") 
+				and !book_kind.equals("과학") and !book_kind.equals("경제")'>
 			where book_kind = #{book_kind}
 		</if>
 				
@@ -65,9 +64,6 @@
 				</if>
 				<if test="order == 'publish'">
 					order by book_publish_date desc
-				</if>
-				<if test="order == 'best'">
-					<!-- 추가예정 -->
 				</if>
 				<if test="order == 'review'">
 					
@@ -84,18 +80,22 @@
 		)a) where rn between #{startRow} and #{endRow} and book_del='n'
 	</select>
 	
+	<!-- 삭제되지않은 모든 도서의 갯수 -->
 	<select id="getTotal" parameterType="book" resultType="integer">
 		select count(*) from book where book_del='n'
 	</select>
 	
+	<!-- book_no에 해당하는 도서의 정보 출력 -->
 	<select id="selectbook" parameterType="integer" resultType="book">
 		select * from book where book_no=#{book_no}
 	</select>
 
+	<!-- 중고도서 등록 시 제목 검색용 -->
 	<select id="bookSearch" parameterType="String" resultType="book">
 		select * from book where book_title like '%'||#{searchText}||'%' order by book_no
 	</select>
 	
+	<!-- 검색 시 도서 제목, 출판사, 작가 다중검색 -->
 	<select id="searchList" parameterType="book" resultType="book">
 		select * from book where
 			book_title like '%' || #{keyword} || '%' or
@@ -113,4 +113,6 @@
 		update book set
 		book_count=book_count - #{book_count}
 	</update>
+	
+	
 </mapper>

@@ -16,15 +16,19 @@ public class ReviewController {
 	@Autowired
 	private ReviewService rs;
 	
+//	by.현서 리뷰 등록
 	@RequestMapping("reviewInsert.do")
 	public String reviewInsert(Review review, Model model, Member member, HttpSession session) {
 		member.getId();
 		int result = 0;
+		// 세션에서 id를 가져옴
 		String id = (String) session.getAttribute("id");
+		// id가 없으면(로그인을 하지 않으면) -1을 반환
 		if (id == null || id == "") {
 			result = -1;
 		}
 		else {
+		// id가 있을 경우 review에 id를 저장
 		review.setId(id);
 		result = rs.insert(review);
 		}
@@ -33,6 +37,7 @@ public class ReviewController {
 		return "review/reviewInsert";
 	}
 	
+//	by.현서 리뷰 수정
 	@RequestMapping("reviewUpdate.do")
 	public String reviewUpdate(Review review, Model model, HttpSession session) {
 		int result = 0;
@@ -42,6 +47,7 @@ public class ReviewController {
 		return "review/reviewUpdate";
 	}
 	
+//	by.현서 리뷰 삭제
 	@RequestMapping("reviewDelete.do")
 	public String reviewDelete(Review review,  Model model, Member member, HttpSession session) {
 		int result = 0;

@@ -3,39 +3,45 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="usedns">
 
+	<!-- 판매상테별 중고도서 리스트 -->
 	<select id="usedList" parameterType="used" resultType="used">
 	<if test='status == "n"'>
-		select * from (select a.*, rowNum rn from (select * from used where used_status='n' order by used_reg_date desc)a)
+		select * from (select a.*, rowNum rn from
+		(select * from used where used_status='n' order by used_reg_date desc)a)
 		where rn between #{startRow} and #{endRow} and used_del='n'
 	</if>
 	<if test='status != "n"'>
-		select * from (select a.*, rowNum rn from (select * from used order by used_reg_date desc)a)
+		select * from
+		(select a.*, rowNum rn from (select * from used order by used_reg_date desc)a)
 		where rn between #{startRow} and #{endRow} and used_del='n'
 	</if>
 	</select>
 	
+	<!-- 중고도서 전체 갯수 -->
 	<select id="getTotal" parameterType="used" resultType="integer">
 		select count(*) from used where used_del='n'
 	</select>
-	
+	<!-- 중고도서 제목과 같은 신작도서 정보 출력용 -->
 	<select id="selectUsed" parameterType="integer" resultType="used">
-		select u.*, b.book_title from used u, book b where u.book_no = b.book_no and used_no=#{used_no}
+		select u.*, b.book_title from used u, book b where u.book_no = b.book_no 
+		and used_no=#{used_no}
 	</select>
-	
+	<!-- 중고도서 등록 -->
 	<insert id="insertUsed" parameterType="used">
 		<selectKey keyProperty="used_no" order="BEFORE" resultType="integer">
 			select nvl(max(used_no), 0) + 1 used_no from used
 		</selectKey>
-		insert into used values(#{used_no},#{book_no},#{used_subject},#{used_content},#{used_image},#{used_price},'n','n',sysdate,#{id})
+		insert into used values(#{used_no},#{book_no},#{used_subject},
+		#{used_content},#{used_image},#{used_price},'n','n',sysdate,#{id})
 	</insert>
-	
+	<!-- 중고도서 검색 -->
 	<select id="searchList" parameterType="String" resultType="used">
 		select * from used where
 			used_subject like '%' || #{keyword} || '%' or
 			used_content like '%' || #{keyword} || '%'
 		order by used_reg_date
 	</select>
-	
+	<!-- 중고도서 상태 변경 -->
 	<update id="updateStatus" parameterType="map">
 		update used set used_status = #{status} where used_no=#{used_no}
 	</update>
@@ -45,10 +51,12 @@
 	<update id="update" parameterType="integer">
 		update used set used_status='r' where used_no=${used_no}
 	</update>
+	<!-- HYC -->
 	<!-- 중고 도서 판매확정시 판매 완료로 상태 변경 -->
 	<update id="update2" parameterType="integer">
 		update used set used_status='y' where used_no=${used_no}
 	</update>
+	<!-- HYC -->
 	<!-- 거래 완료시 f로 상태 변경 -->
 	<update id="update3" parameterType="integer">
 		update used set used_status='f' where used_no=${used_no}
